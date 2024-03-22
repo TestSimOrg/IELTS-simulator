@@ -1,0 +1,29 @@
+# Dependency directories
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm/
+
+# Compiled binary addons (node-gyp)
+build/
+
+# Local environment variables
+.env
+
+# IDE files
+.idea/
+.vscode/

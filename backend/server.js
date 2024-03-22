@@ -1,0 +1,13 @@
+const express = require('express');
+const app = express();
+const port = 3000; // You can change this port if needed
+
+// Define a route to serve a basic HTML template
+app.get('/', (req, res) => {
+  res.send("Hello World Template!");
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is listening at http://localhost:${port}`);
+});
