@@ -1,0 +1,205 @@
+[
+    {
+        "number" : 1,
+        "type": "S",
+        "ans": "DESIGN"
+
+    },
+    {
+        "number" : 2,
+        "type": "S",
+        "ans": "BEGINNERS"
+    },
+    {
+        "number" : 3,
+        "type": "S",
+        "ans": "RESTORE"
+    },
+    {
+        "number" : 4,
+        "type": "M",
+        "ans": ["300","THREE HUNDRED","3 HUNDRED"]
+    },
+    {
+        "number" : 5,
+        "type": "S",
+        "ans": "DRAWING"
+    },
+    {
+        "number" : 6,
+        "type": "S",
+        "ans": "FREE"
+    },
+    {
+        "number" : 7,
+        "type": "S",
+        "ans": "PUBLISHED"
+    },
+    {
+        "number" : 8,
+        "type": "S",
+        "ans": "NEWSPAPER"
+    },
+    {
+        "number" : 9,
+        "type": "S",
+        "ans": "ONLINE FORM"
+    },
+    {
+        "number" : 10,
+        "type": "M",
+        "ans": ["TELEPHONE CALL","PHONE CALL","BY TELEPHONE","BY PHONE"]
+    },
+    {
+        "number" : 11,
+        "type": "L",
+        "ans": "B"
+    },
+    {
+        "number" : 12,
+        "type": "L",
+        "ans": "E"
+    },
+    {
+        "number" : 13,
+        "type": "L",
+        "ans": "A"
+    },
+    {
+        "number" : 14,
+        "type": "L",
+        "ans": "C"
+    },
+    {
+        "number" : 15,
+        "type": "L",
+        "ans": "B"
+    },
+    {
+        "number" : 16,
+        "type": "L",
+        "ans": "A"
+    },
+    {
+        "number" : 17,
+        "type": "L",
+        "ans": "A"
+    },
+    {
+        "number" : 18,
+        "type": "L",
+        "ans": "C"
+    },
+    {
+        "number" : 19,
+        "type": "L",
+        "ans": "C"
+    },
+    {
+        "number" : 20,
+        "type": "L",
+        "ans": "B"
+    },
+    {
+        "number" : 21,
+        "type": "S",
+        "ans": "NOTES"
+    },
+    {
+        "number" : 22,
+        "type": "S",
+        "ans": "STYLE"
+    },
+    {
+        "number" : 23,
+        "type": "S",
+        "ans": "PRESENTATION"
+    },
+    {
+        "number" : 24,
+        "type": "IEO",
+        "q_pair": [25],
+        "ans": ["C","D"]
+    },
+    {
+        "number" : 25,
+        "type": "IEO",
+        "q_pair": [24],
+        "ans": ["C","D"]
+    },
+    {
+        "number" : 26,
+        "type": "L",
+        "ans": "A"
+    },
+    {
+        "number" : 27,
+        "type": "L",
+        "ans": "C"
+    },
+    {
+        "number" : 28,
+        "type": "L",
+        "ans": "B"
+    },
+    {
+        "number" : 29,
+        "type": "L",
+        "ans": "C"
+    },
+    {
+        "number" : 30,
+        "type": "L",
+        "ans": "C"
+    },
+    {
+        "number" : 31,
+        "type": "S",
+        "ans": "MARRIAGE"
+    },
+    {
+        "number" : 32,
+        "type": "M",
+        "ans": ["PHOTOGRAPHS","PHOTOS"]
+    },
+    {
+        "number" : 33,
+        "type": "S",
+        "ans": "LETTERS"
+    },
+    {
+        "number" : 34,
+        "type": "S",
+        "ans": "DIGITAL"
+    },
+    {
+        "number" : 35,
+        "type": "S",
+        "ans": "OFFICIAL"
+    },
+    {
+        "number" : 36,
+        "type": "S",
+        "ans": "COUNTY"
+    },
+    {
+        "number" : 37,
+        "type": "S",
+        "ans": "TIPS"
+    },
+    {
+        "number" : 38,
+        "type": "S",
+        "ans": "SECRETS"
+    },
+    {
+        "number" : 39,
+        "type": "S",
+        "ans": "MIGRATION"
+    },
+    {
+        "number" : 40,
+        "type": "S",
+        "ans": "OBSTACLES"
+    }
+]
