@@ -7,7 +7,7 @@ There are 4 types of answers:
 3. Single letter answers denoted by "L". The single letter answer is an answer from an mcq and the letter in answer sheet and answer sheet should be ditto.
 
 4. In either order answers denoted by "IEO" The in either order answers are answers to this type of question:
-`
+```
 Questions 15-16
 
 Choose TWO letters, A-E
@@ -23,7 +23,7 @@ Which TWO things are most popular among users?
  D Toys.
 
  E Tools.
-`
+```
 
 If A and B are the correct options then, the possible answers are :
 ` 15 : A
