@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const ansSheetSchema = new mongoose.Schema({
+const listeningAnsSheetSchema = new mongoose.Schema({
     number : {
         type : Number,
         required : true,
@@ -30,6 +30,6 @@ const ansSheetSchema = new mongoose.Schema({
       }
 });
 
-const  ansSheet = mongoose.model('ansSheet', ansSheetSchema);
+const  listeningAnsSheet = mongoose.model('ansSheet', listeningAnsSheetSchema);
 
-export default ansSheet;
+export default listeningAnsSheet;

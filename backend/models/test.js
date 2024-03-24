@@ -29,4 +29,6 @@ const testSchema = mongoose.Schema({
 });
 
 
-export default test = mongoose.model('test', testSchema);
+const test = mongoose.model('test', testSchema);
+
+export default test;

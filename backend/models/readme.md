@@ -1,0 +1,148 @@
+This is an explaination of all schemas and models.
+
+In ielts exam there are a limited types of questions that can be asked. for eg:
+- Listening
+  - Multiple Choice Questions ( Type 1 and 2 )
+  - Matching ( Matching List and Matching Info )
+  - Diagram Labelling
+  - Plan/Map Labelling
+  - Sentence Completion
+  - Note Completion
+  - Flow Chat Completion
+  - Table Completion
+  - Summary Completion
+  - Form Completion
+
+
+- Reading
+  - Multiple Choice Questions ( Type 1 and 2 )
+  - True/False/Not Given
+  - Yes/No/Not Given
+  - Matching ( Matching List and Matching Info )
+  - Sentence Completion
+  - Note Completion
+  - Flow Chat Completion
+  - Table Completion
+  - Diagram Labelling
+  - Summary Completion
+  - Short Answer Questions
+
+
+Listening schema explainations:
+
+1. Matching : 
+   1. Type 1 example:
+
+        <img src="../public/listening/matchingType1.png" alt="matching type 1 img" style="width:400px;"/>
+
+        for this the json will be :
+        ```const q = {
+            startQuestionNum : 21,
+            endQuestionNum : 25,
+            questionHeader : 'Write the correct letter, A, B or C next to question 21-25.\nYou may choose any letter more than once.',
+            questionOptionRepeatable : true,
+            questionStatment : 'What does Jack tell his tutor about each of the following course option?',
+            questionOptions : ['
+            A He'll definitely do it.', 
+            'B He may or may not do it.',
+            'C He won't do it.'],
+            numStatements : [
+                '21 Media Studies _blank_',
+                '22 Women and Power _blank_',
+                '23 Culture and Society _blank_',
+                '24 Identify and Popular Culture _blank_',
+                '25 Introduction to Culture Theory _blank_',
+            ],
+        }
+        ```
+   2. Type 2 example:
+
+        <img src="../public/listening/matchingType2.png" alt="matching type 2 img" style="width:400px;"/>
+
+        for this the json will be:
+        ```
+        const q = {
+            startQuestionNum: 1,
+            endQuestionNum: 4,
+            questionHeader: 'Choose your answers from the box and write the correct letter A-E next to questions 1-4.',
+            questionOptionRepeatable: false,
+            questionStatment: 'Which hotel matches each description?',
+            questionOptions: [
+                'A The Bridge Hotel',
+                'B Carlton House',
+                'C The Imperial',
+                'D The Majestic',
+                'E The Royal Oak'
+            ],
+            numStatements: [
+                '1 is in a rural area _blank_',
+                '2 only opened recently _blank_',
+                '3 offers facilities for business functions _blank_',
+                '4 has an indoor swimming pool _blank_',
+            ]
+        }
+        ``` 
+
+
+
+
+
+Will keep adding as the schemas are finalised
+
+Reading Schema explainations:
+
+1. Matching:
+   1. Matching Info Type:
+
+        <img src="../public/reading/matchingInfo.png" alt="matching  info img" style="width:400px;"/>
+
+        for this the json will be:
+        ```
+        const q = {
+            startQuestionNum: 1,
+            endQuestionNum: 3,
+            qTypeMatchingInfo : true,
+            questionHeader : 'Reading Passage 1 has nine paragraphs, A-I.\nWrite the correct letter, A-I, in boxes 1-3 on your answer sheet.',
+            numStatements : [
+                '1 a reference to characteristics that only apply to food production.',
+                '2 a reference to challenges face only farmers in certain parts of the world.',
+                '3 a reference to difficulties in bringing about co-operation between farmers'
+            ]
+        }
+        ```
+   2. Matching List Type:
+
+        <img src="../public/reading/matchingList.png" alt="matching list img" style="width:400px;"/>
+
+        for this the json will be:
+        ```
+        const q = {
+            startQuestionNum : 1,
+            endQuestionNum : 5,
+            qTypeList : true,
+            questionHeader : 'Sample Passage 6 has six sections, A-F.\nChoose the correct heading for section A-D and F from the list of heading below.',
+            questionTitle: 'List of Headings',
+            questionTitle: 'List of Headings',
+            questionStatements: [
+                'i. The probable effects of the new international trade agreement',
+                'ii. The environmental impact of modern farming',
+                'iii. Farming and soil erosion',
+                'iv. The effects of government policy in poor countries.',
+                'v Governments and management of environment',
+                'vi The effects of government policy in rich countries',
+                'vii Farming and food output',
+                'viii The effects of government policy on food output;,
+                'ix The new prospects for world trade'
+                ],
+                numStatements: [
+                    '1 Section A',
+                    '2 Section B',
+                    '3 Section C',
+                    '4 Section D',
+                    '5 Section F'
+                ],
+        }
+        ```
+
+
+Will keep adding as the schemas are finalised

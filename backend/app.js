@@ -1,9 +1,14 @@
 import express from 'express';
 import path from 'path';
+import morgan from 'morgan'
 import fs from 'fs/promises';
+import ratelimit from 'express-rate-limit';
+import cors from 'cors';
 
 const app = express();
 const port = 3000; 
+
+app.use(morgan('dev'));
 
 
 

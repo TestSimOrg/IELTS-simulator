@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
-const mcqSchema = new mongoose.Schema({
+const lrmcqSchema = new mongoose.Schema({
+    questionHeader :{
+        type : String,
+        required: true
+    },
     questionStatement : {
         type : [String],
         required: true,
@@ -21,5 +25,5 @@ const mcqSchema = new mongoose.Schema({
 
 /**/
 
-const mcq = mongoose.model('mcq', mcqSchema);
-export default mcq;
+const lrmcq = mongoose.model('lrmcq', lrmcqSchema);
+export default lrmcq;

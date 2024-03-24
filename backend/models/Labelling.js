@@ -28,4 +28,4 @@ const labellingSchema = new mongoose.Schema({
 const labellingQuestion = mongoose.model('labellingQuestion', labellingSchema);
 const image = mongoose.model('image', imageSchema);
 
-export default labellingQuestion
+export default labellingQuestion;
