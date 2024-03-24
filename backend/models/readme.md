@@ -143,7 +143,79 @@ Listening schema explainations:
     ```
 
 
+3. Multiple Choice question:
 
+    There are two types of multiple question:
+    - type 1 (single answer)
+    - type 2 (multiple answer)
+
+    Type 1 eg:
+
+    <img src="../public/listening/mcqType1.png" alt="mcq img" style="width:400px;"/>
+
+    for this json will be:
+    ```
+    const q = {
+        startQuestionNum: 15,
+        endQuestionNum: 17,
+        qType: 1
+        questionHeader: ['Choose the correct letter, A, B or C.'],
+        numStatements:[
+            '15 How does BC Travel plan to expand the painting holidays?',
+            '16 Why are BC Travel's cooking holidays unusual?',
+            '17 What does the speaker say about the photography holidays?'
+        ],
+        questionStatements: [
+            [
+                'A by adding to the number of locations',
+                'B by increasing the range of levels',
+                'C by employing more teachers'
+            ],
+            [
+                'A They only use organic foods',
+                'B They have an international focus',
+                'C They mainly involve vegetarian dishes'
+            ],
+            [
+                'A Clients receive individual tution.',
+                'B The tutors are also trained guides.',
+                'C Advice is given on selling photographs.'
+            ],
+        ]
+    };
+    ```
+
+    Type 2 eg:
+
+    <img src="../public/listening/mcqType2.png" alt="mcq img" style="width:400px;"/>
+
+    for this json will be:
+    ```
+    const q = {
+        startQuestionNum: 11,
+        endQuestionNum: 14,
+        qType: 2
+        questionHeader: ['Choose TWO letter, A-E','Choose TWO letter, A-E'],
+        numStatements:['Which TWO age groups are taking increasing numbers of holiday with BC Travel?','Which TWO are the main reasons given for the popularity of activity holidays?'],
+        questionStatements: [
+            [
+                'A 16-30 years', 
+                'B 31-42 years', 
+                'C 43-54 years', 
+                'D 55-64 years', 
+                'E over 65 years'],
+                [
+                    'A Clients make new friends.', 
+                    'B Clients learn a useful skill.', 
+                    'C Clients learn about a different culture.', 
+                    'D Clients are excited by the risk involved.', 
+                    'E Clients find them value for money.'
+                ]
+            ]
+    };
+    ```
+
+    
 Will keep adding as the schemas are finalised
 
 Reading Schema explainations:
@@ -202,6 +274,9 @@ Reading Schema explainations:
         ```
 2. Sentence Completion: 
    The schema and model for the sentence completion is same for reading and listening.
+
+3. Multiple Choice Questions: 
+    The schema and model is the same.  However, the reading mcqs will not include type 2 question. so `qType` should always be 1 for reading only.
 
 
 Will keep adding as the schemas are finalised
