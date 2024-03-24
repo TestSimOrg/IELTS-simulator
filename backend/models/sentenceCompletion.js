@@ -28,4 +28,8 @@ const sentenceCompletionSchema = new mongoose.Schema({
 });
 
 
-export default sentenceCompletionQuestion = mongoose.model('sentenceCompletionQuestion', sentenceCompletionSchema);
+
+
+const sentenceCompletionQuestion = mongoose.model('sentenceCompletionQuestion', sentenceCompletionSchema);
+
+export default sentenceCompletionQuestion;

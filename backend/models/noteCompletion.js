@@ -26,4 +26,6 @@ const noteCompletionSchema = new mongoose.Schema({
 });
 
 
-export default noteCompletionQuestion = mongoose.model('noteCompletionQuestion', noteCompletionSchema);
+const noteCompletionQuestion = mongoose.model('noteCompletionQuestion', noteCompletionSchema);
+
+export default noteCompletionQuestion;

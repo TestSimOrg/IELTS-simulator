@@ -22,5 +22,7 @@ const matchingQuestionSchema = new mongoose.Schema({
         required: true
     }
   });
+  
+  const matchingQuestion =  mongoose.model('MatchingQuestion', matchingQuestionSchema);
 
-export default matchingQuestion =  mongoose.model('MatchingQuestion', matchingQuestionSchema);
+  export default matchingQuestion;

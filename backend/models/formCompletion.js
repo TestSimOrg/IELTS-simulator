@@ -28,5 +28,6 @@ const formCompletionSchema = new mongoose.Schema({
 
 });
 
+const formCompletionQuestion = mongoose.model('formCompletionQuestion', formCompletionSchema);
 
-export default formCompletionQuestion = mongoose.model('formCompletionQuestion', formCompletionSchema);
+export default formCompletionQuestion

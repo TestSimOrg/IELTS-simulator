@@ -21,4 +21,5 @@ const mcqSchema = new mongoose.Schema({
 
 /**/
 
-export default mcq = mongoose.model('mcq', mcqSchema);
+const mcq = mongoose.model('mcq', mcqSchema);
+export default mcq;
