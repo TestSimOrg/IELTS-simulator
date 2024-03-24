@@ -1,7 +1,14 @@
 import mongoose from "mongoose";
 
 const summaryCompletionSchema = new mongoose.Schema({
-
+    startQuestionNum : {
+        type : Number,
+        required: true
+    },
+    endQuestionNum : {
+        type : Number,
+        required: true
+    },
     numOfWords : {
         type : Number,
         required : true
@@ -9,6 +16,15 @@ const summaryCompletionSchema = new mongoose.Schema({
     numOfNum : {
         type : Number,
         required : true
+    },
+    qType : {
+        type: Number,
+        enum: [1, 2],
+        required: true
+    },
+    questionHeader : {
+        type : String,
+        required: true,
     },
     questionTitle : {
         type : String,
@@ -18,14 +34,13 @@ const summaryCompletionSchema = new mongoose.Schema({
         type : String,
         required: true,
     },
-    startQuestionNum : {
-        type : Number,
-        required: true
-    },
-    endQuestionNum : {
-        type : Number,
-        required: true
+    questoinOptions: {
+        type: [String],
+        required: function validate(){
+            return this.qType === 2 ? true : false;
+        }
     }
+    
 
 });
 

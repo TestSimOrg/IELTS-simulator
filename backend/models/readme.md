@@ -145,6 +145,8 @@ Listening schema explainations:
 
 3. Multiple Choice question:
 
+
+
     There are two types of multiple question:
     - type 1 (single answer)
     - type 2 (multiple answer)
@@ -215,7 +217,10 @@ Listening schema explainations:
     };
     ```
 
-    
+
+4. Summary Completion:
+    In summary completion of listening test there will only be Type 1 questions asked. Refer to Reading Summary Completion for Type 1 schema explaination.
+
 Will keep adding as the schemas are finalised
 
 Reading Schema explainations:
@@ -278,5 +283,52 @@ Reading Schema explainations:
 3. Multiple Choice Questions: 
     The schema and model is the same.  However, the reading mcqs will not include type 2 question. so `qType` should always be 1 for reading only.
 
+4. Summary Completion: 
 
+    There are two types of reading questions. In Type 1 there is a summary with blanks and you have to fill them. In type 2 there are options which are multiple options. The number of options is greater than the number fo blanks.
+
+    Type 1 example: 
+
+    <img src="../public/reading/summaryCompletionType1.png" alt="summary completion img" style="width:400px;"/>
+
+    for this the json will be:
+    ```
+    const q = {
+        startQuestionNum: 27,
+        endQuestionNum: 31,
+        numOfWords: 2,
+        numOfNum: 0,
+        qType: 1,
+        questionHeader: 'Complete the summary below.\nChoose NO MORE THAN TWO WORDS from the passage for each answer.\nWrite your answers in boxes 27-31 on your answer sheet.',
+        questionTitle: 'The Montreal Study',
+        summary: 'Participants, who were recruited for the study through advertisements, had their brain activity monitored while listening to their favourite music. It was noted that the music stimulated the brain's neurons to release a substance called 27 _BLANK_ in two of the parts of the brain which are associated with feelings 28 _BLANK_. \nResearchers also observed that the neurons in the area of the brain called the 20 _BLANK_ were particularly active just before the participant's favourite moment in the music — the period known as the 30 _BLANK_. Activity in this part of the brain is associated with the expectation of ‘reward stimuli such as 31 _BLANK_.',
+    }
+    ```
+
+    Type 2 example: 
+
+    <img src="../public/reading/summaryCompletionType2.png" alt="summary completion img" style="width:400px;"/>
+
+    for this the json will be:
+    ```
+    const q = {
+        startQuestionNum: 1,
+        endQuestionNum: 4,
+        numOfWords: 1,
+        numOfNum: 0,
+        qType: 2,
+        questionHeader: 'Complete the summary using the list of words, A-G, below.\nWrite the correct letter, A-G, in boxes 1-4 on your answer sheet.',
+        questionTitle: 'The importance of language',
+        summary: 'The wheel is one invention that has had a major impact on 1 _BLANK_ aspects of life, but no impact has been as 2 _BLANK_ as that of language. Language is very 3 _BLANK_, yet composed of just a small number of sounds. Language appears to be 4 _BLANK_ to us.However, its sophistication is often overlooked.',
+        questoinOptions: [
+            'A difficult',
+            'B complex',
+            'C original',
+            'D admired',
+            'E material',
+            'F easy',
+            'G fundamental',
+        ],
+    }
+    ```
 Will keep adding as the schemas are finalised
