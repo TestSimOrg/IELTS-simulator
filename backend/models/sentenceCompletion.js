@@ -22,7 +22,7 @@ const sentenceCompletionSchema = new mongoose.Schema({
         type : String,
         required: true
     },
-    questionSentences: {
+    numStatements: {
         type: [String],
         required: true
     },

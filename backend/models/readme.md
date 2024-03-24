@@ -47,11 +47,11 @@ Listening schema explainations:
             'B He may or may not do it.',
             'C He won't do it.'],
             numStatements : [
-                '21 Media Studies _blank_',
-                '22 Women and Power _blank_',
-                '23 Culture and Society _blank_',
-                '24 Identify and Popular Culture _blank_',
-                '25 Introduction to Culture Theory _blank_',
+                '21 Media Studies _BLANK_',
+                '22 Women and Power _BLANK_',
+                '23 Culture and Society _BLANK_',
+                '24 Identify and Popular Culture _BLANK_',
+                '25 Introduction to Culture Theory _BLANK_',
             ],
         }
         ```
@@ -75,15 +75,72 @@ Listening schema explainations:
                 'E The Royal Oak'
             ],
             numStatements: [
-                '1 is in a rural area _blank_',
-                '2 only opened recently _blank_',
-                '3 offers facilities for business functions _blank_',
-                '4 has an indoor swimming pool _blank_',
+                '1 is in a rural area _BLANK_',
+                '2 only opened recently _BLANK_',
+                '3 offers facilities for business functions _BLANK_',
+                '4 has an indoor swimming pool _BLANK_',
             ]
         }
         ``` 
 
 
+
+
+2. Sentence Completion: 
+    
+    example 1:
+
+   <img src="../public/listening/sentenceCompletion.png" alt="sentence completion img" style="width:400px;"/>
+
+    for this json will be:
+    ```
+    const q = {
+        startQuestionNum: 9,
+        endQuestionNum: 10,
+        numOfWords: 3,
+        numOfNum: 0,
+        questionHeader: 'Write NO MORE THAN THREE WORDS to complete each space.' ,
+        numStatements: [
+            '9 Samuel's aunt plans to travel to his apartment on _BLANK_.',
+            '10 The journey time is approximately _BLANK_.'
+        ] 
+    }
+    ```
+
+    example 2:
+
+    <img src="../public/listening/sentencCompletion1.png" alt="sentence completion img" style="width:400px;"/>
+
+    for this json will be:
+    ```
+    const q = {
+        startQuestionNum: 7,
+        endQuestionNum: 9,
+        numOfWords: 1,
+        numOfNum: 0,
+        questionHeader: 'Complete the sentences below.\nWrite ONE WORD ONLY for each answer.\n\tPaxton Nature Reserve' ,
+        numStatements: [
+            '7 Paxton is a good place for seeing rare _BLANK_ all year round.',
+            '9 This is a particularly good time for seeing certain unusual _BLANK_.',
+            '9 Visitors will be able to learn about _BLANK_ and then collect some.',
+            '10 Part of the _BLANK_ has been made suitable for swimming.'
+        ] 
+    }
+    ```
+
+    `numOfNum` property is for cases like this: 
+
+    <img src="../public/listening/sentenceCompletion2.png" alt="sentence completion img" style="width:400px;"/>
+
+    so json will be:
+    ```
+    const q = {
+        ...
+        numOfWords: 1,
+        numOfNum: 1,
+        ...
+    }
+    ```
 
 
 
@@ -143,6 +200,8 @@ Reading Schema explainations:
                 ],
         }
         ```
+2. Sentence Completion: 
+   The schema and model for the sentence completion is same for reading and listening.
 
 
 Will keep adding as the schemas are finalised
