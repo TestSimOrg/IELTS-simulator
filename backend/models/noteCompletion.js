@@ -1,10 +1,28 @@
 import mongoose from "mongoose";
 
 const noteCompletionSchema = new mongoose.Schema({
-    passage: {
-        type: String,
+
+    numOfWords : {
+        type : Number,
+        required : true
+    },
+    numOfNum : {
+        type : Number,
+        required : true
+    },
+    questionStatements: {
+        type: [String],
+        required: true
+    },
+    startQuestionNum : {
+        type : Number,
+        required: true
+    },
+    endQuestionNum : {
+        type : Number,
         required: true
     }
+
 });
 
 

@@ -1,17 +1,25 @@
 import mongoose from "mongoose";
 
 const matchingQuestionSchema = new mongoose.Schema({
-    questionLetters: {
+    questionStatment: {
+        type: String,
+        required: true,
+    },
+    questionOptions: {
         type: [String],
         required: true,
     },
-    questionStatements: {
+    numStatements: {
         type: [String],
         required: true,
     },
-    answerStatements: {
-        type: [String],
-        required: true,
+    startQuestionNum : {
+        type : Number,
+        required: true
+    },
+    endQuestionNum : {
+        type : Number,
+        required: true
     }
   });
 

@@ -1,13 +1,25 @@
 import mongoose from "mongoose";
 import image from './image'
 const labellingSchema = new mongoose.Schema({
+
+    image: {
+        img: image,
+        required: true
+    },
     questionOptions: {
         type: [String],
         required: true
     },
-    image: image,
     questionStatements : {
         type: [String],
+        required: true
+    },
+    startQuestionNum : {
+        type : Number,
+        required: true
+    },
+    endQuestionNum : {
+        type : Number,
         required: true
     }
 });

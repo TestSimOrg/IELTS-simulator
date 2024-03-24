@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 const mcqSchema = new mongoose.Schema({
     questionStatement : {
-        type : String,
+        type : [String],
         required: true,
     },
     questionOptions : {
-        type : [String],
+        type : [[String]],
         required: true,
     },
     startQuestionNum : {
@@ -19,5 +19,6 @@ const mcqSchema = new mongoose.Schema({
     }
 });
 
+/**/
 
 export default mcq = mongoose.model('mcq', mcqSchema);

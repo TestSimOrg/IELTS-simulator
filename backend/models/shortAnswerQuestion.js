@@ -1,25 +1,36 @@
 import mongoose from "mongoose";
 
-const questionSchema = new mongoose.Schema({
-    questionStatement : {
-        type: String,
-        required: true,
-    },
-    numOfBlanks : {
-        type : Number,
-        required: true,
-    }
-});
 
 const shortAnswerQuestionSchema = new mongoose.Schema({
+    
+    numOfWords : {
+        type : Number,
+        required : true
+    },
+    numOfNum : {
+        type : Number,
+        required : true
+    },
     questionStatement : {
-        type : [questionSchema],
+        type : [String],
+        required : true,
+    },
+    questionBlanks : {
+        type : [String],
         required : true,
     }
+    ,
+    startQuestionNum : {
+        type : Number,
+        required: true
+    },
+    endQuestionNum : {
+        type : Number,
+        required: true
+    }
+
 });
 
-
-const question = mongoose.model('question', questionSchema);
 const shortAnswerQuestion = mongoose.model('shortAnswerQuestion', shortAnswerQuestionSchema);
 
-export  default {question, shortAnswerQuestion};
+export  default  shortAnswerQuestion;
