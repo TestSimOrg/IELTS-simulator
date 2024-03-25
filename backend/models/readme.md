@@ -4,7 +4,7 @@ In ielts exam there are a limited types of questions that can be asked. for eg:
 - Listening
   - Multiple Choice Questions ( Type 1 and 2 )
   - Matching ( Matching List and Matching Info )
-  - Diagram Labelling
+  - Diagram Completion
   - Plan/Map Labelling
   - Sentence Completion
   - Note Completion
@@ -23,7 +23,7 @@ In ielts exam there are a limited types of questions that can be asked. for eg:
   - Note Completion
   - Flow Chat Completion
   - Table Completion
-  - Diagram Labelling
+  - Diagram Completion
   - Summary Completion
   - Short Answer Questions
 
@@ -261,7 +261,7 @@ Listening schema explainations:
     }
     ```
 
-6. Labelling:
+6. Diagram Completion:
    
    In this type of question there will be an image with options given. You have to listening and label the appropriate question statement with a label from option.
 
@@ -272,7 +272,9 @@ Listening schema explainations:
     const q = {
         startQuestionNum: 14,
         endQuestionNum: 20,
-        qType: 1,
+        options: true,
+        questionHeader: 'Label the map below.\nWrite the correct letter, A-I, next to Questions 14-20',
+        questionTitle: 'Proposed traffic changes in Granford',
         image: {
             data: buffer,
             contentType: 'image/png'
@@ -720,16 +722,19 @@ Reading Schema explainations:
 
 6. Diagram Completion:
    
-   In this type of question there will be an image with blanks. You have to read the passage and fill the blanks appropriately.
+   In this type of question there will be an image with blanks or image with option to fill the blanks. You have to read the passage and fill the blanks appropriately. 
 
-   <img src="../public/reading/diagramCompletion.png" alt="diagram completion img" style="width:500px;"/>
+   <img src="../public/reading/diagramCompletion1.png" alt="diagram completion img" style="width:500px;"/>
 
    for this json will be:
    ```
     const q = {
         startQuestionNum: 1,
         endQuestionNum: 5,
-        qTypeL 2,
+        option: false,
+        numOfWords: 3,
+        questionHeader: 'Label the diagram below.\nChoose NO MORE THAN THREE WORDS from the passage for each answer.\nWrite your answers in boxes 1-5 on your answer sheet.',
+        questionTitle: 'The Seawater Greenhouse',
         image: {
             data: buffer,
             contentType: 'image/png'
@@ -743,9 +748,6 @@ Reading Schema explainations:
         ]
     }
    ```
-
-
-
 
 7. Flowchart Completion: 
 
