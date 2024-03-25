@@ -50,7 +50,7 @@ const lMatchingQuestionSchema = new mongoose.Schema({
     const numConsistency = this.numStatements === numOfQuestion ? true : false;
 
     if(!numConsistency){
-        const err = new Error('number of questions and number of question statements mismatch');
+        const err = new Error('number of questions and number of numbered statements mismatch');
         next(err);
     }else{
         next();

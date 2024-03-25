@@ -9,30 +9,36 @@ const flowchartCompletionSchema = new mongoose.Schema({
         type : Number,
         required: true
     },
-    numOfWords : {
-        type : Number,
-        required : true
-    },
-    numOfNum : {
-        type : Number,
-        required : true
-    },
     options: {
         type: Boolean,
         required: true,
     },
+    numOfWords : {
+        type : Number,
+        required : function validate(){
+            return !(this.options);
+        },
+        default: 1,
+    },
+    numOfNum : {
+        type : Number,
+        required : function validate(){
+            return !(this.options);
+        },
+        default: 0,
+    },
     questionHeader : {
         type : String,
         required : true
+    },
+    questionTitle : {
+        type : String,
     },
     questionOptions: {
         type: [String],
         required: function validate(){
             return this.options;
         }
-    },
-    questionTitle : {
-        type : String,
     },
     steps: {
         type: [[String]],

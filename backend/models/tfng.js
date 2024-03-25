@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const trueFalseNGSchema = mongoose.Schema({
+const trueFalseNGSchema = new mongoose.Schema({
     startQuestionNum : {
         type : Number,
         required: true,
@@ -33,6 +33,6 @@ trueFalseNGSchema.pre('validate', function(next){
     }
 })
 
-const trueFalseNG = mongoose.model('trueFalseNG', trueFalseNGSchema);
+const trueFalseNGQuestion = mongoose.model('trueFalseNGQuestion', trueFalseNGSchema);
 
-export default trueFalseNG;
+export default trueFalseNGQuestion;

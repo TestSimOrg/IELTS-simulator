@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const yesNoNGSchema = mongoose.Schema({
+const yesNoNGSchema = new mongoose.Schema({
     startQuestionNum : {
         type : Number,
         required: true,
@@ -32,6 +32,6 @@ yesNoNGSchema.pre('validate', function(next){
     }
 })
 
-const yesNoNG = mongoose.model('yesNoNG', yesNoNGSchema);
+const yesNoNGQuestion = mongoose.model('yesNoNGQuestion', yesNoNGSchema);
 
-export default yesNoNG;
+export default yesNoNGQuestion;

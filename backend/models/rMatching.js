@@ -12,11 +12,7 @@ const rMatchingQuestionSchema = new mongoose.Schema({
     },
     numOfWords : {
         type : Number,
-        required : true
-    },
-    numOfNum : {
-        type : Number,
-        required : true
+        default: 1,
     },
     qTypeList : {
         type: Boolean,

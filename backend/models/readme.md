@@ -8,10 +8,11 @@ In ielts exam there are a limited types of questions that can be asked. for eg:
   - Plan/Map Labelling
   - Sentence Completion
   - Note Completion
-  - Flow Chat Completion
+  - Flow Chart Completion
   - Table Completion
   - Summary Completion
   - Form Completion
+  - Short Answer Questions
 
 
 - Reading
@@ -21,9 +22,9 @@ In ielts exam there are a limited types of questions that can be asked. for eg:
   - Matching ( Matching List and Matching Info )
   - Sentence Completion
   - Note Completion
-  - Flow Chat Completion
+  - Flow Chart Completion
   - Table Completion
-  - Diagram Completion
+  - Diagram Label Completion
   - Summary Completion
   - Short Answer Questions
 
@@ -37,7 +38,10 @@ Listening schema explainations:
 
         for this the json will be :
         ```
-        const q = {
+
+        import lMatchingQuestion from '_path_'
+
+        const q = new lMatchingQuestion({
             startQuestionNum : 21,
             endQuestionNum : 25,
             numOfWords: 1,
@@ -56,7 +60,8 @@ Listening schema explainations:
                 '24 Identify and Popular Culture _BLANK_',
                 '25 Introduction to Culture Theory _BLANK_',
             ],
-        }
+        });
+
         ```
    2. Type 2 example:
 
@@ -64,7 +69,10 @@ Listening schema explainations:
 
         for this the json will be:
         ```
-        const q = {
+
+        import lMatchingQuestion from '_path_'
+
+        const q = new lMatchingQuestion({
             startQuestionNum: 1,
             endQuestionNum: 4,
             numOfWords: 1,
@@ -85,7 +93,8 @@ Listening schema explainations:
                 '3 offers facilities for business functions _BLANK_',
                 '4 has an indoor swimming pool _BLANK_',
             ]
-        }
+        });
+
         ``` 
 
 
@@ -99,17 +108,20 @@ Listening schema explainations:
 
     for this json will be:
     ```
-    const q = {
+    import sentenceCompletionQuestion from '_path_';
+
+    const q = new sentenceCompletionQuestion({
         startQuestionNum: 9,
         endQuestionNum: 10,
         numOfWords: 3,
         numOfNum: 0,
         questionHeader: 'Write NO MORE THAN THREE WORDS to complete each space.' ,
+        questionTitle: '',
         numStatements: [
             '9 Samuel's aunt plans to travel to his apartment on _BLANK_.',
             '10 The journey time is approximately _BLANK_.'
         ] 
-    }
+    });
     ```
 
     example 2:
@@ -118,19 +130,25 @@ Listening schema explainations:
 
     for this json will be:
     ```
-    const q = {
+
+    import sentenceCompletionQuestion from '_path_';
+
+    const q = new sentenceCompletionQuestion({
         startQuestionNum: 7,
         endQuestionNum: 10,
         numOfWords: 1,
         numOfNum: 0,
-        questionHeader: 'Complete the sentences below.\nWrite ONE WORD ONLY for each answer.\n\tPaxton Nature Reserve' ,
+        questionHeader: 'Complete the sentences below.\nWrite ONE WORD ONLY for each answer.' ,
+        questionTitle: 'Paxton Nature Reserve',
         numStatements: [
             '7 Paxton is a good place for seeing rare _BLANK_ all year round.',
             '8 This is a particularly good time for seeing certain unusual _BLANK_.',
             '9 Visitors will be able to learn about _BLANK_ and then collect some.',
             '10 Part of the _BLANK_ has been made suitable for swimming.'
         ] 
-    }
+    });
+
+    
     ```
 
     `numOfNum` property is for cases like this: 
@@ -139,12 +157,16 @@ Listening schema explainations:
 
     so json will be:
     ```
-    const q = {
+
+    import sentenceCompletionQuestion from '_path_';
+
+    const q = new sentenceCompletionQuestion({
         ...
         numOfWords: 1,
         numOfNum: 1,
         ...
-    }
+    });
+
     ```
 
 
@@ -162,11 +184,13 @@ Listening schema explainations:
 
     for this json will be:
     ```
-    const q = {
+
+    import mcq from '_path_'
+
+    const q = new mcq({
         startQuestionNum: 15,
         endQuestionNum: 17,
         numOfWords: 1,
-        numOfNum: 0,
         qType: 1
         questionHeader: ['Choose the correct letter, A, B or C.'],
         numStatements:[
@@ -191,7 +215,7 @@ Listening schema explainations:
                 'C Advice is given on selling photographs.'
             ],
         ]
-    };
+    });
     ```
 
     Type 2 eg:
@@ -200,7 +224,10 @@ Listening schema explainations:
 
     for this json will be:
     ```
-    const q = {
+
+    import mcq from '_path_'
+
+    const q = new mcq({
         startQuestionNum: 11,
         endQuestionNum: 14,
         numOfWords: 1,
@@ -224,7 +251,7 @@ Listening schema explainations:
                 'E Clients find them value for money.'
             ]
         ]
-    };
+    });
     ```
 
 
@@ -242,7 +269,10 @@ Listening schema explainations:
 
     for this json will be:
     ```
-    const q = {
+
+    import noteCompletionQuestion from '_path_';
+
+    const q = new noteCompletionQuestion({
         startQuestionNum: 11,
         endQuestionNum: 16,
         numOfWords: 3,
@@ -257,8 +287,7 @@ Listening schema explainations:
             'Managed by:\t15 _BLANK_',
             'Open:\t16 _BLANK_ days per year'
         ],
-
-    }
+    });
     ```
 
 6. Diagram Completion:
@@ -269,7 +298,10 @@ Listening schema explainations:
 
    for this json will be:
    ```
-    const q = {
+
+    import planMapDiagramLabellingQuestion from '_path_';
+
+    const q = new planMapDiagramLabellingQuestion({
         startQuestionNum: 14,
         endQuestionNum: 20,
         options: true,
@@ -299,7 +331,7 @@ Listening schema explainations:
             '19 Widened pavement _BLANK_',
             '20 Lorry loading/unloading restrictions _BLANK_'
         ]
-    }
+    });
    ```
    
 
@@ -307,10 +339,15 @@ Listening schema explainations:
 
    for this json will be:
    ```
-    const q = {
+
+    import planMapDiagramLabellingQuestion from '_path_';
+
+    const q = new planMapDiagramLabellingQuestion({
         startQuestionNum: 11,
         endQuestionNum: 15,
-        qType: 1,
+        options: true,
+        questionHeader: 'Label the plan below.\nChoose five answers from the box and write the correct letters, A-I, next to questions 11-15.',
+        questionTitle: 'Town Library',
         image: {
             data: buffer,
             contentType: 'image/png'
@@ -345,9 +382,13 @@ Listening schema explainations:
 
    for this json will be:
    ```
-    const q = {
+
+    import flowchartCompletionQuestion from '_path_';
+
+    const q = new flowchartCompletionQuestion({
         startQuestionNum: 31,
         endQuestionNum: 34,
+        options: false,
         numOfWords: 2,
         numOfNum: 2,
         questionHeader: 'You will hear an extract from a university lecture on the topic of economics.\nFirst, look at questions 31 to 34. Now listen carefully and answer questions 31-34.\nQuestions 31-34. Do not write MORE THAN TWO WORDS AND/OR NUMBERS. Complete the chart below.',
@@ -369,18 +410,20 @@ Listening schema explainations:
                 'Protein went up by 34 _BLANK_'
             ]
         ]
-    }
+    });
    ```
 
    <img src="../public/listening/flowchartCompletion2.png" alt="flowchart completion img" style="width:500px;"/>
 
    ```
-    const q = {
+    import flowchartCompletionQuestion from '_path_';
+
+    const q = new flowchartCompletionQuestion({
         startQuestionNum: 26,
         endQuestionNum: 30,
-        numOfWords: 1,
-        numOfNum: 0,
+        options: true,
         questionHeader: 'Complete the flowchart below.\nChoose FIVE answers from the box and write the correct letter, A-H, next to Questions 26-30.',
+        questionTitle: 'Stages in Experiment',
         questionOptions: [
             'A container',
             'B soil',
@@ -391,7 +434,6 @@ Listening schema explainations:
             'G types',
             'H depths',
         ],
-        questionTitle: 'Stages in the experiment',
         steps: [
             [
                 'Select seeds of different 26 _BLANK_ and sizes.'
@@ -412,7 +454,7 @@ Listening schema explainations:
                 'Investigate the findings.'
             ],
         ],
-    }
+    });
    ```
 
 8. Table Completion: 
@@ -423,13 +465,16 @@ Listening schema explainations:
 
    for this json will be:
    ```
-    const q = {
+      
+    import tableCompletionQuestion from '_path_';
+
+    const q = new tableCompletionQuestion({
         startQuestionNum: 6,
         endQuestionNum: 10,
         numOfWords: 1,
         numOfNum: 1,
-        noOfRows: 7,
-        noOfCols: 3,
+        numOfRows: 7,
+        numOfCols: 3,
         rows: [
             [
                 'TRANSPORT',
@@ -467,7 +512,7 @@ Listening schema explainations:
                 '-',
             ]
         ],
-    }
+    });
    ```
 
 9. Form Completion:
@@ -478,7 +523,10 @@ Listening schema explainations:
 
     for this the json will be:
     ```
-    const q = {
+
+    import formCompletionQuestion from '_path_';
+
+    const q = new formCompletionQuestion({
         startQuestionNum: 1,
         endQuestionNum: 8,
         numOfWords: 3,
@@ -501,7 +549,8 @@ Listening schema explainations:
             '7 _BLANK_',
             'Total estimated value: 8 £ _BLANK_',
         ]
-    }
+    });
+    
     ```
 
 10. Short Answer:
@@ -512,7 +561,10 @@ Listening schema explainations:
 
     for this json will be:
     ```
-    const q = {
+
+    import shortAnswerQuestion from '_path_';
+
+    const q = new shortAnswerQuestion({
         startQuestionNum: 11,
         endQuestionNum: 16,
         numOfWords: 3,
@@ -538,7 +590,8 @@ Listening schema explainations:
                 '16 _BLANK_',
             ],
         ],
-    }
+    });
+
     ```
 
 Reading Schema explainations:
@@ -550,7 +603,10 @@ Reading Schema explainations:
 
         for this the json will be:
         ```
-        const q = {
+
+        import rMatchingQuestion from '_path_';
+
+        const q = new rMatchingQuestion({
             startQuestionNum: 1,
             endQuestionNum: 3,
             qTypeMatchingInfo : true,
@@ -561,7 +617,8 @@ Reading Schema explainations:
                 '2 a reference to challenges face only farmers in certain parts of the world.',
                 '3 a reference to difficulties in bringing about co-operation between farmers'
             ]
-        }
+        });
+
         ```
    2. Matching List Type:
 
@@ -569,7 +626,10 @@ Reading Schema explainations:
 
         for this the json will be:
         ```
-        const q = {
+        
+        import rMatchingQuestion from '_path_';
+
+        const q = new rMatchingQuestion({
             startQuestionNum : 7,
             endQuestionNum : 10,
             qTypeList : true,
@@ -589,7 +649,8 @@ Reading Schema explainations:
                     '9 rocket as war weapons',
                     '10 the rocket launcher',
                 ],
-        }
+        });
+
         ```
 
 2. Sentence Completion: 
@@ -606,7 +667,10 @@ Reading Schema explainations:
 
     for this json will be:
     ```
-    const q = {
+    
+    import mcq from '_path_'
+
+    const q = new mcq({
         startQuestionNum: 10,
         endQuestionNum: 12,
         noOfWords: 1,
@@ -637,7 +701,7 @@ Reading Schema explainations:
                 'D. farm diversification',
             ],
         ]
-    };
+    });
     ```
 
     Type 2 eg:
@@ -646,7 +710,10 @@ Reading Schema explainations:
 
     for this json will be:
     ```
-    const q = {
+    
+    import mcq from '_path_'
+
+    const q = new mcq({
         startQuestionNum: 25,
         endQuestionNum: 27,
         noOfWords: 1,
@@ -664,7 +731,7 @@ Reading Schema explainations:
                 'G. social history',
             ],
         ]
-    };
+    });
     ```
 
 4. Summary Completion: 
@@ -677,7 +744,10 @@ Reading Schema explainations:
 
     for this the json will be:
     ```
-    const q = {
+
+    import summaryCompletionQuestion from '_path_'
+
+    const q = new summaryCompletionQuestion({
         startQuestionNum: 27,
         endQuestionNum: 31,
         numOfWords: 2,
@@ -686,16 +756,20 @@ Reading Schema explainations:
         questionHeader: 'Complete the summary below.\nChoose NO MORE THAN TWO WORDS from the passage for each answer.\nWrite your answers in boxes 27-31 on your answer sheet.',
         questionTitle: 'The Montreal Study',
         summary: 'Participants, who were recruited for the study through advertisements, had their brain activity monitored while listening to their favourite music. It was noted that the music stimulated the brain's neurons to release a substance called 27 _BLANK_ in two of the parts of the brain which are associated with feelings 28 _BLANK_. \nResearchers also observed that the neurons in the area of the brain called the 20 _BLANK_ were particularly active just before the participant's favourite moment in the music — the period known as the 30 _BLANK_. Activity in this part of the brain is associated with the expectation of ‘reward stimuli such as 31 _BLANK_.',
-    }
+        questionOptions: [],
+    });
     ```
 
     - Type 2 example: 
 
-    <img src="../public/listening/flowChartCompletion2.png" alt="summary completion img" style="width:500px;"/>
+    <img src="../public/reading/summaryCompletion.png" alt="summary completion img" style="width:500px;"/>
 
     for this the json will be:
     ```
-    const q = {
+
+    import summaryCompletionQuestion from '_path_'
+
+    const q = new summaryCompletionQuestion({
         startQuestionNum: 1,
         endQuestionNum: 4,
         numOfWords: 1,
@@ -713,7 +787,7 @@ Reading Schema explainations:
             'F easy',
             'G fundamental',
         ],
-    }
+    });
     ```
 
 5. Note Completion:
@@ -722,13 +796,16 @@ Reading Schema explainations:
 
 6. Diagram Completion:
    
-   In this type of question there will be an image with blanks or image with option to fill the blanks. You have to read the passage and fill the blanks appropriately. 
+   In this type of question there will be an image with blanks or image with options to fill the blanks. You have to read the passage and fill the blanks appropriately. 
 
    <img src="../public/reading/diagramCompletion1.png" alt="diagram completion img" style="width:500px;"/>
 
    for this json will be:
    ```
-    const q = {
+    
+    import planMapDiagramLabellingQuestion from '_path_';
+
+    const q = new planMapDiagramLabellingQuestion({
         startQuestionNum: 1,
         endQuestionNum: 5,
         option: false,
@@ -746,7 +823,7 @@ Reading Schema explainations:
             '4 _BLANK_',
             '5 _BLANK_ for irrigation',
         ]
-    }
+    });
    ```
 
 7. Flowchart Completion: 
@@ -757,13 +834,14 @@ Reading Schema explainations:
 
    from this json will be:
    ```
-    const q = {
-        const q = {
+    import flowchartCompletionQuestion from '_path_';
+
+    const q = new flowchartCompletionQuestion({
         startQuestionNum: 1,
         endQuestionNum: 3,
+        options: false,
         numOfWords: 2,
         numOfNum: 0,
-        options: false,
         questionHeader: 'Choose NO MORE THAN TWO WORDS from the passage for each answer.\nWrite your answers in boxes 1-3 on your answer sheet.',
         questionTitle: 'How a caloric-restriction mimetic works',
         steps: [
@@ -781,8 +859,8 @@ Reading Schema explainations:
                 'Theory 2: cells focus on 3 _BLANK_ because food is in short supply'
             ]
         ],
-    }
-    }
+    });
+
    ```
 
 
@@ -794,13 +872,16 @@ Reading Schema explainations:
 
    from this json will be:
    ```
-    const q = {
+      
+    import tableCompletionQuestion from '_path_';
+
+    const q = new tableCompletionQuestion({
         startQuestionNum: 9,
         endQuestionNum: 13,
         numOfWords: 3,
         numOfNum: 0,
-        noOfRows: 4,
-        noOfCols: 6,
+        numOfRows: 4,
+        numOfCols: 6,
         rows: [
             [
                 'Species',
@@ -836,7 +917,8 @@ Reading Schema explainations:
             ],
             
         ],
-    }
+    });
+
    ```
 
 
@@ -848,7 +930,10 @@ Reading Schema explainations:
 
     for this json will be:
     ```
-    const q = {
+      
+    import rShortAnswerQuestion from '_path_';
+
+    const q = new rShortAnswerQuestion({
         startQuestionNum: 1,
         endQuestionNum: 4,
         numOfWords: 3,
@@ -860,7 +945,8 @@ Reading Schema explainations:
             'What percentage of black rhinos had been illegally killed by 1992?',
             'How have the criminals improved their success?',
         ],
-    }
+    });
+
     ```
 
 10. Yes/No/Not Given and True/False/Not Given:
@@ -869,11 +955,14 @@ Reading Schema explainations:
     In this type of question there will be statements that you have to label as True, False or Not Given there is also case where the question statements are facts and you have to based on the passage label them with Yes, No or Not Given.
 
 
-     <img src="../public/reading/ynng.png" alt="short ans img" style="width:500px;"/>
+    <img src="../public/reading/ynng.png" alt="short ans img" style="width:500px;"/>
 
-     for this json will be:
-     ```
-    const q = {
+    for this json will be:
+    ```
+      
+    import ynngQuestion from '_path_';
+
+    const q = new ynngQuestion({
         startQuestionNum: 7,
         endQuestionNum: 12,
         questionHeader: 'Do the following statements agree with the views of the writer in the Reading Passage?\nWrite:\n\tYES if the statement agrees with the views of the writer.\n\tNO if the statement contradicts what the writer thinks.\n\tNOT GIVEN if it is impossible to know what the writer's point of view is.',
@@ -885,14 +974,18 @@ Reading Schema explainations:
             '11\tDr Golinkoff is concerned that "baby talk" is spoken too much by some parents.',
             '12\tThe first word a child learns to recognise is usually "Mummy" or "Daddy".'
         ],
-    }
-     ```
+    })
+
+    ```
 
     <img src="../public/reading/tfng.png" alt="short ans img" style="width:500px;"/>
 
     for this json will be:
-     ```
-    const q = {
+    ```
+     
+    import tfngQuestion from '_path_';
+
+    const q = new tfngQuestion({
         startQuestionNum: 9,
         endQuestionNum: 13,
         questionHeader: 'Do the following statements agree with the views of the writer in the Reading Passage?\nIn boxes 9-13 on your answer write:\n\tTRUE if the statement agrees with the views of the information.\n\tNO if the statement contradicts the information.\n\tNOT GIVEN if there is no information on this.',
@@ -903,6 +996,7 @@ Reading Schema explainations:
             '13\tAll coconuts found in Asia are cultivated varieties.',
             '14\tCoconuts are cultivated in different ways in America and the Pacific.',
         ],
-    }
-     ```
+    });
+
+    ```
 

@@ -22,6 +22,9 @@ const sentenceCompletionSchema = new mongoose.Schema({
         type : String,
         required: true
     },
+    questionTitle : {
+        type: String,
+    },
     numStatements: {
         type: [String],
         required: true

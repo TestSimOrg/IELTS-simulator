@@ -23,7 +23,7 @@ const lShortAnswerQuestionSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    questionStatement : {
+    questionStatements : {
         type : [String],
         required : true,
     },
