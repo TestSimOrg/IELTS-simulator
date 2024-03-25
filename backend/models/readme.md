@@ -419,7 +419,7 @@ Listening schema explainations:
    
    In this question there is a table filled with data and there are blanks you have to use audio info or passage info. (same schema as listening table completion)
 
-   <img src="../public/listening/tableCompletion.png" alt="flowchart completion img" style="width:500px;"/>
+   <img src="../public/listening/tableCompletion.png" alt="table completion img" style="width:500px;"/>
 
    for this json will be:
    ```
@@ -474,7 +474,7 @@ Listening schema explainations:
     
     In this question there is a form with blanks in it and you have to use audio info to fill it in.
 
-    <img src="../public/listening/formCompletion.png" alt="flowchart completion img" style="width:500px;"/>
+    <img src="../public/listening/formCompletion.png" alt="form completion img" style="width:500px;"/>
 
     for this the json will be:
     ```
