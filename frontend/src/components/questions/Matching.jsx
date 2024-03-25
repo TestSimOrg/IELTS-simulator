@@ -28,13 +28,13 @@
 //     ],
 // };
 
-// question/MachingType1.jsx
+// question/Maching.jsx
 import React from "react";
 import { Grid, Typography } from "@mui/material";
-import { Question } from "../Question";
-import { QuestionOption } from "../QuestionOption";
+import { Question } from "./commons/Question";
+import { QuestionOption } from "./commons/QuestionOption";
 
-export const MatchingType1 = ({ q }) => {
+export const Matching = ({ q }) => {
 	return (
 		<Question q={q}>
 			<Grid container spacing={2}>
