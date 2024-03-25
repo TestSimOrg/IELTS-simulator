@@ -1,6 +1,14 @@
 import mongoose from "mongoose";
-import image from './image'
+
 const diagramFlowchartCompletionSchema = new mongoose.Schema({
+    startQuestionNum : {
+        type : Number,
+        required: true
+    },
+    endQuestionNum : {
+        type : Number,
+        required: true
+    },
     numOfWords : {
         type : Number,
         required : true
@@ -9,27 +17,46 @@ const diagramFlowchartCompletionSchema = new mongoose.Schema({
         type : Number,
         required : true
     },
+    qType : {
+        type : Number,
+        enum: [1, 2], //type 1 for diagram and type 2 for flowChart
+        required: true,
+    },
+    questionHeader : {
+        type : String,
+        required : true
+    },
     questionTitle : {
         type : String,
         required : true
     },
-    image: image,
-    questionStatements : {
-        type : [String],
+    image: {
+        type: Buffer, 
+        contentType: String,
         required : true
     },
-    numOfBlanks:{
-        type: Number,
+    questionStatements : {
+        type : [String],
+        required : true,
     },
-    startQuestionNum : {
-        type : Number,
-        required: true
-    },
-    endQuestionNum : {
-        type : Number,
-        required: true
+    questionOptions : {
+        type : [String],
+        required : true,
     }
+    
 });
+
+diagramFlowchartCompletionSchema.pre('validate', function(next){
+    const numOfQuestion = this.endQuestionNum - this.startQuestionNum + 1;
+    const numConsistency = this.numStatements === numOfQuestion ? true : false;
+
+    if(!numConsistency){
+        const err = new Error('number of questions and number of question statements mismatch');
+        next(err);
+    }else{
+        next();
+    }
+})
 
 const  diagramFlowchartCompletionQuestion = mongoose.model('diagramFlowchartCompletionQuestion', diagramFlowchartCompletionSchema);
 

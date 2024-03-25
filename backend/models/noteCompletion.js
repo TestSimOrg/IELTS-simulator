@@ -2,6 +2,14 @@ import mongoose from "mongoose";
 
 const noteCompletionSchema = new mongoose.Schema({
 
+    startQuestionNum : {
+        type : Number,
+        required: true
+    },
+    endQuestionNum : {
+        type : Number,
+        required: true
+    },
     numOfWords : {
         type : Number,
         required : true
@@ -10,16 +18,16 @@ const noteCompletionSchema = new mongoose.Schema({
         type : Number,
         required : true
     },
+    questionHeader: {
+        type: String,
+        required: true
+    },
+    questionTitle: {
+        type: String,
+        required: true
+    },
     questionStatements: {
         type: [String],
-        required: true
-    },
-    startQuestionNum : {
-        type : Number,
-        required: true
-    },
-    endQuestionNum : {
-        type : Number,
         required: true
     }
 

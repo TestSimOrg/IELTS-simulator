@@ -10,6 +10,14 @@ const rMatchingQuestionSchema = new mongoose.Schema({
         type : Number,
         required: true
     },
+    numOfWords : {
+        type : Number,
+        required : true
+    },
+    numOfNum : {
+        type : Number,
+        required : true
+    },
     qTypeList : {
         type: Boolean,
         required: true,
@@ -21,6 +29,10 @@ const rMatchingQuestionSchema = new mongoose.Schema({
     questionHeader: {
         type: String,
         required: true,
+    },
+    questionOptionRepeatable : {
+        type: Boolean,
+        required : true,
     },
     questionTitle: {
         type: String,
@@ -41,16 +53,26 @@ const rMatchingQuestionSchema = new mongoose.Schema({
   });
   
 rMatchingQuestionSchema.pre('validate', function(next) {
+    
+    const numOfQuestion = this.endQuestionNum - this.startQuestionNum + 1;
+    const numConsistency = this.numStatements === numOfQuestion ? true : false;
+
+    if(!numConsistency){
+        const err = new Error('number of questions and number of question statements mismatch');
+        next(err);
+    }
+    
     if (this.qTypeList === true && this.qTypeMatchingInfo === true) {
         const err = new Error('Question can be either qTypeList (List of option in question) or qTypeMatchingInfo (No list only question statements that match info in statement to  passage)');
         next(err);
     } else if(this.qTypeList === true){
         this.qTypeMatchingInfo = true;
         next();
-    }else if(this.qTypeMatchingInfo === true{
+    }else if(this.qTypeMatchingInfo === true){
         this.qTypeList = true;
         next();
     }
+    next();
 });
 
 

@@ -29,7 +29,17 @@ const sentenceCompletionSchema = new mongoose.Schema({
     
 });
 
+sentenceCompletionSchema.pre('validate', function(next){
+    const numOfQuestion = this.endQuestionNum - this.startQuestionNum + 1;
+    const numConsistency = this.numStatements === numOfQuestion ? true : false;
 
+    if(!numConsistency){
+        const err = new Error('number of questions and number of question statements mismatch');
+        next(err);
+    }else{
+        next();
+    }
+})
 
 
 const sentenceCompletionQuestion = mongoose.model('sentenceCompletionQuestion', sentenceCompletionSchema);

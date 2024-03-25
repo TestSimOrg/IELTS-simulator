@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 
-const labellingSchema = new mongoose.Schema({
 
+const rShortAnswerQuestionSchema = new mongoose.Schema({
+    
     startQuestionNum : {
         type : Number,
         required: true
@@ -10,31 +11,26 @@ const labellingSchema = new mongoose.Schema({
         type : Number,
         required: true
     },
-    qType: {
-        type: Number,   
-        enum: [1, 2],  // 1 for listening and 2 for reading
-        required: true
-    },
-    image: {
-        type: Buffer, 
-        contentType: String,
+    numOfWords : {
+        type : Number,
         required : true
     },
-    questionOptions: {
-        type: [String],
-        required: function validate(){
-            return this.qType === 1 ? true : false;
-        }
+    numOfNum : {
+        type : Number,
+        required : true
+    },
+    questionHeader : {
+        type : String,
+        required : true
     },
     numStatements : {
-        type: [String],
-        required: true
+        type : [String],
+        required : true,
     },
-    
+
 });
 
-
-labellingSchema.pre('validate', function(next){
+rShortAnswerQuestionSchema.pre('validate', function(next){
     const numOfQuestion = this.endQuestionNum - this.startQuestionNum + 1;
     const numConsistency = this.numStatements === numOfQuestion ? true : false;
 
@@ -46,7 +42,6 @@ labellingSchema.pre('validate', function(next){
     }
 })
 
-const labellingQuestion = mongoose.model('labellingQuestion', labellingSchema);
+const rShortAnswerQuestion = mongoose.model('rShortAnswerQuestion', rShortAnswerQuestionSchema);
 
-
-export default labellingQuestion;
+export  default  rShortAnswerQuestion;

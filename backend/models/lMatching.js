@@ -9,6 +9,14 @@ const lMatchingQuestionSchema = new mongoose.Schema({
         type : Number,
         required: true
     },
+    numOfWords : {
+        type : Number,
+        required : true
+    },
+    numOfNum : {
+        type : Number,
+        required : true
+    },
     questionHeader: {
         type: String,
         required: true,
@@ -36,6 +44,18 @@ const lMatchingQuestionSchema = new mongoose.Schema({
         required: true,
     },
   });
+
+  lMatchingQuestionSchema.pre('validate', function(next){
+    const numOfQuestion = this.endQuestionNum - this.startQuestionNum + 1;
+    const numConsistency = this.numStatements === numOfQuestion ? true : false;
+
+    if(!numConsistency){
+        const err = new Error('number of questions and number of question statements mismatch');
+        next(err);
+    }else{
+        next();
+    }
+})
   
   const lMatchingQuestion =  mongoose.model('lMatchingQuestion', lMatchingQuestionSchema);
 

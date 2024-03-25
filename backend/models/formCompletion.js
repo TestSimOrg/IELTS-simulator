@@ -1,6 +1,14 @@
 import mongoose from "mongoose";
 
 const formCompletionSchema = new mongoose.Schema({
+    startQuestionNum : {
+        type : Number,
+        required: true
+    },
+    endQuestionNum : {
+        type : Number,
+        required: true
+    },
     numOfWords : {
         type : Number,
         required : true
@@ -8,6 +16,10 @@ const formCompletionSchema = new mongoose.Schema({
     numOfNum : {
         type : Number,
         required : true
+    },
+    questionHeader: {
+        type: String,
+        required: true
     },
     questionTitle: {
         type: String,
@@ -17,16 +29,10 @@ const formCompletionSchema = new mongoose.Schema({
         type: [String],
         required: true
     },
-    startQuestionNum : {
-        type : Number,
-        required: true
-    },
-    endQuestionNum : {
-        type : Number,
-        required: true
-    }
+    
 
 });
+
 
 const formCompletionQuestion = mongoose.model('formCompletionQuestion', formCompletionSchema);
 
