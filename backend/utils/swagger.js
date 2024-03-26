@@ -14,7 +14,7 @@ const options = {
             title: "IELTS-Simulator API docs",
         },
     },
-    apis: [path.resolve(__dirname, '../routes/*.js')],
+    apis: [path.resolve(__dirname, '../routes/*.js'), path.resolve(__dirname, '../models/*.js')],
 
 }
 
@@ -24,7 +24,7 @@ function swaggerDocs(app, port){
     //swagger page
     app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
-    log.info(`API docs at http://localhost:${port}/docs`);
+    log.info(`API docs at http://localhost:${port}/docs (incomplete)`);
 }
 
 export default swaggerDocs;
