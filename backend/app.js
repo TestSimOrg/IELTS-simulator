@@ -20,6 +20,7 @@ const app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
+swaggerDocs(app, PORT); // open api docs
 
 // routes and routes extension setup
 import flowchartCompletionRouter from './routes/flowchartCompletion.js';
@@ -138,7 +139,6 @@ db.on("connected", () => {
   log.info("MongoDB connected");
   app.listen(PORT, () => {
     log.info(`Server is running on port ${PORT}`);
-    swaggerDocs(app, PORT);
   })
 });
 
