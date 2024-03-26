@@ -9,6 +9,15 @@ const yesNoNGSchema = new mongoose.Schema({
         type : Number,
         required: true,
     },
+    standAlone: {
+        type: Boolean,
+        required: true,
+    },
+    numofWords: {
+        type: Number,
+        default: 1,
+        max: 1,
+    },
     questionHeader :{
         type : String,
         required: true
@@ -17,6 +26,10 @@ const yesNoNGSchema = new mongoose.Schema({
         type : [String],
         required: true,
     },
+    answer: {
+        type: Schema.ObjectId,
+        ref: 'answer'
+    }
 
 });
 

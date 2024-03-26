@@ -44,6 +44,7 @@ Listening schema explainations:
         const q = new lMatchingQuestion({
             startQuestionNum : 21,
             endQuestionNum : 25,
+            standAlone: true,
             numOfWords: 1,
             numOfNum: 0,
             questionHeader : 'Write the correct letter, A, B or C next to question 21-25.\nYou may choose any letter more than once.',
@@ -75,6 +76,7 @@ Listening schema explainations:
         const q = new lMatchingQuestion({
             startQuestionNum: 1,
             endQuestionNum: 4,
+            standAlone: true,
             numOfWords: 1,
             numOfNum: 0,
             questionHeader: 'Choose your answers from the box and write the correct letter A-E next to questions 1-4.',
@@ -113,6 +115,7 @@ Listening schema explainations:
     const q = new sentenceCompletionQuestion({
         startQuestionNum: 9,
         endQuestionNum: 10,
+        standAlone: true,
         numOfWords: 3,
         numOfNum: 0,
         questionHeader: 'Write NO MORE THAN THREE WORDS to complete each space.' ,
@@ -136,6 +139,7 @@ Listening schema explainations:
     const q = new sentenceCompletionQuestion({
         startQuestionNum: 7,
         endQuestionNum: 10,
+        standAlone: true,
         numOfWords: 1,
         numOfNum: 0,
         questionHeader: 'Complete the sentences below.\nWrite ONE WORD ONLY for each answer.' ,
@@ -190,6 +194,7 @@ Listening schema explainations:
     const q = new mcq({
         startQuestionNum: 15,
         endQuestionNum: 17,
+        standAlone: true,
         numOfWords: 1,
         qType: 1
         questionHeader: ['Choose the correct letter, A, B or C.'],
@@ -230,6 +235,7 @@ Listening schema explainations:
     const q = new mcq({
         startQuestionNum: 11,
         endQuestionNum: 14,
+        standAlone: true,
         numOfWords: 1,
         numOfNum: 0,
         qType: 2
@@ -275,6 +281,7 @@ Listening schema explainations:
     const q = new noteCompletionQuestion({
         startQuestionNum: 11,
         endQuestionNum: 16,
+        standAlone: true
         numOfWords: 3,
         numOfNum: 1,
         questionHeader: 'Complete the notes below.\nWrite NO MORE THAN THREE WORDS AND/OR A NUMBER for each answer.',
@@ -304,6 +311,7 @@ Listening schema explainations:
     const q = new planMapDiagramLabellingQuestion({
         startQuestionNum: 14,
         endQuestionNum: 20,
+        standAlone: true,
         options: true,
         questionHeader: 'Label the map below.\nWrite the correct letter, A-I, next to Questions 14-20',
         questionTitle: 'Proposed traffic changes in Granford',
@@ -345,6 +353,7 @@ Listening schema explainations:
     const q = new planMapDiagramLabellingQuestion({
         startQuestionNum: 11,
         endQuestionNum: 15,
+        standAlone: true,
         options: true,
         questionHeader: 'Label the plan below.\nChoose five answers from the box and write the correct letters, A-I, next to questions 11-15.',
         questionTitle: 'Town Library',
@@ -388,6 +397,7 @@ Listening schema explainations:
     const q = new flowchartCompletionQuestion({
         startQuestionNum: 31,
         endQuestionNum: 34,
+        standAlone: true,
         options: false,
         numOfWords: 2,
         numOfNum: 2,
@@ -421,6 +431,7 @@ Listening schema explainations:
     const q = new flowchartCompletionQuestion({
         startQuestionNum: 26,
         endQuestionNum: 30,
+        standAlone: true,
         options: true,
         questionHeader: 'Complete the flowchart below.\nChoose FIVE answers from the box and write the correct letter, A-H, next to Questions 26-30.',
         questionTitle: 'Stages in Experiment',
@@ -471,6 +482,7 @@ Listening schema explainations:
     const q = new tableCompletionQuestion({
         startQuestionNum: 6,
         endQuestionNum: 10,
+        standAlone: true,
         numOfWords: 1,
         numOfNum: 1,
         numOfRows: 7,
@@ -529,6 +541,7 @@ Listening schema explainations:
     const q = new formCompletionQuestion({
         startQuestionNum: 1,
         endQuestionNum: 8,
+        standAlone: true,
         numOfWords: 3,
         numOfNum: 1,
         questionHeader: 'Questions 1-8\n
@@ -567,6 +580,7 @@ Listening schema explainations:
     const q = new shortAnswerQuestion({
         startQuestionNum: 11,
         endQuestionNum: 16,
+        standAlone: true,
         numOfWords: 3,
         numOfNum: 1,
         questionHeader: 'Answer the questions below.\nWrite NO MORE THAN THREE WORDS AND/OR A NUMBER for each answer.',
@@ -609,6 +623,7 @@ Reading Schema explainations:
         const q = new rMatchingQuestion({
             startQuestionNum: 1,
             endQuestionNum: 3,
+            standAlone: true,
             qTypeMatchingInfo : true,
             questionHeader : 'Reading Passage 1 has nine paragraphs, A-I.\nWrite the correct letter, A-I, in boxes 1-3 on your answer sheet.',
             questionOptionRepeatable : false,
@@ -632,6 +647,7 @@ Reading Schema explainations:
         const q = new rMatchingQuestion({
             startQuestionNum : 7,
             endQuestionNum : 10,
+            standAlone: true,
             qTypeList : true,
             questionHeader : 'Look at the following items (Questions 7-10) and the list of groups below.\nMatch each item with the group which first invented or used them.\nWrite the correct letter A-E in boxes 7-10 on your answer sheet.\nNB you may use any letter more than once',
             questionOptionRepeatable: true,
@@ -673,6 +689,7 @@ Reading Schema explainations:
     const q = new mcq({
         startQuestionNum: 10,
         endQuestionNum: 12,
+        standAlone: true,
         noOfWords: 1,
         qType: 1
         questionHeader: ['Choose the correct letter, A, B, C or D.\nWrite your answers ni boxes 10-12 on your answer sheet.'],
@@ -716,6 +733,7 @@ Reading Schema explainations:
     const q = new mcq({
         startQuestionNum: 25,
         endQuestionNum: 27,
+        standAlone: true,
         noOfWords: 1,
         qType: 2
         questionHeader: ['Choose THREE letters, A-G'],
@@ -750,6 +768,7 @@ Reading Schema explainations:
     const q = new summaryCompletionQuestion({
         startQuestionNum: 27,
         endQuestionNum: 31,
+        standAlone: true,
         numOfWords: 2,
         numOfNum: 0,
         qType: 1,
@@ -772,6 +791,7 @@ Reading Schema explainations:
     const q = new summaryCompletionQuestion({
         startQuestionNum: 1,
         endQuestionNum: 4,
+        standAlone: true,
         numOfWords: 1,
         numOfNum: 0,
         qType: 2,
@@ -808,6 +828,7 @@ Reading Schema explainations:
     const q = new planMapDiagramLabellingQuestion({
         startQuestionNum: 1,
         endQuestionNum: 5,
+        standAlone: true,
         option: false,
         numOfWords: 3,
         questionHeader: 'Label the diagram below.\nChoose NO MORE THAN THREE WORDS from the passage for each answer.\nWrite your answers in boxes 1-5 on your answer sheet.',
@@ -839,6 +860,7 @@ Reading Schema explainations:
     const q = new flowchartCompletionQuestion({
         startQuestionNum: 1,
         endQuestionNum: 3,
+        standAlone: true,
         options: false,
         numOfWords: 2,
         numOfNum: 0,
@@ -878,6 +900,7 @@ Reading Schema explainations:
     const q = new tableCompletionQuestion({
         startQuestionNum: 9,
         endQuestionNum: 13,
+        standAlone: true,
         numOfWords: 3,
         numOfNum: 0,
         numOfRows: 4,
@@ -936,6 +959,7 @@ Reading Schema explainations:
     const q = new rShortAnswerQuestion({
         startQuestionNum: 1,
         endQuestionNum: 4,
+        standAlone: true,
         numOfWords: 3,
         numOfNum: 1,
         questionHeader: 'Answer the questions below.\nChoose NO MORE THAN THREE WORDS AND/OR A NUMBER from the text for each answer.\nWrite your answers in boxes 1-4 on your answer sheet.',
@@ -965,6 +989,7 @@ Reading Schema explainations:
     const q = new ynngQuestion({
         startQuestionNum: 7,
         endQuestionNum: 12,
+        standAlone: true,
         questionHeader: 'Do the following statements agree with the views of the writer in the Reading Passage?\nWrite:\n\tYES if the statement agrees with the views of the writer.\n\tNO if the statement contradicts what the writer thinks.\n\tNOT GIVEN if it is impossible to know what the writer's point of view is.',
         numStatements: [
             '7\tChildren can learn their first language without being taught.',
@@ -988,6 +1013,7 @@ Reading Schema explainations:
     const q = new tfngQuestion({
         startQuestionNum: 9,
         endQuestionNum: 13,
+        standAlone: true,
         questionHeader: 'Do the following statements agree with the views of the writer in the Reading Passage?\nIn boxes 9-13 on your answer write:\n\tTRUE if the statement agrees with the views of the information.\n\tNO if the statement contradicts the information.\n\tNOT GIVEN if there is no information on this.',
         numStatements: [
             '9\tCoconut seeds need shade in order to germinate.',

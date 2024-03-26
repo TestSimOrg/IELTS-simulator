@@ -1,5 +1,43 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
+/**
+ * @openapi
+ * components:
+ *  schemas:
+ *    CreateUserInput:
+ *      type: object
+ *      required:
+ *        - email
+ *        - name
+ *        - password
+ *        - passwordConfirmation
+ *      properties:
+ *        email:
+ *          type: string
+ *          default: jane.doe@example.com
+ *        name:
+ *          type: string
+ *          default: Jane Doe
+ *        password:
+ *          type: string
+ *          default: stringPassword123
+ *        passwordConfirmation:
+ *          type: string
+ *          default: stringPassword123
+ *    CreateUserResponse:
+ *      type: object
+ *      properties:
+ *        email:
+ *          type: string
+ *        name:
+ *          type: string
+ *        _id:
+ *          type: string
+ *        createdAt:
+ *          type: string
+ *        updatedAt:
+ *          type: string
+ */
 const flowchartCompletionSchema = new mongoose.Schema({
     startQuestionNum : {
         type : Number,
@@ -8,6 +46,10 @@ const flowchartCompletionSchema = new mongoose.Schema({
     endQuestionNum : {
         type : Number,
         required: true
+    },
+    standAlone: {
+        type: Boolean,
+        required: true,
     },
     options: {
         type: Boolean,
@@ -19,6 +61,7 @@ const flowchartCompletionSchema = new mongoose.Schema({
             return !(this.options);
         },
         default: 1,
+        min: 1,
     },
     numOfNum : {
         type : Number,
@@ -26,6 +69,7 @@ const flowchartCompletionSchema = new mongoose.Schema({
             return !(this.options);
         },
         default: 0,
+        min: 0,
     },
     questionHeader : {
         type : String,
@@ -33,17 +77,23 @@ const flowchartCompletionSchema = new mongoose.Schema({
     },
     questionTitle : {
         type : String,
+        default: '',
     },
     questionOptions: {
         type: [String],
         required: function validate(){
             return this.options;
-        }
+        },
+        default: [],
     },
     steps: {
         type: [[String]],
         required : true
     },
+    answer: {
+        type: Schema.ObjectId,
+        ref: 'answer',
+    }
     
 });
 

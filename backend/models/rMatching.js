@@ -10,6 +10,10 @@ const rMatchingQuestionSchema = new mongoose.Schema({
         type : Number,
         required: true
     },
+    standAlone: {
+        type: Boolean,
+        required: true,
+    },
     numOfWords : {
         type : Number,
         default: 1,
@@ -46,6 +50,10 @@ const rMatchingQuestionSchema = new mongoose.Schema({
         type: [String],
         required: true,
     },
+    answer: {
+        type: Schema.ObjectId,
+        ref: 'answer'
+    }
   });
   
 rMatchingQuestionSchema.pre('validate', function(next) {

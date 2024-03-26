@@ -10,6 +10,10 @@ const trueFalseNGSchema = new mongoose.Schema({
         type : Number,
         required: true,
     },
+    standAlone: {
+        type: Boolean,
+        required: true,
+    },
     questionHeader :{
         type : String,
         required: true
@@ -18,6 +22,10 @@ const trueFalseNGSchema = new mongoose.Schema({
         type : [String],
         required: true,
     },
+    answer: {
+        type: Schema.ObjectId,
+        ref: 'answer'
+    }
 
 });
 

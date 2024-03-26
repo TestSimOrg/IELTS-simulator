@@ -10,6 +10,10 @@ const sentenceCompletionSchema = new mongoose.Schema({
         type : Number,
         required: true
     },
+    standAlone: {
+        type: Boolean,
+        required: true,
+    },
     numOfWords : {
         type : Number,
         required : true
@@ -29,6 +33,10 @@ const sentenceCompletionSchema = new mongoose.Schema({
         type: [String],
         required: true
     },
+    answer: {
+        type: Schema.ObjectId,
+        ref: 'answer'
+    }
     
 });
 
