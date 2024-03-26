@@ -1,13 +1,14 @@
 import express from 'express';
+import formCompletionController from '../controllers/formCompletion.js';
 
 const formCompletionRouter = express.Router();
 
-formCompletionRouter.get('/', (req, res) => {
-  // Handle form completion logic here
-});
+formCompletionRouter.post('/', formCompletionController.createQuestion);
 
-formCompletionRouter.get('/:formId', (req, res) => {
-  // Handle specific form completion logic here
-});
+formCompletionRouter.get('/', formCompletionController.getAllStandaloneQuestions);
+
+formCompletionRouter.patch('/:id', formCompletionController.editQuestion);
+
+formCompletionRouter.delete('/:id', formCompletionController.delQuestion);
 
 export default formCompletionRouter;

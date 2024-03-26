@@ -1,13 +1,14 @@
 import express from 'express';
+import lMatchingController from '../controllers/lMatching';
 
 const lMatchingRouter = express.Router();
 
-lMatchingRouter.get('/', (req, res) => {
-  // Logic for lMatching
-});
+lMatchingRouter.post('/',lMatchingController.createQuestion)
 
-lMatchingRouter.get('/:productId', (req, res) => {
-  // Logic for lMatching with productId
-});
+lMatchingRouter.get('/', lMatchingController.getAllStandaloneQuestions);
+
+lMatchingRouter.patch('/:id', lMatchingController.editQuestion);
+
+lMatchingRouter.delete('/:id', lMatchingController.delQuestion)
 
 export default lMatchingRouter;

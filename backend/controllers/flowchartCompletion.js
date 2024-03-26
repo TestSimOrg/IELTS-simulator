@@ -1,91 +1,160 @@
-import logger from '../lib/logger.js';
-import mongoose from 'mongoose';
+import log from '../lib/logger.js';
 import flowchartCompletionQuestion from '../models/flowchartCompletion.js';
+import {createBlankAns, createAns} from '../utils/createBlankAns.js'
+
 
 const createQuestion = async (req, res) => {
 
     const {fcCompletion} = req.body;
 
-    logger.debug('Creating Flowchart Completion Question.',fcCompletion);
+    log.debug('Creating Flowchart Completion Question.',fcCompletion);
 
-    if(fcCompletion.options){
+    try {
+
+        const blankAnsID = createBlankAns(fcCompletion.options);
         
-        try {
-                const q = new flowchartCompletionQuestion({
-                    startQuestionNum: fcCompletion.startQuestionNum,
-                    endQuestionNum: fcCompletion.endQuestionNum,
-                    options: true,
-                    questionHeader: fcCompletion.questionHeader,
-                    questionTitle: fcCompletion.questionTitle || '',
-                    questionOptions: fcCompletion.questionOptions,
-                    steps: fcCompletion.steps,
-                });
+        const filledAnsID = createAns(fcCompletion.answer)
+        
+
+        const q = new flowchartCompletionQuestion({
+            startQuestionNum: fcCompletion.startQuestionNum,
+            endQuestionNum: fcCompletion.endQuestionNum,
+            standAlone: fcCompletion.standAlone,
+            options: fcCompletion.options,
+            numOfWords: fcCompletion.numOfWords,
+            numOfNum: fcCompletion.numOfNum,
+            questionHeader: fcCompletion.questionHeader,
+            questionTitle: fcCompletion.questionTitle,
+            questionOptions: fcCompletion.questionOptions,
+            steps: fcCompletion.steps,
+            answer: fcCompletion.standAlone ? filledAnsID : blankAnsID, 
+        });
             
-            const savedQuestion = await q.save();
+        const savedQuestion = await q.save();
             
-            logger.debug('Created Flowchart Completion Question.',savedQuestion);
+        log.debug('Created Flowchart Completion Question.',savedQuestion);
             
-            res.status(201).json({
-                message: "Question creation successful",
-                obj: savedQuestion,
-            });
-
-        } catch (err) {
-            
-            logger.error('Error while creating a Flowchart Completion Question with mcq.',err);
-            
-            res.status(500).json({
-                message: 'Server error'
-            })
-
-        }    
-
-    }else {
-
-        try {
-            const q = new flowchartCompletionQuestion({
-                startQuestionNum: fcCompletion.startQuestionNum,
-                endQuestionNum: fcCompletion.endQuestionNum,
-                options: false,
-                numOfWords: fcCompletion.numOfWords,
-                numOfNum: fcCompletion.numOfNum,
-                questionHeader: fcCompletion.questionHeader,
-                steps: fcCompletion.steps,
-            });
-
-            const savedQuestion = await q.save();
-
-            logger.debug('Created Flowchart Completion Question.',savedQuestion);
-
-            res.status(201).json({
-
+        return res.status(201).json({
             message: "Question creation successful",
             obj: savedQuestion,
-
+            ok: true,
+            status: 201
         });
 
     } catch (err) {
-
-        logger.error('Error while creating a Flowchart Completion Question with fill in the blanks.',err);
-        
-        res.status(500).json({
-            message: 'Server error'
+            
+        log.error('Error while creating a Flowchart Completion Question.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
         })
 
-    }        
-    }
+    }    
+
 }
 
-const getQuestion = async (req, res) => {
+const getAllStandaloneQuestions = async (req, res) => {
+
+    
+    try {
+        
+        log.info('fetching all stand alone Flow Chart Completion Question.')
+
+        const questions = await flowchartCompletionQuestion.find({ standAlone: true });
+
+        
+        if(questions.length === 0){
+
+            log.error("Couldn't find any stand alone flowchart questions");
+
+            return res.status(404).json({
+                message: "No stand alone questions found",
+                ok: false,
+                status: 404
+            });
+        
+        }
+
+        return res.status(200).json({
+            message: "Fetched all stand alone question successsfully",
+            obj: questions,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while finding stand alone Flowchart Completion Questions.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        })
+
+    }
+
 
 }
 
 const editQuestion = async (req, res) => {
 
+    log.info('fetching Flow Chart Completion Question using id.')
+
+    const fcCompletionID = req.params.id;
+    const updates = req.body;
+
+    try {
+        
+        const Question = flowchartCompletionQuestion.findById(fcCompletionID);
+
+        if(!Question){
+
+            log.error("Couldn't find any question using id.");
+
+            res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            })
+        }
+
+        Object.keys(updates).forEach((key) =>{
+            Question[key] = updates[key];
+        })
+
+        const savedQuestion = Question.save();
+
+        log.info('Flowchart Copmletion Question updated.', savedQuestion);
+
+        return res.status(200).json({
+            message: "Flowchart Completion Question updated.",
+            obj: savedQuestion,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while updating Flowchart Completion Question by id.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        })
+
+    }
 }
 
 const delQuestion = async (req, res) => {
 
 }
 
-export {createQuestion, getQuestion, editQuestion, delQuestion};
+const fcCompletionController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
+
+export default fcCompletionController;
