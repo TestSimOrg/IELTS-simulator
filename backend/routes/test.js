@@ -11,4 +11,4 @@ import app from '../app'
    *       200:
    *         description: App is up and running
    */
- app.get("/healthcheck", (req, res) => res.sendStatus(200));
+ app.get("/healthcheck", (req, res) => res.sendStatus(200))
