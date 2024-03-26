@@ -1,6 +1,6 @@
-import winston, { createLogger, format, transports } from 'winston';
+import { addColors, createLogger, format, transports } from 'winston';
 
-// Define log levels and corresponding colors
+// // Define log levels and corresponding colors
 const logLevels = {
   levels: {
     error: 0,
@@ -17,7 +17,7 @@ const logLevels = {
 };
 
 // Configure Winston logger
-const logger = createLogger({
+const log = createLogger({
   levels: logLevels.levels,
   format: format.combine(
     format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
@@ -32,17 +32,15 @@ const logger = createLogger({
       )
     }),
     // File transport
-    new transports.File({
-      filename: 'app.log',
-      format: format.combine(
-        format.uncolorize(),
-        format.simple()
-      )
-    })
+    // new transports.File({
+    //   filename: 'app.log',
+    //   format: format.combine(
+    //     format.uncolorize(),
+    //     format.simple()
+    //   )
+    // })
   ]
 });
+log.level = 'debug';
 
-
-winston.addColors(logLevels.colors);
-
-export default logger;
+export default log;
