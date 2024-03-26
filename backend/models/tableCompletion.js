@@ -10,6 +10,10 @@ const tableCompletionSchema = new mongoose.Schema({
         type : Number,
         required: true
     },
+    standAlone: {
+        type: Boolean,
+        required: true,
+    },
     numOfWords : {
         type : Number,
         required : true
@@ -18,11 +22,11 @@ const tableCompletionSchema = new mongoose.Schema({
         type : Number,
         required : true
     },
-    noOfRows : {
+    numOfRows : {
         type : Number,
         required: true
     },
-    noOfCols : {
+    numOfCols : {
         type : Number,
         required: true
     },
@@ -30,15 +34,19 @@ const tableCompletionSchema = new mongoose.Schema({
         type: [[String]],
         required: true
     },
+    answer: {
+        type: Schema.ObjectId,
+        ref: 'answer'
+    }
     
 });
 
 tableCompletionSchema.pre('validate', function(next) {
     const arr = this.rows;
-    const rowCheck = this.noOfRows === this.rows.length ? true : false;
+    const rowCheck = this.numOfRows === this.rows.length ? true : false;
     const colCheck = true;
     for(let arr1 of arr){
-        if(this.noOfCols !== arr1.length){
+        if(this.numOfCols !== arr1.length){
             colCheck = false;
         }
     }
@@ -53,6 +61,6 @@ tableCompletionSchema.pre('validate', function(next) {
         next();
     }
 })
-const tableCompletion = mongoose.model('tableCompletion', tableCompletionSchema);
+const tableCompletionQuestion = mongoose.model('tableCompletionQuestion', tableCompletionSchema);
 
-export default tableCompletion;
+export default tableCompletionQuestion;

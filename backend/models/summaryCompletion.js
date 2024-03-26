@@ -9,6 +9,10 @@ const summaryCompletionSchema = new mongoose.Schema({
         type : Number,
         required: true
     },
+    standAlone: {
+        type: Boolean,
+        required: true,
+    },
     numOfWords : {
         type : Number,
         required : true
@@ -39,6 +43,10 @@ const summaryCompletionSchema = new mongoose.Schema({
         required: function validate(){
             return this.qType === 2 ? true : false;
         }
+    },
+    answer: {
+        type: Schema.ObjectId,
+        ref: 'answer'
     }
     
 
