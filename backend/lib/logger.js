@@ -20,7 +20,7 @@ const logLevels = {
 const log = createLogger({
   levels: logLevels.levels,
   format: format.combine(
-    format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+    // format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
     format.json()
   ),
   transports: [
@@ -41,6 +41,6 @@ const log = createLogger({
     // })
   ]
 });
-log.level = 'debug';
+log.level = 'error';
 
 export default log;
