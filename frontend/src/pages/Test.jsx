@@ -8,6 +8,7 @@ import { Matching } from "../components/questions/Matching";
 import { SentenceCompletion } from "../components/questions/SentenceCompletion";
 import { MultipleChoiceType1 } from "../components/questions/MultipleChoiceType1";
 import { MultipleChoiceType2 } from "../components/questions/MultipleChoiceType2";
+import { NoteCompletion } from "../components/questions/NoteCompletion";
 import { DiagramCompletion } from "../components/questions/DiagramCompletion";
 
 export default function Test() {
@@ -46,8 +47,8 @@ export default function Test() {
             "Write NO MORE THAN THREE WORDS to complete each space.",
         questionTitle: "",
         numStatements: [
-            "9 Samuel's aunt plans to travel to his apartment on _BLANK_.",
-            "10 The journey time is approximately _BLANK_.",
+            "9 Samuel's aunt plans to travel to his apartment on _BLANK_. test _BLANK_ test2",
+            "10 The journey time is approximately _BLANK_. test",
         ],
     };
 
@@ -136,8 +137,30 @@ export default function Test() {
         ],
     };
 
+    const qNoteCompletion = {
+        startQuestionNum: 11,
+        endQuestionNum: 16,
+        standAlone: true,
+        numOfWords: 3,
+        numOfNum: 1,
+        questionHeader: 'Complete the notes below.\nWrite NO MORE THAN THREE WORDS AND/OR A NUMBER for each answer.',
+        questionTitle: 'The National Arts Centre',
+        questionStatements: 
+        [
+            'Well known for:\t11 _BLANK_.',
+            'Complex consists of:\tconcert rooms\ntheatres\ncinemas\nart galleries\npublic library\nrestaurants\n12 _BLANK_',
+            'Historical background:\t1940 area dostoyed by bombs\n19605 — Centre was 13 _BLANK_\nIn 14 _BLANK_ opened to public',
+            'Managed by:\t15 _BLANK_',
+            'Open:\t16 _BLANK_ days per year'
+        ],
+    };
+
     return (
         <div>
+            <Container>
+                <Typography variant="h4">Note Completion</Typography>
+                <NoteCompletion q={qNoteCompletion} />
+            </Container>
             <Container>
                 <Typography variant="h4">Matching</Typography>
                 <Matching q={qMatching} />
