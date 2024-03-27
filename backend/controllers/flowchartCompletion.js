@@ -1,6 +1,7 @@
 import log from '../lib/logger.js';
 import flowchartCompletionQuestion from '../models/flowchartCompletion.js';
-import {createBlankAns, createAns} from '../utils/createBlankAns.js'
+import createAns from '../utils/createAnswer.js'
+import createBlankAns from '../utils/createAnswer.js'
 
 
 const createQuestion = async (req, res) => {
@@ -76,6 +77,8 @@ const getAllStandaloneQuestions = async (req, res) => {
             });
         
         }
+
+        log.info('sending all stand alone Flow Chart Completion Question.')
 
         return res.status(200).json({
             message: "Fetched all stand alone question successsfully",

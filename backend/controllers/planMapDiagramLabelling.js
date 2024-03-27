@@ -1,75 +1,155 @@
 import planMapDiagramLabellingQuestion from '../models/planMapDiagramLabelling.js';
-import logger from '../lib/logger.js';
-import mongoose from 'mongoose';
+import createAns from '../utils/createAnswer.js'
+import createBlankAns from '../utils/createAnswer.js'
+import log from '../lib/logger.js';
 
 const createQuestion = async (req, res) => {
-    const {pmdLabellingQuestion} = req.body;
 
-    logger.debug('Creating Plan/Map/Diagram Completion Question.',pmdLabellingQuestion);
+    const {pmdLabelling} = req.body;
 
-    if(pmdLabellingQuestion.options){
-        try {
-            const q = new planMapDiagramLabellingQuestion({
-                startQuestionNum: pmdLabellingQuestion.startQuestionNum,
-                endQuestionNum: pmdLabellingQuestion.endQuestionNum,
-                options: true,
-                questionHeader: pmdLabellingQuestion.questionHeader,
-                questionTitle: pmdLabellingQuestion.questionTitle,
-                image: pmdLabellingQuestion.image,
-                questionOptions: pmdLabellingQuestion.questionOptions,
-                numStatements: pmdLabellingQuestion.numStatements,
-            });
-            const savedQuestion = await q.save();
+    log.info('Creating Pland Diagram Labelling Question.', pmdLabelling);
 
-            logger.debug('Created Plan/Map/Diagram Completion Question.',savedQuestion);
+    try {
 
-            res.status(201).json({
-                message: "Question creation successful",
-                obj: savedQuestion,
-            });
-
-        } catch (err) {
-            logger.error('Error while creating a Plan/Map/Diagram Completion Question with mcq.',err);
-            res.status(500).json({
-                message: 'Server error'
-            })
-        }
-    }else {
-        try {
-            const q = new planMapDiagramLabellingQuestion({
-                startQuestionNum: pmdLabellingQuestion.startQuestionNum,
-                endQuestionNum: pmdLabellingQuestion.endQuestionNum,
-                options: false,
-                numOfWords: pmdLabellingQuestion.numOfWords,
-                questionHeader: pmdLabellingQuestion.questionHeader,
-                questionTitle: pmdLabellingQuestion.questionTitle,
-                image: pmdLabellingQuestion.image,
-                numStatements: pmdLabellingQuestion.numStatements,
-            });
-            const savedQuestion = await q.save();
-
-            logger.debug('Created Plan/Map/Diagram Completion Question.',savedQuestion);
-
-            res.status(201).json({
-                message: "Question creation successful",
-                obj: savedQuestion,
-            });
-
-        } catch (err) {
-            logger.error('Error while creating a Plan/Map/Diagram Completion Question with blanks.',err);
-            res.status(500).json({
-                message: 'Server error'
-            })
-        }
-    }
+        const blankAnsID = createBlankAns(pmdLabelling.options);
     
+        const filledAnsID = createAns(pmdLabelling.answer)
+
+        const q = new planMapDiagramLabellingQuestion({
+
+            startQuestionNum: noteCompletion.startQuestionNum,
+            endQuestionNum: noteCompletion.endQuestionNum,
+            standAlone: noteCompletion.standAlone,
+            options: noteCompletion.options,
+            numOfWords: noteCompletion.numOfWords,
+            questionHeader: noteCompletion.questionHeader,
+            questionTitle: noteCompletion.questionTitle,
+            image: noteCompletion.image,
+            questionOptions: noteCompletion.questionOptions,
+            numStatements: noteCompletion.numStatements,
+            answer: noteCompletion.standAlone ? filledAnsID : blankAnsID,
+
+        });
+
+        const savedQuestion = await q.save();
+
+        log.info('Created Pland Diagram Labelling Question.', savedQuestion);
+
+        res.status(201).json({
+            message: "Question creation successful",
+            obj: savedQuestion,
+            ok: true,
+            status: 201
+        });
+
+    } catch (err) {
+
+        log.error('Error while creating Pland Diagram Labelling Question.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
 }
 
-const getQuestion = async (req, res) => {
+const getAllStandaloneQuestions = async (req, res) => {
+
+    try {
+        
+        log.info('fetching all stand alone Plan Map Diagram Labelling Questions.')
+
+        const questions = await planMapDiagramLabellingQuestion.find({ standAlone: true });
+
+        if(questions.length === 0){
+
+            log.error("Couldn't find any stand alone Plan Map Diagram Labelling Questions.");
+
+            return res.status(404).json({
+                message: "No stand alone questions found.",
+                ok: false,
+                status: 404
+            });
+        
+        }
+
+        log.info('sendng all stand alone Plan Map Diagram Labelling Questions.');
+
+        return res.status(200).json({
+            message: "Fetched all stand alone questions successsfully",
+            obj: questions,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while finding stand alone Plan Map Diagram Labelling Questions.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
 
 }
 
 const editQuestion = async (req, res) => {
+
+    log.info('fetching Plan Map Diagram Labelling Question using id.')
+
+    const pmdLabellingID = req.params.id;
+    const updates = req.body;
+
+    try {
+        
+        const Question = planMapDiagramLabellingQuestion.findById(pmdLabellingID);
+
+        if(!Question){
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            })
+            
+        }
+
+        Object.keys(updates).forEach((key) =>{
+            Question[key] = updates[key];
+        })
+
+        const savedQuestion = Question.save();
+
+        log.info('Plan Map Diagram Labelling Question updated.', savedQuestion);
+
+        return res.status(200).json({
+            message: "Plan Map Diagram Labelling Question updated.",
+            obj: savedQuestion,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while updating Plan Map Diagram Labelling Question by id.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        })
+
+    }
 
 }
 
@@ -77,4 +157,6 @@ const delQuestion = async (req, res) => {
 
 }
 
-export {createQuestion, getQuestion, editQuestion, delQuestion};
+const planMapDiagramLabellingController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
+
+export default planMapDiagramLabellingController;

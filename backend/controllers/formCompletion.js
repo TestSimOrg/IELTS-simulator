@@ -1,6 +1,7 @@
-import logger from '../lib/logger.js';
+import log from '../lib/logger.js';
 import formCompletionQuestion from '../models/formCompletion.js';
-import {createBlankAns, createAns} from '../utils/createBlankAns.js'
+import createAns from '../utils/createAnswer.js'
+import createBlankAns from '../utils/createAnswer.js'
 
 const createQuestion = async (req, res) => {
     const {formCompletion} = req.body;
@@ -70,6 +71,8 @@ const getAllStandaloneQuestions = async (req, res) => {
             });
         
         }
+
+        log.info('sending all stand alone Form Completion Question.')
 
         return res.status(200).json({
             message: "Fetched all stand alone question successsfully",

@@ -1,10 +1,12 @@
-import logger from '../lib/logger.js';
+import log from '../lib/logger.js';
 import lMatchingQuestion from '../models/lMatching.js'
+import createAns from '../utils/createAnswer.js'
+import createBlankAns from '../utils/createAnswer.js'
 
 const createQuestion = async (req, res) => {
     const {listeningMatching} = req.body;
 
-    logger.debug('Creating Listening Matching Question.',listeningMatching);
+    log.debug('Creating Listening Matching Question.',listeningMatching);
 
     try {
 
@@ -30,19 +32,23 @@ const createQuestion = async (req, res) => {
         
         const savedQuestion = await q.save();
         
-        logger.debug('Created Listening Matching Completion Question.',savedQuestion);
+        log.debug('Created Listening Matching Completion Question.',savedQuestion);
         
         res.status(201).json({
             message: "Question creation successful",
             obj: savedQuestion,
+            ok: true,
+            status: 201
         });
 
     } catch (err) {
         
-        logger.error('Error while creating a Listen Matching Completion Question.',err);
+        log.error('Error while creating a Listen Matching Completion Question.',err);
         
-        res.status(500).json({
-            message: 'Server error'
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
         });
 
     } 
@@ -68,6 +74,8 @@ const getAllStandaloneQuestions = async (req, res) => {
             });
         
         }
+
+        log.info('sending all stand alone Listening Matching Questions.')
 
         return res.status(200).json({
             message: "Fetched all stand alone question successsfully",

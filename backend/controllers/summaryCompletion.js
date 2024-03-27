@@ -1,53 +1,154 @@
-import logger from '../lib/logger.js';
-import mongoose from 'mongoose';
+import log from '../lib/logger.js';
+import createAns from '../utils/createAnswer.js'
+import createBlankAns from '../utils/createAnswer.js'
 import summaryCompletionQuestion from '../models/summaryCompletion.js'
 
 const createQuestion = async (req, res) => {
+
     const {summaryCompletion} = req.body;
 
-    logger.debug('Creating Summary Completion Question.',summaryCompletion);
-
+    log.info('Creating Summary Completion Question.',summaryCompletion);
 
     try {
+
+        const blankAnsID = createBlankAns(rShortAnswer.options);
+    
+        const filledAnsID = createAns(rShortAnswer.answer);
+
         const q = new summaryCompletionQuestion({
 
             startQuestionNum: summaryCompletion.startQuestionNum,
             endQuestionNum: summaryCompletion.endQuestionNum,
+            standAlone: summaryCompletion.standAlone,
             numOfWords: summaryCompletion.numOfWords,
             numOfNum: summaryCompletion.numOfNum,
             qType: summaryCompletion.qType,
             questionHeader: summaryCompletion.questionHeader,
             questionTitle: summaryCompletion.questionTitle,
             summary: summaryCompletion.summary,
-            questionOptions: summaryCompletion.questionOptions || [],
+            questionOptions: summaryCompletion.questionOptions,
+            answer: summaryCompletion.standAlone ? filledAnsID : blankAnsID,
 
         });
 
         const savedQuestion = await q.save();
 
-        logger.debug('Created Summary Completion Question.', savedQuestion);
+        log.info('Created Summary Completion Question.', savedQuestion);
 
-        res.status(201).json({
+        return res.status(201).json({
             message: "Question creation successful",
             obj: savedQuestion,
+            ok: true,
+            status: 201,
         });
 
     } catch (err) {
 
-        logger.error('Error while creating a Summary Completion Question.',err);
+        log.error('Error while creating a Summary Completion Question.',err);
             
-        res.status(500).json({
-            message: 'Server error'
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500,
         })
 
     }
+    
 }
 
-const getQuestion = async (req, res) => {
+const getAllStandaloneQuestions = async (req, res) => {
+
+    try {
+        
+        log.info('fetching all stand alone Summary Completion Questions.')
+
+        const questions = await summaryCompletionQuestion.find({ standAlone: true });
+
+        if(questions.length === 0){
+
+            log.error("Couldn't find any stand alone Summary Completion Questions.");
+
+            return res.status(404).json({
+                message: "No stand alone questions found.",
+                ok: false,
+                status: 404
+            });
+        
+        }
+
+        log.info('sendng all stand alone Summary Completion Questions.');
+
+        return res.status(200).json({
+            message: "Fetched all stand alone questions successsfully",
+            obj: questions,
+            ok: true,
+            status: 200
+        })
+
+    } catch (err) {
+
+        log.error('Error while finding stand alone Summary Completion Questions.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
 
 }
 
 const editQuestion = async (req, res) => {
+
+    log.info('fetching Summary Completion Question using id.')
+
+    const summaryCompletionID = req.params.id;
+    const updates = req.body;
+
+    try {
+        
+        const Question = summaryCompletionQuestion.findById(summaryCompletionID);
+
+        if(!Question){
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+            
+        }
+
+        Object.keys(updates).forEach((key) =>{
+            Question[key] = updates[key];
+        })
+
+        const savedQuestion = Question.save();
+
+        log.info('Reading Summary Completion updated.', savedQuestion);
+
+        return res.status(200).json({
+            message: "Reading Summary Completion Question updated.",
+            obj: savedQuestion,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while updating Summary Completion Question by id.', err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
 
 }
 
@@ -55,4 +156,6 @@ const delQuestion = async (req, res) => {
 
 }
 
-export {createQuestion, getQuestion, editQuestion, delQuestion};
+const summaryCompletionController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
+
+export default summaryCompletionController;
