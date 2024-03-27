@@ -2,6 +2,8 @@ import planMapDiagramLabellingQuestion from '../models/planMapDiagramLabelling.j
 import util from '../utils/createAnswer.js'
 import log from '../lib/logger.js';
 
+// TODO: ADD MULTER TO UPLOAD IMAGES. TILL THEN CONTROLLER IS BROKEN.
+
 const createQuestion = async (req, res) => {
 
     const {pmdLabelling} = req.body;
@@ -31,7 +33,7 @@ const createQuestion = async (req, res) => {
 
         });
 
-        const savedQuestion = await q.save();
+        const savedQuestion = (await q.save()).toJSON;
 
         log.info('Created Pland Diagram Labelling Question.', savedQuestion);
 
@@ -127,7 +129,7 @@ const editQuestion = async (req, res) => {
             Question[key] = updates[key];
         })
 
-        const savedQuestion = await Question.save();
+        const savedQuestion = (await Question.save()).toJSON;
 
         log.info('Plan Map Diagram Labelling Question updated.', savedQuestion);
 
@@ -155,7 +157,48 @@ const editQuestion = async (req, res) => {
 
 const delQuestion = async (req, res) => {
 
-}
+    log.info('Deleting Plan Map Diagram Labelling Question by ID.');
+
+    const pmdLabellingID = req.params.id;
+
+    try {
+
+        const deletedQuestion = await planMapDiagramLabellingQuestion.findByIdAndDelete(pmdLabellingID).exec();
+
+        if (!deletedQuestion) {
+
+            log.error("Couldn't find any question using ID.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using ID.",
+                ok: false,
+                status: 404
+            });
+        }
+
+        log.info('Plan Map Diagram Labelling Question deleted.', deletedQuestion);
+
+        return res.status(200).json({
+            message: "Plan Map Diagram Labelling Question deleted.",
+            obj: deletedQuestion,
+            ok: true,
+            status: 200
+        });
+
+    } catch (err) {
+
+        log.error('Error while deleting Plan Map Diagram Labelling Question by ID.', err);
+
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
+};
+
 
 const planMapDiagramLabellingController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
 

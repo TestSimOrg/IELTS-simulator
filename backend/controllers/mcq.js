@@ -50,7 +50,7 @@ const createQuestion = async (req, res) => {
 
 }
 
-const getQuestion = async (req, res) => {
+const getAllStandaloneQuestions = async (req, res) => {
 
     try {
         
@@ -150,8 +150,50 @@ const editQuestion = async (req, res) => {
 
 const delQuestion = async (req, res) => {
 
+    log.info('Deleting mcq using id.');
+
+    const mcqId = req.params.id;
+
+    try {
+
+        const deletedQuestion = await mcq.findByIdAndDelete(mcqId).exec();
+
+        if (!deletedQuestion) {
+
+            log.error("Couldn't find any question using id for deletion.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id for deletion.",
+                ok: false,
+                status: 404
+            });
+
+        }
+
+        log.info('mcq deleted.', deletedQuestion);
+        
+        return res.status(200).json({
+            message: "mcq deleted.",
+            obj: deletedQuestion,
+            ok: true,
+            status: 200
+        });
+        
+    } catch (err) {
+
+        log.error('Error while deleting mcq by id.', err);
+
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
 }
 
-const mcqController = {createQuestion, getQuestion, editQuestion, delQuestion};
+
+const mcqController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
 
 export default mcqController;

@@ -151,7 +151,48 @@ const editQuestion = async (req, res) => {
 
 const delQuestion = async (req, res) => {
 
-}
+    log.info('Deleting Listen Short Ans Question using id.');
+
+    try {
+
+        const lShortAnsID = req.params.id;
+
+        const deletedQuestion = await lShortAnswerQuestion.findByIdAndDelete(lShortAnsID).exec();
+
+        if (!deletedQuestion) {
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+        }
+
+        log.info('Listening Short Ans Question deleted.', deletedQuestion);
+
+        return res.status(200).json({
+            message: "Listening Short Ans Question deleted.",
+            obj: deletedQuestion,
+            ok: true,
+            status: 200
+        });
+
+    } catch (err) {
+
+        log.error('Error while deleting Listening Short Ans Question by id.', err);
+
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
+};
+
 
 const lShortAnswerController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
 

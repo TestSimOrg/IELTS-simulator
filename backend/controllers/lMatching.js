@@ -22,7 +22,7 @@ const createQuestion = async (req, res) => {
             numOfNum: listeningMatching.numOfNum,
             questionHeader: listeningMatching.questionHeader,
             questionOptionRepeatable: listeningMatching.questionOptionRepeatable,
-            questionStatement: listeningMatching.questionStatement,
+            questionStatment: listeningMatching.questionStatment,
             questionTitle: listeningMatching.questionTitle || '',
             questionOptions: listeningMatching.questionOptions,
             numTitle: listeningMatching.numTitle || '',
@@ -152,8 +152,47 @@ const editQuestion = async (req, res) => {
 }
 
 const delQuestion = async (req, res) => {
+    
+    log.info('Deleting Listen Matching Question using id.');
 
-}
+    const lMatchingID = req.params.id;
+
+    try {
+
+        const deletedQuestion = await lMatchingQuestion.findByIdAndDelete(lMatchingID);
+
+        if (!deletedQuestion) {
+            log.error("Couldn't find any question using id.");
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+        }
+
+        log.info('Listening Matching Question deleted.', deletedQuestion);
+
+        return res.status(200).json({
+            message: "Listening Matching Question deleted.",
+            obj: deletedQuestion,
+            ok: true,
+            status: 200
+        });
+
+    } catch (err) {
+
+        log.error('Error while deleting Listening Matching Question by id.', err);
+
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
+};
+
 
 const lMatchingController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion}
 

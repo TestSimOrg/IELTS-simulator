@@ -5,7 +5,7 @@ import util from '../utils/createAnswer.js'
 const createQuestion = async (req, res) => {
     const {formCompletion} = req.body;
 
-    logger.debug('Creating Form Completion Question.',formCompletion);
+    log.debug('Creating Form Completion Question.',formCompletion);
 
     try {
 
@@ -28,7 +28,7 @@ const createQuestion = async (req, res) => {
         
         const savedQuestion = await q.save();
         
-        logger.debug('Created Form Completion Question.',savedQuestion);
+        log.debug('Created Form Completion Question.',savedQuestion);
         
         res.status(201).json({
             message: "Question creation successful",
@@ -39,7 +39,7 @@ const createQuestion = async (req, res) => {
 
     } catch (err) {
         
-        logger.error('Error while creating a Form Completion Question.',err);
+        log.error('Error while creating a Form Completion Question.',err);
         
         res.status(500).json({
             message: 'Server error',
@@ -149,7 +149,45 @@ const editQuestion = async (req, res) => {
 
 const delQuestion = async (req, res) => {
 
+    try {
+
+        const fCompletionID = req.params.id;
+
+        const deletedQuestion = await formCompletionQuestion.findByIdAndDelete(fCompletionID).exec();
+
+        if (!deletedQuestion) {
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+            
+        }
+
+        log.info('Form Completion Question deleted.', deletedQuestion);
+
+        return res.status(200).json({
+            message: "Form Completion Question deleted.",
+            obj: deletedQuestion,
+            ok: true,
+            status: 200
+        });
+
+    } catch (err) {
+
+        log.error('Error while deleting Form Completion Question by id.', err);
+
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
 }
+
 
 const formCompletionController ={createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
 

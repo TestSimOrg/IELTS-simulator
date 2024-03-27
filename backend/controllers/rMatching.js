@@ -32,10 +32,9 @@ const createQuestion = async (req, res) => {
             answer: rMatching.standAlone ? filledAnsID : blankAnsID,
         });
 
-        const savedQuestion = (await q.save()).toJSON;
+        const savedQuestion = (await q.save()).toJSON();
 
-        log.info('Created Reading Matching Question.');
-        log.info(savedQuestion)
+        log.info('Created Reading Matching Question.', savedQuestion);
 
         return res.status(201).json({
             message: "Question creation successful",

@@ -14,7 +14,7 @@ const createQuestion = async (req, res) => {
         let blankAnsID, filledAnsID;
 
         if (fcCompletion.answer !== undefined) filledAnsID = util.createAns(fcCompletion.answer);
-        else blankAnsID = util.createBlankAns(fcCompletion.options !== undefined);
+        else blankAnsID = util.createBlankAns(true);
         
 
         const q = new flowchartCompletionQuestion({
@@ -31,7 +31,7 @@ const createQuestion = async (req, res) => {
             answer: fcCompletion.standAlone ? filledAnsID : blankAnsID, 
         });
             
-        const savedQuestion = await q.save();
+        const savedQuestion = (await q.save()).toJSON();
             
         log.debug('Created Flowchart Completion Question.',savedQuestion);
             
@@ -129,7 +129,7 @@ const editQuestion = async (req, res) => {
             Question[key] = updates[key];
         })
 
-        const savedQuestion = await Question.save();
+        const savedQuestion = (await Question.save()).toJSON();
 
         log.info('Flowchart Copmletion Question updated.', savedQuestion);
 
@@ -156,7 +156,48 @@ const editQuestion = async (req, res) => {
 
 const delQuestion = async (req, res) => {
 
-}
+    log.info('Deleting Flowchart Completion Question using id.');
+
+    const fcCompletionID = req.params.id;
+
+    try {
+
+        const deletedQuestion = await flowchartCompletionQuestion.findByIdAndDelete(fcCompletionID).exec();
+
+        if (!deletedQuestion) {
+
+            log.error("Couldn't find any question using id for deletion.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id for deletion.",
+                ok: false,
+                status: 404
+            });
+        }
+
+        log.info('Flowchart Completion Question deleted.');
+
+        return res.status(200).json({
+            message: "Flowchart Completion Question deleted.",
+            obj: deletedQuestion.toJSON(),
+            ok: true,
+            status: 200
+        });
+
+    } catch (err) {
+
+        log.error('Error while deleting Flowchart Completion Question by id.', err);
+
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
+};
+
 
 const fcCompletionController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
 

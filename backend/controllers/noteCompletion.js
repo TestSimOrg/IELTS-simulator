@@ -150,7 +150,50 @@ const editQuestion = async (req, res) => {
 
 const delQuestion = async (req, res) => {
 
+    log.info('Deleting Note Completion Question using id.');
+
+    const noTeCompletionID = req.params.id;
+
+    try {
+        
+        const deletedQuestion = await noteCompletionQuestion.findByIdAndDelete(noTeCompletionID).exec();
+
+        if(!deletedQuestion){
+
+            log.error("Couldn't find any question using id for deletion.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id for deletion.",
+                ok: false,
+                status: 404
+            });
+            
+        }
+
+        log.info('Note Completion Question deleted.', deletedQuestion);
+
+        return res.status(200).json({
+            message: "Note Completion Question deleted.",
+            obj: deletedQuestion,
+            ok: true,
+            status: 200
+        });
+
+
+    } catch (err) {
+
+        log.error('Error while deleting Note Completion Question by id.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
 }
+
 
 const noteCompletionController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
 
