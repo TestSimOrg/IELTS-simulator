@@ -1,4 +1,4 @@
-import answer from "../models/answer";
+import answer from "../models/answer.js";
 
 
 async function createBlankAns(option = false){
@@ -42,4 +42,9 @@ async function createAns(ans){
     return filledAnsID;
 }
 
-export default {createBlankAns, createAns};
+const util = {
+    createBlankAns, 
+    createAns
+};
+
+export default util;
