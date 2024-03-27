@@ -68,6 +68,17 @@ rMatchingQuestionSchema.pre('validate', function a(next) {
         const err = new Error('number of questions and number of question statements mismatch');
         next(err);
     }
+
+    if (this.qTypeList && this.qTypeMatchingInfo) {
+        const err = new Error('Question can be either qTypeList (List of option in question) or qTypeMatchingInfo (No list only question statements that match info in statement to  passage)');
+        next(err);
+    } else if(this.qTypeList === true){
+        this.qTypeMatchingInfo = false;
+        next();
+    }else if(this.qTypeMatchingInfo === true){
+        this.qTypeList = false;
+        next();
+    }
     next();
 });
 
