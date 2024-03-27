@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const summaryCompletionSchema = new mongoose.Schema({
     startQuestionNum : {
@@ -42,7 +42,8 @@ const summaryCompletionSchema = new mongoose.Schema({
         type: [String],
         required: function validate(){
             return this.qType === 2 ? true : false;
-        }
+        },
+        default: [],
     },
     answer: {
         type: Schema.ObjectId,

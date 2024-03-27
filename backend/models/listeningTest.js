@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import diagramFlowchartCompletionQuestion from './diagramFlowchartCompletion'
 import formCompletionQuestion from './formCompletion'
 import labellingQuestion from './Labelling'
