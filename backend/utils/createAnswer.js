@@ -5,12 +5,16 @@ async function createBlankAns(option){
 
     
     if(!option){
+
         log.info(option)
+
         const blankStringAns = new answer({
-            ansType: 'B',
+            ansType: 'B1',
             ans: '_TBU_',
         });
+
         log.info(blankStringAns)
+
         const blankSAID = (await blankStringAns.save())._id;
 
         return blankSAID;
@@ -18,10 +22,12 @@ async function createBlankAns(option){
     }else {
 
         const blankArrAns = new answer({
-        ansType: 'B',
-        answer: ['_TBU_'], // TO BE UPDATED (placeholder value)
+        ansType: 'B2',
+        ans: ['_TBU_'], // TO BE UPDATED (placeholder value)
         });
+
         log.info(blankArrAns)
+        
         const blankAAID = (await blankArrAns.save())._id;
 
         return blankAAID;
