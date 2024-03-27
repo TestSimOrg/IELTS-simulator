@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-
+import log from '../lib/logger.js';
 
 const lShortAnswerQuestionSchema = new mongoose.Schema({
     

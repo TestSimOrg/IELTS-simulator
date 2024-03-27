@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-
+import log from '../lib/logger.js';
 const yesNoNGSchema = new mongoose.Schema({
     startQuestionNum : {
         type : Number,
@@ -35,7 +35,7 @@ const yesNoNGSchema = new mongoose.Schema({
 
 yesNoNGSchema.pre('validate', function(next){
     const numOfQuestion = this.endQuestionNum - this.startQuestionNum + 1;
-    const numConsistency = this.numStatements === numOfQuestion ? true : false;
+    const numConsistency = this.numStatements.length === numOfQuestion ? true : false;
 
     if(!numConsistency){
         const err = new Error('number of questions and number of question statements mismatch');

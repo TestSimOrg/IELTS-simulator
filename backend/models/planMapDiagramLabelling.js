@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import log from '../lib/logger.js';
 
 const planMapDiagramLabellingSchema = new mongoose.Schema({
 
@@ -59,7 +60,7 @@ const planMapDiagramLabellingSchema = new mongoose.Schema({
 
 planMapDiagramLabellingSchema.pre('validate', function(next){
     const numOfQuestion = this.endQuestionNum - this.startQuestionNum + 1;
-    const numConsistency = this.numStatements === numOfQuestion ? true : false;
+    const numConsistency = this.numStatements.length === numOfQuestion ? true : false;
 
     if(!numConsistency){
         const err = new Error('number of questions and number of question statements mismatch');

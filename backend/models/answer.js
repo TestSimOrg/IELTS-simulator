@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import log from '../lib/logger.js';
 
 const answerSchema = new mongoose.Schema({
     
@@ -10,25 +11,26 @@ const answerSchema = new mongoose.Schema({
     qPair : {
       type : [String],
       required: function validate(){
-          return this.ansType === IEO;
+          return this.ansType === 'IEO';
       }
     },
     ans: {
       type: Schema.Types.Mixed,
-      required: true
+      required: true,
+
     }
 })
 
 answerSchema.pre('validate', function(next) {
   const ansType = this.ansType;
   const ans = this.ans;
-
+  log.info(`ans : ${ans}`)
   // Validate ans based on ansType
   if (ansType === 'S' || ansType === 'L' || ansType === 'B') {
     if (typeof ans !== 'string') {
       return next(new Error('Invalid data type for ans'));
     }
-  } else if (ansType === 'M' || ansType === 'IEO') {
+  } else if (ansType === 'M' || ansType === 'IEO' || ansType === 'B') {
     if (!Array.isArray(ans) || !ans.every(item => typeof item === 'string')) {
       return next(new Error('Invalid data type for ans'));
     }

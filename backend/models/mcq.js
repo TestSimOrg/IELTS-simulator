@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import log from '../lib/logger.js';
 
 const mcqSchema = new mongoose.Schema({
     startQuestionNum : {
@@ -46,7 +47,7 @@ const mcqSchema = new mongoose.Schema({
 mcqSchema.pre('validate', function(next){
     const consistent = this.numStatements.length === this.questionOptions.length ? true : false;
     const numOfQuestion = this.endQuestionNum - this.startQuestionNum + 1;
-    const numConsistency = this.numStatements === numOfQuestion ? true : false;
+    const numConsistency = this.numStatements.length === numOfQuestion ? true : false;
     
     if(!numConsistency && this.qType !== 2){
         const err = new Error('number of questions and number of question statements mismatch');

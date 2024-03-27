@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import log from '../lib/logger.js';
 
 const summaryCompletionSchema = new mongoose.Schema({
     startQuestionNum : {
