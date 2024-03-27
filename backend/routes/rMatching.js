@@ -1,10 +1,9 @@
 import express from 'express';
 import rMatchingController from '../controllers/rMatching.js';
-import rMatchingTypeValidation from '../middleware/rMatchingTypeValidation.js'
 
 const rMatchingRouter = express.Router();
 
-rMatchingRouter.post('/', rMatchingTypeValidation, rMatchingController.createQuestion);
+rMatchingRouter.post('/', rMatchingController.createQuestion);
 
 rMatchingRouter.get('/', rMatchingController.getAllStankdaloneQuestion);
 

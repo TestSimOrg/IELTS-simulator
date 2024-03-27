@@ -5,7 +5,7 @@ const mcqRouter = express.Router();
 
 mcqRouter.post('/', mcqController.createQuestion);
 
-mcqRouter.get('/', mcqController.editQuestion);
+mcqRouter.get('/', mcqController.getAllStandaloneQuestions);
 
 mcqRouter.patch('/:id', mcqController.editQuestion);
 
