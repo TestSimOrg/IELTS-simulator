@@ -1,7 +1,6 @@
 import log from '../lib/logger.js';
 import mcq from '../models/mcq.js';
-import createAns from '../utils/createAnswer.js'
-import createBlankAns from '../utils/createAnswer.js'
+import util from '../utils/createAnswer.js'
 
 const createQuestion = async (req, res) => {
     const {MCQ} = req.body;
@@ -10,9 +9,10 @@ const createQuestion = async (req, res) => {
 
     try {
 
-        const blankAnsID = createBlankAns(listeningShortAns.options);
-    
-        const filledAnsID = createAns(listeningShortAns.answer)
+        let blankAnsID, filledAnsID;
+
+        if (mcq.answer !== undefined) filledAnsID = util.createAns(mcq.answer);
+        else blankAnsID = util.createBlankAns(mcq.options !== undefined);
 
         const q = new mcq({
 
@@ -104,7 +104,7 @@ const editQuestion = async (req, res) => {
 
     try {
         
-        const Question = mcq.findById(lShortAnsID);
+        const Question = await mcq.findById(lShortAnsID).exec();
 
         if(!Question){
 
@@ -122,7 +122,7 @@ const editQuestion = async (req, res) => {
             Question[key] = updates[key];
         })
 
-        const savedQuestion = Question.save();
+        const savedQuestion = await Question.save();
 
         log.info('mcq updated.', savedQuestion);
 

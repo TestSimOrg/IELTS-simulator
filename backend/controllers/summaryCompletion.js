@@ -1,6 +1,5 @@
 import log from '../lib/logger.js';
-import createAns from '../utils/createAnswer.js'
-import createBlankAns from '../utils/createAnswer.js'
+import util from '../utils/createAnswer.js'
 import summaryCompletionQuestion from '../models/summaryCompletion.js'
 
 const createQuestion = async (req, res) => {
@@ -11,9 +10,10 @@ const createQuestion = async (req, res) => {
 
     try {
 
-        const blankAnsID = createBlankAns(rShortAnswer.options);
-    
-        const filledAnsID = createAns(rShortAnswer.answer);
+        let blankAnsID, filledAnsID;
+
+        if (summaryCompletion.answer !== undefined) filledAnsID = util.createAns(summaryCompletion.answer);
+        else blankAnsID = util.createBlankAns(summaryCompletion.options !== undefined);
 
         const q = new summaryCompletionQuestion({
 
@@ -108,7 +108,7 @@ const editQuestion = async (req, res) => {
 
     try {
         
-        const Question = summaryCompletionQuestion.findById(summaryCompletionID);
+        const Question = await summaryCompletionQuestion.findById(summaryCompletionID).exec();
 
         if(!Question){
 
@@ -126,7 +126,7 @@ const editQuestion = async (req, res) => {
             Question[key] = updates[key];
         })
 
-        const savedQuestion = Question.save();
+        const savedQuestion = await Question.save();
 
         log.info('Reading Summary Completion updated.', savedQuestion);
 
@@ -153,8 +153,50 @@ const editQuestion = async (req, res) => {
 }
 
 const delQuestion = async (req, res) => {
+    
+    log.info('Deleting Summary Completion Question using id.');
 
-}
+    const summaryCompletionID = req.params.id;
+
+    try {
+
+        const deletedQuestion = await summaryCompletionQuestion.findByIdAndDelete(summaryCompletionID).exec();
+
+        if (!deletedQuestion) {
+
+            log.error("Couldn't find any question using id for deletion.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id for deletion.",
+                ok: false,
+                status: 404
+            });
+
+        }
+
+        log.info('Summary Completion Question deleted.', deletedQuestion);
+
+        return res.status(200).json({
+            message: "Summary Completion Question deleted.",
+            obj: deletedQuestion,
+            ok: true,
+            status: 200
+        });
+
+    } catch (err) {
+
+        log.error('Error while deleting Summary Completion Question by id.', err);
+
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+        
+    }
+
+};
+
 
 const summaryCompletionController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
 

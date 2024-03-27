@@ -1,6 +1,5 @@
 import log from '../lib/logger.js';
-import createAns from '../utils/createAnswer.js'
-import createBlankAns from '../utils/createAnswer.js'
+import util from '../utils/createAnswer.js'
 import sentenceCompletionQuestion from '../models/sentenceCompletion.js'
 
 const createQuestion = async (req, res) => {
@@ -11,9 +10,10 @@ const createQuestion = async (req, res) => {
 
     try {
 
-        const blankAnsID = createBlankAns(rShortAnswer.options);
-    
-        const filledAnsID = createAns(rShortAnswer.answer);
+        let blankAnsID, filledAnsID;
+
+        if (sentenceCompletion.answer !== undefined) filledAnsID = util.createAns(sentenceCompletion.answer);
+        else blankAnsID = util.createBlankAns(sentenceCompletion.options !== undefined);
 
         const q = new sentenceCompletionQuestion({
 
@@ -107,7 +107,7 @@ const editQuestion = async (req, res) => {
 
     try {
         
-        const Question = sentenceCompletionQuestion.findById(sentenceCompletionID);
+        const Question = await sentenceCompletionQuestion.findById(sentenceCompletionID).exec();
 
         if(!Question){
 
@@ -125,7 +125,7 @@ const editQuestion = async (req, res) => {
             Question[key] = updates[key];
         })
 
-        const savedQuestion = Question.save();
+        const savedQuestion = await Question.save();
 
         log.info('Reading Sentence Completion updated.', savedQuestion);
 
@@ -152,8 +152,48 @@ const editQuestion = async (req, res) => {
 }
 
 const delQuestion = async (req, res) => {
+    
+    try {
 
-}
+        const sentenceCompletionID = req.params.id;
+        
+        const deletedQuestion = await sentenceCompletionQuestion.findByIdAndDelete(sentenceCompletionID).exec();
+        
+        if (!deletedQuestion) {
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+
+        }
+        
+        log.info('Sentence Completion Question deleted.', deletedQuestion);
+        
+        return res.status(200).json({
+            message: "Sentence Completion Question deleted.",
+            obj: deletedQuestion,
+            ok: true,
+            status: 200
+        });
+        
+    } catch (err) {
+
+        log.error('Error while deleting Sentence Completion Question by id.', err);
+
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
+};
+
 
 const sentenceCompletionController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
 

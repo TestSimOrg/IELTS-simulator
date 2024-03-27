@@ -1,19 +1,18 @@
 import log from '../lib/logger.js';
 import trueFalseNGQuestion from '../models/tfng.js';
-import createAns from '../utils/createAnswer.js'
-import createBlankAns from '../utils/createAnswer.js'
+import util from '../utils/createAnswer.js';
 
 const createQuestion = async (req, res) => {
 
     const {trueFalseNG} = req.body;
 
-    log.info('Creating TRUE, FALSE or NOT GIVEN Question', yesNoNG);
+    log.info('Creating TRUE, FALSE or NOT GIVEN Question', trueFalseNG);
 
     try {
 
-        const blankAnsID = createBlankAns(yesNoNG.options);
-    
-        const filledAnsID = createAns(yesNoNG.answer);
+        let blankAnsID, filledAnsID;
+        if (trueFalseNG.answer !== undefined) filledAnsID = util.createAns(trueFalseNG.answer);
+        else blankAnsID = util.createBlankAns(trueFalseNG.options !== undefined);
 
         const q = new trueFalseNGQuestion({
 
@@ -103,7 +102,7 @@ const editQuestion = async (req, res) => {
 
     try {
         
-        const Question = trueFalseNGQuestion.findById(tfngID);
+        const Question = await trueFalseNGQuestion.findById(tfngID).exec();
 
         if(!Question){
 
@@ -118,12 +117,13 @@ const editQuestion = async (req, res) => {
         }
 
         Object.keys(updates).forEach((key) =>{
+            log.info(`${Question[key]} ---> ${updates[key]}`)
             Question[key] = updates[key];
         })
 
-        const savedQuestion = Question.save();
+        const savedQuestion = await Question.save();
 
-        log.info('Reading True, False or Not Given updated.', savedQuestion);
+        log.info(savedQuestion);
 
         return res.status(200).json({
             message: "Reading True, False or Not Given Question updated.",
@@ -149,7 +149,49 @@ const editQuestion = async (req, res) => {
 
 const delQuestion = async (req, res) => {
 
-}
+    log.info('Deleting True, False or Not Given Question using id.');
+    
+    const tfngID = req.params.id;
+    
+    try {
+
+        const deletedQuestion = await trueFalseNGQuestion.findByIdAndDelete(tfngID).exec();
+        
+        if (!deletedQuestion) {
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+
+        }
+        
+        log.info(deletedQuestion);
+        
+        return res.status(200).json({
+            message: "True, False or Not Given Question deleted successfully.",
+            obj: deletedQuestion,
+            ok: true,
+            status: 200
+        });
+
+    } catch (err) {
+
+        log.error('Error while deleting True, False or Not Given Question by id.', err);
+
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+    
+};
+
 
 const tfngController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
 

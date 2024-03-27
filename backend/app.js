@@ -92,37 +92,31 @@ app.use(limiter);
 
 // CORS setup
 let whitelist = [
-  `http:localhost${PORT}:`
+  `http://localhost:${PORT}`
 ];
 
 if (process.env.NODE_ENV === 'development') {
-  whitelist = [
-    `http://localhost:${PORT}`,
-    'http://localhost:8080'
-  ];
-} else {
-  
-  whitelist = [
-
-  ];
+  whitelist.push('http://localhost:8080');
 }
 
-for(let url of whitelist){
-  log.info(`Allowed origins: ${url}`)
+for (let url of whitelist) {
+  log.info(`Allowed origin: ${url}`);
 }
 
 const corsOptionsDelegate = (req, callback) => {
   let corsOptions;
-  if (whitelist.indexOf(req.header("Origin")) !== -1) {
-    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
+  const origin = req.header("Origin");
+  log.info(`req origin: ${origin}`)
+  if (origin && whitelist.includes(origin)) {
+    corsOptions = { origin: true }; // Reflect the requested origin in the CORS response
   } else {
-    corsOptions = { origin: false }; // disable CORS for this request
+    corsOptions = { origin: false }; // Disable CORS for this request
   }
-  callback(null, corsOptions); // callback expects two parameters: error and options
+  
+  callback(null, corsOptions); // Callback expects two parameters: error and options
 };
 
 app.use(cors(corsOptionsDelegate));
-
 
 
 // db setup

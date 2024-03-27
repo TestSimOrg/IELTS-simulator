@@ -1,6 +1,5 @@
 import log from '../lib/logger.js';
-import createAns from '../utils/createAnswer.js'
-import createBlankAns from '../utils/createAnswer.js'
+import util from '../utils/createAnswer.js'
 import noteCompletionQuestion from '../models/noteCompletion.js'
 
 const createQuestion = async (req, res) => {
@@ -10,9 +9,10 @@ const createQuestion = async (req, res) => {
 
     try {
 
-        const blankAnsID = createBlankAns(listeningShortAns.options);
-    
-        const filledAnsID = createAns(listeningShortAns.answer)
+        let blankAnsID, filledAnsID;
+
+        if (noteCompletion.answer !== undefined) filledAnsID = util.createAns(noteCompletion.answer);
+        else blankAnsID = util.createBlankAns(noteCompletion.options !== undefined);
 
         const q = new noteCompletionQuestion({
 
@@ -104,7 +104,7 @@ const editQuestion = async (req, res) => {
 
     try {
         
-        const Question = noteCompletionQuestion.findById(noTeCompletionID);
+        const Question = await noteCompletionQuestion.findById(noTeCompletionID).exec();
 
         if(!Question){
 
@@ -122,7 +122,7 @@ const editQuestion = async (req, res) => {
             Question[key] = updates[key];
         })
 
-        const savedQuestion = Question.save();
+        const savedQuestion = await Question.save();
 
         log.info('Note Copmletion Question updated.', savedQuestion);
 

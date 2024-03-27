@@ -1,19 +1,20 @@
-import createAns from '../utils/createAnswer.js'
-import createBlankAns from '../utils/createAnswer.js'
+import util from '../utils/createAnswer.js'
 import log from '../lib/logger.js';
 import rMatchingQuestion from '../models/rMatching.js';
 
 const createQuestion = async (req, res) => {
-
+    
     const {rMatching} = req.body;
 
-    log.info('Creating Reading Matching Question.',rMatching);
+    log.info('Creating Reading Matching Question.');
+    log.info(rMatching)
 
     try {
 
-        const blankAnsID = createBlankAns(rMatching.options);
-    
-        const filledAnsID = createAns(rMatching.answer)
+        let blankAnsID, filledAnsID;
+
+        if (rMatching.answer !== undefined) filledAnsID = util.createAns(rMatching.answer);
+        else blankAnsID = util.createBlankAns(rMatching.options !== undefined);
 
         const q = new rMatchingQuestion({
 
@@ -25,15 +26,16 @@ const createQuestion = async (req, res) => {
             qTypeMatchingInfo: rMatching.qTypeMatchingInfo,
             questionHeader: rMatching.questionHeader,
             questionOptionRepeatable: rMatching.questionOptionRepeatable,
-            questionTitle: rMatching.questionTitle || '',
-            questionStatements: rMatching.questionStatements || [],
+            questionTitle: rMatching.questionTitle,
+            questionStatements: rMatching.questionStatements,
             numStatements: rMatching.numStatements,
             answer: rMatching.standAlone ? filledAnsID : blankAnsID,
         });
 
-        const savedQuestion = await q.save();
+        const savedQuestion = (await q.save()).toJSON;
 
-        log.info('Created Reading Matching Question.', savedQuestion);
+        log.info('Created Reading Matching Question.');
+        log.info(savedQuestion)
 
         return res.status(201).json({
             message: "Question creation successful",
@@ -108,7 +110,7 @@ const editQuestion = async (req, res) => {
 
     try {
         
-        const Question = rMatchingQuestion.findById(rMatchingID);
+        const Question = await rMatchingQuestion.findById(rMatchingID).exec();
 
         if(!Question){
 
@@ -126,7 +128,7 @@ const editQuestion = async (req, res) => {
             Question[key] = updates[key];
         })
 
-        const savedQuestion = Question.save();
+        const savedQuestion = await Question.save();
 
         log.info('Reading Matching Question updated.', savedQuestion);
 
@@ -154,7 +156,49 @@ const editQuestion = async (req, res) => {
 
 const delQuestion = async (req, res) => {
 
+    log.info('Deleting Reading Matching Question using id.');
+
+    const rMatchingID = req.params.id;
+
+    try {
+        
+        const deletedQuestion = await rMatchingQuestion.findByIdAndDelete(rMatchingID).exec();
+
+        if(!deletedQuestion){
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            })
+            
+        }
+
+        log.info('Reading Matching Question deleted.', deletedQuestion);
+
+        return res.status(200).json({
+            message: "Reading Matching Question deleted.",
+            obj: deletedQuestion,
+            ok: true,
+            status: 200
+        })
+
+    } catch (err) {
+
+        log.error('Error while deleting Reading Matching Question by id.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        })
+
+    }
+
 }
+
 
 const rMatchingController = {createQuestion, getAllStankdaloneQuestion, editQuestion, delQuestion};
 

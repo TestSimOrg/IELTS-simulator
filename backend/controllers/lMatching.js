@@ -1,7 +1,6 @@
 import log from '../lib/logger.js';
 import lMatchingQuestion from '../models/lMatching.js'
-import createAns from '../utils/createAnswer.js'
-import createBlankAns from '../utils/createAnswer.js'
+import util from '../utils/createAnswer.js'
 
 const createQuestion = async (req, res) => {
     const {listeningMatching} = req.body;
@@ -10,9 +9,10 @@ const createQuestion = async (req, res) => {
 
     try {
 
-        const blankAnsID = createBlankAns(listeningMatching.options);
-        
-        const filledAnsID = createAns(listeningMatching.answer)
+        let blankAnsID, filledAnsID;
+
+        if (listeningMatching.answer !== undefined) filledAnsID = util.createAns(listeningMatching.answer);
+        else blankAnsID = util.createBlankAns(listeningMatching.options !== undefined);
 
         const q = new lMatchingQuestion({
             startQuestionNum: listeningMatching.startQuestionNum,
@@ -108,7 +108,7 @@ const editQuestion = async (req, res) => {
 
     try {
         
-        const Question = lMatchingQuestion.findById(lMatchingID);
+        const Question = await lMatchingQuestion.findById(lMatchingID);
 
         if(!Question){
 
@@ -125,7 +125,7 @@ const editQuestion = async (req, res) => {
             Question[key] = updates[key];
         })
 
-        const savedQuestion = Question.save();
+        const savedQuestion = await Question.save();
 
         log.info('Listening Matching Question updated.', savedQuestion);
 

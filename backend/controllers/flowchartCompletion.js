@@ -1,7 +1,6 @@
 import log from '../lib/logger.js';
 import flowchartCompletionQuestion from '../models/flowchartCompletion.js';
-import createAns from '../utils/createAnswer.js'
-import createBlankAns from '../utils/createAnswer.js'
+import util from '../utils/createAnswer.js'
 
 
 const createQuestion = async (req, res) => {
@@ -12,9 +11,10 @@ const createQuestion = async (req, res) => {
 
     try {
 
-        const blankAnsID = createBlankAns(fcCompletion.options);
-        
-        const filledAnsID = createAns(fcCompletion.answer)
+        let blankAnsID, filledAnsID;
+
+        if (fcCompletion.answer !== undefined) filledAnsID = util.createAns(fcCompletion.answer);
+        else blankAnsID = util.createBlankAns(fcCompletion.options !== undefined);
         
 
         const q = new flowchartCompletionQuestion({
@@ -112,7 +112,7 @@ const editQuestion = async (req, res) => {
 
     try {
         
-        const Question = flowchartCompletionQuestion.findById(fcCompletionID);
+        const Question = await flowchartCompletionQuestion.findById(fcCompletionID).exec();
 
         if(!Question){
 
@@ -129,7 +129,7 @@ const editQuestion = async (req, res) => {
             Question[key] = updates[key];
         })
 
-        const savedQuestion = Question.save();
+        const savedQuestion = await Question.save();
 
         log.info('Flowchart Copmletion Question updated.', savedQuestion);
 

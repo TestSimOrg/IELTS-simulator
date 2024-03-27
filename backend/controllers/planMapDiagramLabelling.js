@@ -1,6 +1,5 @@
 import planMapDiagramLabellingQuestion from '../models/planMapDiagramLabelling.js';
-import createAns from '../utils/createAnswer.js'
-import createBlankAns from '../utils/createAnswer.js'
+import util from '../utils/createAnswer.js'
 import log from '../lib/logger.js';
 
 const createQuestion = async (req, res) => {
@@ -11,9 +10,10 @@ const createQuestion = async (req, res) => {
 
     try {
 
-        const blankAnsID = createBlankAns(pmdLabelling.options);
-    
-        const filledAnsID = createAns(pmdLabelling.answer)
+        let blankAnsID, filledAnsID;
+
+        if (pmdLabelling.answer !== undefined) filledAnsID = util.createAns(pmdLabelling.answer);
+        else blankAnsID = util.createBlankAns(pmdLabelling.options !== undefined);
 
         const q = new planMapDiagramLabellingQuestion({
 
@@ -109,7 +109,7 @@ const editQuestion = async (req, res) => {
 
     try {
         
-        const Question = planMapDiagramLabellingQuestion.findById(pmdLabellingID);
+        const Question = await planMapDiagramLabellingQuestion.findById(pmdLabellingID).exec();
 
         if(!Question){
 
@@ -127,7 +127,7 @@ const editQuestion = async (req, res) => {
             Question[key] = updates[key];
         })
 
-        const savedQuestion = Question.save();
+        const savedQuestion = await Question.save();
 
         log.info('Plan Map Diagram Labelling Question updated.', savedQuestion);
 

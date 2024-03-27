@@ -1,7 +1,6 @@
 import log from '../lib/logger.js';
 import yesNoNGQuestion from '../models/ynng.js';
-import createAns from '../utils/createAnswer.js'
-import createBlankAns from '../utils/createAnswer.js'
+import util from '../utils/createAnswer.js';
 
 const createQuestion = async (req, res) => {
 
@@ -11,9 +10,10 @@ const createQuestion = async (req, res) => {
 
     try {
 
-        const blankAnsID = createBlankAns(yesNoNG.options);
-    
-        const filledAnsID = createAns(yesNoNG.answer);
+        let blankAnsID, filledAnsID;
+
+        if (yesNoNG.answer !== undefined) filledAnsID = util.createAns(yesNoNG.answer);
+        else blankAnsID = util.createBlankAns(yesNoNG.options !== undefined);
 
         const q = new yesNoNGQuestion({
 
@@ -103,7 +103,7 @@ const editQuestion = async (req, res) => {
 
     try {
         
-        const Question = yesNoNGQuestion.findById(tfngID);
+        const Question = await yesNoNGQuestion.findById(tfngID).exec();
 
         if(!Question){
 
@@ -121,7 +121,7 @@ const editQuestion = async (req, res) => {
             Question[key] = updates[key];
         })
 
-        const savedQuestion = Question.save();
+        const savedQuestion = await Question.save();
 
         log.info('Reading YES, NO or NOT GIVEN updated.', savedQuestion);
 
@@ -149,7 +149,48 @@ const editQuestion = async (req, res) => {
 
 const delQuestion = async (req, res) => {
 
+    try {
+
+        const tfngID = req.params.id;
+
+        const questionToDelete = await yesNoNGQuestion.findById(tfngID).exec();
+
+        if (!questionToDelete) {
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+
+        }
+
+        await questionToDelete.remove();
+
+        log.info('Question deleted successfully.');
+
+        return res.status(200).json({
+            message: "Question deleted successfully.",
+            ok: true,
+            status: 200
+        });
+
+    } catch (err) {
+
+        log.error('Error while deleting the question by id.', err);
+
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
 }
+
 
 const ynngController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion}
 

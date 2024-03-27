@@ -1,7 +1,6 @@
 import log from '../lib/logger.js';
 import formCompletionQuestion from '../models/formCompletion.js';
-import createAns from '../utils/createAnswer.js'
-import createBlankAns from '../utils/createAnswer.js'
+import util from '../utils/createAnswer.js'
 
 const createQuestion = async (req, res) => {
     const {formCompletion} = req.body;
@@ -10,9 +9,10 @@ const createQuestion = async (req, res) => {
 
     try {
 
-        const blankAnsID = createBlankAns(formCompletion.options);
-        
-        const filledAnsID = createAns(formCompletion.answer)
+        let blankAnsID, filledAnsID;
+
+        if (formCompletion.answer !== undefined) filledAnsID = util.createAns(formCompletion.answer);
+        else blankAnsID = util.createBlankAns(formCompletion.options !== undefined);
         
         const q = new formCompletionQuestion({
             startQuestionNum: formCompletion.startQuestionNum,
@@ -105,7 +105,7 @@ const editQuestion = async (req, res) => {
 
     try {
         
-        const Question = formCompletionQuestion.findById(fCompletionID);
+        const Question = await formCompletionQuestion.findById(fCompletionID).exec();
 
         if(!Question){
 
@@ -122,7 +122,7 @@ const editQuestion = async (req, res) => {
             Question[key] = updates[key];
         })
 
-        const savedQuestion = Question.save();
+        const savedQuestion = await Question.save();
 
         log.info('Form Copmletion Question updated.', savedQuestion);
 

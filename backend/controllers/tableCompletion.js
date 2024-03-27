@@ -1,7 +1,7 @@
 import log from '../lib/logger.js';
 import tableCompletionQuestion from "../models/tableCompletion.js";
-import createAns from '../utils/createAnswer.js'
-import createBlankAns from '../utils/createAnswer.js'
+import util from '../utils/createAnswer.js'
+
 
 const createQuestion = async (req, res) => {
 
@@ -11,9 +11,10 @@ const createQuestion = async (req, res) => {
 
     try {
 
-        const blankAnsID = createBlankAns(tableCompletion.options);
-    
-        const filledAnsID = createAns(tableCompletion.answer);
+        let blankAnsID, filledAnsID;
+
+        if (tableCompletion.answer !== undefined) filledAnsID = util.createAns(tableCompletion.answer);
+        else blankAnsID = util.createBlankAns(tableCompletion.options !== undefined);
 
         const q = new tableCompletionQuestion({
 
@@ -22,7 +23,7 @@ const createQuestion = async (req, res) => {
             standAlone: tableCompletion.standAlone,
             numOfWords: tableCompletion.numOfWords,
             numOfNum: tableCompletion.numOfNum,
-            numOfRows: summaryCompletion.numOfRows,
+            numOfRows: tableCompletion.numOfRows,
             numOfCols: tableCompletion.numOfCols,
             rows: tableCompletion.rows,
             answer: tableCompletion.standAlone ? filledAnsID : blankAnsID,
@@ -106,7 +107,7 @@ const editQuestion = async (req, res) => {
 
     try {
         
-        const Question = tableCompletionQuestion.findById(tableCompletionID);
+        const Question = await tableCompletionQuestion.findById(tableCompletionID).exec();
 
         if(!Question){
 
@@ -152,7 +153,50 @@ const editQuestion = async (req, res) => {
 
 const delQuestion = async (req, res) => {
 
+    log.info('Deleting Table Completion Question using id.');
+
+    const tableCompletionID = req.params.id;
+
+    try {
+        
+        const deletedQuestion = await tableCompletionQuestion.findByIdAndDelete(tableCompletionID).exec();
+
+        if(!deletedQuestion){
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+            
+        }
+
+        log.info('Table Completion Question deleted successfully.', deletedQuestion);
+
+        return res.status(200).json({
+            message: "Table Completion Question deleted successfully.",
+            obj: deletedQuestion,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while deleting Table Completion Question by id.', err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
 }
+
 
 const tableCompletionController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion}
 

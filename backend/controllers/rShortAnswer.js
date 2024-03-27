@@ -1,7 +1,6 @@
 import log from '../lib/logger.js';
 import rShortAnswerQuestion from '../models/rShortAnswer.js';
-import createAns from '../utils/createAnswer.js'
-import createBlankAns from '../utils/createAnswer.js'
+import util from '../utils/createAnswer.js'
 
 
 const createQuestion = async (req, res) => {
@@ -11,9 +10,10 @@ const createQuestion = async (req, res) => {
 
     try {
 
-        const blankAnsID = createBlankAns(rShortAnswer.options);
-    
-        const filledAnsID = createAns(rShortAnswer.answer)
+        let blankAnsID, filledAnsID;
+
+        if (rShortAnswer.answer !== undefined) filledAnsID = util.createAns(rShortAnswer.answer);
+        else blankAnsID = util.createBlankAns(rShortAnswer.options !== undefined);
 
         const q = new rShortAnswerQuestion({
 
@@ -27,7 +27,7 @@ const createQuestion = async (req, res) => {
             answer: rShortAnswer.standAlone ? filledAnsID : blankAnsID,
         });
 
-        const savedQuestion = await q.save();
+        const savedQuestion = (await q.save()).toJSON();
 
         log.info('Created Reading Short Answer Question.', savedQuestion);
 
@@ -105,7 +105,7 @@ const editQuestion = async (req, res) => {
 
     try {
         
-        const Question = rShortAnswerQuestion.findById(rShortAnsID);
+        const Question = await rShortAnswerQuestion.findById(rShortAnsID).exec();
 
         if(!Question){
 
@@ -123,7 +123,7 @@ const editQuestion = async (req, res) => {
             Question[key] = updates[key];
         })
 
-        const savedQuestion = Question.save();
+        const savedQuestion = await Question.save();
 
         log.info('Reading Short Answer updated.', savedQuestion);
 
@@ -132,7 +132,7 @@ const editQuestion = async (req, res) => {
             obj: savedQuestion,
             ok: true,
             status: 200
-        })
+        });
 
 
     } catch (err) {
@@ -150,8 +150,49 @@ const editQuestion = async (req, res) => {
 }
 
 const delQuestion = async (req, res) => {
+    
+    log.info('Deleting Reading Short Answer Question using id.');
+
+    const rShortAnsID = req.params.id;
+
+    try {
+
+        const deletedQuestion = await rShortAnswerQuestion.findByIdAndDelete(rShortAnsID).exec();
+
+        if (!deletedQuestion) {
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+
+        }
+
+        log.info('Reading Short Answer Question deleted.', deletedQuestion);
+
+        return res.status(200).json({
+            message: "Reading Short Answer Question deleted.",
+            obj: deletedQuestion,
+            ok: true,
+            status: 200
+        });
+
+    } catch (err) {
+
+        log.error('Error while deleting Reading Short Answer Question by id.', err);
+
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
 
 }
+
 
 const rShortAnswerController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
 
