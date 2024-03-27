@@ -1,5 +1,5 @@
 import express from 'express';
-import lMatchingController from '../controllers/lMatching';
+import lMatchingController from '../controllers/lMatching.js';
 
 const lMatchingRouter = express.Router();
 

@@ -1,5 +1,5 @@
 import express from 'express';
-import fcCompletionController from '../controllers/flowchartCompletion';
+import fcCompletionController from '../controllers/flowchartCompletion.js';
 
 const flowchartCompletionRouter = express.Router();
 

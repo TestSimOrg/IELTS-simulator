@@ -1,13 +1,14 @@
 import express from 'express';
+import mcqController from '../controllers/mcq.js';
 
 const mcqRouter = express.Router();
 
-mcqRouter.get('/', (req, res) => {
-  // Logic for mcq
-});
+mcqRouter.post('/', mcqController.createQuestion);
 
-mcqRouter.get('/:productId', (req, res) => {
-  // Logic for mcq with productId
-});
+mcqRouter.get('/', mcqController.editQuestion);
+
+mcqRouter.patch('/:id', mcqController.editQuestion);
+
+mcqRouter.delete('/:id', mcqController.delQuestion)
 
 export default mcqRouter;

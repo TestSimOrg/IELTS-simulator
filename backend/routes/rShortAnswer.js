@@ -1,13 +1,14 @@
 import express from 'express';
+import rShortAnswerController from '../controllers/rShortAnswer';
 
 const rShortAnswerRouter = express.Router();
 
-rShortAnswerRouter.get('/', (req, res) => {
-  // Handle GET request for rShortAnswer
-});
+rShortAnswerRouter.post('/', rShortAnswerController.createQuestion);
 
-rShortAnswerRouter.get('/:exerciseId', (req, res) => {
-  // Handle GET request for specific rShortAnswer exercise by ID
-});
+rShortAnswerRouter.get('/', rShortAnswerController.getAllStandaloneQuestions);
+
+rShortAnswerRouter.patch('/:id', rShortAnswerController.editQuestion);
+
+rShortAnswerRouter.delete('/:id', rShortAnswerController.delQuestion);
 
 export default rShortAnswerRouter;

@@ -1,13 +1,14 @@
 import express from 'express';
+import tfngController from '../controllers/tfng';
 
 const tfngRouter = express.Router();
 
-tfngRouter.get('/', (req, res) => {
-  // Handle GET request for tfng
-});
+tfngRouter.post('/', tfngController.createQuestion);
 
-tfngRouter.get('/:exerciseId', (req, res) => {
-  // Handle GET request for specific tfng exercise by ID
-});
+tfngRouter.get('/', tfngController.getAllStandaloneQuestions);
+
+tfngRouter.patch('/:id', tfngController.editQuestion);
+
+tfngRouter.delete('/:id', tfngController.delQuestion);
 
 export default tfngRouter;

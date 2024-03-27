@@ -1,13 +1,14 @@
 import express from 'express';
+import planMapDiagramLabellingController from '../controllers/planMapDiagramLabelling.js';
 
 const planMapLabellingRouter = express.Router();
 
-planMapLabellingRouter.get('/', (req, res) => {
-  // Logic for planMapLabelling
-});
+planMapLabellingRouter.post('/', planMapDiagramLabellingController.createQuestion);
 
-planMapLabellingRouter.get('/:productId', (req, res) => {
-  // Logic for planMapLabelling with productId
-});
+planMapLabellingRouter.get('/', planMapDiagramLabellingController.getAllStandaloneQuestions);
+
+planMapLabellingRouter.patch('/:id', planMapDiagramLabellingController.editQuestion);
+
+planMapLabellingRouter.delete('/:id', planMapDiagramLabellingController.delQuestion)
 
 export default planMapLabellingRouter;

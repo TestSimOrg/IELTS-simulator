@@ -1,13 +1,14 @@
 import express from 'express';
+import tableCompletionController from '../controllers/tableCompletion';
 
 const tableCompletionRouter = express.Router();
 
-tableCompletionRouter.get('/', (req, res) => {
-  // Handle GET request for table completion
-});
+tableCompletionRouter.post('/', tableCompletionController.createQuestion);
 
-tableCompletionRouter.get('/:exerciseId', (req, res) => {
-  // Handle GET request for specific table completion exercise by ID
-});
+tableCompletionRouter.get('/', tableCompletionController.getAllStandaloneQuestions);
+
+tableCompletionRouter.patch('/:id', tableCompletionController.editQuestion);
+
+tableCompletionRouter.delete('/:id', tableCompletionController.delQuestion);
 
 export default tableCompletionRouter;

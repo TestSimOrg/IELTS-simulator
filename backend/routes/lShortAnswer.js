@@ -1,13 +1,14 @@
 import express from 'express';
+import lShortAnswerController from '../controllers/lShortAnswer.js';
 
 const lShortAnswerRouter = express.Router();
 
-lShortAnswerRouter.get('/', (req, res) => {
-  // Logic for lShortAnswer
-});
+lShortAnswerRouter.post('/', lShortAnswerController.createQuestion);
 
-lShortAnswerRouter.get('/:productId', (req, res) => {
-  // Logic for lShortAnswer with productId
-});
+lShortAnswerRouter.get('/', lShortAnswerController.getAllStandaloneQuestions );
+
+lShortAnswerRouter.patch('/:id', lShortAnswerController.editQuestion);
+
+lShortAnswerRouter.delete('/:id', lShortAnswerController.delQuestion);
 
 export default lShortAnswerRouter;

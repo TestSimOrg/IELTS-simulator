@@ -1,13 +1,14 @@
 import express from 'express';
+import rMatchingController from '../controllers/rMatching.js';
 
 const rMatchingRouter = express.Router();
 
-rMatchingRouter.get('/', (req, res) => {
-  // Handle GET request for rMatching
-});
+rMatchingRouter.post('/', rMatchingController.createQuestion)
 
-rMatchingRouter.get('/:exerciseId', (req, res) => {
-  // Handle GET request for specific rMatching exercise by ID
-});
+rMatchingRouter.get('/', rMatchingController.getAllStankdaloneQuestion);
+
+rMatchingRouter.patch('/:id', rMatchingController.editQuestion);
+
+rMatchingRouter.delete('/:id', rMatchingController.delQuestion)
 
 export default rMatchingRouter;

@@ -1,13 +1,14 @@
 import express from 'express';
+import summaryCompletionController from '../controllers/summaryCompletion';
 
 const summaryCompletionRouter = express.Router();
 
-summaryCompletionRouter.get('/', (req, res) => {
-  // Handle GET request for summary completion
-});
+summaryCompletionRouter.post('/', summaryCompletionController.createQuestion);
 
-summaryCompletionRouter.get('/:exerciseId', (req, res) => {
-  // Handle GET request for specific summary completion exercise by ID
-});
+summaryCompletionRouter.get('/', summaryCompletionController.getAllStandaloneQuestions);
+
+summaryCompletionRouter.patch('/:id', summaryCompletionController.editQuestion);
+
+summaryCompletionRouter.delete('/:id', summaryCompletionController.delQuestion);
 
 export default summaryCompletionRouter;

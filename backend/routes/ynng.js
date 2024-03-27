@@ -1,13 +1,14 @@
 import express from 'express';
+import ynngController from '../controllers/ynng';
 
 const ynngRouter = express.Router();
 
-ynngRouter.get('/', (req, res) => {
-  // Handle GET request for ynng
-});
+ynngRouter.post('/', ynngController.createQuestion)
 
-ynngRouter.get('/:exerciseId', (req, res) => {
-  // Handle GET request for specific ynng exercise by ID
-});
+ynngRouter.get('/', ynngController.getAllStandaloneQuestions);
+
+ynngRouter.patch('/:id', ynngController.editQuestion);
+
+ynngRouter.delete('/:id', ynngController.delQuestion);
 
 export default ynngRouter;
