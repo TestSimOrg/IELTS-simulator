@@ -1,5 +1,5 @@
 import express from 'express';
-import ynngController from '../controllers/ynng';
+import ynngController from '../controllers/ynng.js';
 
 const ynngRouter = express.Router();
 

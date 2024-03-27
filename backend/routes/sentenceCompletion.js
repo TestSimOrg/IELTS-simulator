@@ -1,5 +1,5 @@
 import express from 'express';
-import sentenceCompletionController from '../controllers/sentenceCompletion';
+import sentenceCompletionController from '../controllers/sentenceCompletion.js';
 
 const sentenceCompletionRouter = express.Router();
 

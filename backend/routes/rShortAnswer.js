@@ -1,5 +1,5 @@
 import express from 'express';
-import rShortAnswerController from '../controllers/rShortAnswer';
+import rShortAnswerController from '../controllers/rShortAnswer.js';
 
 const rShortAnswerRouter = express.Router();
 

@@ -1,5 +1,5 @@
 import express from 'express';
-import tableCompletionController from '../controllers/tableCompletion';
+import tableCompletionController from '../controllers/tableCompletion.js';
 
 const tableCompletionRouter = express.Router();
 

@@ -1,5 +1,5 @@
 import express from 'express';
-import summaryCompletionController from '../controllers/summaryCompletion';
+import summaryCompletionController from '../controllers/summaryCompletion.js';
 
 const summaryCompletionRouter = express.Router();
 

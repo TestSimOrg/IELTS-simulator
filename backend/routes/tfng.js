@@ -1,5 +1,5 @@
 import express from 'express';
-import tfngController from '../controllers/tfng';
+import tfngController from '../controllers/tfng.js';
 
 const tfngRouter = express.Router();
 
