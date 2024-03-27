@@ -14,7 +14,7 @@
 //     questionOptionRepeatable: true,
 //     questionStatment:
 //         "What does Jack tell his tutor about each of the following course option?",
-//     questionOptions: [
+//     QuestionOption: [
 //         "A He'll definitely do it.",
 //         "B He may or may not do it.",
 //         "C He won't do it.",
@@ -28,24 +28,26 @@
 //     ],
 // };
 
-// question/MachingType1.jsx
+// question/Maching.jsx
 import React from "react";
 import { Grid, Typography } from "@mui/material";
-import { Question } from "../Question";
-import { QuestionOption } from "../QuestionOption";
+import { Question } from "./commons/Question";
+import { QuestionRadio } from "./commons/QuestionRadio";
 
-export const MatchingType1 = ({ q }) => {
-	return (
-		<Question q={q}>
-			<Grid container spacing={2}>
-				{q.numStatements.map((numStatement, index) => (
-					<Grid item xs={12} key={index}>
-						<Typography variant="body1">{numStatement}</Typography>
-						<QuestionOption q={q} index={index} />
-					</Grid>
-				))}
-			</Grid>
-		</Question>
-	);
+export const Matching = ({ q }) => {
+    return (
+        <Question
+            questionHeader={q.questionHeader}
+            questionStatment={q.questionStatment}
+        >
+            <Grid container spacing={2}>
+                {q.numStatements.map((numStatement, index) => (
+                    <Grid item xs={12} key={index}>
+                        <Typography variant="body1">{numStatement}</Typography>
+                        <QuestionRadio QuestionOption={q.questionOptions} />
+                    </Grid>
+                ))}
+            </Grid>
+        </Question>
+    );
 };
-
