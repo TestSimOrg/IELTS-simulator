@@ -1,15 +1,16 @@
 import answer from "../models/answer.js";
+import log from '../lib/logger.js';
 
+async function createBlankAns(option){
 
-async function createBlankAns(option = false){
     
-    if(option){
-            
+    if(!option){
+        log.info(option)
         const blankStringAns = new answer({
             ansType: 'B',
-            answer: '',
+            ans: '_TBU_',
         });
-
+        log.info(blankStringAns)
         const blankSAID = (await blankStringAns.save())._id;
 
         return blankSAID;
@@ -18,9 +19,9 @@ async function createBlankAns(option = false){
 
         const blankArrAns = new answer({
         ansType: 'B',
-        answer: [''],
+        answer: ['_TBU_'], // TO BE UPDATED (placeholder value)
         });
-
+        log.info(blankArrAns)
         const blankAAID = (await blankArrAns.save())._id;
 
         return blankAAID;
