@@ -42,24 +42,24 @@ import tfngRouter from './routes/tfng.js';
 import userLRAnsSheetRouter from './routes/userLRAnsSheet.js';
 import ynngRouter from './routes/ynng.js';
 
-app.use('/ynng', ynngRouter);
 app.use('/userLRAnsSheet', userLRAnsSheetRouter);
+app.use('/readingTest', readingTestRouter);
+app.use('/listeningTest', listeningTestRouter);
+app.use('/listeningAnsSheet', listeningAnsSheetRouter);
+app.use('/ynng', ynngRouter);
 app.use('/tfng', tfngRouter);
 app.use('/tableCompletion', tableCompletionRouter);
 app.use('/summaryCompletion', summaryCompletionRouter);
 app.use('/sentenceCompletion', sentenceCompletionRouter);
-app.use('/readingTest', readingTestRouter);
 app.use('/rShortAnswer', rShortAnswerRouter);
 app.use('/rMatching', rMatchingRouter);
 app.use('/planMapDiagramLabelling', planMapDiagramLabellingRouter);
 app.use('/noteCompletion', noteCompletionRouter);
 app.use('/mcq', mcqRouter);
-app.use('/listeningTest', listeningTestRouter);
-app.use('/listeningAnsSheet', listeningAnsSheetRouter);
 app.use('/lShortAnswer', lShortAnswerRouter);
 app.use('/lMatching', lMatchingRouter);
-app.use('/flowchartCompletion', flowchartCompletionRouter);
 app.use('/formCompletion', formCompletionRouter);
+app.use('/flowchartCompletion', flowchartCompletionRouter);
 
 // 404 and 500 Error handler Setup
 // if req gets to here it is 404
