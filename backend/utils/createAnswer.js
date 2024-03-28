@@ -1,56 +1,80 @@
 import answer from "../models/answer.js";
 import log from '../lib/logger.js';
 
-async function createBlankAns(option){
+async function createBlankAns(){
 
+    const blankStringAns = new answer({
+        number: 0,
+        ansType: 'B1',
+        ans: '_TBU_', // TO BE UPDATED (placeholder value)
+    });
+
+    log.info(blankStringAns)
+
+    const blankSAID = (await blankStringAns.save()).toJSON()._id;
+
+    return blankSAID;
+
+}
+
+async function createBlankAnsArr(){
     
-    if(!option){
+    const blankArrAns = new answer({
+    number: 0,
+    ansType: 'B2',
+    ans: ['_TBU_'], // TO BE UPDATED (placeholder value)
+    });
 
-        log.info(option)
+    log.info(blankArrAns)
+    
+    const blankAAID = (await blankArrAns.save()).toJSON()._id;
 
-        const blankStringAns = new answer({
-            ansType: 'B1',
-            ans: '_TBU_',
-        });
-
-        log.info(blankStringAns)
-
-        const blankSAID = (await blankStringAns.save())._id;
-
-        return blankSAID;
-
-    }else {
-
-        const blankArrAns = new answer({
-        ansType: 'B2',
-        ans: ['_TBU_'], // TO BE UPDATED (placeholder value)
-        });
-
-        log.info(blankArrAns)
-        
-        const blankAAID = (await blankArrAns.save())._id;
-
-        return blankAAID;
-
-    }
+    return blankAAID;
 
 }
 
 async function createAns(ans){
     
-    const filledAns = new answer({
-        ansType: ans.ansType,
-        qPair: ans.qPair,
-        ans: ans.ans,
-    });
+    let ansIDArr = [];
 
-    const filledAnsID = (await filledAns.save())._id;
+    let filledAnsDocs;
 
-    return filledAnsID;
+    try {
+
+        const promiseArr = [];
+
+        for (let a of ans) {
+
+            log.debug(a.ans);
+
+            const filledAns = new answer({
+                number: a.number,
+                ansType: a.ansType,
+                qPair: a.qPair,
+                ans: a.ans,
+            });
+
+            const filledAnsPromise = filledAns.save();
+
+            promiseArr.push(filledAnsPromise);
+
+        }
+    
+        filledAnsDocs = await Promise.all(promiseArr);
+
+    } catch (error) {
+        log.error('Error while saving answers:', error);
+    }
+
+    ansIDArr = filledAnsDocs.map(doc => doc.toJSON()._id);
+    log.debug(ansIDArr);
+    return ansIDArr;
+
 }
 
 const util = {
     createBlankAns, 
+    createBlankAnsArr,
     createAns
 };
 
