@@ -5,7 +5,15 @@ const lMatchingRouter = express.Router();
 
 lMatchingRouter.post('/',lMatchingController.createQuestion)
 
+lMatchingRouter.get('/all', lMatchingController.getAllQuestions);
+
 lMatchingRouter.get('/', lMatchingController.getAllStandaloneQuestions);
+
+lMatchingRouter.get('/:id', lMatchingController.getQuestionById)
+
+lMatchingRouter.get('/:id/ans', lMatchingController.getAns)
+
+lMatchingRouter.patch('/:id/ans', lMatchingController.updateAns);
 
 lMatchingRouter.patch('/:id', lMatchingController.editQuestion);
 

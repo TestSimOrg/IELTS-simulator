@@ -30,12 +30,13 @@ const lMatchingQuestionSchema = new mongoose.Schema({
         type: Boolean,
         required : true,
     },
-    questionStatment: {
+    questionStatement: {
         type: String,
         required: true,
     },
     questionTitle: {
         type: String,
+        default: ''
     },
     questionOptions: {
         type: [String],
@@ -43,18 +44,19 @@ const lMatchingQuestionSchema = new mongoose.Schema({
     },
     numTitle: {
         type: String,
+        default: ''
     },
     numStatements: {
         type: [String],
         required: true,
     },
     answer: {
-        type: Schema.ObjectId,
+        type: [Schema.ObjectId],
         ref: 'answer'
     }
-  });
+});
 
-  lMatchingQuestionSchema.pre('validate', function(next){
+lMatchingQuestionSchema.pre('validate', function(next){
     const numOfQuestion = this.endQuestionNum - this.startQuestionNum + 1;
     const numConsistency = this.numStatements.length === numOfQuestion ? true : false;
 
@@ -66,6 +68,6 @@ const lMatchingQuestionSchema = new mongoose.Schema({
     }
 })
   
-  const lMatchingQuestion =  mongoose.model('lMatchingQuestion', lMatchingQuestionSchema);
+const lMatchingQuestion =  mongoose.model('lMatchingQuestion', lMatchingQuestionSchema);
 
-  export default lMatchingQuestion;
+export default lMatchingQuestion;
