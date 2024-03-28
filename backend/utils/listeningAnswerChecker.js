@@ -11,7 +11,7 @@ AS[5] = [
     },
     {
         number : 2,
-        type : "/m",
+        type : "M",
         ans : ["20","TWENTY"]
     },
     {
