@@ -64,7 +64,7 @@ app.use('/flowchartCompletion', flowchartCompletionRouter);
 // 404 and 500 Error handler Setup
 // if req gets to here it is 404
 app.use((req, res, next) => {
-  const error = new Error("Non-exisitant endpoint. You lost buddy?");
+  const error = new Error("Non-existent endpoint. You lost buddy?");
   error.status = 404;
   next(error);
 });
@@ -144,4 +144,4 @@ db.on("reconnected", () => {
   log.info("MongoDB reconnected")
 });
 
-export default app
+export default app;
