@@ -1,6 +1,6 @@
 import log from '../lib/logger.js';
 import lMatchingQuestion from '../models/lMatching.js'
-import util from '../utils/createAnswer.js'
+import { createAns, createBlankAnsArr} from '../utils/createAnswer.js'
 
 const createQuestion = async (req, res) => {
     const {listeningMatching} = req.body;
@@ -11,8 +11,8 @@ const createQuestion = async (req, res) => {
 
         let blankAnsID, filledAnsID;
 
-        if (listeningMatching.answer !== undefined) filledAnsID = await util.createAns(listeningMatching.answer);
-        else blankAnsID = await util.createBlankAnsArr();
+        if (listeningMatching.answer !== undefined) filledAnsID = await createAns(listeningMatching.answer);
+        else blankAnsID = await createBlankAnsArr();
 
         const q = new lMatchingQuestion({
             startQuestionNum: listeningMatching.startQuestionNum,
@@ -194,7 +194,6 @@ const getQuestionById = async (req, res) => {
 const getAns = async (req, res) => {
     
     const qID = req.params.id;
-
     
     try {
 
@@ -260,7 +259,7 @@ const updateAns = async (req, res) => {
 
         }
 
-        const ansArrID =  await util.createAns(updates["answer"])
+        const ansArrID =  await createAns(updates["answer"])
 
         Question["answer"] = ansArrID;
 

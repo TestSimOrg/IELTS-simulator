@@ -1,18 +1,18 @@
 import log from '../lib/logger.js';
 import formCompletionQuestion from '../models/formCompletion.js';
-import util from '../utils/createAnswer.js'
+import { createAns, createBlankAnsArr} from '../utils/createAnswer.js'
 
 const createQuestion = async (req, res) => {
     const {formCompletion} = req.body;
 
-    log.debug('Creating Form Completion Question.',formCompletion);
+    log.info('Creating Form Completion Question.',formCompletion);
 
     try {
 
         let blankAnsID, filledAnsID;
 
-        if (formCompletion.answer !== undefined) filledAnsID = util.createAns(formCompletion.answer);
-        else blankAnsID = util.createBlankAns(formCompletion.options !== undefined);
+        if (formCompletion.answer !== undefined) filledAnsID = await createAns(formCompletion.answer);
+        else blankAnsID = await createBlankAnsArr();
         
         const q = new formCompletionQuestion({
             startQuestionNum: formCompletion.startQuestionNum,
@@ -26,7 +26,7 @@ const createQuestion = async (req, res) => {
             answer: formCompletion.standAlone ? filledAnsID : blankAnsID,
         });
         
-        const savedQuestion = await q.save();
+        const savedQuestion = (await q.save()).toJSON();
         
         log.debug('Created Form Completion Question.',savedQuestion);
         
@@ -50,6 +50,50 @@ const createQuestion = async (req, res) => {
 
 }
 
+const getAllQuestions = async (req, res) => {
+
+    try {
+        
+        log.info('fetching all Form Completion Question.')
+
+        const questions = await formCompletionQuestion.find();
+        
+        if(questions.length === 0){
+
+            log.error("Couldn't find any Form Completion Questions.");
+
+            return res.status(404).json({
+                message: "No questions found",
+                ok: false,
+                status: 404
+            });
+        
+        }
+
+        log.info('Sending all Form Completion Questions.')
+
+        return res.status(200).json({
+            message: "Fetched questions successfully",
+            obj: questions,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while finding Form Completion Questions.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
+}
+
 const getAllStandaloneQuestions = async (req, res) => {
    
     
@@ -57,7 +101,7 @@ const getAllStandaloneQuestions = async (req, res) => {
         
         log.info('fetching all stand alone Form Completion Question.')
 
-        const questions = await formCompletionQuestion.find({ standAlone: true });
+        const questions = await formCompletionQuestion.find({ standAlone: true }).select("-answer");
 
         
         if(questions.length === 0){
@@ -75,7 +119,7 @@ const getAllStandaloneQuestions = async (req, res) => {
         log.info('sending all stand alone Form Completion Question.')
 
         return res.status(200).json({
-            message: "Fetched all stand alone question successsfully",
+            message: "Fetched all stand alone question successfully",
             obj: questions,
             ok: true,
             status: 200
@@ -94,6 +138,152 @@ const getAllStandaloneQuestions = async (req, res) => {
 
     }
     
+}
+
+const getQuestionById = async (req, res) => {
+    
+    log.info('fetching Form Completion Question using id.')
+
+    const formCompletionID = req.params.id;
+
+    try {
+        
+        const Question = await formCompletionQuestion.findById(formCompletionID).select("-answer");
+
+        if(!Question){
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            })
+
+        }
+
+        const q = Question.toJSON();
+
+        log.info('Form Completion Question found.', q);
+
+        return res.status(200).json({
+            message: "Form Completion Question Found.",
+            obj: q,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while fetching Form Completion Question by id.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        })
+
+    }
+
+}
+
+const getAns = async (req, res) => {
+ 
+    const qID = req.params.id;
+    
+    try {
+
+        log.info('Getting answer to Form Completion Question with id:', qID);
+        
+        const ans = await formCompletionQuestion.findById(qID).populate({
+            path: "answer",
+        }).select("answer");
+
+        if(!ans){
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+
+        }
+
+        return res.status(200).json({
+            message: "Form Completion Question Answers.",
+            obj: ans,
+            ok: true,
+            status: 200
+        });
+
+    } catch (err) {
+        
+        log.error('Error while finding ans to Form Completion Questions.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
+}
+
+const updateAns = async (req, res) => {
+    
+    log.info('fetching Flowchart Completion Question using id.')
+
+    const qID = req.params.id;
+    const updates = req.body;
+
+    try {
+        
+        const Question = await formCompletionQuestion.findById(qID);
+
+        if(!Question){
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+
+        }
+
+        const ansArrID =  await createAns(updates["answer"])
+
+        Question["answer"] = ansArrID;
+
+        const savedQuestion = (await Question.save()).toJSON();
+
+        log.info('Form Completion Question Answers updated.', savedQuestion.answer);
+
+        return res.status(200).json({
+            message: "Form Completion Question Answers updated.",
+            obj: savedQuestion,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while updating Form Completion Question Answers by id.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        })
+
+    }
+
 }
 
 const editQuestion = async (req, res) => {
@@ -124,7 +314,7 @@ const editQuestion = async (req, res) => {
 
         const savedQuestion = await Question.save();
 
-        log.info('Form Copmletion Question updated.', savedQuestion);
+        log.info('Form Completion Question updated.', savedQuestion);
 
         return res.status(200).json({
             message: "Form Completion Question updated.",
@@ -169,7 +359,7 @@ const delQuestion = async (req, res) => {
 
         return res.status(200).json({
             message: "Form Completion Question deleted.",
-            obj: deletedQuestion,
+            obj: deletedQuestion.toJSON(),
             ok: true,
             status: 200
         });
@@ -189,6 +379,6 @@ const delQuestion = async (req, res) => {
 }
 
 
-const formCompletionController ={createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
+const formCompletionController ={createQuestion, getAllQuestions, getAllStandaloneQuestions, getQuestionById, getAns, updateAns, editQuestion, delQuestion};
 
 export default formCompletionController;

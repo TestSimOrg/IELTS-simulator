@@ -1,6 +1,6 @@
 import log from '../lib/logger.js';
 import tableCompletionQuestion from "../models/tableCompletion.js";
-import util from '../utils/createAnswer.js'
+import { createAns, createBlankAnsArr} from '../utils/createAnswer.js'
 
 
 const createQuestion = async (req, res) => {
@@ -13,8 +13,8 @@ const createQuestion = async (req, res) => {
 
         let blankAnsID, filledAnsID;
 
-        if (tableCompletion.answer !== undefined) filledAnsID = util.createAns(tableCompletion.answer);
-        else blankAnsID = util.createBlankAns(tableCompletion.options !== undefined);
+        if (tableCompletion.answer !== undefined) filledAnsID = await createAns(tableCompletion.answer);
+        else blankAnsID = await createBlankAnsArr();
 
         const q = new tableCompletionQuestion({
 
@@ -30,7 +30,7 @@ const createQuestion = async (req, res) => {
 
         });
 
-        const savedQuestion = await q.save();
+        const savedQuestion = (await q.save()).toJSON();
 
         log.info('Created Table Completion Question.', savedQuestion);
 
@@ -55,13 +55,56 @@ const createQuestion = async (req, res) => {
     
 }
 
+const getAllQuestions = async (req, res) => {
+
+    try {
+        
+        log.info('fetching all Table Completion Question.')
+
+        const questions = await tableCompletionQuestion.find();
+        
+        if(questions.length === 0){
+
+            log.error("Couldn't find any Table Completion Questions.");
+
+            return res.status(404).json({
+                message: "No questions found",
+                ok: false,
+                status: 404
+            });
+        
+        }
+
+        log.info('Sending all Table Completion Questions.')
+
+        return res.status(200).json({
+            message: "Fetched questions successfully",
+            obj: questions,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while finding Table Completion Questions.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+}
+
 const getAllStandaloneQuestions = async (req, res) => {
 
     try {
         
         log.info('fetching all stand alone Table Completion Questions.')
 
-        const questions = await tableCompletionQuestion.find({ standAlone: true });
+        const questions = await tableCompletionQuestion.find({ standAlone: true }).select("-answer");
 
         if(questions.length === 0){
 
@@ -75,10 +118,10 @@ const getAllStandaloneQuestions = async (req, res) => {
         
         }
 
-        log.info('sendng all stand alone Table Completion Questions.');
+        log.info('sending all stand alone Table Completion Questions.');
 
         return res.status(200).json({
-            message: "Fetched all stand alone questions successsfully",
+            message: "Fetched all stand alone questions successfully.",
             obj: questions,
             ok: true,
             status: 200
@@ -96,6 +139,151 @@ const getAllStandaloneQuestions = async (req, res) => {
 
     }
 
+}
+
+const getQuestionById = async (req, res) => {
+    
+    log.info('fetching Table Completion Question using id.')
+
+    const tableCompletionID = req.params.id;
+
+    try {
+        
+        const Question = await tableCompletionQuestion.findById(tableCompletionID).select("-answer");
+
+        if(!Question){
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            })
+
+        }
+
+        const q = Question.toJSON();
+
+        log.info('Table Completion Question found.', q);
+
+        return res.status(200).json({
+            message: "Table Completion Question Found.",
+            obj: q,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while fetching Table Completion Question by id.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        })
+
+    }
+
+}
+
+const getAns = async (req, res) => {
+    
+    const qID = req.params.id;
+    
+    try {
+
+        log.info('Getting answer to Table Completion Question with id:', qID);
+        
+        const ans = await tableCompletionQuestion.findById(qID).populate({
+            path: "answer",
+        }).select("answer");
+
+        if(!ans){
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+
+        }
+
+        return res.status(200).json({
+            message: "Table Completion Question Answers.",
+            obj: ans,
+            ok: true,
+            status: 200
+        });
+
+    } catch (err) {
+        
+        log.error('Error while finding ans to Table Completion Questions.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
+}
+
+const updateAns = async (req, res) => {
+    
+    log.info('fetching Table Completion Question using id.')
+
+    const qID = req.params.id;
+    const updates = req.body;
+
+    try {
+        
+        const Question = await tableCompletionQuestion.findById(qID);
+
+        if(!Question){
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+
+        }
+
+        const ansArrID =  await createAns(updates["answer"])
+
+        Question["answer"] = ansArrID;
+
+        const savedQuestion = (await Question.save()).toJSON();
+
+        log.info('Table Completion Question Answers updated.', savedQuestion.answer);
+
+        return res.status(200).json({
+            message: "Table Completion Question Answers updated.",
+            obj: savedQuestion,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while updating Table Completion Question Answers by id.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        })
+
+    }
 }
 
 const editQuestion = async (req, res) => {
@@ -125,7 +313,7 @@ const editQuestion = async (req, res) => {
             Question[key] = updates[key];
         })
 
-        const savedQuestion = Question.save();
+        const savedQuestion = (await Question.save()).toJSON();
 
         log.info('Reading Table Completion updated.', savedQuestion);
 
@@ -177,7 +365,7 @@ const delQuestion = async (req, res) => {
 
         return res.status(200).json({
             message: "Table Completion Question deleted successfully.",
-            obj: deletedQuestion,
+            obj: deletedQuestion.toJSON(),
             ok: true,
             status: 200
         })
@@ -198,6 +386,6 @@ const delQuestion = async (req, res) => {
 }
 
 
-const tableCompletionController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion}
+const tableCompletionController = {createQuestion, getAllQuestions, getAllStandaloneQuestions, getQuestionById, getAns, updateAns, editQuestion, delQuestion}
 
 export default tableCompletionController;

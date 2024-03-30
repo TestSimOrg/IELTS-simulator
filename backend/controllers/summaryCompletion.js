@@ -1,5 +1,5 @@
 import log from '../lib/logger.js';
-import util from '../utils/createAnswer.js'
+import { createAns, createBlankAnsArr} from '../utils/createAnswer.js'
 import summaryCompletionQuestion from '../models/summaryCompletion.js'
 
 const createQuestion = async (req, res) => {
@@ -12,8 +12,8 @@ const createQuestion = async (req, res) => {
 
         let blankAnsID, filledAnsID;
 
-        if (summaryCompletion.answer !== undefined) filledAnsID = util.createAns(summaryCompletion.answer);
-        else blankAnsID = util.createBlankAns(summaryCompletion.options !== undefined);
+        if (summaryCompletion.answer !== undefined) filledAnsID = await createAns(summaryCompletion.answer);
+        else blankAnsID = await createBlankAnsArr();
 
         const q = new summaryCompletionQuestion({
 
@@ -31,7 +31,7 @@ const createQuestion = async (req, res) => {
 
         });
 
-        const savedQuestion = await q.save();
+        const savedQuestion = (await q.save()).toJSON();
 
         log.info('Created Summary Completion Question.', savedQuestion);
 
@@ -56,13 +56,57 @@ const createQuestion = async (req, res) => {
     
 }
 
+const getAllQuestions = async (req, res) => {
+    
+    try {
+        
+        log.info('fetching all Summary Completion Question.')
+
+        const questions = await summaryCompletionQuestion.find();
+        
+        if(questions.length === 0){
+
+            log.error("Couldn't find any Summary Completion Questions.");
+
+            return res.status(404).json({
+                message: "No questions found",
+                ok: false,
+                status: 404
+            });
+        
+        }
+
+        log.info('Sending all Summary Completion Questions.')
+
+        return res.status(200).json({
+            message: "Fetched questions successfully",
+            obj: questions,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while finding Summary Completion Question.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
+}
+
 const getAllStandaloneQuestions = async (req, res) => {
 
     try {
         
         log.info('fetching all stand alone Summary Completion Questions.')
 
-        const questions = await summaryCompletionQuestion.find({ standAlone: true });
+        const questions = await summaryCompletionQuestion.find({ standAlone: true }).select("-answer");
 
         if(questions.length === 0){
 
@@ -76,10 +120,10 @@ const getAllStandaloneQuestions = async (req, res) => {
         
         }
 
-        log.info('sendng all stand alone Summary Completion Questions.');
+        log.info('sending all stand alone Summary Completion Questions.');
 
         return res.status(200).json({
-            message: "Fetched all stand alone questions successsfully",
+            message: "Fetched all stand alone questions successfully",
             obj: questions,
             ok: true,
             status: 200
@@ -94,6 +138,152 @@ const getAllStandaloneQuestions = async (req, res) => {
             ok: false,
             status: 500
         });
+
+    }
+
+}
+
+const getQuestionById = async (req, res) => {
+    
+    log.info('fetching Summary Completion Question using id.')
+
+    const summaryCompletionID = req.params.id;
+
+    try {
+        
+        const Question = await summaryCompletionQuestion.findById(summaryCompletionID).select("-answer");
+
+        if(!Question){
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            })
+
+        }
+
+        const q = Question.toJSON();
+
+        log.info('Summary Completion Question found.', q);
+
+        return res.status(200).json({
+            message: "Summary Completion Question Found.",
+            obj: q,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while fetching Summary Completion Question by id.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        })
+
+    }
+
+}
+
+const getAns = async (req, res) => {
+    
+    const qID = req.params.id;
+    
+    try {
+
+        log.info('Getting answer to Summary Completion Question with id:', qID);
+        
+        const ans = await summaryCompletionQuestion.findById(qID).populate({
+            path: "answer",
+        }).select("answer");
+
+        if(!ans){
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+
+        }
+
+        return res.status(200).json({
+            message: "Summary Completion Question Answers.",
+            obj: ans,
+            ok: true,
+            status: 200
+        });
+
+    } catch (err) {
+        
+        log.error('Error while finding ans to Summary Completion Questions.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        });
+
+    }
+
+}
+
+const updateAns = async (req, res) => {
+    
+    log.info('fetching Summary Completion Question using id.')
+
+    const qID = req.params.id;
+    const updates = req.body;
+
+    try {
+        
+        const Question = await summaryCompletionQuestion.findById(qID);
+
+        if(!Question){
+
+            log.error("Couldn't find any question using id.");
+
+            return res.status(404).json({
+                message: "Couldn't find the question using id.",
+                ok: false,
+                status: 404
+            });
+
+        }
+
+        const ansArrID =  await createAns(updates["answer"])
+
+        Question["answer"] = ansArrID;
+
+        const savedQuestion = (await Question.save()).toJSON();
+
+        log.info('Summary Completion Question Answers updated.', savedQuestion.answer);
+
+        return res.status(200).json({
+            message: "Summary Completion Question Answers updated.",
+            obj: savedQuestion,
+            ok: true,
+            status: 200
+        })
+
+
+    } catch (err) {
+
+        log.error('Error while updating Summary Completion Question Answers by id.',err);
+            
+        return res.status(500).json({
+            message: 'Server error',
+            ok: false,
+            status: 500
+        })
 
     }
 
@@ -198,6 +388,6 @@ const delQuestion = async (req, res) => {
 };
 
 
-const summaryCompletionController = {createQuestion, getAllStandaloneQuestions, editQuestion, delQuestion};
+const summaryCompletionController = {createQuestion, getAllQuestions, getAllStandaloneQuestions, getQuestionById, getAns, updateAns, editQuestion, delQuestion};
 
 export default summaryCompletionController;
