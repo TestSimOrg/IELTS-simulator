@@ -9,8 +9,6 @@ async function createBlankAns(){
         ans: '_TBU_', // TO BE UPDATED (placeholder value)
     });
 
-    log.info(blankStringAns)
-
     const blankSAID = (await blankStringAns.save()).toJSON()._id;
 
     return blankSAID;
@@ -24,9 +22,7 @@ async function createBlankAnsArr(){
     ansType: 'B2',
     ans: ['_TBU_'], // TO BE UPDATED (placeholder value)
     });
-
-    log.info(blankArrAns)
-    
+  
     const blankAAID = (await blankArrAns.save()).toJSON()._id;
 
     return blankAAID;
@@ -44,8 +40,6 @@ async function createAns(ans){
         const promiseArr = [];
 
         for (let a of ans) {
-
-            log.debug(a.ans);
 
             const filledAns = new answer({
                 number: a.number,
@@ -67,15 +61,14 @@ async function createAns(ans){
     }
 
     ansIDArr = filledAnsDocs.map(doc => doc.toJSON()._id);
-    log.debug(ansIDArr);
+
     return ansIDArr;
 
 }
 
-const util = {
+
+export {
     createBlankAns, 
     createBlankAnsArr,
     createAns
 };
-
-export default util;
