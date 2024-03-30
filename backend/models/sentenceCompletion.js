@@ -29,13 +29,14 @@ const sentenceCompletionSchema = new mongoose.Schema({
     },
     questionTitle : {
         type: String,
+        default: ''
     },
     numStatements: {
         type: [String],
         required: true
     },
     answer: {
-        type: Schema.ObjectId,
+        type: [Schema.ObjectId],
         ref: 'answer'
     }
     

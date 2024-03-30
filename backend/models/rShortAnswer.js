@@ -32,7 +32,7 @@ const rShortAnswerQuestionSchema = new mongoose.Schema({
         required : true,
     },
     answer: {
-        type: Schema.ObjectId,
+        type: [Schema.ObjectId],
         ref: 'answer'
     }
 

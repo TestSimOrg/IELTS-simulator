@@ -35,8 +35,7 @@ const planMapDiagramLabellingSchema = new mongoose.Schema({
         required: true,
     },
     image: {
-        type: Buffer, 
-        contentType: String,
+        type: String,
         required : true
     },
     questionOptions: {
@@ -51,7 +50,7 @@ const planMapDiagramLabellingSchema = new mongoose.Schema({
         required: true
     },
     answer: {
-        type: Schema.ObjectId,
+        type: [Schema.ObjectId],
         ref: 'answer'
     }
     
@@ -61,7 +60,7 @@ const planMapDiagramLabellingSchema = new mongoose.Schema({
 planMapDiagramLabellingSchema.pre('validate', function(next){
     const numOfQuestion = this.endQuestionNum - this.startQuestionNum + 1;
     const numConsistency = this.numStatements.length === numOfQuestion ? true : false;
-
+    log.info(`Start question num: ${this.startQuestionNum} and end at ${this.endQuestionNum}`)
     if(!numConsistency){
         const err = new Error('number of questions and number of question statements mismatch');
         next(err);

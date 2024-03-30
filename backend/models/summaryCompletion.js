@@ -39,7 +39,7 @@ const summaryCompletionSchema = new mongoose.Schema({
         type : String,
         required: true,
     },
-    questoinOptions: {
+    questionOptions: {
         type: [String],
         required: function validate(){
             return this.qType === 2 ? true : false;
@@ -47,7 +47,7 @@ const summaryCompletionSchema = new mongoose.Schema({
         default: [],
     },
     answer: {
-        type: Schema.ObjectId,
+        type: [Schema.ObjectId],
         ref: 'answer'
     }
     

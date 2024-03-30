@@ -9,7 +9,7 @@ const answerSchema = new mongoose.Schema({
   },
   ansType : {
     type: String,
-    enum: ['S', 'M','L','IEO','B1','B2'],
+    enum: ['S', 'M','L','O1','O2','IEO','B1','B2'],
     required: true
   },
   qPair : {
@@ -17,7 +17,7 @@ const answerSchema = new mongoose.Schema({
     required: function(){
       return this.ansType === 'IEO';
     }
-  },
+  }, // 'YES', 'NO', 'NG'
   ans: {
     type: Schema.Types.Mixed,
     required: true,
@@ -27,15 +27,28 @@ const answerSchema = new mongoose.Schema({
 answerSchema.pre('validate', function(next) {
   const ansType = this.ansType;
   const ans = this.ans;
+  const number = this.number;
 
   // Validate ans based on ansType
   if (ansType === 'S' || ansType === 'L' || ansType === 'B1') {
     if (typeof ans !== 'string') {
-      return next(new Error('Invalid data type for ans'));
+      log.debug(`Invalid data type for ans num ${number}`)
+      return next(new Error(`Invalid data type for ans num ${number}`));
     }
   } else if (ansType === 'M' || ansType === 'IEO' || ansType === 'B2') {
     if (!Array.isArray(ans) || !ans.every(item => typeof item === 'string')) {
-      return next(new Error('Invalid data type for ans'));
+      log.debug(`Invalid data type for ans num ${number}`)
+      return next(new Error(`Invalid data type for ans num ${number}`));
+    }
+  }else if(ansType === 'O1'){
+    if(!(typeof ans === 'string') || (!(ans === 'YES') && !(ans === 'NO') && !(ans === 'NG'))){
+      log.debug(`Invalid data type for ans num ${number}`)
+      return next(new Error(`Invalid data type for ans num ${number}`));
+    }
+  }else if(ansType === 'O2'){
+    if(!(typeof ans === 'string') || (!(ans === 'TRUE') && !(ans === 'FALSE') && !(ans === 'NG'))){
+      log.debug(`Invalid data type for ans num ${number}`)
+      return next(new Error(`Invalid data type for ans num ${number}`));
     }
   }
 

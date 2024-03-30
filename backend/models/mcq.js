@@ -2,6 +2,7 @@ import mongoose, { Schema } from "mongoose";
 import log from '../lib/logger.js';
 
 const mcqSchema = new mongoose.Schema({
+    
     startQuestionNum : {
         type : Number,
         required: true
@@ -37,7 +38,7 @@ const mcqSchema = new mongoose.Schema({
         required: true,
     },
     answer: {
-        type: Schema.ObjectId,
+        type: [Schema.ObjectId],
         ref: 'answer'
     }
     
