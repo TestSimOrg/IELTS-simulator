@@ -3,10 +3,17 @@ import fcCompletionController from '../controllers/flowchartCompletion.js';
 
 const flowchartCompletionRouter = express.Router();
 
-// create , update (edit), getAll,
 flowchartCompletionRouter.post('/', fcCompletionController.createQuestion);
 
+flowchartCompletionRouter.get('/all', fcCompletionController.getAllQuestions);
+
 flowchartCompletionRouter.get('/', fcCompletionController.getAllStandaloneQuestions);
+
+flowchartCompletionRouter.get('/:id', fcCompletionController.getQuestionById);
+
+flowchartCompletionRouter.get('/ans/:id', fcCompletionController.getAns);
+
+flowchartCompletionRouter.patch('/ans/:id', fcCompletionController.updateAns);
 
 flowchartCompletionRouter.patch('/:id', fcCompletionController.editQuestion);
 

@@ -11,9 +11,9 @@ lMatchingRouter.get('/', lMatchingController.getAllStandaloneQuestions);
 
 lMatchingRouter.get('/:id', lMatchingController.getQuestionById)
 
-lMatchingRouter.get('/:id/ans', lMatchingController.getAns)
+lMatchingRouter.get('/ans/:id', lMatchingController.getAns)
 
-lMatchingRouter.patch('/:id/ans', lMatchingController.updateAns);
+lMatchingRouter.patch('/ans/:id', lMatchingController.updateAns);
 
 lMatchingRouter.patch('/:id', lMatchingController.editQuestion);
 

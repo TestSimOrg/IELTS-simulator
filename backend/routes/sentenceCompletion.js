@@ -5,10 +5,18 @@ const sentenceCompletionRouter = express.Router();
 
 sentenceCompletionRouter.post('/', sentenceCompletionController.createQuestion);
 
+sentenceCompletionRouter.get('/all', sentenceCompletionController.getAllQuestions);
+
 sentenceCompletionRouter.get('/', sentenceCompletionController.getAllStandaloneQuestions);
 
-sentenceCompletionRouter.patch('/:id', sentenceCompletionController.editQuestion)
+sentenceCompletionRouter.get('/:id', sentenceCompletionController.getQuestionById);
 
-sentenceCompletionRouter.delete('/:id',sentenceCompletionController.delQuestion)
+sentenceCompletionRouter.get('/ans/:id', sentenceCompletionController.getAns);
+
+sentenceCompletionRouter.patch('/ans/:id', sentenceCompletionController.updateAns);
+
+sentenceCompletionRouter.patch('/:id', sentenceCompletionController.editQuestion);
+
+sentenceCompletionRouter.delete('/:id',sentenceCompletionController.delQuestion);
 
 export default sentenceCompletionRouter;

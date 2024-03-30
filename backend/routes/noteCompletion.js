@@ -5,7 +5,15 @@ const noteCompletionRouter = express.Router();
 
 noteCompletionRouter.post('/', noteCompletionController.createQuestion);
 
+noteCompletionRouter.get('/all', noteCompletionController.getAllQuestions)
+
 noteCompletionRouter.get('/', noteCompletionController.getAllStandaloneQuestions);
+
+noteCompletionRouter.get('/:id', noteCompletionController.getQuestionById)
+
+noteCompletionRouter.get('/ans/:id', noteCompletionController.getAns)
+
+noteCompletionRouter.patch('/ans/:id', noteCompletionController.updateAns)
 
 noteCompletionRouter.patch('/:id', noteCompletionController.editQuestion);
 

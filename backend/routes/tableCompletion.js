@@ -5,7 +5,15 @@ const tableCompletionRouter = express.Router();
 
 tableCompletionRouter.post('/', tableCompletionController.createQuestion);
 
+tableCompletionRouter.get('/all', tableCompletionController.getAllQuestions);
+
 tableCompletionRouter.get('/', tableCompletionController.getAllStandaloneQuestions);
+
+tableCompletionRouter.get('/:id', tableCompletionController.getQuestionById);
+
+tableCompletionRouter.get('/ans/:id', tableCompletionController.getAns);
+
+tableCompletionRouter.patch('/ans/:id', tableCompletionController.updateAns);
 
 tableCompletionRouter.patch('/:id', tableCompletionController.editQuestion);
 
