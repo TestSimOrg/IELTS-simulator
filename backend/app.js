@@ -116,7 +116,7 @@ const corsOptionsDelegate = (req, callback) => {
   callback(null, corsOptions); // Callback expects two parameters: error and options
 };
 
-app.use(cors(corsOptionsDelegate));
+app.use(cors(corsOptionsDelegate, {credentials: true}));
 
 
 // db setup
