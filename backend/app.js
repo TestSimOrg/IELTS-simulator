@@ -22,6 +22,43 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
 swaggerDocs(app, PORT); // open api docs
 
+// CORS setup
+let whitelist = [
+  `http://localhost:${PORT}`
+];
+
+if (process.env.NODE_ENV === 'development') {
+  whitelist.push('http://localhost:8080');
+}
+
+for (let url of whitelist) {
+  log.info(`Allowed origin: ${url}`);
+}
+
+const corsOptionsDelegate = (req, callback) => {
+  let corsOptions;
+  const origin = req.header("Origin");
+  log.info(`request origin: ${origin}`)
+  if (origin && whitelist.includes(origin)) {
+    corsOptions = { origin: true }; // Reflect the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false }; // Disable CORS for this request
+  }
+  
+  callback(null, corsOptions); // Callback expects two parameters: error and options
+};
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', `http://localhost:${PORT}`);
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Max-Age', '86400'); // 24 hours
+  next();
+});
+
+app.use(cors(corsOptionsDelegate, { credentials: true }));
+app.options('/user', cors());
+
 // routes and routes extension setup
 import flowchartCompletionRouter from './routes/flowchartCompletion.js';
 import formCompletionRouter from './routes/formCompletion.js';
@@ -41,7 +78,9 @@ import tableCompletionRouter from './routes/tableCompletion.js';
 import tfngRouter from './routes/tfng.js';
 import userLRAnsSheetRouter from './routes/userLRAnsSheet.js';
 import ynngRouter from './routes/ynng.js';
+import userRouter from './routes/user.js';
 
+app.use('/user', userRouter)
 app.use('/userLRAnsSheet', userLRAnsSheetRouter);
 app.use('/readingTest', readingTestRouter);
 app.use('/listeningTest', listeningTestRouter);
@@ -89,35 +128,6 @@ const limiter = ratelimit({
 
 //  apply to all requests
 app.use(limiter);
-
-// CORS setup
-let whitelist = [
-  `http://localhost:${PORT}`
-];
-
-if (process.env.NODE_ENV === 'development') {
-  whitelist.push('http://localhost:8080');
-}
-
-for (let url of whitelist) {
-  log.info(`Allowed origin: ${url}`);
-}
-
-const corsOptionsDelegate = (req, callback) => {
-  let corsOptions;
-  const origin = req.header("Origin");
-  log.info(`req origin: ${origin}`)
-  if (origin && whitelist.includes(origin)) {
-    corsOptions = { origin: true }; // Reflect the requested origin in the CORS response
-  } else {
-    corsOptions = { origin: false }; // Disable CORS for this request
-  }
-  
-  callback(null, corsOptions); // Callback expects two parameters: error and options
-};
-
-app.use(cors(corsOptionsDelegate, {credentials: true}));
-
 
 // db setup
 mongoose.connect(mongoDBURL, {});
