@@ -1,10 +1,17 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import '@mantine/charts/styles.css';
+import '@mantine/core/styles.css';
+import '@mantine/charts/styles.css';
+import '@mantine/dates/styles.css';
+import '@mantine/notifications/styles.css';
+import '@mantine/dropzone/styles.css';
+import '@mantine/nprogress/styles.css';
+import { MantineProvider } from '@mantine/core';
 import "./App.css";
 import PageNotFound from "./pages/PageNotFound";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
+import SignIn from "./pages/signIn"
 
 import {
     BrowserRouter as Router,
@@ -14,15 +21,19 @@ import {
 } from "react-router-dom";
 
 function App() {
-    return (<div id="content">
-        <Routes>
-            <Route path="/">
-                <Route index element={<Home />} />
-                <Route path="test" element={<Test />} />
-                <Route path="*" element={<PageNotFound />} />
-            </Route>
-        </Routes>
-    </div>
+    return (
+    <MantineProvider>
+        <div id="content">
+            <Routes>
+                <Route path="/">
+                    <Route index element={<Home />} />
+                    <Route path="test" element={<Test />} />
+                    <Route path="*" element={<PageNotFound />} />
+                    <Route path='signIn' element={<SignIn /> } />
+                </Route>
+            </Routes >
+        </div>
+    </MantineProvider>
     );
 }
 
