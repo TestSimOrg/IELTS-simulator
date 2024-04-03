@@ -19,20 +19,23 @@ import {
     Routes,
     Navigate,
 } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 
 function App() {
     return (
     <MantineProvider>
-        <div id="content">
-            <Routes>
-                <Route path="/">
-                    <Route index element={<Home />} />
-                    <Route path="test" element={<Test />} />
-                    <Route path="*" element={<PageNotFound />} />
-                    <Route path='signIn' element={<SignIn /> } />
-                </Route>
-            </Routes >
-        </div>
+        <HelmetProvider>
+            <div id="content">
+                <Routes>
+                    <Route path="/">
+                        <Route index element={<Home />} />
+                        <Route path="test" element={<Test />} />
+                        <Route path="*" element={<PageNotFound />} />
+                        <Route path='signIn' element={<SignIn /> } />
+                    </Route>
+                </Routes >
+            </div>
+        </HelmetProvider>
     </MantineProvider>
     );
 }
