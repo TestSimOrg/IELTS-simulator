@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import log from './lib/logger.js'
 import bodyParser from 'body-parser';
 import swaggerDocs from './utils/swagger.js';
+import cookieParser from 'cookie-parser';
 
 // env var setup
 dotenv.config();
@@ -20,6 +21,7 @@ const app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
+app.use(cookieParser());
 swaggerDocs(app, PORT); // open api docs
 
 // CORS setup
@@ -47,14 +49,6 @@ const corsOptionsDelegate = (req, callback) => {
   
   callback(null, corsOptions); // Callback expects two parameters: error and options
 };
-
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', `http://localhost:${PORT}`);
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Max-Age', '86400'); // 24 hours
-  next();
-});
 
 app.use(cors(corsOptionsDelegate, { credentials: true }));
 app.options('/user', cors());
