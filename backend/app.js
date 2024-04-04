@@ -42,9 +42,9 @@ const corsOptionsDelegate = (req, callback) => {
   const origin = req.header("Origin");
   log.info(`request origin: ${origin}`)
   if (origin && whitelist.includes(origin)) {
-    corsOptions = { origin: true }; // Reflect the requested origin in the CORS response
+    corsOptions = { origin: true, credentials: true }; // Reflect the requested origin in the CORS response
   } else {
-    corsOptions = { origin: false }; // Disable CORS for this request
+    corsOptions = { origin: false }; // Invalid origin, respond with CORS error
   }
   
   callback(null, corsOptions); // Callback expects two parameters: error and options
