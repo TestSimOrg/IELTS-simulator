@@ -56,6 +56,7 @@ export function signIn(props) {
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ username, password, email }),
+                credentials: "include"
             });
 
             if (!response.ok) {
