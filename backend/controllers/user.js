@@ -23,22 +23,23 @@ const createUser = async (req, res) => {
         log.info('Created user:', resJson);
     
         // Sending a response back to the client
-        // res.cookie('jwt', token/*, { httpOnly: true, maxAge: maxAge * 1000 }*/);
-        // res.cookie('jwt', token, { domain: 'localhost', path: '/', sameSite: 'None', secure: false });
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
 
-        // res.status(200).json({ 
-        //     message: 'User registered successfully',
-        //     obj: resJson, 
-        // });
-        res.cookie('newUser', false, { 
-            path: '/',
-            httpOnly: false, // Allow access from frontend JavaScript
-            sameSite: 'none', // For cross-site cookies
-            secure: false // If your frontend is served over HTTPS
-          });
-        res.json({
-            ok: true
+        res.status(200).json({ 
+            message: 'User registered successfully',
+            obj: resJson, 
         });
+        
+        // test cookies
+        // res.cookie('newUser', false, { 
+        //     path: '/',
+        //     httpOnly: false, // Allow access from frontend JavaScript
+        //     sameSite: 'none', // For cross-site cookies
+        //     secure: false // If your frontend is served over HTTPS
+        //   });
+        // res.json({
+        //     ok: true
+        // });
           
         
     } catch (err) {
