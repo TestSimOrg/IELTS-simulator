@@ -51,7 +51,7 @@ const corsOptionsDelegate = (req, callback) => {
 };
 
 app.use(cors(corsOptionsDelegate, { credentials: true }));
-app.options('/user', cors());
+app.options(['/user', '/user/login'], cors());
 
 // routes and routes extension setup
 import flowchartCompletionRouter from './routes/flowchartCompletion.js';
