@@ -1,5 +1,6 @@
 import log from '../lib/logger.js';
 import user from '../models/user.js';
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 const createUser = async (req, res) => {
@@ -65,10 +66,68 @@ const createToken = (id) => {
     return token;
 }
 
+const userLogin = async (req, res) => {
+
+    log.info('Logging user in.');
+
+    const { email, password } = req.body;
+
+    try {
+
+        const userDoc = await user.findOne({ email });
+
+        if(!userDoc){
+
+            log.error("Couldn't find user using email: ", email);
+
+            return res.status(401).json({
+                message: "Incorrect email or password.",
+                ok: false,
+                status: 401
+            })
+
+        }
+
+        const pswdMatch = await bcrypt.compare(password, userDoc.password)
+        
+        if(!pswdMatch){
+
+            log.error("Password didn't match for user with email: ", email);
+
+            return res.status(401).json({
+                message: "Incorrect email or password.",
+                ok: false,
+                status: 401
+            })
+
+        }
+
+        const token = createToken(userDoc._id);
+
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+
+        res.status(200).json({ 
+            message: 'User logged in successfully',
+            obj: userDoc._id, 
+        });        
+        
+    } catch (err) {
+        
+        log.error('Error while logging in.', err);
+
+        res.status(500).json({
+            message: "Internal server error",
+            ok: false,
+            status: 500
+        })
+    }
+
+}
+
 const userQuestions = async (req, res) => {
 
 }
 
-const userController = { createUser, userQuestions };
+const userController = { createUser, userLogin, userQuestions };
 
 export default userController;
