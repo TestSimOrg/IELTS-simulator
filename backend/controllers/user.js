@@ -57,7 +57,7 @@ const createUser = async (req, res) => {
 
 const maxAge = 3 * 24 * 60 * 60; // 3 days
 const createToken = (id) => {
-    const token = jwt.sign({ id },'256-secret', {
+    const token = jwt.sign({ id }, process.env.SECRET, {
         expiresIn: maxAge
     });
 
@@ -124,10 +124,22 @@ const userLogin = async (req, res) => {
 
 }
 
+const userLogout = (req, res) => {
+       
+    res.cookie('jwt', '', { expires: new Date(0) });
+    
+    return res.status(200).json({
+        message: "User logged out successfully",
+        ok: true,
+        status: 200,
+    });
+    
+}
+
 const userQuestions = async (req, res) => {
 
 }
 
-const userController = { createUser, userLogin, userQuestions };
+const userController = { createUser, userLogin, userLogout, userQuestions };
 
 export default userController;
