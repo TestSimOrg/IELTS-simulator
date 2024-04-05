@@ -1,5 +1,6 @@
 import express from 'express';
 import multer from 'multer';
+import {checkAuth} from '../middleware/checkAuth.js';
 import { checkFileType } from '../utils/convertImg.js'
 import planMapDiagramLabellingController from '../controllers/planMapDiagramLabelling.js';
 
@@ -23,7 +24,7 @@ const storage = multer.diskStorage({
 
 const planMapLabellingRouter = express.Router();
 
-planMapLabellingRouter.post('/', upload.single('image'), planMapDiagramLabellingController.createQuestion);
+planMapLabellingRouter.post('/', checkAuth, upload.single('image'), planMapDiagramLabellingController.createQuestion);
 
 planMapLabellingRouter.get('/all', planMapDiagramLabellingController.getAllQuestions);
 
@@ -35,10 +36,10 @@ planMapLabellingRouter.get('/:id', planMapDiagramLabellingController.getQuestion
 
 planMapLabellingRouter.get('/ans/:id', planMapDiagramLabellingController.getAns);
 
-planMapLabellingRouter.patch('/ans/:id', planMapDiagramLabellingController.updateAns)
+planMapLabellingRouter.patch('/ans/:id', checkAuth, planMapDiagramLabellingController.updateAns)
 
-planMapLabellingRouter.patch('/:id', planMapDiagramLabellingController.editQuestion);
+planMapLabellingRouter.patch('/:id', checkAuth, planMapDiagramLabellingController.editQuestion);
 
-planMapLabellingRouter.delete('/:id', planMapDiagramLabellingController.delQuestion)
+planMapLabellingRouter.delete('/:id', checkAuth, planMapDiagramLabellingController.delQuestion)
 
 export default planMapLabellingRouter;

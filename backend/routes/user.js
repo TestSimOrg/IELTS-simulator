@@ -7,4 +7,6 @@ userRouter.post('/signin', userController.createUser); // Register
 
 userRouter.post('/login', userController.userLogin); //Login
 
+userRouter.get('/logout', userController.userLogout); // Logout
+
 export default userRouter;
