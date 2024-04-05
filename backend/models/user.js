@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import validator from "validator";
+import bcrypt from 'bcrypt'
 
 const userSchema = new mongoose.Schema({
     userName: {
@@ -19,6 +20,12 @@ const userSchema = new mongoose.Schema({
         minlength: [6, 'Minimum length of password should be 6 characters.'],
     }
 })
+
+userSchema.pre('save', async function(next) {
+    const salt = await bcrypt.genSalt();
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+});
 
 const user = mongoose.model('user', userSchema);
 
