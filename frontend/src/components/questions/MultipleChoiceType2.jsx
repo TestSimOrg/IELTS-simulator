@@ -46,11 +46,15 @@ import { Question } from "./commons/Question";
 import { QuestionCheckbox } from "./commons/QuestionCheckbox";
 
 export const MultipleChoiceType2 = ({ q }) => {
+    // If there's more than one header, we'll display the corresponding header for each question
+    // Or if all the headers are the same
+    const oneHeader = (q.questionHeader.length === 1) || (q.questionHeader.every((val, i, arr) => val === arr[0]));
     return (
-        <Question questionHeader={q.questionHeader} questionStatment="">
+        <Question questionHeader={oneHeader ? q.questionHeader[0] : null} questionStatment="">
             <Grid container spacing={2}>
                 {q.numStatements.map((numStatement, index) => (
                     <Grid item xs={12} key={index}>
+                        <Typography variant="h6">{!oneHeader ? q.questionHeader[index] : null}</Typography>
                         <Typography variant="body1">{numStatement}</Typography>
                         <QuestionCheckbox QuestionOption={q.questionOptions[index]} />
                     </Grid>

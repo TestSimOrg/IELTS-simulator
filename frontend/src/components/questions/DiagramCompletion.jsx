@@ -55,7 +55,7 @@ export const DiagramCompletion = ({ q }) => {
             <Grid container spacing={2}>
                 {q.numStatements.map((numStatement, index) => (
                     <Grid item xs={12} key={index}>
-                        <Typography variant="body1">{numStatement}</Typography>
+                        <Typography variant="body1">{numStatement.replace("_BLANK_", "_______")}</Typography>
                         <QuestionRadio QuestionOption={q.questionOptions} />
                     </Grid>
                 ))}
