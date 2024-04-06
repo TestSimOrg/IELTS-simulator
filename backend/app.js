@@ -75,7 +75,8 @@ import userLRAnsSheetRouter from './routes/userLRAnsSheet.js';
 import ynngRouter from './routes/ynng.js';
 import userRouter from './routes/user.js';
 
-app.get('*', checkUser);
+app.post('*', checkUser);
+app.patch('*', checkUser);
 app.use('/user', userRouter)
 app.use('/userLRAnsSheet', userLRAnsSheetRouter);
 app.use('/readingTest', readingTestRouter);
