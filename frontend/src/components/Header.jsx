@@ -6,6 +6,10 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+import { BsHeadphones } from "react-icons/bs";
+import { BiSolidBookOpen } from "react-icons/bi"; 
+import { BsPenFill } from "react-icons/bs";
+import { BsFillMicFill } from "react-icons/bs";
 import {
     AppBar,
     Toolbar,
@@ -70,6 +74,10 @@ export default function Header() {
                         Full Test
                     </Link>
                 </Button>
+            < BsHeadphones fontSize={30}/>
+            < BiSolidBookOpen fontSize={30}/>
+            < BsPenFill fontSize={25} />
+            < BsFillMicFill fontSize={25} />
             </Toolbar>
         </AppBar>
     );
