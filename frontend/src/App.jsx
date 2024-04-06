@@ -7,7 +7,7 @@ import '@mantine/notifications/styles.css';
 import '@mantine/dropzone/styles.css';
 import '@mantine/nprogress/styles.css';
 import { MantineProvider } from '@mantine/core';
-import "./App.css";
+import "./styles/App.css";
 import PageNotFound from "./pages/PageNotFound";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
@@ -31,7 +31,7 @@ function App() {
                         <Route index element={<Home />} />
                         <Route path="test" element={<Test />} />
                         <Route path="*" element={<PageNotFound />} />
-                        <Route path='signIn' element={<SignIn /> } />
+                        <Route path='signIn' element={<SignIn />} />
                     </Route>
                 </Routes >
             </div>

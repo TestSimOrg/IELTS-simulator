@@ -5,7 +5,7 @@ export default function Home() {
     return (
         <div>
             <Helmet>
-                <title>Home</title>
+                <title>IELTS sim</title>
             </Helmet>
             <h1>IELTS Preparation</h1>
             <p>Welcome to the IELTS Preparation website.</p>
