@@ -8,6 +8,7 @@ import log from './lib/logger.js'
 import bodyParser from 'body-parser';
 import swaggerDocs from './utils/swagger.js';
 import cookieParser from 'cookie-parser';
+import { checkUser } from './middleware/checkAuth.js';
 
 // env var setup
 dotenv.config();
@@ -51,7 +52,7 @@ const corsOptionsDelegate = (req, callback) => {
 };
 
 app.use(cors(corsOptionsDelegate, { credentials: true }));
-app.options('/user', cors());
+app.options(['/user', '/user/login'], cors());
 
 // routes and routes extension setup
 import flowchartCompletionRouter from './routes/flowchartCompletion.js';
@@ -74,6 +75,8 @@ import userLRAnsSheetRouter from './routes/userLRAnsSheet.js';
 import ynngRouter from './routes/ynng.js';
 import userRouter from './routes/user.js';
 
+app.post('*', checkUser);
+app.patch('*', checkUser);
 app.use('/user', userRouter)
 app.use('/userLRAnsSheet', userLRAnsSheetRouter);
 app.use('/readingTest', readingTestRouter);

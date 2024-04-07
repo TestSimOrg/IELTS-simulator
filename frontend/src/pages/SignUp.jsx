@@ -50,7 +50,7 @@ export function signIn(props) {
         const email = form.values.email;
         console.log(JSON.stringify({ username, password, email }))
         try {
-            const response = await fetch('http://localhost:3000/user/', {
+            const response = await fetch('http://localhost:3000/user/signin', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',

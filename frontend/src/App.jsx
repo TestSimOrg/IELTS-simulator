@@ -6,12 +6,11 @@ import '@mantine/dates/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/dropzone/styles.css';
 import '@mantine/nprogress/styles.css';
-import { MantineProvider } from '@mantine/core';
-import "./App.css";
+import "./styles/App.css";
 import PageNotFound from "./pages/PageNotFound";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
-import SignIn from "./pages/signIn"
+import SignIn from "./pages/SignUp"
 
 import {
     BrowserRouter as Router,
@@ -20,10 +19,12 @@ import {
     Navigate,
 } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import Header from "./components/Header";
+import HeaderMegaMenu from "./components/newHeader";
 
 function App() {
     return (
-    <MantineProvider>
+    
         <HelmetProvider>
             <div id="content">
                 <Routes>
@@ -31,12 +32,11 @@ function App() {
                         <Route index element={<Home />} />
                         <Route path="test" element={<Test />} />
                         <Route path="*" element={<PageNotFound />} />
-                        <Route path='signIn' element={<SignIn /> } />
+                        <Route path='signIn' element={<SignIn />} />
                     </Route>
                 </Routes >
             </div>
         </HelmetProvider>
-    </MantineProvider>
     );
 }
 
