@@ -1,21 +1,21 @@
 import {
-    HoverCard,
-    Group,
-    Button,
-    UnstyledButton,
-    Text,
-    SimpleGrid,
-    ThemeIcon,
-    Anchor,
-    Divider,
-    Center,
-    Box,
-    Burger,
-    Drawer,
-    Collapse,
-    ScrollArea,
-    rem,
-    useMantineTheme,
+  HoverCard,
+  Group,
+  Button,
+  UnstyledButton,
+  Text,
+  SimpleGrid,
+  ThemeIcon,
+  Anchor,
+  Divider,
+  Center,
+  Box,
+  Burger,
+  Drawer,
+  Collapse,
+  ScrollArea,
+  rem,
+  useMantineTheme,
 } from '@mantine/core';
 import { MantineLogo } from '@mantinex/mantine-logo';
 import { useDisclosure } from '@mantine/hooks';
@@ -202,4 +202,3 @@ export default function HeaderMegaMenu() {
     </Box>
   );
 }
-
