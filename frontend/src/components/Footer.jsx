@@ -9,25 +9,9 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 
 export default function Footer() {
     return (
-        <BottomNavigation showLabels>
-            <BottomNavigationAction
-                label="Home"
-                icon={<HomeIcon />}
-                component={Link}
-                to="/"
-            />
-            <BottomNavigationAction
-                label="About"
-                icon={<InfoIcon />}
-                component={Link}
-                to="/about"
-            />
-            <BottomNavigationAction
-                label="GitHub"
-                icon={<GitHubIcon />}
-                href=""
-            />
-        </BottomNavigation>
+        <>
+            
+        </>
     );
 }
 
