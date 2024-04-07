@@ -17,50 +17,48 @@ import {
   rem,
   useMantineTheme,
 } from '@mantine/core';
-import { MantineLogo } from '@mantinex/mantine-logo';
 import { useDisclosure } from '@mantine/hooks';
 import {
-  IconNotification,
-  IconCode,
-  IconBook,
-  IconChartPie3,
-  IconFingerprint,
-  IconCoin,
   IconChevronDown,
 } from '@tabler/icons-react';
+import { BiBookOpen } from "react-icons/bi";
+import { BsHeadphones } from "react-icons/bs";
+import { BsPenFill } from "react-icons/bs";
+import { BsFillMicFill } from "react-icons/bs";
+import { AiFillQuestionCircle } from "react-icons/ai";
 import classes from '../styles/Header.module.css';
 
 const mockdata = [
   {
-    icon: IconCode,
-    title: 'Open source',
-    description: 'This Pokémon’s cry is very loud and distracting',
+    icon: BsHeadphones,
+    title: 'Listening Test',
+    description: 'Test your listening skills with a variety of question types. For eg: Diagram Completion or Summary Completion.',
   },
   {
-    icon: IconCoin,
-    title: 'Free for everyone',
-    description: 'The fluid of Smeargle’s tail secretions changes',
+    icon: BiBookOpen,
+    title: 'Reading Test',
+    description: 'Test your listening skills with a variety of question types that will be based on the reading passage. For eg: Table Completion or Note Completion.',
   },
   {
-    icon: IconBook,
-    title: 'Documentation',
-    description: 'Yanma is capable of seeing 360 degrees without',
+    icon: BsPenFill,
+    title: 'Writing Test',
+    description: 'Test your writing skills by writing essays and reports.',
   },
   {
-    icon: IconFingerprint,
-    title: 'Security',
-    description: 'The shell’s rounded shape and the grooves on its.',
+    icon: BsFillMicFill,
+    title: 'Speaking Test',
+    description: 'Test your speaking skills by recording you speaking session with the given question cards.',
   },
   {
-    icon: IconChartPie3,
-    title: 'Analytics',
-    description: 'This Pokémon uses its flying ability to quickly chase',
+    icon: AiFillQuestionCircle,
+    title: 'Listening Questions',
+    description: 'Test your listening skills for each question type using stand alone questions.',
   },
   {
-    icon: IconNotification,
-    title: 'Notifications',
-    description: 'Combusken battles with the intensely hot flames it spews',
-  },
+    icon: AiFillQuestionCircle,
+    title: 'Reading Questions',
+    description: 'Test your reading skills for each question type using stand alone questions.',
+  }
 ];
 
 export default function HeaderMegaMenu() {
@@ -90,8 +88,7 @@ export default function HeaderMegaMenu() {
     <Box pb={120}>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          <MantineLogo size={30} />
-
+          <Text size="xl">IELTS Simulator</Text>
           <Group h="100%" gap={0} visibleFrom="sm">
             <a href="#" className={classes.link}>
               Home
@@ -101,7 +98,7 @@ export default function HeaderMegaMenu() {
                 <a href="#" className={classes.link}>
                   <Center inline>
                     <Box component="span" mr={5}>
-                      Features
+                      Practice
                     </Box>
                     <IconChevronDown
                       style={{ width: rem(16), height: rem(16) }}
@@ -112,40 +109,13 @@ export default function HeaderMegaMenu() {
               </HoverCard.Target>
 
               <HoverCard.Dropdown style={{ overflow: 'hidden' }}>
-                <Group justify="space-between" px="md">
-                  <Text fw={500}>Features</Text>
-                  <Anchor href="#" fz="xs">
-                    View all
-                  </Anchor>
-                </Group>
-
-                <Divider my="sm" />
 
                 <SimpleGrid cols={2} spacing={0}>
                   {links}
                 </SimpleGrid>
 
-                <div className={classes.dropdownFooter}>
-                  <Group justify="space-between">
-                    <div>
-                      <Text fw={500} fz="sm">
-                        Get started
-                      </Text>
-                      <Text size="xs" c="dimmed">
-                        Their food sources have decreased, and their numbers
-                      </Text>
-                    </div>
-                    <Button variant="default">Get started</Button>
-                  </Group>
-                </div>
               </HoverCard.Dropdown>
             </HoverCard>
-            <a href="#" className={classes.link}>
-              Learn
-            </a>
-            <a href="#" className={classes.link}>
-              Academy
-            </a>
           </Group>
 
           <Group visibleFrom="sm">
@@ -175,7 +145,7 @@ export default function HeaderMegaMenu() {
           <UnstyledButton className={classes.link} onClick={toggleLinks}>
             <Center inline>
               <Box component="span" mr={5}>
-                Features
+                Practice
               </Box>
               <IconChevronDown
                 style={{ width: rem(16), height: rem(16) }}
