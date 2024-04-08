@@ -11,6 +11,7 @@ import { MultipleChoiceType2 } from "../components/questions/MultipleChoiceType2
 import { NoteCompletion } from "../components/questions/NoteCompletion";
 import { DiagramCompletion } from "../components/questions/DiagramCompletion";
 import { Flowchart } from "../components/questions/Flowchart";
+import imgBase64 from "../assets/imgExample";
 
 export default function Test() {
     var qMatching = {
@@ -123,13 +124,13 @@ export default function Test() {
             "Label the map below.\nWrite the correct letter, A-I, next to Questions 14-20",
         questionTitle: "Proposed traffic changes in Granford",
         image: {
-            data: "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+            data: imgBase64,
             contentType: "image/png",
         },
         questionOptions: ["A", "B", "C", "D", "E", "F", "G", "H", "I"],
         numStatements: [
             "14 New traffic lights _BLANK_",
-            "15 Pedestrain crossing _BLANK_",
+            "15 Pedestrian crossing _BLANK_",
             "16 Parking allowed _BLANK_",
             "17 New 'No Parking' sign _BLANK_",
             "18 New disabled parking spaces _BLANK_",
