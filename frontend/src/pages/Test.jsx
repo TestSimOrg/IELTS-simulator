@@ -40,17 +40,19 @@ export default function Test() {
     };
 
     var qSentenceCompletion = {
-        startQuestionNum: 9,
-        endQuestionNum: 10,
+        startQuestionNum: 27,
+        endQuestionNum: 30,
         standAlone: true,
-        numOfWords: 3,
+        numOfWords: 2,
         numOfNum: 0,
         questionHeader:
-            "Write NO MORE THAN THREE WORDS to complete each space.",
+            "Complete the sentences below.\nWrite NO MORE THAN TWO WORDS ONLY for each answer.",
         questionTitle: "",
         numStatements: [
-            "9 Samuel's aunt plans to travel to his apartment on _BLANK_. test _BLANK_ test2",
-            "10 The journey time is approximately _BLANK_. test",
+            "27 Studying with the Open University demanded a great deal of _BLANK_ ",
+            "28 Studying and working at the same time improved Rachel's _BLANK_ skills.",
+            "29 It was helpful that the course was structured in _BLANK_.",
+            "30 She enjoyed meeting other students at _BLANK_."
         ],
     };
 
@@ -170,31 +172,17 @@ export default function Test() {
                 "Effects of 2020 Pandemic"
             ],
             [
-                "31 _BLANK_ changed",
-                "33 _BLANK_ went up by 2.4%",
-                "Protein went up by 34 _BLANK_",
+                "31 _BLANK_ changed"
             ],
             [
                 " Demand for 32 _BLANK_ in stores increased"
             ],
             [
-                " Demand for 32 _BLANK_ in stores increased"
-            ],
-            [
-                "Prices increased by more than 2%",
+                "Prices increased by more than 2%"
             ],
             [
                 "33 _BLANK_ went up by 2.4%",
-                "Protein went up by 34 _BLANK_",
-                "Protein went up by 34 _BLANK_",
-                "33 _BLANK_ went up by 2.4%",
-                "Protein went up by 34 _BLANK_",
-            ],
-            [
-                "Prices increased by more than 2%",
-            ],
-            [
-                "Prices increased by more than 2%",
+                "Protein went up by 34 _BLANK_"
             ]
         ],
         "answer": [
