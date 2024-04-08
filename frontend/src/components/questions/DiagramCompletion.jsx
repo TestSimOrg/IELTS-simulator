@@ -43,7 +43,7 @@
 
 //  question/DiagramCompletion.jsx
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Text } from "@mantine/core";
 import { Question } from "./commons/Question";
 import { QuestionRadio } from "./commons/QuestionRadio";
 import { QuestionImage } from "./commons/QuestionImage";
@@ -52,12 +52,13 @@ export const DiagramCompletion = ({ q }) => {
     return (
         <Question questionHeader={q.questionHeader} questionStatment="">
             <QuestionImage image={q.image} />
-            <Grid container spacing={2}>
+            <Grid gutter="lg">
                 {q.numStatements.map((numStatement, index) => (
-                    <Grid item xs={12} key={index}>
-                        <Typography variant="body1">{numStatement.replace("_BLANK_", "_______")}</Typography>
+                    <Grid.Col span={{ xs: 12, md: 6, lg: 4}}
+                    key={index}>
+                        <Text size="sm">{numStatement.replace("_BLANK_", "_______")}</Text>
                         <QuestionRadio QuestionOption={q.questionOptions} />
-                    </Grid>
+                    </Grid.Col>
                 ))}
             </Grid>
         </Question>

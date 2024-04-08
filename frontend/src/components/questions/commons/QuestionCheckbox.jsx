@@ -1,26 +1,17 @@
 // QuestionCheckbox.jsx
 
 import React from "react";
-import {
-    Grid,
-    Typography,
-    Checkbox,
-    FormControlLabel,
-    FormGroup,
-} from "@mui/material";
+import { Text, Checkbox, Grid, Group
+} from "@mantine/core";
 
 export const QuestionCheckbox = ({ QuestionOption }) => {
     return (
-        <FormGroup row>
+        <Grid >
             {QuestionOption.map((option, optionIndex) => (
-                <Grid item xs={4} key={optionIndex}>
-                    <FormControlLabel
-                        value={optionIndex}
-                        control={<Checkbox />}
-                        label={option}
-                    />
-                </Grid>
+                <Grid.Col span={{ xs: 12, md: 6, lg: 4}} key={optionIndex} justify="center">
+                    <Checkbox key={optionIndex} label={option}></Checkbox>
+                </Grid.Col>
             ))}
-        </FormGroup>
+        </Grid>
     );
 };

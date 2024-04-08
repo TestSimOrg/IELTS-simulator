@@ -5,7 +5,6 @@
 
 // QuestionImage.jsx
 import React from "react";
-import { Typography } from "@mui/material";
 
 export const QuestionImage = ({ image }) => {
     return (

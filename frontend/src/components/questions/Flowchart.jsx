@@ -1,6 +1,6 @@
 // question/Flowchart.jsx
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Text, Grid } from "@mantine/core";
 import { Question } from "./commons/Question";
 import { QuestionInput } from "./commons/QuestionInput";
 
@@ -19,20 +19,26 @@ export const Flowchart = ({ q }) => {
             questionStatment={q.questionHeader}
             questionTitle=""
         >
-            <Grid container spacing={2}>
+            <Grid gutter={2}>
                 {q.steps.map((step, stepIndex) => (
                     <React.Fragment key={stepIndex}>
                         {step.map((rectange, rectangeIndex) => (
-                            <Grid item xs={(12 / step.length)} key={`${stepIndex}_${rectangeIndex}`}>
+                            <Grid.Col span={(12 / step.length)} key={`${stepIndex}_${rectangeIndex}`}>
                                 {/* we take note of the index of the step and the index of the rectangle 
                                 so that we can draw the arrow in javascript later */}
 
-                                <div style={{ border: "2px solid red", margin: "15px"}}  
+                                <div style={{ 
+                                    border: "2px solid black", 
+                                    borderRadius: "5px",
+                                    padding: "15px", 
+                                    width: "fit-content",  
+                                    margin: " 15px auto"
+                                }}  
                                     data-step-index={[stepIndex, rectangeIndex]}
                                 >
                                     {rectange.split("_BLANK_").map((part, partIndex) => (
                                         <React.Fragment key={`${stepIndex}_${rectangeIndex}_${partIndex}`}>
-                                            <Typography variant="body1">{part}</Typography>
+                                            <Text style={{ display: "inline" }}>{part}</Text>
                                             {partIndex !== rectange.split("_BLANK_").length - 1 && (
                                                 <QuestionInput
                                                     numOfWords={q.numOfWords}
@@ -42,7 +48,7 @@ export const Flowchart = ({ q }) => {
                                         </React.Fragment>
                                     ))}
                                 </div>
-                            </Grid>
+                            </Grid.Col>
                         ))}
                     </React.Fragment>
                 ))}

@@ -1,8 +1,8 @@
 // question/commons/QuestionInput.jsx
 import React from "react";
-import { TextField } from "@mui/material";
+import { TextInput } from "@mantine/core";
 
-export const QuestionInput = ({ numOfWords, numOfNum, limitIsAnd=false }) => {
+export const QuestionInput = ({ numOfWords, numOfNum, limitIsAnd = false }) => {
     // if limitIsAnd == false :
     //      when we get to any of the two limit, we can't write anymore
     // if limitIsAnd == true :
@@ -53,11 +53,16 @@ export const QuestionInput = ({ numOfWords, numOfNum, limitIsAnd=false }) => {
     };
 
     return (
-        <TextField
-            fullWidth
-            label="Answer"
-            variant="outlined"
+        <TextInput
+            id="answerInput"
             onChange={handleChange}
+            placeholder="Answer"
+            style={{
+                display: "inline-block",
+                width: "auto",
+            }}
+            size="xs"
+            
         />
     );
 };
