@@ -1,14 +1,16 @@
 // question/Question.jsx
 import React from "react";
-import { Typography } from "@mui/material";
+import { Text } from "@mantine/core";
 
-export const Question = ({ questionTitle, questionHeader, questionStatment, children }) => {
+export const Question = ({ questionTitle, questionHeader, questionStatement, children }) => {
 	return (
 		<div style={{ marginBottom: "100px" }}>
-			<Typography variant="h5">{questionTitle}</Typography>
-			<Typography variant="h6">{questionHeader}</Typography>
-			<Typography variant="body1">{questionStatment}</Typography>
-			{children}
+			<Text size="lg">{questionTitle}</Text>
+			<Text size="md">{questionHeader}</Text>
+			<Text size="sm">{questionStatement}</Text>
+			<div style={{ marginTop: "20px" }}>
+				{children}
+			</div>
 		</div>
 	);
 }

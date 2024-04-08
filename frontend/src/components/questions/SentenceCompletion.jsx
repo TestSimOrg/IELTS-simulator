@@ -19,25 +19,22 @@
 
 // question/SentenceCompletion.jsx
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Stack, Text } from "@mantine/core";
 import { Question } from "./commons/Question";
 import { QuestionInput } from "./commons/QuestionInput";
 
 export const SentenceCompletion = ({ q }) => {
     return (
         <Question questionHeader={q.questionHeader} questionStatment="">
-            <Grid container spacing={2}>
+            <Stack>
                 {q.numStatements.map((numStatement, questionIndex) => (
-                    <Grid item xs={12} key={questionIndex}>
-                        {/* foreach blank in the statement, place a typography and a QuestionInput component
-                         */}
+                    <div key={questionIndex} style={{ display: "flex" }}>
+                        {/* foreach blank in the statement, place a typography and a QuestionInput component */}
                         {numStatement
                             .split("_BLANK_")
                             .map((part, partIndex) => (
                                 <React.Fragment key={`${questionIndex}_${partIndex}`}>
-                                    <Typography variant="body1">
-                                        {part}
-                                    </Typography>
+                                    <Text>{part}</Text>
                                     {/* if the part is not the last part, place a QuestionInput component*/}
                                     {partIndex !==
                                         numStatement.split("_BLANK_").length -
@@ -49,9 +46,9 @@ export const SentenceCompletion = ({ q }) => {
                                     )}
                                 </React.Fragment>
                             ))}
-                    </Grid>
+                    </div>
                 ))}
-            </Grid>
+            </Stack>
         </Question>
     );
 };

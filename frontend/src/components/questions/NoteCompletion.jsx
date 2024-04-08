@@ -18,7 +18,7 @@
 
 // question/NoteCompletion.jsx
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Text, Grid } from "@mantine/core";
 import { Question } from "./commons/Question";
 import { QuestionInput } from "./commons/QuestionInput";
 
@@ -29,30 +29,26 @@ export const NoteCompletion = ({ q }) => {
             questionStatment={q.questionHeader}
             questionTitle={q.questionTitle}
         >
-            <Grid container spacing={2}>
+            <Grid>
                 {q.questionStatements.map((statement, statementIndex) => (
                     <React.Fragment key={statementIndex}>
-                        <Grid item xs={4} key={"statement" + statementIndex}>
+                        <Grid.Col span={4} key={"statement" + statementIndex}>
                             <b>{statement.split(":")[0]} :</b>
-                        </Grid>
-                        <Grid item xs={8}>
-                            {statement.split(":")[1].split("_BLANK_").map((part, partIndex) => (
-
-                                <React.Fragment key={partIndex}>
-                                    <Typography variant="body1" key={"part" + partIndex}>
-                                        {part}
-                                    </Typography>
-                                    {partIndex !== statement.split("_BLANK_").length - 1 && (
-                                        <QuestionInput
-                                            numOfWords={q.numOfWords}
-                                            numOfNum={q.numOfNum}
-                                            key={partIndex}
-                                        />
-                                    )}
-                                </React.Fragment>
-                                
-                            ))}
-                        </Grid>
+                        </Grid.Col>
+                        <Grid.Col span={8} align="left">
+                                {statement.split(":")[1].split("_BLANK_").map((part, partIndex) => (
+                                    <React.Fragment key={partIndex}>
+                                        <Text key={"part" + partIndex} style={{ display: "inline" }}>{part}</Text>
+                                        {partIndex !== statement.split("_BLANK_").length - 1 && (
+                                            <QuestionInput
+                                                numOfWords={q.numOfWords}
+                                                numOfNum={q.numOfNum}
+                                                key={partIndex}
+                                            />
+                                        )}
+                                    </React.Fragment>
+                                ))}
+                        </Grid.Col>
                     </React.Fragment>
                 ))} 
             </Grid>

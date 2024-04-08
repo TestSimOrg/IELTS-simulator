@@ -10,6 +10,7 @@ import { MultipleChoiceType1 } from "../components/questions/MultipleChoiceType1
 import { MultipleChoiceType2 } from "../components/questions/MultipleChoiceType2";
 import { NoteCompletion } from "../components/questions/NoteCompletion";
 import { DiagramCompletion } from "../components/questions/DiagramCompletion";
+import { Flowchart } from "../components/questions/Flowchart";
 
 export default function Test() {
     var qMatching = {
@@ -90,7 +91,7 @@ export default function Test() {
         numOfWords: 1,
         numOfNum: 0,
         qType: 2,
-        questionHeader: ["Choose TWO letter, A-E", "Choose TWO letter, A-E"],
+        questionHeader: ["Choose TWO letter, A-E", "Choose THREE letter, A-E"],
         numStatements: [
             "Which TWO age groups are taking increasing numbers of holiday with BC Travel?",
             "Which TWO are the main reasons given for the popularity of activity holidays?",
@@ -155,12 +156,72 @@ export default function Test() {
         ],
     };
 
+    const qFlowChart = {
+        "startQuestionNum": 31,
+        "endQuestionNum": 34,
+        "standAlone": true,
+        "options": false,
+        "numOfWords": 2,
+        "numOfNum": 2,
+        "questionHeader": "You will hear an extract from a university lecture on the topic of economics.\nFirst, look at questions 31 to 34. Now listen carefully and answer questions 31-34.\nQuestions 31-34. Do not write MORE THAN TWO WORDS AND/OR NUMBERS. Complete the chart below.",
+        "steps": [
+            [
+                "Effects of 2020 Pandemic"
+            ],
+            [
+                "31 _BLANK_ changed",
+                "33 _BLANK_ went up by 2.4%",
+                "Protein went up by 34 _BLANK_",
+            ],
+            [
+                " Demand for 32 _BLANK_ in stores increased"
+            ],
+            [
+                " Demand for 32 _BLANK_ in stores increased"
+            ],
+            [
+                "Prices increased by more than 2%",
+            ],
+            [
+                "33 _BLANK_ went up by 2.4%",
+                "Protein went up by 34 _BLANK_",
+                "Protein went up by 34 _BLANK_",
+                "33 _BLANK_ went up by 2.4%",
+                "Protein went up by 34 _BLANK_",
+            ],
+            [
+                "Prices increased by more than 2%",
+            ],
+            [
+                "Prices increased by more than 2%",
+            ]
+        ],
+        "answer": [
+            {
+                "number": 31,
+                "ansType": "S",
+                "ans": "consumer habits"
+            },
+            {
+                "number": 32,
+                "ansType": "M",
+                "ans": ["products", "food"]
+            },
+            {
+                "number": 33,
+                "ansType": "S",
+                "ans": "cereals"
+            },
+            {
+                "number": 34,
+                "ansType": "S",
+                "ans": "4.3%"
+            }
+        ]
+    };
+
     return (
         <div>
-            <Container>
-                <Typography variant="h4">Note Completion</Typography>
-                <NoteCompletion q={qNoteCompletion} />
-            </Container>
             <Container>
                 <Typography variant="h4">Matching</Typography>
                 <Matching q={qMatching} />
@@ -180,6 +241,14 @@ export default function Test() {
             <Container>
                 <Typography variant="h4">Diagram Completion</Typography>
                 <DiagramCompletion q={qDiagramCompletion} />
+            </Container>
+            <Container>
+                <Typography variant="h4">Note Completion</Typography>
+                <NoteCompletion q={qNoteCompletion} />
+            </Container>
+            <Container>
+                <Typography variant="h4">Flowchart</Typography>
+                <Flowchart q={qFlowChart} />
             </Container>
         </div>
     );

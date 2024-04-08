@@ -47,3 +47,22 @@
   bottom: 0;
   width: 100%;
 }
+
+.arrow{
+  stroke:black;
+  stroke-width:2; 
+  marker-end:url(#markerArrow)
+}
+
+.arrow-container {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+  top: 0;
+  left: 0;
+}
+
+.mantine-Drawer-inner {
+  left:0;
+}

@@ -27,37 +27,44 @@ import { BsPenFill } from "react-icons/bs";
 import { BsFillMicFill } from "react-icons/bs";
 import { AiFillQuestionCircle } from "react-icons/ai";
 import classes from '../styles/Header.module.css';
+import {Link} from "react-router-dom";
 
 const mockdata = [
   {
     icon: BsHeadphones,
     title: 'Listening Test',
     description: 'Test your listening skills with a variety of question types. For eg: Diagram Completion or Summary Completion.',
+    url: '/listening-test',
   },
   {
     icon: BiBookOpen,
     title: 'Reading Test',
     description: 'Test your listening skills with a variety of question types that will be based on the reading passage. For eg: Table Completion or Note Completion.',
+    url: '/reading-test',
   },
   {
     icon: BsPenFill,
     title: 'Writing Test',
     description: 'Test your writing skills by writing essays and reports.',
+    url: '/writing-test',
   },
   {
     icon: BsFillMicFill,
     title: 'Speaking Test',
     description: 'Test your speaking skills by recording you speaking session with the given question cards.',
+    url: '/speaking-test',
   },
   {
     icon: AiFillQuestionCircle,
     title: 'Listening Questions',
     description: 'Test your listening skills for each question type using stand alone questions.',
+    url: '/listening-questions',
   },
   {
     icon: AiFillQuestionCircle,
     title: 'Reading Questions',
     description: 'Test your reading skills for each question type using stand alone questions.',
+    url: '/reading-questions',
   }
 ];
 
@@ -72,14 +79,14 @@ export default function HeaderMegaMenu() {
         <ThemeIcon size={34} variant="default" radius="md">
           <item.icon style={{ width: rem(22), height: rem(22) }} color={theme.colors.blue[6]} />
         </ThemeIcon>
-        <div>
+        <Link to={item.url}>
           <Text size="sm" fw={500}>
             {item.title}
           </Text>
           <Text size="xs" c="dimmed">
             {item.description}
           </Text>
-        </div>
+        </Link>
       </Group>
     </UnstyledButton>
   ));
@@ -90,9 +97,9 @@ export default function HeaderMegaMenu() {
         <Group justify="space-between" h="100%">
           <Text size="xl">IELTS Simulator</Text>
           <Group h="100%" gap={0} visibleFrom="sm">
-            <a href="#" className={classes.link}>
+            <Link to="#" className={classes.link}>
               Home
-            </a>
+            </Link>
             <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
               <HoverCard.Target>
                 <a href="#" className={classes.link}>
@@ -139,9 +146,9 @@ export default function HeaderMegaMenu() {
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
 
-          <a href="#" className={classes.link}>
+          <Link to="#" className={classes.link}>
             Home
-          </a>
+          </Link>
           <UnstyledButton className={classes.link} onClick={toggleLinks}>
             <Center inline>
               <Box component="span" mr={5}>
