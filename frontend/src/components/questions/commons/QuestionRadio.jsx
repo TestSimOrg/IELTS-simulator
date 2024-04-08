@@ -47,6 +47,9 @@ export const QuestionRadio = ({ QuestionOption }) => {
                             <Radio
                                 value={option}
                                 label={option}
+                                iconColor="gray.5"
+                                color="rgba(0, 255, 8, 1)"
+                                variant="outline"
                             ></Radio>
                         </Grid.Col>
                     ))}
