@@ -1,3 +1,9 @@
+body{
+  font-family: "Reddit Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
 .header {
   height: rem(60px);
   position: fixed;
@@ -7,6 +13,8 @@
   padding-left: var(--mantine-spacing-md);
   padding-right: var(--mantine-spacing-md);
   border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+
+  
 }
 
 .link {
