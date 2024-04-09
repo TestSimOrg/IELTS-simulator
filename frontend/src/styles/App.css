@@ -63,6 +63,10 @@
   left: 0;
 }
 
+.mantine-UnstyledButton-root {
+  outline: none !important;
+}
+
 .mantine-Drawer-inner {
   left:0;
 }
