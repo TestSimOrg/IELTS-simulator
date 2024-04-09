@@ -92,12 +92,12 @@ export default function HeaderMegaMenu() {
   ));
 
   return (
-    <Box pb={120}>
+    <Box pb={60}>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
           <Text size="xl">IELTS Simulator</Text>
           <Group h="100%" gap={0} visibleFrom="sm">
-            <Link to="#" className={classes.link}>
+            <Link to="/" className={classes.link}>
               Home
             </Link>
             <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
@@ -139,7 +139,6 @@ export default function HeaderMegaMenu() {
         onClose={closeDrawer}
         size="100%"
         padding="md"
-        title="Navigation"
         hiddenFrom="sm"
         zIndex={1000000}
       >
