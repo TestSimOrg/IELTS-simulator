@@ -1,0 +1,13 @@
+/* hpheader = home page header */
+.hpheader {
+    padding: 10px 10px 0 10px;
+    color: rgb(0, 0, 0);
+
+    @media (max-width: $mantine-breakpoint-sm) {
+        font-size: x-large;
+    }
+}
+
+.txt {
+    color: rgba(0, 98, 255, 1);
+}
