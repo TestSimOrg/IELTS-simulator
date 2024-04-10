@@ -12,8 +12,8 @@ import {
   Anchor,
   Stack,
 } from '@mantine/core';
-import { GoogleButton } from '../components/googleButton.jsx';
-import { TwitterButton } from '../components/twitterButton.jsx';
+import { GoogleButton } from '../components/GoogleButton.jsx';
+import { TwitterButton } from '../components/TwitterButton.jsx';
 
 export function signIn(props) {
   const [type, toggle] = useToggle(['login', 'register']);
