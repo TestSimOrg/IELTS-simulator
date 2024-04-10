@@ -19,8 +19,6 @@ import {
     Navigate,
 } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import Header from "./components/Header";
-import HeaderMegaMenu from "./components/newHeader";
 
 function App() {
     return (
