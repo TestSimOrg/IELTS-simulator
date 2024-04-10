@@ -11,7 +11,7 @@ export default function Home() {
                 <title>IELTS sim</title>
             </Helmet>
             <div className="container">
-                                <Text size="40px" fw={500} ta="center" className="hpheader">IELTS Prep Has Never Been   
+                                <Text size="60px" fw={500} ta="center" className="hpheader">IELTS Prep Has Never Been   
                     <Text className="txt" span inherit> Easier</Text>
                 </Text>
                 <Link to="test">Test</Link>
