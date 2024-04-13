@@ -135,7 +135,7 @@ export default function HeaderMegaMenu() {
         onClose={closeDrawer}
         size="100%"
         padding="md"
-        hiddenFrom="sm"
+        hiddenFrom="md"
         zIndex={1000000}>
         <Text size="xl">IELTS Simulator</Text>
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
@@ -157,6 +157,15 @@ export default function HeaderMegaMenu() {
           </UnstyledButton>
           <Collapse in={linksOpened}>{links}</Collapse>
           
+          <Link to="/questions" className={classes.link}>
+              Questions
+            </Link>
+            <Link to="/simulate" className={classes.link}>
+              Simulate
+            </Link>
+            <Link to="/exam" className={classes.link}>
+              Exam
+            </Link>
           <Divider my="sm" />
 
           <Group justify="center" grow pb="xl" px="md">
