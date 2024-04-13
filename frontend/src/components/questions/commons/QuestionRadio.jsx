@@ -43,7 +43,7 @@ export const QuestionRadio = ({ QuestionOption }) => {
             <Radio.Group>
                 <Grid>
                     {QuestionOption.map((option, optionIndex) => (
-                        <Grid.Col span={{ xs: 12, md: 6, lg: 4}} justify="center" key={optionIndex}>
+                        <Grid.Col span={12} /*span={{ xs: 12, md: 6, lg: 4}}*/ justify="center" key={optionIndex}>
                             <Radio
                                 value={option}
                                 label={option}
