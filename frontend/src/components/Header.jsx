@@ -80,11 +80,11 @@ export default function HeaderMegaMenu() {
   ));
 
   return (
-    <Box pb={60}>
+    <Box pb={60} h={60} style={{ position: 'sticky', top: 0, background: 'white', zIndex: 10 }}>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
           <Text size="xl">IELTS Simulator</Text>
-          <Group h="100%" gap={0} visibleFrom="sm">
+          <Group h="100%" gap={0} visibleFrom="md">
             <Link to="/" className={classes.link}>
               Home
             </Link>
@@ -122,12 +122,11 @@ export default function HeaderMegaMenu() {
             </Link>
           </Group>
 
-          <Group visibleFrom="sm">
+          <Group visibleFrom="md">
             <Button variant="default">Log in</Button>
             <Button>Sign up</Button>
           </Group>
-          
-          <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
+          <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="md" />
         </Group>
       </header>
 
@@ -137,8 +136,8 @@ export default function HeaderMegaMenu() {
         size="100%"
         padding="md"
         hiddenFrom="sm"
-        zIndex={1000000}
-      >
+        zIndex={1000000}>
+        <Text size="xl">IELTS Simulator</Text>
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
 
