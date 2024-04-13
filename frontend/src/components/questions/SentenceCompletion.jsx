@@ -34,7 +34,7 @@ export const SentenceCompletion = ({ q }) => {
                             .split("_BLANK_")
                             .map((part, partIndex) => (
                                 <React.Fragment key={`${questionIndex}_${partIndex}`}>
-                                    <Text>{part}</Text>
+                                    <Text>{part}&#8205;</Text>
                                     {/* if the part is not the last part, place a QuestionInput component*/}
                                     {partIndex !==
                                         numStatement.split("_BLANK_").length -

@@ -41,12 +41,6 @@
   color: #888;
 }
 
-.MuiBottomNavigation-root {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
 .arrow{
   stroke:black;
   stroke-width:2; 
