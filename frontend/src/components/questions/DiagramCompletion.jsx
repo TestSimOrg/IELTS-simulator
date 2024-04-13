@@ -50,7 +50,7 @@ import { QuestionImage } from "./commons/QuestionImage";
 
 export const DiagramCompletion = ({ q }) => {
     return (
-        <Question questionHeader={q.questionHeader} questionStatment="">
+        <Question questionHeader={q.questionHeader} questionTitle={q.questionTitle} questionStatment="">
             <QuestionImage image={q.image} />
             <Grid gutter="lg">
                 {q.numStatements.map((numStatement, index) => (

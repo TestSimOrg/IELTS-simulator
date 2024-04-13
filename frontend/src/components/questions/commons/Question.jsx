@@ -8,7 +8,7 @@ export const Question = ({ questionTitle, questionHeader, questionStatement, chi
 			<Text ta={"left"} size="lg">{questionTitle}</Text>
 			<Text size="md">{questionHeader}</Text>
 			<Text size="sm">{questionStatement}</Text>
-			<div style={{ marginTop: "20px" }}>
+			<div style={{ marginTop: "5px" }}>
 				{children}
 			</div>
 		</div>

@@ -28,6 +28,7 @@ export const NoteCompletion = ({ q }) => {
         <Question
             questionStatment={q.questionHeader}
             questionTitle={q.questionTitle}
+            questionHeader={q.questionHeader}
         >
             <Grid>
                 {q.questionStatements.map((statement, statementIndex) => (
