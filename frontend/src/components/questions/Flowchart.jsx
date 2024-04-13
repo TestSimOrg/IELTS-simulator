@@ -18,6 +18,7 @@ export const Flowchart = ({ q }) => {
         <Question
             questionStatment={q.questionHeader}
             questionTitle=""
+            questionHeader={q.questionHeader}
         >
             <Grid gutter={2}>
                 {q.steps.map((step, stepIndex) => (
