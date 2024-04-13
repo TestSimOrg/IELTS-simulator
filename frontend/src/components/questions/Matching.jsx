@@ -33,6 +33,7 @@ import React from "react";
 import { Grid, Typography } from "@mui/material";
 import { Question } from "./commons/Question";
 import { QuestionRadio } from "./commons/QuestionRadio";
+import { Text } from "@mantine/core";
 
 export const Matching = ({ q }) => {
     return (
@@ -40,6 +41,7 @@ export const Matching = ({ q }) => {
             questionHeader={q.questionHeader}
             questionStatment={q.questionStatment}
         >
+        <Text pb={5}>{q.questionStatment}</Text>
             <Grid container spacing={2}>
                 {q.numStatements.map((numStatement, index) => (
                     <Grid item xs={12} key={index}>
