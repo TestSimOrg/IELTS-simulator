@@ -212,31 +212,24 @@ export default function Test() {
     return (
         <div>
             <Container>
-                <Typography variant="h4">Matching</Typography>
                 <Matching q={qMatching} />
             </Container>
             <Container>
-                <Typography variant="h4">Sentence Completion</Typography>
                 <SentenceCompletion q={qSentenceCompletion} />
             </Container>
             <Container>
-                <Typography variant="h4">Multiple Choice Type 1</Typography>
                 <MultipleChoiceType1 q={qMultipleChoiceType1} />
             </Container>
             <Container>
-                <Typography variant="h4">Multiple Choice Type 2</Typography>
                 <MultipleChoiceType2 q={qMultipleChoiceType2} />
             </Container>
             <Container>
-                <Typography variant="h4">Diagram Completion</Typography>
                 <DiagramCompletion q={qDiagramCompletion} />
             </Container>
             <Container>
-                <Typography variant="h4">Note Completion</Typography>
                 <NoteCompletion q={qNoteCompletion} />
             </Container>
             <Container>
-                <Typography variant="h4">Flowchart</Typography>
                 <Flowchart q={qFlowChart} />
             </Container>
         </div>
