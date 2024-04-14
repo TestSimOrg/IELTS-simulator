@@ -17,28 +17,26 @@ export const YNNG = ({ q }) => {
 
   return (
     <Container>
-      <Question questionStatment="" questionHeader={q.questionHeader}>
-        {q.numStatements.map((item, idx) => (
-          <div key={idx}>
-            <Text>{item}</Text>
-            <Radio.Group
-              value={values[idx]}
-              onChange={(newValue) => handleRadioChange(idx, newValue)}
-              pb={10}
-            >
-              {options.map((option, index) => (
-                <Radio
-                  key={index}
-                  pt={10}
-                  color={"lime.4"}
-                  value={option}
-                  label={option}
-                />
-              ))}
-            </Radio.Group>
-          </div>
-        ))}
-      </Question>
+      <Text size="md">{q.questionHeader}</Text>
+      {q.numStatements.map((item, idx) => (
+        <div key={idx}>
+          <Text pt={10}>{item}</Text>
+          <Radio.Group
+            value={values[idx]}
+            onChange={(newValue) => handleRadioChange(idx, newValue)}
+          >
+            {options.map((option, index) => (
+              <Radio
+                key={index}
+                pt={10}
+                color={"lime.4"}
+                value={option}
+                label={option}
+              />
+            ))}
+          </Radio.Group>
+        </div>
+      ))}
     </Container>
   );
 };
