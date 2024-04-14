@@ -11,6 +11,7 @@ import { MultipleChoiceType2 } from "../components/questions/MultipleChoiceType2
 import { NoteCompletion } from "../components/questions/NoteCompletion";
 import { DiagramCompletion } from "../components/questions/DiagramCompletion";
 import { Flowchart } from "../components/questions/Flowchart";
+import { YNNG } from "../components/questions/YNNG";
 import imgBase64 from "../assets/imgExample";
 
 export default function Test() {
@@ -38,6 +39,21 @@ export default function Test() {
             "25 Introduction to Culture Theory _BLANK_",
         ],
     };
+
+    const qYNNG = {
+        startQuestionNum: 7,
+        endQuestionNum: 12,
+        standAlone: true,
+        questionHeader: "Do the following statements agree with the views of the writer in the Reading Passage?\nWrite:\n\tYES if the statement agrees with the views of the writer.\n\tNO if the statement contradicts what the writer thinks.\n\tNOT GIVEN if it is impossible to know what the writer's point of view is.",
+        numStatements: [
+            "7\tChildren can learn their first language without being taught.",
+            "8\tFrom the time of their birth, humans seem to have an ability to learn language",
+            "9\tAccording to experts in the 1950s and '60s, language learning is very similar to the training of animals.",
+            "10\tRepetition in language learning is important, according to Dr Eliot.",
+            "11\tDr Golinkoff is concerned that \"baby talk\" is spoken too much by some parents.",
+            "12\tThe first word a child learns to recognise is usually \"Mummy\" or \"Daddy\"."
+        ]
+    }
 
     var qSentenceCompletion = {
         startQuestionNum: 27,
@@ -222,6 +238,9 @@ export default function Test() {
             </Container>
             <Container size="xl">
                 <MultipleChoiceType2 q={qMultipleChoiceType2} />
+            </Container>
+            <Container size="xl">
+                <YNNG q={qYNNG} />
             </Container>
             <Container size="xl">
                 <DiagramCompletion q={qDiagramCompletion} />
