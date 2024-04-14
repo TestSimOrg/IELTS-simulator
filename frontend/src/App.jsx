@@ -12,6 +12,8 @@ import Home from "./pages/Home";
 import Test from "./pages/Test";
 import SignIn from "./pages/SignUp"
 
+import StandaloneQuestions from "./pages/StandaloneQuestions";
+
 import {
     BrowserRouter as Router,
     Route,
@@ -29,6 +31,7 @@ function App() {
                     <Route path="/">
                         <Route index element={<Home />} />
                         <Route path="test" element={<Test />} />
+                        <Route path="questions" element={<StandaloneQuestions />} />
                         <Route path="*" element={<PageNotFound />} />
                         <Route path='signIn' element={<SignIn />} />
                     </Route>
