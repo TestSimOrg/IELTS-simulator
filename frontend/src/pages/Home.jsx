@@ -8,13 +8,15 @@ export default function Home() {
     return (
         <div>
             <Helmet>
-                <title>IELTS sim</title>
+                <title>IELTS SIMULATOR</title>
             </Helmet>
             <div className="container">
                                 <Text size="60px" fw={500} ta="center" className="hpheader">IELTS Prep Has Never Been   
                     <Text className="txt" span inherit> Easier</Text>
                 </Text>
-                <Link to="test">Test</Link>
+                <Text ta={"center"}> 
+                    <Link to="test">Test</Link>
+                </Text> 
             </div>
         </div>
     );
