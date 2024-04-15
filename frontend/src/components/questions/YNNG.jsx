@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from "@mui/material";
 import { QuestionHeader } from './commons/QuestionHeader';
 import { NumStatement } from './commons/NumStatement';
@@ -7,28 +7,43 @@ import { RadioButtons } from './commons/RadioButtons';
 const options = ["YES", "NO", "NOT GIVEN"];
 
 export const YNNG = ({ q }) => {
+  const [ansArr, setAnsArr] = useState([]);
 
-  const [values, setValues] = useState(new Array(q.numStatements.length).fill(undefined));
+  useEffect(() => {
+    let arr = [];
+    for (let i = q.startQuestionNum; i <= q.endQuestionNum; i++) {
+      arr.push({
+        number: i,
+        ans: ""
+      });
+    }
+    setAnsArr(arr);
+  }, []);
 
-  const handleRadioChange = (idx, newValue) => {
-    const newValues = [...values];
-    newValues[idx] = newValue;
-    setValues(newValues);
+  const handleRadioChange = (questionNum, newValue) => {
+    setAnsArr(prevAnsArr => {
+      const newAnsArr = [...prevAnsArr];
+      newAnsArr[questionNum - q.startQuestionNum].ans = newValue;
+      return newAnsArr;
+    });
   };
 
   return (
     <Container className='TFNG'>
       <QuestionHeader header={q.questionHeader} />
-      {q.numStatements.map((item, idx) => (
-        <div key={idx}>
-          <NumStatement statement={item} />
-          <RadioButtons
-            options={options}
-            value={values[idx]}
-            onChange={(newValue) => handleRadioChange(idx, newValue)}
-          />
-        </div>
-      ))}
+      {q.numStatements.map((statement, idx) => {
+        const questionNum = q.startQuestionNum + idx;
+        return (
+          <div key={idx}>
+            <NumStatement statement={statement} />
+            <RadioButtons
+              options={options}
+              value={ansArr[idx]?.ans || ""}
+              onChange={(newValue) => handleRadioChange(questionNum, newValue)}
+            />
+          </div>
+        );
+      })}
     </Container>
   );
 };
