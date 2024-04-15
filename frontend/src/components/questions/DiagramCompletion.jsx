@@ -57,8 +57,10 @@ export const DiagramCompletion = ({ q }) => {
         <QuestionImage image={q.image} />
         <Grid gutter="lg">
             {q.numStatements.map((numStatement, index) => (
-                <Grid.Col pl={20} span={12} /*span={{ xs: 12, md: 6, lg: 4}}*/
-                key={index}>
+                <Grid.Col pl={20} span={{ xs: 12, md: 6 }}
+                  key={index}
+                  pr="xl"
+                >
                     <Text size="sm">{numStatement.replace("_BLANK_", "_______")}</Text>
                     <QuestionRadio QuestionOption={q.questionOptions} />
                 </Grid.Col>

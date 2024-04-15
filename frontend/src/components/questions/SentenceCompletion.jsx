@@ -38,7 +38,7 @@ export const SentenceCompletion = ({ q }) => {
             <Stack>
                 {questionArr.map((qArr, idx) => (
                     <Text span key={idx} size="md">
-                    {qArr[0]}
+                    {qArr[0]}&#8205;
                     <TextInput
                         key={idx}
                         onChange={(e) => {

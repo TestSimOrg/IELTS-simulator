@@ -59,6 +59,15 @@ const mockdata = [
 export default function HeaderMegaMenu() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
+
+  // close the drawer when the page is larger than md
+  // this is to prevent the drawer from being opened when the page is resized from mobile to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1024) {
+      closeDrawer();
+    }
+  });
+
   const theme = useMantineTheme();
 
   const links = mockdata.map((item) => (
@@ -80,10 +89,12 @@ export default function HeaderMegaMenu() {
   ));
 
   return (
-    <Box pb={60} h={60} style={{ position: 'sticky', top: 0, background: 'white', zIndex: 10 }}>
+    <Box pb={60} h={60} className={classes.headerBox}>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          <Text size="xl">IELTS Simulator</Text>
+          <Link to="/" className={classes.logo}>
+            <Text size="xl">IELTS Simulator</Text>
+          </Link>
           <Group h="100%" gap={0} visibleFrom="md">
             <Link to="/" className={classes.link}>
               Home
@@ -137,7 +148,10 @@ export default function HeaderMegaMenu() {
         padding="md"
         hiddenFrom="md"
         zIndex={1000000}>
-        <Text size="xl">IELTS Simulator</Text>
+        <Link to="/" className={classes.logo}>
+          <Text size="xl" 
+          >IELTS Simulator</Text>
+        </Link>
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
 

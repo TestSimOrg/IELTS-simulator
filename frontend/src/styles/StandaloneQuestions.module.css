@@ -1,0 +1,9 @@
+.fakeMenuItem {
+    padding: 0;
+}
+
+.realMenuItem {
+    padding: 8px;
+    display: flex;  
+    gap: 8px;
+}

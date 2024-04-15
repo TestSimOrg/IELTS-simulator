@@ -30,24 +30,22 @@
 
 // question/Maching.jsx
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Text } from "@mantine/core";
 import { Question } from "./commons/Question";
 import { QuestionRadio } from "./commons/QuestionRadio";
-import { Text } from "@mantine/core";
 
 export const Matching = ({ q }) => {
     return (
         <Question
-            questionHeader={q.questionHeader}
-            questionStatment={q.questionStatment}
+            questionTitle={q.questionHeader}
+            questionHeader={q.questionStatment}
         >
-        <Text pb={5}>{q.questionStatment}</Text>
-            <Grid container spacing={2}>
+        <Grid gutter="lg">
                 {q.numStatements.map((numStatement, index) => (
-                    <Grid item xs={12} key={index}>
-                        <Typography variant="body1">{numStatement.replace("_BLANK_", "_______")}</Typography>
+                    <Grid.Col span={{ xs: 12, md: 6 }} key={index} pr="xl">
+                        <Text size="sm">{numStatement.replace("_BLANK_", "_______")}</Text>
                         <QuestionRadio QuestionOption={q.questionOptions} />
-                    </Grid>
+                    </Grid.Col >
                 ))}
             </Grid>
         </Question>

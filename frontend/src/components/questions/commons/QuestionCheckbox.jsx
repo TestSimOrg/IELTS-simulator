@@ -8,7 +8,7 @@ export const QuestionCheckbox = ({ QuestionOption }) => {
     return (
         <Grid >
             {QuestionOption.map((option, optionIndex) => (
-                <Grid.Col span={{ xs: 12, md: 6, lg: 4}} key={optionIndex} justify="center">
+                <Grid.Col span={{ xs: 12, md: 6 }} key={optionIndex} justify="center" pr="xl">
                     <Checkbox 
                         key={optionIndex} 
                         label={option} 

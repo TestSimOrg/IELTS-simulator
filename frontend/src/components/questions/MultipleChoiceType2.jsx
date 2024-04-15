@@ -41,7 +41,7 @@
 
 // question/MultipleChoiceType2.jsx
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Text } from "@mantine/core";
 import { Question } from "./commons/Question";
 import { QuestionCheckbox } from "./commons/QuestionCheckbox";
 
@@ -51,13 +51,13 @@ export const MultipleChoiceType2 = ({ q }) => {
     const oneHeader = (q.questionHeader.length === 1) || (q.questionHeader.every((val, i, arr) => val === arr[0]));
     return (
         <Question questionHeader={oneHeader ? q.questionHeader[0] : null} questionStatment="">
-            <Grid container spacing={2}>
+            <Grid gutter="lg">
                 {q.numStatements.map((numStatement, index) => (
-                    <Grid item xs={12} key={index}>
-                        <Typography variant="h6">{!oneHeader ? q.questionHeader[index] : null}</Typography>
-                        <Typography variant="body1">{numStatement}</Typography>
+                    <Grid.Col span={{ xs: 12, md: 6 }} key={index} pr="xl">
+                        <Text>{!oneHeader ? q.questionHeader[index] : null}</Text>
+                        <Text>{numStatement}</Text>
                         <QuestionCheckbox QuestionOption={q.questionOptions[index]} />
-                    </Grid>
+                    </Grid.Col>
                 ))}
             </Grid>
         </Question>

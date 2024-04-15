@@ -2,8 +2,9 @@
 //
 // Path: frontend/src/pages/Test.jsx
 
-import React, {useState, useEffect} from "react";
-import { Container, Typography } from "@mui/material";
+
+import React from "react";
+import { Container } from "@mantine/core";
 import { Matching } from "../components/questions/Matching";
 import { SentenceCompletion } from "../components/questions/SentenceCompletion";
 import { MultipleChoiceType1 } from "../components/questions/MultipleChoiceType1";
@@ -244,31 +245,31 @@ export default function Test() {
 
     return (
         <div>
-            <Container>
+            <Container size="xl">
                 <Matching q={qMatching} />
             </Container>
-            <Container>
+            <Container size="xl">
                 <SentenceCompletion q={qSentenceCompletion} />
             </Container>
-            <Container>
+            <Container size="xl">
                 <MultipleChoiceType1 q={qMultipleChoiceType1} />
             </Container>
-            <Container>
+            <Container size="xl">
                 <MultipleChoiceType2 q={qMultipleChoiceType2} />
             </Container>
-            <Container>
+            <Container size="xl">
                 <YNNG q={qYNNG} />
             </Container>
-            <Container>
+            <Container size="xl">
                 <TFNG q={qTFNG} />
             </Container>
-            <Container>
+            <Container size="xl">
                 <DiagramCompletion q={qDiagramCompletion} />
             </Container>
-            <Container>
+            <Container size="xl">
                 <NoteCompletion q={qNoteCompletion} />
             </Container>
-            <Container>
+            <Container size="xl">
                 <Flowchart q={qFlowChart} />
             </Container>
         </div>

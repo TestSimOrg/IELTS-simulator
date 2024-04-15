@@ -41,12 +41,6 @@
   color: #888;
 }
 
-.MuiBottomNavigation-root {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
 .arrow{
   stroke:black;
   stroke-width:2; 
@@ -66,7 +60,13 @@
   outline: none !important;
 }
 
+/* General fix to all mantine absolute positioned components */
+/* I don't know why it's not working by default withour this fix */
+
 .mantine-Drawer-inner {
+  left:0;
+}
+.mantine-Modal-inner {
   left:0;
 }
 

@@ -56,3 +56,16 @@ body{
   padding-bottom: var(--mantine-spacing-xl);
   border-top: rem(1px) solid light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5));
 }
+
+.headerBox {
+  position : sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+.logo {
+  color:var(--mantine-color-text);
+  width: fit-content;
+  display: inline-block;
+}
