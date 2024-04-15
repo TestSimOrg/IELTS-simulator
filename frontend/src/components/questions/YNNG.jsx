@@ -16,7 +16,6 @@ export const YNNG = ({ q }) => {
   };
 
   return (
-    <Container>
       <Question questionStatment="" questionHeader={q.questionHeader}>
         {q.numStatements.map((item, idx) => (
           <div key={idx}>
@@ -39,6 +38,5 @@ export const YNNG = ({ q }) => {
           </div>
         ))}
       </Question>
-    </Container>
   );
 };

@@ -60,6 +60,12 @@
   outline: none !important;
 }
 
+/* General fix to all mantine absolute positioned components */
+/* I don't know why it's not working by default withour this fix */
+
 .mantine-Drawer-inner {
+  left:0;
+}
+.mantine-Modal-inner {
   left:0;
 }
