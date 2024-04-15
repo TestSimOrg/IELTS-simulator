@@ -212,6 +212,7 @@ const q = [
 
 import React from "react";
 import { useState, useEffect } from "react";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { Grid, Text, Container, Menu, Checkbox, Button } from "@mantine/core";
 import CardStandaloneQuestion from "../components/CardStandaloneQuestion";
 
@@ -220,9 +221,8 @@ import imgBase64 from "../assets/imgExample";
 import classes from "../styles/StandaloneQuestions.module.css";
 
 export default function StandaloneQuestions() {
-
     const [questions, setQuestions] = useState([]);
-    
+
     const questionTypes = {
         MultipleChoiceType1: "Multiple Choice",
         MultipleChoiceType2: "Multiple Choice",
@@ -242,24 +242,22 @@ export default function StandaloneQuestions() {
     );
 
     useEffect(() => {
-        // will fetch the questions from the backend
+        // will fetch the questions from the backend instead of using static filtered data
         setQuestions(q.filter((q) => filterQuestionType.includes(q.type)));
     }, [filterQuestionType]);
-
 
     return (
         <Container size="xl" pt="lg">
             <Text align="center" size="xl" weight={700}>
                 Standalone Problem Solving
             </Text>
-            <hr />
             <Menu
                 opened={filterQuestionTypeOpenend}
                 onChange={setFilterQuestionTypeOpenend}
             >
                 <Menu.Target>
                     <Button color="blue" variant="outline">
-                        Question Type
+                        Question Type&nbsp;{filterQuestionTypeOpenend ? <IoIosArrowUp /> : <IoIosArrowDown />}
                     </Button>
                 </Menu.Target>
 
@@ -279,7 +277,6 @@ export default function StandaloneQuestions() {
                                     );
                                 }}
                             >
-                                {/* disable checkbox click, it will be handled by the button later*/}
                                 <Checkbox
                                     checked={filterQuestionType.includes(type)}
                                     onChange={() => {}}
