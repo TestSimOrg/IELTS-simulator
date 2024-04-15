@@ -80,7 +80,7 @@ export const qSentenceCompletion = {
         "Complete the sentences below.\nWrite NO MORE THAN TWO WORDS ONLY for each answer.",
     questionTitle: "",
     numStatements: [
-        "27 Studying with the Open University demanded a great deal of _BLANK_ ",
+        "27 Studying with the Open University demanded a great deal of _BLANK_ .",
         "28 Studying and working at the same time improved Rachel's _BLANK_ skills.",
         "29 It was helpful that the course was structured in _BLANK_.",
         "30 She enjoyed meeting other students at _BLANK_."
