@@ -4,7 +4,7 @@ export const QuestionHeader = ({ header }) => {
 
   return (
 
-    <Text size="md">{header}</Text>
+    <Text fw={"bold"} size="md">{header}</Text>
 
   )
 

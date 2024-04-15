@@ -58,10 +58,15 @@ export const QuestionRadio = ({ QuestionOption }) => {
         );
     } else {
         return (
-            <Select
-                data={QuestionOption}
-                placeholder="Select an option"
-            ></Select>     
+            <div>
+                <Select
+                    data={QuestionOption}
+                    placeholder="Select an option"
+                    
+                    w={"50%"}
+                    comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 }, shadow: 'md' }}
+                ></Select>     
+            </div>
         );
     }
 };

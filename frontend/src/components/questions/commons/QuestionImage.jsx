@@ -12,7 +12,7 @@ export const QuestionImage = ({ image }) => {
         <img
             src={`data:${image.contentType};base64,${image.data}`}
             alt="question"
-            style={{ width: "50%" }}
+            style={{ width: "50%" , margin: "1%"}}
         />
         </div>
     );

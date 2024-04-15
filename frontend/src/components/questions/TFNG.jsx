@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Container } from "@mui/material";
-import { Text } from '@mantine/core';
 import { QuestionHeader } from './commons/QuestionHeader';
 import { NumStatement } from './commons/NumStatement';
 import { RadioButtons } from './commons/RadioButtons';
