@@ -1,41 +1,50 @@
-import React, { useState } from 'react';
-import { Radio } from '@mantine/core';
+import React, { useEffect, useState } from 'react';
 import { Container } from "@mui/material";
-import { Text } from '@mantine/core';
+import { QuestionHeader } from './commons/QuestionHeader';
+import { NumStatement } from './commons/NumStatement';
+import { RadioButtons } from './commons/RadioButtons';
 
 const options = ["TRUE", "FALSE", "NOT GIVEN"];
 
 export const TFNG = ({ q }) => {
-  const [values, setValues] = useState(new Array(q.numStatements.length).fill(undefined));
+  const [ansArr, setAnsArr] = useState([]);
 
-  const handleRadioChange = (idx, newValue) => {
-    const newValues = [...values];
-    newValues[idx] = newValue;
-    setValues(newValues);
+  useEffect(() => {
+    let arr = [];
+    for (let i = q.startQuestionNum; i <= q.endQuestionNum; i++) {
+      arr.push({
+        number: i,
+        ans: ""
+      });
+    }
+    setAnsArr(arr);
+  }, []);
+
+  const handleRadioChange = (questionNum, newValue) => {
+    setAnsArr(prevAnsArr => {
+      const newAnsArr = [...prevAnsArr];
+      newAnsArr[questionNum - q.startQuestionNum].ans = newValue;
+      console.log(newAnsArr)
+      return newAnsArr;
+    });
   };
 
   return (
     <Container className='TFNG'>
-      <Text size="md">{q.questionHeader}</Text>
-      {q.numStatements.map((item, idx) => (
-        <div key={idx}>
-          <Text pt={10}>{item}</Text>
-          <Radio.Group
-            value={values[idx]}
-            onChange={(newValue) => handleRadioChange(idx, newValue)}
-          >
-            {options.map((option, index) => (
-              <Radio
-                key={index}
-                pt={10}
-                color={"lime.4"}
-                value={option}
-                label={option}
-              />
-            ))}
-          </Radio.Group>
-        </div>
-      ))}
+      <QuestionHeader header={q.questionHeader} />
+      {q.numStatements.map((statement, idx) => {
+        const questionNum = q.startQuestionNum + idx;
+        return (
+          <div key={idx}>
+            <NumStatement statement={statement} />
+            <RadioButtons
+              options={options}
+              value={ansArr[idx]?.ans || ""}
+              onChange={(newValue) => handleRadioChange(questionNum, newValue)}
+            />
+          </div>
+        );
+      })}
     </Container>
   );
 };

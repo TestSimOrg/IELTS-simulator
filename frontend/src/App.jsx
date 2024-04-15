@@ -21,6 +21,11 @@ import {
     Navigate,
 } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { SentenceCompletion } from "./components/questions/SentenceCompletion";
+import { TFNG } from "./components/questions/TFNG";
+import { YNNG } from "./components/questions/YNNG";
+import { qSentenceCompletion, qTFNG, qYNNG } from "./pages/Test";
+
 
 function App() {
     return (
@@ -34,6 +39,15 @@ function App() {
                         <Route path="questions" element={<StandaloneQuestions />} />
                         <Route path="*" element={<PageNotFound />} />
                         <Route path='signIn' element={<SignIn />} />
+                        <Route path='sc' element={<SentenceCompletion q={qSentenceCompletion} />} />
+                        <Route path='ynng' element={<YNNG q={qYNNG} />} />
+                        <Route path='tfng' element={<TFNG q={qTFNG} />} />
+                        {/* <Route path='mcq' element={<SignIn />} />
+                        <Route path='sumc' element={<SignIn />} />
+                        <Route path='fc' element={<SignIn />} />
+                        <Route path='tc' element={<SignIn />} />
+                        <Route path='formc' element={<SignIn />} />
+                        <Route path='dc' element={<SignIn />} /> */}
                     </Route>
                 </Routes >
             </div>
