@@ -44,23 +44,26 @@
 //  question/DiagramCompletion.jsx
 import React from "react";
 import { Grid, Text } from "@mantine/core";
-import { Question } from "./commons/Question";
+import { QuestionHeader } from "./commons/QuestionHeader";
+import { QuestionTitle } from "./commons/QuestionTitle";
 import { QuestionRadio } from "./commons/QuestionRadio";
 import { QuestionImage } from "./commons/QuestionImage";
 
 export const DiagramCompletion = ({ q }) => {
     return (
-        <Question questionHeader={q.questionHeader} questionTitle={q.questionTitle} questionStatment="">
-            <QuestionImage image={q.image} />
-            <Grid gutter="lg">
-                {q.numStatements.map((numStatement, index) => (
-                    <Grid.Col span={{ xs: 12, md: 6, lg: 4}}
-                    key={index}>
-                        <Text size="sm">{numStatement.replace("_BLANK_", "_______")}</Text>
-                        <QuestionRadio QuestionOption={q.questionOptions} />
-                    </Grid.Col>
-                ))}
-            </Grid>
-        </Question>
+        <>
+        <QuestionHeader header={q.questionHeader}/>
+        <QuestionTitle title={q.questionTitle} />
+        <QuestionImage image={q.image} />
+        <Grid gutter="lg">
+            {q.numStatements.map((numStatement, index) => (
+                <Grid.Col pl={20} span={12} /*span={{ xs: 12, md: 6, lg: 4}}*/
+                key={index}>
+                    <Text size="sm">{numStatement.replace("_BLANK_", "_______")}</Text>
+                    <QuestionRadio QuestionOption={q.questionOptions} />
+                </Grid.Col>
+            ))}
+        </Grid>
+        </>
     );
 }
