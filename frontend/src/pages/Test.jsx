@@ -12,6 +12,7 @@ import { NoteCompletion } from "../components/questions/NoteCompletion";
 import { DiagramCompletion } from "../components/questions/DiagramCompletion";
 import { Flowchart } from "../components/questions/Flowchart";
 import { YNNG } from "../components/questions/YNNG";
+import { TFNG } from "../components/questions/TFNG";
 import imgBase64 from "../assets/imgExample";
 
 export default function Test() {
@@ -52,6 +53,20 @@ export default function Test() {
             "10\tRepetition in language learning is important, according to Dr Eliot.",
             "11\tDr Golinkoff is concerned that \"baby talk\" is spoken too much by some parents.",
             "12\tThe first word a child learns to recognise is usually \"Mummy\" or \"Daddy\"."
+        ]
+    }
+
+    const qTFNG = {
+        startQuestionNum: 9,
+        endQuestionNum: 13,
+        standAlone: true,
+        questionHeader: "Do the following statements agree with the views of the writer in the Reading Passage?\nIn boxes 9-13 on your answer write:\n\tTRUE if the statement agrees with the views of the information.\n\tNO if the statement contradicts the information.\n\tNOT GIVEN if there is no information on this.",
+        numStatements: [
+            "9\tCoconut seeds need shade in order to germinate.",
+            "11\tCoconuts were probably transported to Asia from America in the 16th century.",
+            " 12\tCoconuts found on the west coast of America were a different type from those found on the east coast.",
+            "13\tAll coconuts found in Asia are cultivated varieties.",
+            "14\tCoconuts are cultivated in different ways in America and the Pacific."
         ]
     }
 
@@ -241,6 +256,9 @@ export default function Test() {
             </Container>
             <Container size="xl">
                 <YNNG q={qYNNG} />
+            </Container>
+            <Container size="xl">
+                <TFNG q={qTFNG} />
             </Container>
             <Container size="xl">
                 <DiagramCompletion q={qDiagramCompletion} />

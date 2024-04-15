@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Radio } from '@mantine/core';
-import { Question } from "./commons/Question";
-import { Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 import { Text } from '@mantine/core';
 
-const options = ["YES", "NO", "NOT GIVEN"];
+const options = ["TRUE", "FALSE", "NOT GIVEN"];
 
-export const YNNG = ({ q }) => {
+export const TFNG = ({ q }) => {
   const [values, setValues] = useState(new Array(q.numStatements.length).fill(undefined));
 
   const handleRadioChange = (idx, newValue) => {
