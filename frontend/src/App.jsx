@@ -24,7 +24,9 @@ import { HelmetProvider } from "react-helmet-async";
 import { SentenceCompletion } from "./components/questions/SentenceCompletion";
 import { TFNG } from "./components/questions/TFNG";
 import { YNNG } from "./components/questions/YNNG";
-import { qSentenceCompletion, qTFNG, qYNNG } from "./pages/Test";
+import { MultipleChoiceType1 } from "./components/questions/MultipleChoiceType1";
+import { Matching } from "./components/questions/Matching";
+import { qSentenceCompletion, qTFNG, qYNNG, qMultipleChoiceType1, qMatching } from "./pages/Test";
 
 
 function App() {
@@ -42,9 +44,9 @@ function App() {
                         <Route path='sc' element={<SentenceCompletion q={qSentenceCompletion} />} />
                         <Route path='ynng' element={<YNNG q={qYNNG} />} />
                         <Route path='tfng' element={<TFNG q={qTFNG} />} />
-                        {/* <Route path='mcq' element={<SignIn />} />
-                        <Route path='sumc' element={<SignIn />} />
-                        <Route path='fc' element={<SignIn />} />
+                        <Route path='mcq' element={<MultipleChoiceType1 q={qMultipleChoiceType1} />} />
+                        <Route path='matching' element={<Matching q={qMatching} /> } />
+                        {/*<Route path='fc' element={<SignIn />} />
                         <Route path='tc' element={<SignIn />} />
                         <Route path='formc' element={<SignIn />} />
                         <Route path='dc' element={<SignIn />} /> */}
