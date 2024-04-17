@@ -3,7 +3,7 @@ import { Radio } from '@mantine/core';
 
 export const RadioButtons = ({ options, value, onChange }) => {
   return (
-    <Radio.Group value={value} onChange={onChange}>
+    <Radio.Group value={value} onChange={onChange} pl={"sm"}>
       {options.map((option, index) => (
         <Radio
           key={index}

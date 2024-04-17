@@ -25,7 +25,7 @@ export const qMatching = {
     questionHeader:
         "Write the correct letter, A, B or C next to question 21-25.\nYou may choose any letter more than once.",
     questionOptionRepeatable: true,
-    questionStatment:
+    questionStatement:
         "What does Jack tell his tutor about each of the following course option?",
     questionOptions: [
         "A He'll definitely do it.",
@@ -248,21 +248,15 @@ export default function Test() {
             <Container size="xl">
                 <Matching q={qMatching} />
             </Container>
-            <Container size="xl">
-                <SentenceCompletion q={qSentenceCompletion} />
-            </Container>
+            <SentenceCompletion q={qSentenceCompletion} />
             <Container size="xl">
                 <MultipleChoiceType1 q={qMultipleChoiceType1} />
             </Container>
             <Container size="xl">
                 <MultipleChoiceType2 q={qMultipleChoiceType2} />
             </Container>
-            <Container size="xl">
-                <YNNG q={qYNNG} />
-            </Container>
-            <Container size="xl">
-                <TFNG q={qTFNG} />
-            </Container>
+            <YNNG q={qYNNG} />
+            <TFNG q={qTFNG} />
             <Container size="xl">
                 <DiagramCompletion q={qDiagramCompletion} />
             </Container>
