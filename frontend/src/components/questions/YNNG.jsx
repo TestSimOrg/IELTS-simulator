@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container } from "@mui/material";
+import { Container } from '@mantine/core';
 import { QuestionHeader } from './commons/QuestionHeader';
 import { NumStatement } from './commons/NumStatement';
 import { RadioButtons } from './commons/RadioButtons';
@@ -29,12 +29,12 @@ export const YNNG = ({ q }) => {
   };
 
   return (
-    <Container className='TFNG'>
+    <Container size={"xl"} className='TFNG'>
       <QuestionHeader header={q.questionHeader} />
       {q.numStatements.map((statement, idx) => {
         const questionNum = q.startQuestionNum + idx;
         return (
-          <div key={idx}>
+          <div key={idx} style={{ paddingLeft: "10px" }}>
             <NumStatement statement={statement} />
             <RadioButtons
               options={options}

@@ -43,28 +43,51 @@
 // });
 
 // question/MultipleChoiceType1.jsx
-import React from "react";
-import { Grid, Text } from "@mantine/core";
+import React,{useState, useEffect} from "react";
+import { Container, Grid, Text } from "@mantine/core";
+import { QuestionHeader } from "./commons/QuestionHeader";
+import { RadioButtons } from "./commons/RadioButtons";
 import { Question } from "./commons/Question";
 import { QuestionRadio } from "./commons/QuestionRadio";
 
 export const MultipleChoiceType1 = ({ q }) => {
-    // If there's more than one header, we'll display the corresponding header for each question
-    // Or if all the headers are the same
-    const oneHeader = (q.questionHeader.length === 1) || (q.questionHeader.every((val, i, arr) => val === arr[0]));
+
+    const [ansArr, setAnsArr] = useState([]);
+
+    useEffect(() => {
+      let arr = [];
+      for (let i = q.startQuestionNum; i <= q.endQuestionNum; i++) {
+        arr.push({
+          number: i,
+          ans: ""
+        });
+      }
+      setAnsArr(arr);
+    }, []);
+  
+    const handleRadioChange = (questionNum, newValue) => {
+      setAnsArr(prevAnsArr => {
+        const newAnsArr = [...prevAnsArr];
+        newAnsArr[questionNum - q.startQuestionNum].ans = newValue;
+        return newAnsArr;
+      });
+    };
+
     return (
-        <Question questionStatment="" questionHeader={oneHeader ? q.questionHeader[0] : null}>
-            <Grid gutter="lg">
-                {q.numStatements.map((numStatement, index) => (
-                    <Grid.Col span={{ xs: 12, md: 6 }} key={index} pr="xl">
-                        <Text>{!oneHeader ? q.questionHeader[index] : null}</Text>
-                        <Text>{numStatement}</Text>
-                        <QuestionRadio
-                            QuestionOption={q.questionStatements[index]}
-                        />
-                    </Grid.Col>
-                ))}
-            </Grid>
-        </Question>
+        <Container size={"xl"}>
+            <QuestionHeader header={q.questionHeader[0]} />
+                <Grid gutter="lg">
+                    {q.numStatements.map((numStatement, index) => (
+                        <Grid.Col span={{ xs: 12, md: 6 }} key={index} pl={20}>
+                            <Text>{numStatement}</Text>
+                            <RadioButtons
+                                options={q.questionStatements[index]}
+                                value={ansArr[index]?.ans || ""}
+                                onChange={(newValue) => handleRadioChange(index + q.startQuestionNum, newValue)}
+                            />
+                        </Grid.Col>
+                    ))}
+                </Grid>
+    </ Container>
     );
 };

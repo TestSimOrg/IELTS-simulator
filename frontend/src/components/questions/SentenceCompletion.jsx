@@ -1,5 +1,5 @@
 import React,{ useEffect, useState} from "react";
-import { Stack, Text } from "@mantine/core";
+import { Container, Stack, Text } from "@mantine/core";
 import { TextInput } from "@mantine/core";
 import { TextInputValidator } from '../../utils/TextInputValidator.js'
 import { QuestionHeader } from "./commons/QuestionHeader";
@@ -33,9 +33,9 @@ export const SentenceCompletion = ({ q }) => {
 
     
     return (
-        <>
+        <Container size={"xl"}>
             <QuestionHeader header={q.questionHeader} />
-            <Stack>
+            <Stack p={"10px"}>
                 {questionArr.map((qArr, idx) => (
                     <Text span key={idx} size="md">
                     {qArr[0]}&#8205;
@@ -57,7 +57,7 @@ export const SentenceCompletion = ({ q }) => {
                     </Text>
                 ))}
             </Stack>
-        </>
+        </ Container>
     );
 };
 

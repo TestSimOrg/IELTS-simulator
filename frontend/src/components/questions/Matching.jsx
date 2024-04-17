@@ -29,25 +29,51 @@
 // };
 
 // question/Maching.jsx
-import React from "react";
-import { Grid, Text } from "@mantine/core";
-import { Question } from "./commons/Question";
-import { QuestionRadio } from "./commons/QuestionRadio";
+import React,{useEffect, useState} from "react";
+import { Container, Grid, Text } from "@mantine/core";
+import { QuestionHeader } from "./commons/QuestionHeader";
+import { QuestionStatement } from "./commons/QuestionStatement";
+import { RadioButtons } from "./commons/RadioButtons";
 
 export const Matching = ({ q }) => {
+
+    const [ansArr, setAnsArr] = useState([]);
+
+    useEffect(() => {
+      let arr = [];
+      for (let i = q.startQuestionNum; i <= q.endQuestionNum; i++) {
+        arr.push({
+          number: i,
+          ans: ""
+        });
+      }
+      setAnsArr(arr);
+    }, []);
+  
+    const handleRadioChange = (questionNum, newValue) => {
+      setAnsArr(prevAnsArr => {
+        const newAnsArr = [...prevAnsArr];
+        newAnsArr[questionNum - q.startQuestionNum].ans = newValue;
+        return newAnsArr;
+      });
+    };
+
     return (
-        <Question
-            questionTitle={q.questionHeader}
-            questionHeader={q.questionStatment}
-        >
+        < Container size={"xl"}>
+            <QuestionHeader header={q.questionHeader} />
+            <QuestionStatement qStatement={q.questionStatement}/>
         <Grid gutter="lg">
                 {q.numStatements.map((numStatement, index) => (
-                    <Grid.Col span={{ xs: 12, md: 6 }} key={index} pr="xl">
+                    <Grid.Col span={{ xs: 12, md: 6 }} key={index} pl={20}>
                         <Text size="sm">{numStatement.replace("_BLANK_", "_______")}</Text>
-                        <QuestionRadio QuestionOption={q.questionOptions} />
+                        <RadioButtons
+                            options={q.questionOptions}
+                            value={ansArr[index]?.ans || ""}
+                            onChange={(newValue) => handleRadioChange(index + q.startQuestionNum, newValue)}
+                        />
                     </Grid.Col >
                 ))}
             </Grid>
-        </Question>
+        </Container>
     );
 };
