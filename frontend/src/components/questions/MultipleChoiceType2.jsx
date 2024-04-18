@@ -50,7 +50,7 @@ export const MultipleChoiceType2 = ({ q }) => {
 
 	}, []);
 
-    const updateAns = (e, index, optionIndex, updatedLastArr) => {
+    const updateAns = (index, updatedLastArr) => {
         setAnsArr((prevAnsArr) => { //
             const newAnsArr = [...prevAnsArr];
             values[index]
@@ -82,7 +82,7 @@ export const MultipleChoiceType2 = ({ q }) => {
                     let newLastArr = [...prevLastArr]
                     newLastArr[index] = newLastArr[index].filter((element) => element !== optionIndex);
                     newLastArr[index].push(-1)
-                    updateAns(e, index, optionIndex, newLastArr);
+                    updateAns(index, newLastArr);
                     return newLastArr;
                 })
                 return newValues;
@@ -111,7 +111,7 @@ export const MultipleChoiceType2 = ({ q }) => {
                 if(newLastArr[index].length - 1 >= constraint[index]){
                     newLastArr[index].shift()
                 }
-                updateAns(e, index, optionIndex, newLastArr);
+                updateAns(index, newLastArr);
                 return newLastArr;
                 
             })
