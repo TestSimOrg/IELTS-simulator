@@ -9,7 +9,7 @@ import '@mantine/nprogress/styles.css';
 import "./styles/App.css";
 import PageNotFound from "./pages/PageNotFound";
 import Home from "./pages/Home";
-import Test, { qMultipleChoiceType2 } from "./pages/Test";
+import Test from "./pages/Test";
 import SignIn from "./pages/SignUp"
 
 import StandaloneQuestions from "./pages/StandaloneQuestions";
@@ -26,7 +26,7 @@ import { TFNG } from "./components/questions/TFNG";
 import { YNNG } from "./components/questions/YNNG";
 import { MultipleChoiceType1 } from "./components/questions/MultipleChoiceType1";
 import { Matching } from "./components/questions/Matching";
-import { qSentenceCompletion, qTFNG, qYNNG, qMultipleChoiceType1, qMatching } from "./pages/Test";
+import { qSentenceCompletion, qTFNG, qYNNG, qMultipleChoiceType1, qMatching, qMultipleChoiceType2 } from "./pages/Test";
 import { MultipleChoiceType2 } from "./components/questions/MultipleChoiceType2";
 
 
