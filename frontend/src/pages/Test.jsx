@@ -245,16 +245,11 @@ export default function Test() {
 
     return (
         <div>
-            <Container size="xl">
-                <Matching q={qMatching} />
-            </Container>
+            
+            <Matching q={qMatching} />
             <SentenceCompletion q={qSentenceCompletion} />
-            <Container size="xl">
-                <MultipleChoiceType1 q={qMultipleChoiceType1} />
-            </Container>
-            <Container size="xl">
-                <MultipleChoiceType2 q={qMultipleChoiceType2} />
-            </Container>
+            <MultipleChoiceType1 q={qMultipleChoiceType1} />
+            <MultipleChoiceType2 q={qMultipleChoiceType2} />
             <YNNG q={qYNNG} />
             <TFNG q={qTFNG} />
             <Container size="xl">
