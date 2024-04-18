@@ -9,7 +9,7 @@ import '@mantine/nprogress/styles.css';
 import "./styles/App.css";
 import PageNotFound from "./pages/PageNotFound";
 import Home from "./pages/Home";
-import Test from "./pages/Test";
+import Test, { qMultipleChoiceType2 } from "./pages/Test";
 import SignIn from "./pages/SignUp"
 
 import StandaloneQuestions from "./pages/StandaloneQuestions";
@@ -27,6 +27,7 @@ import { YNNG } from "./components/questions/YNNG";
 import { MultipleChoiceType1 } from "./components/questions/MultipleChoiceType1";
 import { Matching } from "./components/questions/Matching";
 import { qSentenceCompletion, qTFNG, qYNNG, qMultipleChoiceType1, qMatching } from "./pages/Test";
+import { MultipleChoiceType2 } from "./components/questions/MultipleChoiceType2";
 
 
 function App() {
@@ -44,7 +45,8 @@ function App() {
                         <Route path='sc' element={<SentenceCompletion q={qSentenceCompletion} />} />
                         <Route path='ynng' element={<YNNG q={qYNNG} />} />
                         <Route path='tfng' element={<TFNG q={qTFNG} />} />
-                        <Route path='mcq' element={<MultipleChoiceType1 q={qMultipleChoiceType1} />} />
+                        <Route path='mcq1' element={<MultipleChoiceType1 q={qMultipleChoiceType1} />} />
+                        <Route path='mcq2' element={<MultipleChoiceType2 q={qMultipleChoiceType2} /> } />
                         <Route path='matching' element={<Matching q={qMatching} /> } />
                         {/*<Route path='fc' element={<SignIn />} />
                         <Route path='tc' element={<SignIn />} />
