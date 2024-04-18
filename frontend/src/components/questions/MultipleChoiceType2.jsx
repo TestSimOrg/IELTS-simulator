@@ -68,7 +68,6 @@ export const MultipleChoiceType2 = ({ q }) => {
                     newAnsArr[i].ans = convert[updatedLastArr[index][i - start]]
                 }
             }
-            console.table(newAnsArr)
             return newAnsArr;
         })
     }
