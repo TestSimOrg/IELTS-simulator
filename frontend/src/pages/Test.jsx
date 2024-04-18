@@ -125,7 +125,7 @@ export const qMultipleChoiceType2 = {
     numOfWords: 1,
     numOfNum: 0,
     qType: 2,
-    questionHeader: ["Choose TWO letter, A-E", "Choose THREE letter, A-E"],
+    questionHeader: ["Choose TWO letter, A-E", "Choose TWO letter, A-E"],
     numStatements: [
         "Which TWO age groups are taking increasing numbers of holiday with BC Travel?",
         "Which TWO are the main reasons given for the popularity of activity holidays?",
