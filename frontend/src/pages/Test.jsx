@@ -184,7 +184,7 @@ export const qNoteCompletion = {
     [
         'Well known for:\t11 _BLANK_.',
         'Complex consists of:\tconcert rooms\ntheatres\ncinemas\nart galleries\npublic library\nrestaurants\n12 _BLANK_',
-        'Historical background:\t1940 area dostoyed by bombs\n19605 — Centre was 13 _BLANK_\nIn 14 _BLANK_ opened to public',
+        'Historical background:\t1940 area destroyed by bombs\n19605 — Centre was 13 _BLANK_\nIn 14 _BLANK_ opened to public',
         'Managed by:\t15 _BLANK_',
         'Open:\t16 _BLANK_ days per year'
     ],
@@ -252,9 +252,7 @@ export default function Test() {
             <MultipleChoiceType2 q={qMultipleChoiceType2} />
             <YNNG q={qYNNG} />
             <TFNG q={qTFNG} />
-            <Container size="xl">
-                <DiagramCompletion q={qDiagramCompletion} />
-            </Container>
+            <DiagramCompletion q={qDiagramCompletion} />
             <Container size="xl">
                 <NoteCompletion q={qNoteCompletion} />
             </Container>

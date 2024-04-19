@@ -25,17 +25,17 @@ export const MultipleChoiceType2 = ({ q }) => {
         }
     });
 
-    const formatedAnswers = [];
+    const formattedAnswers = [];
     answersArray.forEach((answers, index) => {
         answers.forEach((answer) => {
-            formatedAnswers.push({
+            formattedAnswers.push({
                 number: q.startQuestionNum + index,
                 ans: convert[answer],
             });
         });
     });
 
-    function setAnwser(statementIndex, optionIndex) {
+    function setAnswer(statementIndex, optionIndex) {
         // if the answer is already checked, uncheck it
         if (answersArray[statementIndex].includes(optionIndex)) {
             answersArray[statementIndex] = answersArray[statementIndex].filter(
@@ -80,7 +80,7 @@ export const MultipleChoiceType2 = ({ q }) => {
                                     color="rgba(0, 255, 8, 1)"
                                     variant="outline"
                                     onChange={() =>
-                                        setAnwser(index, optionIndex)
+                                        setAnswer(index, optionIndex)
                                     }
                                     checked={answersArray[index].includes(
                                         optionIndex
