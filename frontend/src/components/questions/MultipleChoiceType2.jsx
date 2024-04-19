@@ -25,12 +25,13 @@ export const MultipleChoiceType2 = ({ q }) => {
         }
     });
 
-    const formatedAnswers = answersArray.map((answers) => {
-        return answers.map((answer, index) => {
-            return {
-                number: index,
+    const formatedAnswers = [];
+    answersArray.forEach((answers, index) => {
+        answers.forEach((answer) => {
+            formatedAnswers.push({
+                number: q.startQuestionNum + index,
                 ans: convert[answer],
-            };
+            });
         });
     });
 
