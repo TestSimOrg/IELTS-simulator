@@ -27,8 +27,8 @@ export const QuestionRadio = ({ QuestionOption }) => {
                 <Select
                     data={QuestionOption}
                     placeholder="Select an option"
-                    
-                    w={"50%"}
+                    ml={"15%"}
+                    mr={"15%"}
                     comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 }, shadow: 'md' }}
                 ></Select>     
             </div>

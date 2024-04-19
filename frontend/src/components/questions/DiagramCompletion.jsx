@@ -43,29 +43,30 @@
 
 //  question/DiagramCompletion.jsx
 import React from "react";
-import { Grid, Text } from "@mantine/core";
+import { Container, Grid, Text } from "@mantine/core";
 import { QuestionHeader } from "./commons/QuestionHeader";
 import { QuestionTitle } from "./commons/QuestionTitle";
+import { RadioButtons } from "./commons/RadioButtons";
 import { QuestionRadio } from "./commons/QuestionRadio";
 import { QuestionImage } from "./commons/QuestionImage";
 
 export const DiagramCompletion = ({ q }) => {
     return (
-        <>
-        <QuestionHeader header={q.questionHeader}/>
-        <QuestionTitle title={q.questionTitle} />
-        <QuestionImage image={q.image} />
-        <Grid gutter="lg">
-            {q.numStatements.map((numStatement, index) => (
-                <Grid.Col pl={20} span={{ xs: 12, md: 6 }}
-                  key={index}
-                  pr="xl"
-                >
-                    <Text size="sm">{numStatement.replace("_BLANK_", "_______")}</Text>
-                    <QuestionRadio QuestionOption={q.questionOptions} />
-                </Grid.Col>
-            ))}
-        </Grid>
-        </>
+        <Container size={"xl"}>
+            <QuestionHeader header={q.questionHeader}/>
+            <QuestionTitle title={q.questionTitle} />
+            <QuestionImage image={q.image} />
+            <Grid gutter="lg">
+                {q.numStatements.map((numStatement, index) => (
+                    <Grid.Col  span={{ xs: 12, md: 6 }}
+                      key={index}
+                      pr="xl"
+                    >
+                        <Text ta={"center"} size="sm">{numStatement.replace("_BLANK_", "_______")}</Text>
+                        <QuestionRadio QuestionOption={q.questionOptions} />
+                    </Grid.Col>
+                ))}
+            </Grid>
+        </ Container>
     );
 }

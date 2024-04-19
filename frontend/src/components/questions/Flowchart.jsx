@@ -1,8 +1,10 @@
 // question/Flowchart.jsx
 import React from "react";
-import { Text, Grid } from "@mantine/core";
+import { Text, Grid, Container } from "@mantine/core";
 import { Question } from "./commons/Question";
 import { QuestionInput } from "./commons/QuestionInput";
+import { QuestionHeader } from "./commons/QuestionHeader";
+import { QuestionStatement } from "./commons/QuestionStatement";
 
 import { useState, useEffect } from "react";
 
@@ -15,11 +17,9 @@ export const Flowchart = ({ q }) => {
 
 
     var result = (
-        <Question
-            questionStatment={q.questionHeader}
-            questionTitle=""
-            questionHeader={q.questionHeader}
-        >
+        <Container size={"xl"} >
+        <QuestionHeader header={q.questionHeader} />
+        <QuestionStatement qStatement={q.questionStatment} />
             <Grid gutter={2}>
                 {q.steps.map((step, stepIndex) => (
                     <React.Fragment key={stepIndex}>
@@ -54,7 +54,7 @@ export const Flowchart = ({ q }) => {
                     </React.Fragment>
                 ))}
             </Grid>
-        </Question>
+        </Container>
     );
     
 
