@@ -1,4 +1,3 @@
-import { useState } from "react";
 import '@mantine/charts/styles.css';
 import '@mantine/core/styles.css';
 import '@mantine/charts/styles.css';
@@ -26,8 +25,10 @@ import { TFNG } from "./components/questions/TFNG";
 import { YNNG } from "./components/questions/YNNG";
 import { MultipleChoiceType1 } from "./components/questions/MultipleChoiceType1";
 import { Matching } from "./components/questions/Matching";
-import { qSentenceCompletion, qTFNG, qYNNG, qMultipleChoiceType1, qMatching, qMultipleChoiceType2 } from "./pages/Test";
+import { qSentenceCompletion, qTFNG, qYNNG, qMultipleChoiceType1, qMatching, qMultipleChoiceType2, qFlowChart, qDiagramCompletion } from "./pages/Test";
 import { MultipleChoiceType2 } from "./components/questions/MultipleChoiceType2";
+import { Flowchart } from "./components/questions/Flowchart";
+import { DiagramCompletion } from "./components/questions/DiagramCompletion";
 
 
 function App() {
@@ -48,6 +49,8 @@ function App() {
                         <Route path='mcq1' element={<MultipleChoiceType1 q={qMultipleChoiceType1} />} />
                         <Route path='mcq2' element={<MultipleChoiceType2 q={qMultipleChoiceType2} /> } />
                         <Route path='matching' element={<Matching q={qMatching} /> } />
+                        <Route path='flowchartc' element={<Flowchart q={qFlowChart} />}/>
+                        <Route path='dc' element={<DiagramCompletion q={qDiagramCompletion} />}/>
                         {/*<Route path='fc' element={<SignIn />} />
                         <Route path='tc' element={<SignIn />} />
                         <Route path='formc' element={<SignIn />} />
