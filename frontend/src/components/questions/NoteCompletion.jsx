@@ -18,23 +18,24 @@
 
 // question/NoteCompletion.jsx
 import React from "react";
-import { Text, Grid } from "@mantine/core";
+import { Text, Grid, Container } from "@mantine/core";
 import { Question } from "./commons/Question";
 import { QuestionInput } from "./commons/QuestionInput";
+import { QuestionHeader } from "./commons/QuestionHeader";
+import { QuestionStatement } from "./commons/QuestionStatement";
+import { QuestionTitle } from "./commons/QuestionTitle";
 
 
 export const NoteCompletion = ({ q }) => {
     return (
-        <Question
-            questionStatment={q.questionHeader}
-            questionTitle={q.questionTitle}
-            questionHeader={q.questionHeader}
-        >
+        <Container size={"xl"}>
+        <QuestionHeader header={q.questionHeader} />
+        <QuestionTitle title={q.questionTitle} />
             <Grid>
                 {q.questionStatements.map((statement, statementIndex) => (
                     <React.Fragment key={statementIndex}>
                         <Grid.Col span={4} key={"statement" + statementIndex}>
-                            <b>{statement.split(":")[0]} :</b>
+                            <b style={{ paddingLeft: "20%"}}>{statement.split(":")[0]}&#8205;:</b>
                         </Grid.Col>
                         <Grid.Col span={8} align="left">
                                 {statement.split(":")[1].split("_BLANK_").map((part, partIndex) => (
@@ -53,6 +54,6 @@ export const NoteCompletion = ({ q }) => {
                     </React.Fragment>
                 ))} 
             </Grid>
-        </Question>
+        </Container>
     );
 };
