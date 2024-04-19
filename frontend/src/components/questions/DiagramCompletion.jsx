@@ -63,7 +63,7 @@ export const DiagramCompletion = ({ q }) => {
                       pr="xl"
                     >
                         <Text ta={"center"} size="sm">{numStatement.replace("_BLANK_", "_______")}</Text>
-                        <QuestionRadio QuestionOption={q.questionOptions} align="center" />
+                        <QuestionRadio QuestionOption={q.questionOptions} />
                     </Grid.Col>
                 ))}
             </Grid>
