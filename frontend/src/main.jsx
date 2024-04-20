@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <MantineProvider>
             <HeaderMegaMenu />
 		        <App />
-            < Footer />
+            <Footer />
         </MantineProvider>
 	</Router>
 );
