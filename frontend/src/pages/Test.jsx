@@ -15,6 +15,7 @@ import { Flowchart } from "../components/questions/Flowchart";
 import { YNNG } from "../components/questions/YNNG";
 import { TFNG } from "../components/questions/TFNG";
 import imgBase64 from "../assets/imgExample";
+import { TableCompletion } from "../components/questions/TableCompletion";
 
 export const qMatching = {
     startQuestionNum: 21,
@@ -240,6 +241,26 @@ export const qFlowChart = {
     ]
 };
 
+export const qTableCompletion = {
+    startQuestionNum: 6,
+    endQuestionNum: 10,
+    standAlone: true,
+    numOfWords: 1,
+    numOfNum: 1,
+    questionHeader: "Complete the table below. Write NO MORE THAN ONE WORD AND/OR NUMBER for each answer.",
+    numOfRows: 7,
+    numOfCols: 3,
+    rows: [
+        ["TRANSPORT", "CASH FARE", "CARD FARE"],
+        ["Bus", "6 $ _BLANK_", "$1.50"],
+        ["Train (peak)", "$10", "$10"],
+        ["Train (off-peak)- before 5pm or after 7 _BLANK_ pm", "$10", "8 $ _BLANK_"],
+        ["9 _BLANK_ ferry", "$4.50", "$3.55"],
+        ["Tourist ferry 10 _BLANK_", "$35", "-"],
+        ["Tourist ferry (whole day)", "$65", "-"]
+    ]
+}
+
 export default function Test() {
 
 
@@ -254,6 +275,7 @@ export default function Test() {
             <DiagramCompletion q={qDiagramCompletion} />
             <NoteCompletion q={qNoteCompletion} /> 
             <Flowchart q={qFlowChart} /> 
+            <TableCompletion  q={qTableCompletion}/>
         </div>
     );
 }
