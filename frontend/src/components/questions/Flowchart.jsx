@@ -17,6 +17,9 @@ export const Flowchart = ({ q }) => {
 
     var result = (
         <Container size={"xl"} >
+        <Text fw={"bold"}>
+			Questions {q.startQuestionNum} - {q.endQuestionNum}
+		</Text> 
         <QuestionHeader header={q.questionHeader} />
         <QuestionStatement qStatement={q.questionStatment} />
             <Grid gutter={2}>

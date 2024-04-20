@@ -29,7 +29,6 @@ export const TableCompletion = ({ q }) => {
 		setAnsArr((prevAnsArr) => {
 			const newAnsArr = [...prevAnsArr];
 			newAnsArr[questionNum - q.startQuestionNum].ans = newValue;
-            console.table(newAnsArr);
 			return newAnsArr;
 		});
 	};
@@ -79,9 +78,9 @@ export const TableCompletion = ({ q }) => {
 
 	return (
 		<Container size={"xl"}>
-			{/* <Text fw={"bold"}>
+			<Text fw={"bold"}>
 				Questions {q.startQuestionNum} - {q.endQuestionNum}
-			</Text> // will add this in version 1.0.1 */}
+			</Text> 
             <QuestionHeader header={q.questionHeader} />
 			<Table mt={"1%"} highlightOnHover withTableBorder withColumnBorders>
 				<Table.Thead>

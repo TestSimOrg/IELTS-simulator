@@ -59,6 +59,9 @@ export const Matching = ({ q }) => {
 
 	return (
 		<Container size={"xl"}>
+            <Text fw={"bold"}>
+				Questions {q.startQuestionNum} - {q.endQuestionNum}
+			</Text> 
 			<QuestionHeader header={q.questionHeader} />
 			<QuestionStatement qStatement={q.questionStatement} />
 			<Grid gutter="lg">

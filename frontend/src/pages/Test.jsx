@@ -16,6 +16,7 @@ import { YNNG } from "../components/questions/YNNG";
 import { TFNG } from "../components/questions/TFNG";
 import imgBase64 from "../assets/imgExample";
 import { TableCompletion } from "../components/questions/TableCompletion";
+import { SummaryCompletion } from "../components/questions/SummaryCompletion";
 
 export const qMatching = {
     startQuestionNum: 21,
@@ -241,6 +242,18 @@ export const qFlowChart = {
     ]
 };
 
+// export const qSummaryCompletion = {
+//     startQuestionNum: 27,
+//     endQuestionNum: 31,
+//     standAlone: true,
+//     numOfWords: 2,
+//     numOfNum: 0,
+//     qType: 1,
+//     questionHeader: "Complete the summary below.\nChoose NO MORE THAN TWO WORDS from the passage for each answer.\nWrite your answers in boxes 27-31 on your answer sheet.",
+//     questionTitle: "The Montreal Study",
+//     summary: "Participants, who were recruited for the study through advertisements, had their brain activity monitored while listening to their favourite music. It was noted that the music stimulated the brain's neurons to release a substance called 27 _BLANK_ in two of the parts of the brain which are associated with feelings 28 _BLANK_.\nResearchers also observed that the neurons in the area of the brain called the 20 _BLANK_ were particularly active just before the participant's favourite moment in the music — the period known as the 30 _BLANK_. Activity in this part of the brain is associated with the expectation of ‘reward stimuli such as 31 _BLANK_.",
+// };
+
 export const qTableCompletion = {
     startQuestionNum: 6,
     endQuestionNum: 10,
@@ -276,6 +289,7 @@ export default function Test() {
             <NoteCompletion q={qNoteCompletion} /> 
             <Flowchart q={qFlowChart} /> 
             <TableCompletion  q={qTableCompletion}/>
+            <SummaryCompletion q={qSummaryCompletion} />
         </div>
     );
 }

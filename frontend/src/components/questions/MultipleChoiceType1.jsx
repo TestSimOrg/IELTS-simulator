@@ -27,6 +27,9 @@ export const MultipleChoiceType1 = ({ q }) => {
 
 	return (
 		<Container size={"xl"}>
+            <Text fw={"bold"}>
+				Questions {q.startQuestionNum} - {q.endQuestionNum}
+			</Text> 
 			<QuestionHeader header={q.questionHeader[0]} />
 			<Grid gutter="lg">
 				{q.numStatements.map((numStatement, index) => (

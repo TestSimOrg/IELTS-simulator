@@ -35,7 +35,7 @@ export const MultipleChoiceType2 = ({ q }) => {
         });
     });
 
-    function setAnswer(statementIndex, optionIndex) {
+    const setAnswer = (statementIndex, optionIndex) => {
         // if the answer is already checked, uncheck it
         if (answersArray[statementIndex].includes(convert[optionIndex])) {
             answersArray[statementIndex] = answersArray[statementIndex].filter(
@@ -59,6 +59,9 @@ export const MultipleChoiceType2 = ({ q }) => {
 
     return (
         <Container size={"xl"}>
+            <Text fw={"bold"}>
+				Questions {q.startQuestionNum} - {q.endQuestionNum}
+			</Text> 
             <Grid gutter="lg">
                 {q.numStatements.map((numStatement, index) => (
                     <Grid.Col span={{ xs: 12, md: 6 }} key={index}>

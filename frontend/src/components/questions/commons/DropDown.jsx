@@ -13,7 +13,8 @@ export const DropDown = ({ options }) => {
 					transitionProps: { transition: "pop", duration: 200 },
 					shadow: "md",
 				}}
-			></Select>
+                onChange={(e) => console.log(e)}
+			/>
 		</div>
 	);
 };

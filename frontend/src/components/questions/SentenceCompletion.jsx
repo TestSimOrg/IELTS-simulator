@@ -34,6 +34,9 @@ export const SentenceCompletion = ({ q }) => {
     
     return (
         <Container size={"xl"}>
+            <Text fw={"bold"}>
+				Questions {q.startQuestionNum} - {q.endQuestionNum}
+			</Text> 
             <QuestionHeader header={q.questionHeader} />
             <Stack p={"10px"}>
                 {questionArr.map((qArr, idx) => (
@@ -46,7 +49,7 @@ export const SentenceCompletion = ({ q }) => {
                                 handleInputChange(idx + q.startQuestionNum, e.target.value)
                             }
                         }
-                        placeholder="Answer"
+                        placeholder={"Q " + (q.startQuestionNum + idx)}
                         style={{
                             display: "inline-block",
                             width: "auto",
