@@ -37,9 +37,9 @@ export const MultipleChoiceType2 = ({ q }) => {
 
     function setAnswer(statementIndex, optionIndex) {
         // if the answer is already checked, uncheck it
-        if (answersArray[statementIndex].includes(optionIndex)) {
+        if (answersArray[statementIndex].includes(convert[optionIndex])) {
             answersArray[statementIndex] = answersArray[statementIndex].filter(
-                (index) => index !== optionIndex
+                (AnswerLetter) => AnswerLetter !== convert[optionIndex]
             );
         }
         // if we have reached the maximum number of answers, remove the first answer and add the new one
@@ -48,11 +48,11 @@ export const MultipleChoiceType2 = ({ q }) => {
             numberOfAnswers[statementIndex]
         ) {
             answersArray[statementIndex].shift(); // remove the first element
-            answersArray[statementIndex].push(optionIndex);
+            answersArray[statementIndex].push(convert[optionIndex]);
         }
         // else add the new answer
         else {
-            answersArray[statementIndex].push(optionIndex);
+            answersArray[statementIndex].push(convert[optionIndex]);
         }
         setAnswersArray([...answersArray]);
     }
@@ -83,7 +83,7 @@ export const MultipleChoiceType2 = ({ q }) => {
                                         setAnswer(index, optionIndex)
                                     }
                                     checked={answersArray[index].includes(
-                                        optionIndex
+                                        convert[optionIndex]
                                     )}
                                 ></Checkbox>
                             </Grid.Col>
