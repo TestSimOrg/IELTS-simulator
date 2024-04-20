@@ -670,6 +670,7 @@ Listening schema explanations:
         "standAlone": true,
         "numOfWords": 1,
         "numOfNum": 1,
+        "questionHeader": "Complete the table below. Write NO MORE THAN ONE WORD AND/OR NUMBER for each answer.",
         "numOfRows": 7,
         "numOfCols": 3,
         "rows": [

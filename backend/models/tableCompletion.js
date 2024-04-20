@@ -23,6 +23,10 @@ const tableCompletionSchema = new mongoose.Schema({
         type : Number,
         required : true
     },
+    questionHeader: {
+        type: String,
+        required: true,
+    },
     numOfRows : {
         type : Number,
         required: true
