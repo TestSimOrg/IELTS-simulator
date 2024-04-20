@@ -1,7 +1,6 @@
 // question/Flowchart.jsx
 import React from "react";
-import { Text, Grid, Container } from "@mantine/core";
-import { Question } from "./commons/Question";
+import { Text, Grid, Container } from "@mantine/core"; 
 import { QuestionInput } from "./commons/QuestionInput";
 import { QuestionHeader } from "./commons/QuestionHeader";
 import { QuestionStatement } from "./commons/QuestionStatement";

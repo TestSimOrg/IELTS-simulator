@@ -5,6 +5,7 @@
   padding-bottom: 100px;
 }
 
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -61,7 +62,7 @@
 }
 
 /* General fix to all mantine absolute positioned components */
-/* I don't know why it's not working by default withour this fix */
+/* I don't know why it's not working by default without this fix */
 
 .mantine-Drawer-inner {
   left:0;

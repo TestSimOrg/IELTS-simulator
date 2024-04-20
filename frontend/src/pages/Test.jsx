@@ -244,8 +244,7 @@ export default function Test() {
 
 
     return (
-        <div>
-            
+        <div> 
             <Matching q={qMatching} />
             <SentenceCompletion q={qSentenceCompletion} />
             <MultipleChoiceType1 q={qMultipleChoiceType1} />
@@ -253,12 +252,8 @@ export default function Test() {
             <YNNG q={qYNNG} />
             <TFNG q={qTFNG} />
             <DiagramCompletion q={qDiagramCompletion} />
-            <Container size="xl">
-                <NoteCompletion q={qNoteCompletion} />
-            </Container>
-            <Container size="xl">
-                <Flowchart q={qFlowChart} />
-            </Container>
+            <NoteCompletion q={qNoteCompletion} /> 
+            <Flowchart q={qFlowChart} /> 
         </div>
     );
 }
