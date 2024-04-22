@@ -8,7 +8,7 @@ import '@mantine/nprogress/styles.css';
 import "./styles/App.css";
 import PageNotFound from "./pages/PageNotFound";
 import Home from "./pages/Home";
-import Test, { qNoteCompletion } from "./pages/Test";
+import Test from "./pages/Test";
 import SignIn from "./pages/SignUp"
 
 import StandaloneQuestions from "./pages/StandaloneQuestions";
@@ -25,11 +25,12 @@ import { TFNG } from "./components/questions/TFNG";
 import { YNNG } from "./components/questions/YNNG";
 import { MultipleChoiceType1 } from "./components/questions/MultipleChoiceType1";
 import { Matching } from "./components/questions/Matching";
-import { qSentenceCompletion, qTFNG, qYNNG, qMultipleChoiceType1, qMatching, qMultipleChoiceType2, qFlowChart, qDiagramCompletion } from "./pages/Test";
+import { qSentenceCompletion, qTFNG, qYNNG, qMultipleChoiceType1, qMatching, qMultipleChoiceType2, qFlowChart, qDiagramCompletion, qFormCompletion, qNoteCompletion } from "./pages/Test";
 import { MultipleChoiceType2 } from "./components/questions/MultipleChoiceType2";
 import { Flowchart } from "./components/questions/Flowchart";
 import { DiagramCompletion } from "./components/questions/DiagramCompletion";
 import { NoteCompletion } from './components/questions/NoteCompletion';
+import { FormCompletion } from './components/questions/FormCompletion';
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
                         <Route path='flowchartc' element={<Flowchart q={qFlowChart} />}/>
                         <Route path='dc' element={<DiagramCompletion q={qDiagramCompletion} />}/>
                         <Route path='nc' element={<NoteCompletion q={qNoteCompletion} />}/>
+                        <Route path='fc' element={<FormCompletion q={qFormCompletion} />}/>
                         {/*<Route path='fc' element={<SignIn />} />
                         <Route path='tc' element={<SignIn />} />
                         <Route path='formc' element={<SignIn />} />

@@ -17,6 +17,7 @@ import { TFNG } from "../components/questions/TFNG";
 import imgBase64 from "../assets/imgExample";
 import { TableCompletion } from "../components/questions/TableCompletion";
 import { SummaryCompletion } from "../components/questions/SummaryCompletion";
+import { FormCompletion } from "../components/questions/FormCompletion";
 
 export const qMatching = {
     startQuestionNum: 21,
@@ -174,6 +175,25 @@ export const qDiagramCompletion = {
     ],
 };
 
+export const qFormCompletion = {
+    startQuestionNum: 1,
+    endQuestionNum: 8,
+    standAlone: true,
+    numOfWords: 3,
+    numOfNum: 1,
+    questionHeader: "Questions 1-8\nComplete the form below.\nWrite NO MORE THAN THREE WORDS AND/OR A NUMBER for each answer.",
+    questionTitle: "PACKHAM'S SHIPPING AGENCY - customer quotation form",
+    questionStatements: {
+        "Name": ["Jacob 1 _BLANK_"],
+        "Address to be collected from": ["2 _BLANK_ College, Downlands Rd"],
+        "Town": ["Bristol"],
+        "Postcode": ["3 _BLANK_"],
+        "Size of container": ["length: 1.5m","width: 4 _BLANK_","height: 5 _BLANK_"],
+        "Contents": ["clothes", "6 _BLANK_", "7 _BLANK_"],
+        "Total estimated value": ["8 £ _BLANK_"]
+    }
+}
+
 export const qNoteCompletion = {
     startQuestionNum: 11,
     endQuestionNum: 16,
@@ -290,6 +310,7 @@ export default function Test() {
             <Flowchart q={qFlowChart} /> 
             <TableCompletion  q={qTableCompletion}/>
             <SummaryCompletion q={qSummaryCompletion} />
+            {/* <FormCompletion q={qFormCompletion} /> */}
         </div>
     );
 }
