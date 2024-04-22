@@ -23,19 +23,18 @@ export const YNNG = ({ q }) => {
 	const handleRadioChange = (questionNum, newValue) => {
 		setAnsArr((prevAnsArr) => {
 			const newAnsArr = [...prevAnsArr];
-			newAnsArr[questionNum - q.startQuestionNum].ans = newValue;
+			newAnsArr[questionNum].ans = newValue;
 			return newAnsArr;
 		});
 	};
 
 	return (
-		<Container size={"xl"} className="TFNG">
+		<Container size={"xl"} pt={"md"}>
             <Text fw={"bold"}>
 				Questions {q.startQuestionNum} - {q.endQuestionNum}
 			</Text> 
 			<QuestionHeader header={q.questionHeader} />
 			{q.numStatements.map((statement, idx) => {
-				const questionNum = q.startQuestionNum + idx;
 				return (
 					<div key={idx} style={{ paddingLeft: "10px" }}>
 						<NumStatement statement={statement} />
@@ -43,7 +42,7 @@ export const YNNG = ({ q }) => {
 							options={options}
 							value={ansArr[idx]?.ans || ""}
 							onChange={(newValue) =>
-								handleRadioChange(questionNum, newValue)
+								handleRadioChange(idx, newValue)
 							}
 						/>
 					</div>

@@ -58,7 +58,7 @@ export const MultipleChoiceType2 = ({ q }) => {
     }
 
     return (
-        <Container size={"xl"}>
+        <Container size={"xl"} pt={"md"}>
             <Text fw={"bold"}>
 				Questions {q.startQuestionNum} - {q.endQuestionNum}
 			</Text> 

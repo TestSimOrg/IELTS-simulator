@@ -26,14 +26,14 @@ export const SentenceCompletion = ({ q }) => {
     const handleInputChange = (questionNum, newValue) => {
         setAnsArr(prevAnsArr => {
           const newAnsArr = [...prevAnsArr];
-          newAnsArr[questionNum - q.startQuestionNum].ans = newValue;
+          newAnsArr[questionNum].ans = newValue;
           return newAnsArr;
         });
     };
 
     
     return (
-        <Container size={"xl"}>
+        <Container size={"xl"} pt={"md"}>
             <Text fw={"bold"}>
 				Questions {q.startQuestionNum} - {q.endQuestionNum}
 			</Text> 
@@ -46,7 +46,7 @@ export const SentenceCompletion = ({ q }) => {
                         key={idx}
                         onChange={(e) => {
                                 TextInputValidator(e, q.numOfWords, q.numOfNum); 
-                                handleInputChange(idx + q.startQuestionNum, e.target.value)
+                                handleInputChange(idx, e.target.value)
                             }
                         }
                         placeholder={"Q " + (q.startQuestionNum + idx)}

@@ -20,13 +20,13 @@ export const MultipleChoiceType1 = ({ q }) => {
 	const handleRadioChange = (questionNum, newValue) => {
 		setAnsArr((prevAnsArr) => {
 			const newAnsArr = [...prevAnsArr];
-			newAnsArr[questionNum - q.startQuestionNum].ans = newValue;
+			newAnsArr[questionNum].ans = newValue;
 			return newAnsArr;
 		});
 	};
 
 	return (
-		<Container size={"xl"}>
+		<Container size={"xl"} pt={"md"}>
             <Text fw={"bold"}>
 				Questions {q.startQuestionNum} - {q.endQuestionNum}
 			</Text> 
@@ -40,7 +40,7 @@ export const MultipleChoiceType1 = ({ q }) => {
 							value={ansArr[index]?.ans || ""}
 							onChange={(newValue) =>
 								handleRadioChange(
-									index + q.startQuestionNum,
+									index,
 									newValue
 								)
 							}

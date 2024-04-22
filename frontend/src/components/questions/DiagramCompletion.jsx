@@ -30,12 +30,12 @@ export const DiagramCompletion = ({ q }) => {
     }
 
     return (
-        <Container size={"xl"}>
+        <Container size={"xl"} pt={"md"}>
             <Text fw={"bold"}>
 				Questions {q.startQuestionNum} - {q.endQuestionNum}
 			</Text> 
             <QuestionHeader header={q.questionHeader}/>
-            <QuestionTitle title={q.questionTitle} />
+            <QuestionTitle title={q.questionTitle !== "" ? q.questionTitle : ""} />
             <QuestionImage image={q.image} />
             <Grid gutter="lg">
                 {q.numStatements.map((numStatement, index) => (

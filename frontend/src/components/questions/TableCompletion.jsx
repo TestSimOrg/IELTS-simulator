@@ -28,7 +28,7 @@ export const TableCompletion = ({ q }) => {
 	const handleInputChange = (questionNum, newValue) => {
 		setAnsArr((prevAnsArr) => {
 			const newAnsArr = [...prevAnsArr];
-			newAnsArr[questionNum - q.startQuestionNum].ans = newValue;
+			newAnsArr[questionNum].ans = newValue;
 			return newAnsArr;
 		});
 	};
@@ -57,7 +57,7 @@ export const TableCompletion = ({ q }) => {
 													q.numOfNum
 												);
 												handleInputChange(
-													idx + q.startQuestionNum,
+													idx,
 													e.target.value
 												);
 											}}
@@ -77,7 +77,7 @@ export const TableCompletion = ({ q }) => {
 	));
 
 	return (
-		<Container size={"xl"}>
+		<Container size={"xl"} pt={"md"}>
 			<Text fw={"bold"}>
 				Questions {q.startQuestionNum} - {q.endQuestionNum}
 			</Text> 
