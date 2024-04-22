@@ -5,7 +5,6 @@ In ielts exam there are a limited types of questions that can be asked. for eg:
   - Multiple Choice Questions ( Type 1 and 2 )
   - Matching ( Matching List and Matching Info )
   - Diagram Completion
-  - Plan/Map Labelling
   - Sentence Completion
   - Note Completion
   - Flow Chart Completion
@@ -728,21 +727,15 @@ Listening schema explanations:
 		"numOfNum": 1,
 		"questionHeader": "Questions 1-8\nComplete the form below.\nWrite NO MORE THAN THREE WORDS AND/OR A NUMBER for each answer.",
 		"questionTitle": "PACKHAM'S SHIPPING AGENCY - customer quotation form",
-		"questionStatements": [
-		    "Name:\tJacob 1 _BLANK_",
-			"Address to be collected from:\t2 _BLANK_ College, Downlands Rd",
-			"Town:\tBristol",
-			"Postcode:\t3 _BLANK_",
-			"Size of container:",
-			"length: 1.5m",
-			"width: 4 _BLANK_",
-			"height: 5 _BLANK_",
-			"Contents:",
-			"clothes",
-			"6 _BLANK_",
-		    "7 _BLANK_",
-			"Total estimated value: 8 £ _BLANK_"
-		],
+		"questionStatements": {
+            "Name": ["Jacob 1 _BLANK_"],
+            "Address to be collected from": ["2 _BLANK_ College, Downlands Rd"],
+            "Town": ["Bristol"],
+            "Postcode": ["3 _BLANK_"],
+            "Size of container": ["length: 1.5m","width: 4 _BLANK_","height: 5 _BLANK_"],
+            "Contents": ["clothes", "6 _BLANK_", "7 _BLANK_"],
+            "Total estimated value": ["8 £ _BLANK_"]
+        },
 		"answer": [
 		    {
 				"number": 1,

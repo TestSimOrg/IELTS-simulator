@@ -31,7 +31,7 @@ const formCompletionSchema = new mongoose.Schema({
         required: true
     },
     questionStatements: {
-        type: [String],
+        type: JSON,
         required: true
     },
     answer: {
