@@ -21,6 +21,7 @@ export const FormCompletion = ({ q }) => {
 	const handleInputChange = (questionNum, newValue) => {
 		setAnsArr((prevAnsArr) => {
 			const newAnsArr = [...prevAnsArr];
+            console.log(questionNum)
 			newAnsArr[questionNum].ans = newValue;
 			return newAnsArr;
 		});
@@ -66,8 +67,8 @@ export const FormCompletion = ({ q }) => {
 														handleInputChange(
 															Number(
 																e.target
-																	.placeholder[2]
-															) - 1,
+																	.placeholder.slice(1)
+															) - q.startQuestionNum,
 															e.target.value
 														);
 													}}
