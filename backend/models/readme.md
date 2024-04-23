@@ -1,40 +1,42 @@
 This is an explanation of all schemas and models.
 
 In ielts exam there are a limited types of questions that can be asked. for eg:
-- Listening
-  - Multiple Choice Questions ( Type 1 and 2 )
-  - Matching ( Matching List and Matching Info )
-  - Diagram Completion
-  - Sentence Completion
-  - Note Completion
-  - Flow Chart Completion
-  - Table Completion
-  - Summary Completion
-  - Form Completion
-  - Short Answer Questions
 
+-   Listening
 
-- Reading
-  - Multiple Choice Questions ( Type 1 and 2 )
-  - True/False/Not Given
-  - Yes/No/Not Given
-  - Matching ( Matching List and Matching Info )
-  - Sentence Completion
-  - Note Completion
-  - Flow Chart Completion
-  - Table Completion
-  - Diagram Label Completion
-  - Summary Completion
-  - Short Answer Questions
+    -   Multiple Choice Questions ( Type 1 and 2 )
+    -   Matching ( Matching List and Matching Info )
+    -   Diagram Completion
+    -   Sentence Completion
+    -   Note Completion
+    -   Flow Chart Completion
+    -   Table Completion
+    -   Summary Completion
+    -   Form Completion
+    -   Short Answer Questions
+
+-   Reading
+    -   Multiple Choice Questions ( Type 1 and 2 )
+    -   True/False/Not Given
+    -   Yes/No/Not Given
+    -   Matching ( Matching List and Matching Info )
+    -   Sentence Completion
+    -   Note Completion
+    -   Flow Chart Completion
+    -   Table Completion
+    -   Diagram Label Completion
+    -   Summary Completion
+    -   Short Answer Questions
 
 NOTE: You can use the json below the images to test the API endpoints in postman or insomnia. for eg:
 
 for listening matching question:
 
-- go to controllers folder
-- go to lMatching file
-- look at the createQuestion to see what is being extracted from req.body (const {listeningMatching} in this case)
-- go to postman or insomnia and create a object with prop listeningMatching and put the json below the images inside that prop as shown in eg:
+-   go to controllers folder
+-   go to lMatching file
+-   look at the createQuestion to see what is being extracted from req.body (const {listeningMatching} in this case)
+-   go to postman or insomnia and create a object with prop listeningMatching and put the json below the images inside that prop as shown in eg:
+
 ```
 {
     "listeningMatching" : {
@@ -92,13 +94,14 @@ for listening matching question:
 
 Listening schema explanations:
 
-1. Matching : 
+1. Matching :
 
     1. Type 1 example:
 
         <img src="../public/listening/matchingType1.png" alt="matching type 1 img" style="width:500px;"/>
 
         for this the json from front-end will be :
+
         ```
         {
             "startQuestionNum": 21,
@@ -121,40 +124,42 @@ Listening schema explanations:
                 "24 Identify and Popular Culture _BLANK_",
                 "25 Introduction to Culture Theory _BLANK_"
             ],
-		    "answer": [
-		        {
-			        "number": 21,
-			        "ansType": "L",
-			        "ans": "C"
-		        },
-		        {
-		        	"number": 22,
-		        	"ansType": "L",
-		        	"ans": "A"
-		        },
-		        {
-		        	"number": 23,
-		        	"ansType": "L",
-		        	"ans": "B"
-		        },
-		        {
-		        	"number": 24,
-		        	"ansType": "L",
-		        	"ans": "B"
-		        },
-		        {
-		        	"number": 25,
-		        	"ansType": "L",
-		        	"ans": "C"
-		        }
-		    ]
-	    }
+            "answer": [
+                {
+        	        "number": 21,
+        	        "ansType": "L",
+        	        "ans": "C"
+                },
+                {
+                	"number": 22,
+                	"ansType": "L",
+                	"ans": "A"
+                },
+                {
+                	"number": 23,
+                	"ansType": "L",
+                	"ans": "B"
+                },
+                {
+                	"number": 24,
+                	"ansType": "L",
+                	"ans": "B"
+                },
+                {
+                	"number": 25,
+                	"ansType": "L",
+                	"ans": "C"
+                }
+            ]
+        }
         ```
+
     2. Type 2 example:
 
         <img src="../public/listening/matchingType2.png" alt="matching type 2 img" style="width:500px;"/>
 
         for this the json from front-end will be:
+
         ```
         {
             "startQuestionNum": 1,
@@ -178,18 +183,16 @@ Listening schema explanations:
                 "3 offers facilities for business functions _BLANK_",
                 "4 has an indoor swimming pool _BLANK_"
             ]
-	    }
-        ``` 
+        }
+        ```
 
+2. Sentence Completion:
 
-
-
-2. Sentence Completion: 
-   
-   1. Example 1
-        <img src="../public/listening/sentenceCompletion.png" alt="sentence completion img" style="width:500px;"/>
+    1. Example 1
+       <img src="../public/listening/sentenceCompletion.png" alt="sentence completion img" style="width:500px;"/>
 
         for this json front-end will be:
+
         ```
         {
             "startQuestionNum": 27,
@@ -209,9 +212,10 @@ Listening schema explanations:
 
     2. example 2:
 
-        <img src="../public/listening/sentenceCompletion1.png" alt="sentence completion img" style="width:500px;"/>
+         <img src="../public/listening/sentenceCompletion1.png" alt="sentence completion img" style="width:500px;"/>
 
         for this json front-end will be:
+
         ```
         {
             "startQuestionNum": 7,
@@ -227,36 +231,37 @@ Listening schema explanations:
                 "9 Visitors will be able to learn about _BLANK_ and then collect some.",
                 "10 Part of the _BLANK_ has been made suitable for swimming."
             ],
-	        	"answer": [ 
-	        		{
-	        			"number": 7, 
-	        			"ansType": "S",
-	        			"ans":"birds"
-	        		},
-	        		{
-	        			"number": 9, 
-	        			"ansType": "S",
-	        			"ans":"flowers"
-	        		},
-	        		{
-	        			"number": 10, 
-	        			"ansType": "S",
-	        			"ans":"mushrooms"
-	        		},
-	        		{
-	        			"number": 7, 
-	        			"ansType": "S",
-	        			"ans":"river"
-	        		}
-	        	]
+           	"answer": [
+           		{
+           			"number": 7,
+           			"ansType": "S",
+           			"ans":"birds"
+           		},
+           		{
+           			"number": 9,
+           			"ansType": "S",
+           			"ans":"flowers"
+           		},
+           		{
+           			"number": 10,
+           			"ansType": "S",
+           			"ans":"mushrooms"
+           		},
+           		{
+           			"number": 7,
+           			"ansType": "S",
+           			"ans":"river"
+           		}
+           	]
         }
         ```
 
-        `numOfNum` property is for cases like this: 
+        `numOfNum` property is for cases like this:
 
-        <img src="../public/listening/sentenceCompletion2.png" alt="sentence completion img" style="width:500px;"/>
+         <img src="../public/listening/sentenceCompletion2.png" alt="sentence completion img" style="width:500px;"/>
 
         so json will be:
+
         ```
         {
             ...
@@ -269,6 +274,7 @@ Listening schema explanations:
 3. Multiple Choice question:
 
     There are two types of multiple choice question:
+
     - Type 1 (single answer)
     - Type 2 (multiple answers)
 
@@ -277,56 +283,57 @@ Listening schema explanations:
         <img src="../public/listening/mcqType1.png" alt="mcq img" style="width:500px;"/>
 
         for this json front-end will be:
+
         ```
         {
-	    	"startQuestionNum": 15,
-	    	"endQuestionNum": 17,
-	    	"standAlone": true,
-	    	"numOfWords": 1,
-	    	"qType": 1,
-	    	"questionHeader": [
-	    		"Choose the correct letter, A, B or C."
-	    	],
-	    	"numStatements": [
-	    		"15 How does BC Travel plan to expand the painting holidays?",
-	    		"16 Why are BC Travel's cooking holidays unusual?",
-	    		"17 What does the speaker say about the photography holidays?"
-	    	],
-	    	"questionOptions": [
-	    		[
-	    			"A by adding to the number of locations",
-	    			"B by increasing the range of levels",
-	    			"C by employing more teachers"
-	    		],
-	    		[
-	    			"A They only use organic foods",
-	    			"B They have an international focus",
-	    			"C They mainly involve vegetarian dishes"
-	    		],
-	    		[
-	    			"A Clients receive individual tution.",
-	    			"B The tutors are also trained guides.",
-	    			"C Advice is given on selling photographs."
-	    		]
-	    	],
-	    	"answer": [
-	    		{
-	    			"number": 15,
-	    			"ansType": "L",
-	    			"ans": "C"
-	    		},
-	    		{
-	    			"number": 16,
-	    			"ansType": "L",
-	    			"ans": "B"
-	    		},
-	    		{
-	    			"number": 17,
-	    			"ansType": "L",
-	    			"ans": "A"
-	    		}
-	    	]
-	    }
+        	"startQuestionNum": 15,
+        	"endQuestionNum": 17,
+        	"standAlone": true,
+        	"numOfWords": 1,
+        	"qType": 1,
+        	"questionHeader": [
+        		"Choose the correct letter, A, B or C."
+        	],
+        	"numStatements": [
+        		"15 How does BC Travel plan to expand the painting holidays?",
+        		"16 Why are BC Travel's cooking holidays unusual?",
+        		"17 What does the speaker say about the photography holidays?"
+        	],
+        	"questionOptions": [
+        		[
+        			"A by adding to the number of locations",
+        			"B by increasing the range of levels",
+        			"C by employing more teachers"
+        		],
+        		[
+        			"A They only use organic foods",
+        			"B They have an international focus",
+        			"C They mainly involve vegetarian dishes"
+        		],
+        		[
+        			"A Clients receive individual tution.",
+        			"B The tutors are also trained guides.",
+        			"C Advice is given on selling photographs."
+        		]
+        	],
+        	"answer": [
+        		{
+        			"number": 15,
+        			"ansType": "L",
+        			"ans": "C"
+        		},
+        		{
+        			"number": 16,
+        			"ansType": "L",
+        			"ans": "B"
+        		},
+        		{
+        			"number": 17,
+        			"ansType": "L",
+        			"ans": "A"
+        		}
+        	]
+        }
         ```
 
     2. Type 2 eg:
@@ -334,101 +341,102 @@ Listening schema explanations:
         <img src="../public/listening/mcqType2.png" alt="mcq img" style="width:500px;"/>
 
         for this json front-end will be:
+
         ```
         {
-	    	"startQuestionNum": 11,
-	    	"endQuestionNum": 14,
-	    	"standAlone": true,
-	    	"numOfWords": 1,
-	    	"numOfNum": 0,
-	    	"qType": 2,
-	    	"questionHeader": [
-	    		"Choose TWO letter, A-E",
-	    		"Choose TWO letter, A-E"
-	    	],
-	    	"numStatements": [
-	    		"Which TWO age groups are taking increasing numbers of holiday with BC Travel?",
-	    		"Which TWO are the main reasons given for the popularity of activity holidays?"
-	    	],
-	    	"questionOptions": [
-	    		[
-	    			"A 16-30 years",
-	    			"B 31-42 years",
-	    			"C 43-54 years",
-	    			"D 55-64 years",
-	    			"E over 65 years"
-	    		],
-	    		[
-	    			"A Clients make new friends.",
-	    			"B Clients learn a useful skill.",
-	    			"C Clients learn about a different culture.",
-	    			"D Clients are excited by the risk involved.",
-	    			"E Clients find them value for money."
-	    		]
-	    	],
-	    	"answer": [
-	    		{
-	    			"number": 11,
-	    			"ansType": "IEO",
-	    			"qPair": [
-	    				12
-	    			],
-	    			"ans": [
-	    				"D",
-	    				"E"
-	    			]
-	    		},
-	    		{
-	    			"number": 12,
-	    			"ansType": "IEO",
-	    			"qPair": [
-	    				11
-	    			],
-	    			"ans": [
-	    				"D",
-	    				"E"
-	    			]
-	    		},
-	    		{
-	    			"number": 13,
-	    			"ansType": "IEO",
-	    			"qPair": [
-	    				14
-	    			],
-	    			"ans": [
-	    				"A",
-	    				"C"
-	    			]
-	    		},
-	    		{
-	    			"number": 14,
-	    			"ansType": "IEO",
-	    			"qPair": [
-	    				13
-	    			],
-	    			"ans": [
-	    				"A",
-	    				"C"
-	    			]
-	    		}
-	    	]
-	    }
+        	"startQuestionNum": 11,
+        	"endQuestionNum": 14,
+        	"standAlone": true,
+        	"numOfWords": 1,
+        	"numOfNum": 0,
+        	"qType": 2,
+        	"questionHeader": [
+        		"Choose TWO letter, A-E",
+        		"Choose TWO letter, A-E"
+        	],
+        	"numStatements": [
+        		"Which TWO age groups are taking increasing numbers of holiday with BC Travel?",
+        		"Which TWO are the main reasons given for the popularity of activity holidays?"
+        	],
+        	"questionOptions": [
+        		[
+        			"A 16-30 years",
+        			"B 31-42 years",
+        			"C 43-54 years",
+        			"D 55-64 years",
+        			"E over 65 years"
+        		],
+        		[
+        			"A Clients make new friends.",
+        			"B Clients learn a useful skill.",
+        			"C Clients learn about a different culture.",
+        			"D Clients are excited by the risk involved.",
+        			"E Clients find them value for money."
+        		]
+        	],
+        	"answer": [
+        		{
+        			"number": 11,
+        			"ansType": "IEO",
+        			"qPair": [
+        				12
+        			],
+        			"ans": [
+        				"D",
+        				"E"
+        			]
+        		},
+        		{
+        			"number": 12,
+        			"ansType": "IEO",
+        			"qPair": [
+        				11
+        			],
+        			"ans": [
+        				"D",
+        				"E"
+        			]
+        		},
+        		{
+        			"number": 13,
+        			"ansType": "IEO",
+        			"qPair": [
+        				14
+        			],
+        			"ans": [
+        				"A",
+        				"C"
+        			]
+        		},
+        		{
+        			"number": 14,
+        			"ansType": "IEO",
+        			"qPair": [
+        				13
+        			],
+        			"ans": [
+        				"A",
+        				"C"
+        			]
+        		}
+        	]
+        }
         ```
 
-
 4. Summary Completion:
-    
-    In summary completion of listening test there will only be Type 1 questions asked. 
-    
+
+    In summary completion of listening test there will only be Type 1 questions asked.
+
     Refer to Reading Summary Completion for Type 1 schema explanation.
 
 5. Note Completion:
-   
-   This is similar to type 1 summary completion with subtle differences.
 
-    <img src="../public/listening/noteCompletion.png" alt="note completion img" style="width:500px;"/>
+    This is similar to type 1 summary completion with subtle differences.
+
+     <img src="../public/listening/noteCompletion.png" alt="note completion img" style="width:500px;"/>
 
     for this json front-end will be:
+
     ```
     {
         "startQuestionNum": 11,
@@ -481,12 +489,13 @@ Listening schema explanations:
     ```
 
 6. Diagram Completion:
-   
+
     In this type of question there will be an image with options given. You have to listening and label the appropriate question statement with a label from option.
 
     <img src="../public/listening/planMapDiagramLabelling1.png" alt="labelling img" style="width:500px;"/>
 
     for this json front-end will be:
+
     ```
     {
         "startQuestionNum": 14,
@@ -518,10 +527,11 @@ Listening schema explanations:
         ]
     }
     ```
-   
+
     <img src="../public/listening/planMapDiagramLabelling2.png" alt="labelling img" style="width:500px;"/>
 
     for this json front-end will be:
+
     ```
     {
         "startQuestionNum": 11,
@@ -552,14 +562,14 @@ Listening schema explanations:
     }
     ```
 
-
 7. Flowchart Completion:
-   
-    In this type of question there will be a flow chart. There will be blanks in the flow chart where you have to fill in the appropriate word through listening to audio or there might be options given to and you have to pick a synonym to the word in audio to fill. 
+
+    In this type of question there will be a flow chart. There will be blanks in the flow chart where you have to fill in the appropriate word through listening to audio or there might be options given to and you have to pick a synonym to the word in audio to fill.
 
     <img src="../public/listening/flowchartCompletion1.png" alt="flowchart completion img" style="width:500px;"/>
 
     for this json front-end will be:
+
     ```
     {
         "startQuestionNum": 31,
@@ -655,13 +665,14 @@ Listening schema explanations:
     }
     ```
 
-8. Table Completion: 
-   
+8. Table Completion:
+
     In this question there is a table filled with data and there are blanks you have to use audio info or passage info. (same schema as listening table completion)
 
     <img src="../public/listening/tableCompletion.png" alt="table completion img" style="width:500px;"/>
 
     for this json front-end will be:
+
     ```
     {
         "startQuestionNum": 6,
@@ -712,22 +723,23 @@ Listening schema explanations:
     ```
 
 9. Form Completion:
-    
+
     In this question there is a form with blanks in it and you have to use audio info to fill it in.
 
     <img src="../public/listening/formCompletion.png" alt="form completion img" style="width:500px;"/>
 
     for this the json from front-end will be:
+
     ```
     {
-	    "startQuestionNum": 1,
-		"endQuestionNum": 8,
-		"standAlone": true,
-		"numOfWords": 3,
-		"numOfNum": 1,
-		"questionHeader": "Questions 1-8\nComplete the form below.\nWrite NO MORE THAN THREE WORDS AND/OR A NUMBER for each answer.",
-		"questionTitle": "PACKHAM'S SHIPPING AGENCY - customer quotation form",
-		"questionStatements": {
+        "startQuestionNum": 1,
+    	"endQuestionNum": 8,
+    	"standAlone": true,
+    	"numOfWords": 3,
+    	"numOfNum": 1,
+    	"questionHeader": "Questions 1-8\nComplete the form below.\nWrite NO MORE THAN THREE WORDS AND/OR A NUMBER for each answer.",
+    	"questionTitle": "PACKHAM'S SHIPPING AGENCY - customer quotation form",
+    	"questionStatements": {
             "Name": ["Jacob 1 _BLANK_"],
             "Address to be collected from": ["2 _BLANK_ College, Downlands Rd"],
             "Town": ["Bristol"],
@@ -736,203 +748,204 @@ Listening schema explanations:
             "Contents": ["clothes", "6 _BLANK_", "7 _BLANK_"],
             "Total estimated value": ["8 £ _BLANK_"]
         },
-		"answer": [
-		    {
-				"number": 1,
-				"ansType": "S",
-				"ans": "Mkere"
-			},
-			{
-				"number": 2,
-				"ansType": "S",
-				"ans": "Westall"
-			},
-			{
-				"number": 3,
-				"ansType": "S",
-				"ans": "BS8 9PU"
-			},
-			{
-				"number": 4,
-				"ansType": "M",
-				"ans": [
-					"0.75 m",
-					"0.75 m wide",
-					"0.75 metre",
-					"0.75 metre wide",
-					"0.75 metres",
-					"0.75 metres wide",
-					"0.75 meter",
-					"0.75 meter wide",
-					"0.75 meters",
-					"0.75 meters wide",
-					"three quarter metre wide",
-					"three quarter meter",
-					"three quarter meter wide",
-					"three quarter a metre",
-					"three quarter a metre wide",
-					"three quarter a meter",
-					"three quarter a meter wide",
-					"three quarter of metre",
-					"three quarter of metre wide",
-					"three quarter of meter",
-					"three quarter of meter wide",
-					"three quarter of a metre",
-					"three quarter of a metre wide",
-					"three quarter of a meter",
-					"three quarter of a meter wide",
-					"three quarters metre",
-					"three quarters metre wide",
-					"three quarters meter",
-					"three quarters meter wide",
-					"three quarters a metre",
-					"three quarters a metre wide",
-					"three quarters a meter",
-					"three quarters a meter wide",
-					"three quarters of metre",
-					"three quarters of metre wide",
-					"three quarters of meter",
-					"three quarters of meter wide",
-					"three quarters of a metre",
-					"three quarters of a metre wide",
-					"three quarters of a meter",
-					"three quarters of a meter wide",
-					"three - quarter metre",
-					"three - quarter metre wide",
-					"three - quarter meter",
-					"three - quarter meter wide",
-					"three - quarter a metre",
-					"three - quarter a metre wide",
-					"three - quarter a meter",
-					"three - quarter a meter wide",
-					"three - quarter of metre",
-					"three - quarter of metre wide",
-					"three - quarter of meter",
-					"three - quarter of meter wide",
-					"three - quarter of a metre",
-					"three - quarter of a metre wide",
-					"three - quarter of a meter",
-					"three - quarter of a meter wide",
-					"three - quarters metre",
-					"three - quarters metre wide",
-					"three - quarters meter",
-					"three - quarters meter wide",
-					"three - quarters a metre",
-					"three - quarters a metre wide",
-					"three - quarters a meter",
-					"three - quarters a meter wide",
-					"three - quarters of metre",
-					"three - quarters of metre wide",
-					"three - quarters of meter",
-					"three - quarters of meter wide",
-					"three - quarters of a metre",
-					"three - quarters of a metre wide",
-					"three - quarters of a meter",
-					"three - quarters of a meter wide",
-					"3/4 m",
-					"3/4 m wide",
-					"75 cm",
-					"75 cm wide",
-					"75 cms",
-					"75 cms wide"
-				]
-			},
-			{
-				"number": 5,
-				"ansType": "M",
-				"ans": [
-					"0.5 m",
-					"0.5 m high",
-					"0.5 m deep",
-					"0.5 metre",
-					"0.5 metre high",
-					"0.5 metre deep",
-					"0.5 metres",
-					"0.5 metres high",
-					"0.5 metres deep",
-					"0.5 meter",
-					"0.5 meter high",
-					"0.5 meter deep",
-					"0.5 meters",
-					"0.5 meters high",
-					"0.5 meters deep",
-					"half  meter",
-					"half  meter deep",
-					"half  meter high",
-					"half  metre",
-					"half  metre deep",
-					"half  metre high",
-					"half a meter",
-					"half a meter deep",
-					"half a meter high",
-					"half a metre",
-					"half a metre deep",
-					"half a metre high",
-					"a half  meter",
-					"a half  meter deep",
-					"a half  meter high",
-					"a half  metre",
-					"a half  metre deep",
-					"a half  metre high",
-					"a half a meter",
-					"a half a meter deep",
-					"a half a meter high",
-					"a half a metre",
-					"a half a metre deep",
-					"a half a metre high",
-					"1/2 m",
-					"1/2 m deep",
-					"1/2 m high",
-					"50 cm",
-					"50 cm deep",
-					"50 cm high",
-					"50 cms",
-					"50 cms deep",
-					"50 cms high"
-				]
-			},
-			{
-				"number": 6,
-				"ansType": "IEO",
-				"qPair": [
-					7
-				],
-				"ans": [
-					"some books",
-					"books",
-					"some toys",
-					"toys"
-				]
-			},
-			{
-				"number": 7,
-				"ansType": "IEO",
-				"qPair": [
-					6
-				],
-				"ans": [
-					"some books",
-					"books",
-					"some toys",
-					"toys"
-				]
-			},
-			{
-				"number": 8,
-				"ansType": "S",
-				"ans": "1700"
-			}
-		]
-	}
+    	"answer": [
+    	    {
+    			"number": 1,
+    			"ansType": "S",
+    			"ans": "Mkere"
+    		},
+    		{
+    			"number": 2,
+    			"ansType": "S",
+    			"ans": "Westall"
+    		},
+    		{
+    			"number": 3,
+    			"ansType": "S",
+    			"ans": "BS8 9PU"
+    		},
+    		{
+    			"number": 4,
+    			"ansType": "M",
+    			"ans": [
+    				"0.75 m",
+    				"0.75 m wide",
+    				"0.75 metre",
+    				"0.75 metre wide",
+    				"0.75 metres",
+    				"0.75 metres wide",
+    				"0.75 meter",
+    				"0.75 meter wide",
+    				"0.75 meters",
+    				"0.75 meters wide",
+    				"three quarter metre wide",
+    				"three quarter meter",
+    				"three quarter meter wide",
+    				"three quarter a metre",
+    				"three quarter a metre wide",
+    				"three quarter a meter",
+    				"three quarter a meter wide",
+    				"three quarter of metre",
+    				"three quarter of metre wide",
+    				"three quarter of meter",
+    				"three quarter of meter wide",
+    				"three quarter of a metre",
+    				"three quarter of a metre wide",
+    				"three quarter of a meter",
+    				"three quarter of a meter wide",
+    				"three quarters metre",
+    				"three quarters metre wide",
+    				"three quarters meter",
+    				"three quarters meter wide",
+    				"three quarters a metre",
+    				"three quarters a metre wide",
+    				"three quarters a meter",
+    				"three quarters a meter wide",
+    				"three quarters of metre",
+    				"three quarters of metre wide",
+    				"three quarters of meter",
+    				"three quarters of meter wide",
+    				"three quarters of a metre",
+    				"three quarters of a metre wide",
+    				"three quarters of a meter",
+    				"three quarters of a meter wide",
+    				"three - quarter metre",
+    				"three - quarter metre wide",
+    				"three - quarter meter",
+    				"three - quarter meter wide",
+    				"three - quarter a metre",
+    				"three - quarter a metre wide",
+    				"three - quarter a meter",
+    				"three - quarter a meter wide",
+    				"three - quarter of metre",
+    				"three - quarter of metre wide",
+    				"three - quarter of meter",
+    				"three - quarter of meter wide",
+    				"three - quarter of a metre",
+    				"three - quarter of a metre wide",
+    				"three - quarter of a meter",
+    				"three - quarter of a meter wide",
+    				"three - quarters metre",
+    				"three - quarters metre wide",
+    				"three - quarters meter",
+    				"three - quarters meter wide",
+    				"three - quarters a metre",
+    				"three - quarters a metre wide",
+    				"three - quarters a meter",
+    				"three - quarters a meter wide",
+    				"three - quarters of metre",
+    				"three - quarters of metre wide",
+    				"three - quarters of meter",
+    				"three - quarters of meter wide",
+    				"three - quarters of a metre",
+    				"three - quarters of a metre wide",
+    				"three - quarters of a meter",
+    				"three - quarters of a meter wide",
+    				"3/4 m",
+    				"3/4 m wide",
+    				"75 cm",
+    				"75 cm wide",
+    				"75 cms",
+    				"75 cms wide"
+    			]
+    		},
+    		{
+    			"number": 5,
+    			"ansType": "M",
+    			"ans": [
+    				"0.5 m",
+    				"0.5 m high",
+    				"0.5 m deep",
+    				"0.5 metre",
+    				"0.5 metre high",
+    				"0.5 metre deep",
+    				"0.5 metres",
+    				"0.5 metres high",
+    				"0.5 metres deep",
+    				"0.5 meter",
+    				"0.5 meter high",
+    				"0.5 meter deep",
+    				"0.5 meters",
+    				"0.5 meters high",
+    				"0.5 meters deep",
+    				"half  meter",
+    				"half  meter deep",
+    				"half  meter high",
+    				"half  metre",
+    				"half  metre deep",
+    				"half  metre high",
+    				"half a meter",
+    				"half a meter deep",
+    				"half a meter high",
+    				"half a metre",
+    				"half a metre deep",
+    				"half a metre high",
+    				"a half  meter",
+    				"a half  meter deep",
+    				"a half  meter high",
+    				"a half  metre",
+    				"a half  metre deep",
+    				"a half  metre high",
+    				"a half a meter",
+    				"a half a meter deep",
+    				"a half a meter high",
+    				"a half a metre",
+    				"a half a metre deep",
+    				"a half a metre high",
+    				"1/2 m",
+    				"1/2 m deep",
+    				"1/2 m high",
+    				"50 cm",
+    				"50 cm deep",
+    				"50 cm high",
+    				"50 cms",
+    				"50 cms deep",
+    				"50 cms high"
+    			]
+    		},
+    		{
+    			"number": 6,
+    			"ansType": "IEO",
+    			"qPair": [
+    				7
+    			],
+    			"ans": [
+    				"some books",
+    				"books",
+    				"some toys",
+    				"toys"
+    			]
+    		},
+    		{
+    			"number": 7,
+    			"ansType": "IEO",
+    			"qPair": [
+    				6
+    			],
+    			"ans": [
+    				"some books",
+    				"books",
+    				"some toys",
+    				"toys"
+    			]
+    		},
+    		{
+    			"number": 8,
+    			"ansType": "S",
+    			"ans": "1700"
+    		}
+    	]
+    }
     ```
 
 10. Short Answer:
-    
+
     In this question you have to fill the given blanks using audio info.
 
     <img src="../public/listening/shortAnswer.png" alt="short ans img" style="width:500px;"/>
 
     for this json front-end will be:
+
     ```
     {
         "startQuestionNum": 11,
@@ -941,12 +954,12 @@ Listening schema explanations:
         "numOfWords": 3,
         "numOfNum": 1,
         "questionHeader": "Answer the questions below.\nWrite NO MORE THAN THREE WORDS AND/OR A NUMBER for each answer.",
-        "questionStatements": [
+        "numStatements": [
             "What TWO factors can make social contact in a foreign country difficult?",
             "Which types of community group does the speaker give examples of?",
             "In which TWO places can information about community activities be found?"
         ],
-        "questionBlanks": [
+        "numBlanks": [
             [
                 "11 _BLANK_",
                 "12 _BLANK_"
@@ -993,7 +1006,7 @@ Listening schema explanations:
         		"ans": ["town hall", "the town hall"]
         	}
         ]
-    }   
+    }
     ```
 
 Reading Schema explanations:
@@ -1001,10 +1014,11 @@ Reading Schema explanations:
 1. Matching:
 
     1. Matching Info Type:
-   
+
         <img src="../public/reading/matchingInfo.png" alt="matching  info img" style="width:500px;"/>
 
         for this the json from front-end will be:
+
         ```
         {
         	"startQuestionNum": 1,
@@ -1043,6 +1057,7 @@ Reading Schema explanations:
         <img src="../public/reading/matchingList.png" alt="matching list img" style="width:500px;"/>
 
         for this the json from front-end will be:
+
         ```
         {
         	"startQuestionNum": 7,
@@ -1090,11 +1105,12 @@ Reading Schema explanations:
         }
         ```
 
-2. Sentence Completion: 
+2. Sentence Completion:
    The schema and model for the sentence completion is same for reading and listening.
 
-3. Multiple Choice Questions: 
-    There are two types of multiple question:
+3. Multiple Choice Questions:
+   There are two types of multiple question:
+
     - Type 1 (single answer)
     - Type 2 (multiple answer)
 
@@ -1172,15 +1188,16 @@ Reading Schema explanations:
         	}
         ```
 
-4. Summary Completion: 
+4. Summary Completion:
 
     There are two types of reading questions. In Type 1 there is a summary with blanks and you have to fill them. In type 2 there are options which are multiple options. The number of options is greater than the number fo blanks.
 
-    1. Type 1 example: 
+    1. Type 1 example:
 
         <img src="../public/listening/summaryCompletionType1.png" alt="summary completion img" style="width:500px;"/>
 
         for this the json from front-end will be:
+
         ```
         {
         	"startQuestionNum": 27,
@@ -1195,27 +1212,27 @@ Reading Schema explanations:
         	"questionOptions": [],
         	"answer": [
         		{
-        			"number": 27, 
+        			"number": 27,
         			"ansType": "S",
         			"ans":"dopamine"
         		},
         		{
-        			"number": 28, 
+        			"number": 28,
         			"ansType": "S",
         			"ans":"pleasure"
         		},
         		{
-        			"number": 29, 
+        			"number": 29,
         			"ansType": "S",
         			"ans":"caudate"
         		},
         		{
-        			"number": 30, 
+        			"number": 30,
         			"ansType": "S",
         			"ans":"anticipatory phase"
         		},
         		{
-        			"number": 31, 
+        			"number": 31,
         			"ansType": "S",
         			"ans":"food"
         		}
@@ -1223,11 +1240,12 @@ Reading Schema explanations:
         }
         ```
 
-    2. Type 2 example: 
+    2. Type 2 example:
 
         <img src="../public/reading/summaryCompletion.png" alt="summary completion img" style="width:500px;"/>
 
         for this the json from front-end will be:
+
         ```
         {
             "startQuestionNum": 1,
@@ -1275,15 +1293,16 @@ Reading Schema explanations:
 
 5. Note Completion:
 
-   The schema and model for the note completion is same for reading and listening.
+    The schema and model for the note completion is same for reading and listening.
 
 6. Diagram Completion:
-   
-    In this type of question there will be an image with blanks or image with options to fill the blanks. You have to read the passage and fill the blanks appropriately. 
+
+    In this type of question there will be an image with blanks or image with options to fill the blanks. You have to read the passage and fill the blanks appropriately.
 
     <img src="../public/reading/diagramCompletion1.png" alt="diagram completion img" style="width:500px;"/>
 
     for this json front-end will be:
+
     ```
     {
         "startQuestionNum": 1,
@@ -1330,13 +1349,14 @@ Reading Schema explanations:
     }
     ```
 
-7. Flowchart Completion: 
+7. Flowchart Completion:
 
     In this type of question there will be a flow chart. There will be blanks in the flow chart where you have to fill in the appropriate word through reading the passage.
 
     <img src="../public/reading/flowchartCompletion.png" alt="flowchart completion img" style="width:500px;"/>
 
     from this json will be:
+
     ```
     {
         "startQuestionNum": 31,
@@ -1390,12 +1410,13 @@ Reading Schema explanations:
     ```
 
 8. Table Completion:
-   
+
     In this question there is a table filled with data and there are blanks you have to use audio info or passage info. (same schema as listening table completion)
 
     <img src="../public/reading/tableCompletion.png" alt="flowchart completion img" style="width:500px;"/>
 
     from this json will be:
+
     ```
     {
         "startQuestionNum": 6,
@@ -1445,12 +1466,13 @@ Reading Schema explanations:
     ```
 
 9. Short Answer:
-    
+
     Use info from passage to answer questions.
 
     <img src="../public/reading/shortAns.png" alt="short ans img" style="width:500px;"/>
 
     for this json front-end will be:
+
     ```
     {
       "startQuestionNum": 1,
@@ -1494,9 +1516,10 @@ Reading Schema explanations:
 
     In this type of question there will be statements that you have to label as True, False or Not Given there is also case where the question statements are facts and you have to based on the passage label them with Yes, No or Not Given.
 
-    <img src="../public/reading/ynng.png" alt="short ans img" style="width:500px;"/>
+    <img src="../public/reading/ynng.png" alt="ynng ans img" style="width:500px;"/>
 
     for this json front-end will be:
+
     ```
     {
         "startQuestionNum": 7,
@@ -1546,9 +1569,10 @@ Reading Schema explanations:
     }
     ```
 
-    <img src="../public/reading/tfng.png" alt="short ans img" style="width:500px;"/>
+    <img src="../public/reading/tfng.png" alt="tfng ans img" style="width:500px;"/>
 
     for this json front-end will be:
+
     ```
     {
         "startQuestionNum": 9,
@@ -1591,4 +1615,3 @@ Reading Schema explanations:
     	]
     }
     ```
-

@@ -21,8 +21,8 @@ const createQuestion = async (req, res) => {
             numOfWords: listeningShortAns.numOfWords,
             numOfNum: listeningShortAns.numOfNum,
             questionHeader: listeningShortAns.questionHeader,
-            questionStatements: listeningShortAns.questionStatements,
-            questionBlanks: listeningShortAns.questionBlanks,
+            numStatements: listeningShortAns.numStatements,
+            numBlanks: listeningShortAns.numBlanks,
             answer: listeningShortAns.standAlone ? filledAnsID : blankAnsID,
         });
         

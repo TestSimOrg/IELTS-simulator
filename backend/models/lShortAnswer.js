@@ -27,11 +27,11 @@ const lShortAnswerQuestionSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    questionStatements : {
+    numStatements : {
         type : [String],
         required : true,
     },
-    questionBlanks : {
+    numBlanks : {
         type : [[String]],
         required : true,
     },
