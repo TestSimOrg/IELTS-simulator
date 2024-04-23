@@ -94,7 +94,7 @@ for listening matching question:
 
 Listening schema explanations:
 
-1. Matching :
+1. Matching:
 
     1. Type 1 example:
 
@@ -1025,7 +1025,7 @@ Reading Schema explanations:
         	"endQuestionNum": 3,
         	"standAlone": true,
         	"qTypeMatchingInfo": true,
-        	"questionHeader": "Reading Passage 1 has nine paragraphs, A-I.\\nWrite the correct letter, A-I, in boxes 1-3 on your answer sheet.",
+        	"questionHeader": "Reading Passage 1 has nine paragraphs, A-I.\nWrite the correct letter, A-I, in boxes 1-3 on your answer sheet.",
         	"questionOptionRepeatable": false,
         	"numStatements": [
         		"1 a reference to characteristics that only apply to food production.",
