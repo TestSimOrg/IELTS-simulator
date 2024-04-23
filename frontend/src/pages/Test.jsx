@@ -18,6 +18,7 @@ import imgBase64 from "../assets/imgExample";
 import { TableCompletion } from "../components/questions/TableCompletion";
 import { SummaryCompletion } from "../components/questions/SummaryCompletion";
 import { FormCompletion } from "../components/questions/FormCompletion";
+import { ShortAnswer } from "../components/questions/ShortAnswer";
 
 export const qMatching = {
     startQuestionNum: 21,
@@ -294,6 +295,50 @@ export const qTableCompletion = {
     ]
 }
 
+export const qShortAnswer1 = {
+    "startQuestionNum": 1,
+    "endQuestionNum": 4,
+    "standAlone": true,
+    "numOfWords": 3,
+    "numOfNum": 1,
+    "questionHeader": "Answer the questions below.\nChoose NO MORE THAN THREE WORDS AND/OR A NUMBER from the text for each answer.\nWrite your answers in boxes 1-4 on your answer sheet.",
+    "numStatements": [
+      "What is the African rhinoceros compared to?",
+      "Which type of rhino fell in number to below a hundred?",
+      "What percentage of black rhinos had been illegally killed by 1992?",
+      "How have the criminals improved their success?"
+    ]
+}
+
+export const qShortAnswer2 = {
+    "startQuestionNum": 11,
+    "endQuestionNum": 16,
+    "standAlone": true,
+    "numOfWords": 3,
+    "numOfNum": 1,
+    "questionHeader": "Answer the questions below.\nWrite NO MORE THAN THREE WORDS AND/OR A NUMBER for each answer.",
+    "numStatements": [
+        "What TWO factors can make social contact in a foreign country difficult?",
+        "Which types of community group does the speaker give examples of?",
+        "In which TWO places can information about community activities be found?"
+    ],
+    "numBlanks": [
+        [
+            "11 _BLANK_",
+            "12 _BLANK_"
+        ],
+        [
+            "theatre",
+            "13 _BLANK_",
+            "14 _BLANK_"
+        ],
+        [
+            "15 _BLANK_",
+            "16 _BLANK_"
+        ]
+    ]
+}
+
 export default function Test() {
 
 
@@ -310,7 +355,9 @@ export default function Test() {
             <Flowchart q={qFlowChart} /> 
             <TableCompletion  q={qTableCompletion}/>
             <SummaryCompletion q={qSummaryCompletion} />
-            {/* <FormCompletion q={qFormCompletion} /> */}
+            <FormCompletion q={qFormCompletion} />
+            <ShortAnswer q={qShortAnswer1} />
+            <ShortAnswer q={qShortAnswer2} />
         </div>
     );
 }
