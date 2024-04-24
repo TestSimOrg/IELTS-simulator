@@ -30,7 +30,7 @@ export const qMatching = {
         "Write the correct letter, A, B or C next to question 21-25.\nYou may choose any letter more than once.",
     questionOptionRepeatable: true,
     questionStatement:
-        "What does Jack tell his tutor about each of the following course option?",
+        "What does Jack tell his tutor about each of the following course options?",
     questionOptions: [
         "A He'll definitely do it.",
         "B He may or may not do it.",
@@ -292,6 +292,30 @@ export const qTableCompletion = {
         ["9 _BLANK_ ferry", "$4.50", "$3.55"],
         ["Tourist ferry 10 _BLANK_", "$35", "-"],
         ["Tourist ferry (whole day)", "$65", "-"]
+    ]
+}
+
+export const qMatching2 = {
+    startQuestionNum: 1,
+    endQuestionNum: 4,
+    standAlone: false,
+    numOfWords: 1,
+    numOfNum: 0,
+    questionHeader: "Choose your answers from the box and write the correct letter A-E next to questions 1-4.",
+    questionOptionRepeatable: false,
+    questionStatement: "Which hotel matches each description?",
+    questionOptions: [
+        "A The Bridge Hotel",
+        "B Carlton House",
+        "C The Imperial",
+        "D The Majestic",
+        "E The Royal Oak"
+    ],
+    numStatements: [
+        "1 is in a rural area _BLANK_",
+        "2 only opened recently _BLANK_",
+        "3 offers facilities for business functions _BLANK_",
+        "4 has an indoor swimming pool _BLANK_"
     ]
 }
 
