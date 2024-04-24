@@ -63,7 +63,7 @@ export default function CardStandaloneQuestion({ q }) {
             {/* instead of a link, we display the question on a full screen modal */}
             <Container onClick={openModal} className={classes.link}>
                 <div className="card-content">
-                    <h3>Question {q.number}</h3>
+                    <h3>Question {q.content.startQuestionNum} - {q.content.endQuestionNum}</h3>
                     <h4>{q.content.questionHeader}</h4>
                 </div>
             </Container>
@@ -78,7 +78,7 @@ export default function CardStandaloneQuestion({ q }) {
                 </Button>
             </Group>
 
-            <Modal opened={opened} onClose={close} title={`Question ${q.number}`} centered size="70%">\
+            <Modal opened={opened} onClose={close} title={`Question ${q.number}`} centered size="70%">
                 {renderedQuestion}
             </Modal>
         </Card>
