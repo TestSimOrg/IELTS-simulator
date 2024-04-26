@@ -8,7 +8,7 @@ import '@mantine/nprogress/styles.css';
 import "./styles/App.css";
 import PageNotFound from "./pages/PageNotFound";
 import Home from "./pages/Home";
-import Test from "./pages/Test";
+import Test, { qMatching2 } from "./pages/Test";
 import SignIn from "./pages/SignUp"
 
 import StandaloneQuestions from "./pages/StandaloneQuestions";
@@ -31,6 +31,7 @@ import { Flowchart } from "./components/questions/Flowchart";
 import { DiagramCompletion } from "./components/questions/DiagramCompletion";
 import { NoteCompletion } from './components/questions/NoteCompletion';
 import { FormCompletion } from './components/questions/FormCompletion';
+import { DragNDrop } from './components/questions/DragNDrop';
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
                         <Route path='dc' element={<DiagramCompletion q={qDiagramCompletion} />}/>
                         <Route path='nc' element={<NoteCompletion q={qNoteCompletion} />}/>
                         <Route path='fc' element={<FormCompletion q={qFormCompletion} />}/>
+                        <Route path='dd' element={<DragNDrop q={qMatching2} />}/>
                         {/*<Route path='fc' element={<SignIn />} />
                         <Route path='tc' element={<SignIn />} />
                         <Route path='formc' element={<SignIn />} />
