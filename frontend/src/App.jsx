@@ -8,7 +8,7 @@ import '@mantine/nprogress/styles.css';
 import "./styles/App.css";
 import PageNotFound from "./pages/PageNotFound";
 import Home from "./pages/Home";
-import Test, { qMatching2 } from "./pages/Test";
+import Test from "./pages/Test";
 import SignIn from "./pages/SignUp"
 
 import StandaloneQuestions from "./pages/StandaloneQuestions";
@@ -25,7 +25,7 @@ import { TFNG } from "./components/questions/TFNG";
 import { YNNG } from "./components/questions/YNNG";
 import { MultipleChoiceType1 } from "./components/questions/MultipleChoiceType1";
 import { Matching } from "./components/questions/Matching";
-import { qSentenceCompletion, qTFNG, qYNNG, qMultipleChoiceType1, qMatching, qMultipleChoiceType2, qFlowChart, qDiagramCompletion, qFormCompletion, qNoteCompletion } from "./pages/Test";
+import { qSentenceCompletion, qTFNG, qYNNG, qMultipleChoiceType1, qMatching, qMultipleChoiceType2, qFlowChart, qDiagramCompletion, qFormCompletion, qNoteCompletion, qMatching2 } from "./pages/Test";
 import { MultipleChoiceType2 } from "./components/questions/MultipleChoiceType2";
 import { Flowchart } from "./components/questions/Flowchart";
 import { DiagramCompletion } from "./components/questions/DiagramCompletion";
@@ -57,10 +57,6 @@ function App() {
                         <Route path='nc' element={<NoteCompletion q={qNoteCompletion} />}/>
                         <Route path='fc' element={<FormCompletion q={qFormCompletion} />}/>
                         <Route path='dd' element={<DragNDrop q={qMatching2} />}/>
-                        {/*<Route path='fc' element={<SignIn />} />
-                        <Route path='tc' element={<SignIn />} />
-                        <Route path='formc' element={<SignIn />} />
-                        <Route path='dc' element={<SignIn />} /> */}
                     </Route>
                 </Routes >
             </div>

@@ -6,7 +6,7 @@ import { Draggable } from "./commons/Draggable";
 import { Droppable } from "./commons/Droppable";
 import { DndContext, pointerWithin} from "@dnd-kit/core";
 
-export const DragNDrop = ({ q }) => {
+export const MatchingWithOptions = ({ q }) => {
 	// State to store the list of options
 
 	const [options, setOptions] = useState(q.questionOptions);

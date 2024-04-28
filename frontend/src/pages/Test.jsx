@@ -19,6 +19,7 @@ import { TableCompletion } from "../components/questions/TableCompletion";
 import { SummaryCompletion } from "../components/questions/SummaryCompletion";
 import { FormCompletion } from "../components/questions/FormCompletion";
 import { ShortAnswer } from "../components/questions/ShortAnswer";
+import { MatchingWithOptions } from "../components/questions/DragNDrop";
 
 export const qMatching = {
     startQuestionNum: 21,
@@ -382,6 +383,7 @@ export default function Test() {
             <FormCompletion q={qFormCompletion} />
             <ShortAnswer q={qShortAnswer1} />
             <ShortAnswer q={qShortAnswer2} />
+            <MatchingWithOptions q={qMatching2} />
         </div>
     );
 }
