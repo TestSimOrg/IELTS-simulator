@@ -19,7 +19,7 @@ import { TableCompletion } from "../components/questions/TableCompletion";
 import { SummaryCompletion } from "../components/questions/SummaryCompletion";
 import { FormCompletion } from "../components/questions/FormCompletion";
 import { ShortAnswer } from "../components/questions/ShortAnswer";
-import { MatchingWithOptions } from "../components/questions/DragNDrop";
+import { MatchingWithOptions } from "../components/questions/MatchingWithOptions";
 
 export const qMatching = {
     startQuestionNum: 21,

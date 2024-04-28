@@ -31,7 +31,7 @@ import { Flowchart } from "./components/questions/Flowchart";
 import { DiagramCompletion } from "./components/questions/DiagramCompletion";
 import { NoteCompletion } from './components/questions/NoteCompletion';
 import { FormCompletion } from './components/questions/FormCompletion';
-import { DragNDrop } from './components/questions/DragNDrop';
+import { MatchingWithOptions } from './components/questions/MatchingWithOptions';
 
 
 function App() {
@@ -56,7 +56,7 @@ function App() {
                         <Route path='dc' element={<DiagramCompletion q={qDiagramCompletion} />}/>
                         <Route path='nc' element={<NoteCompletion q={qNoteCompletion} />}/>
                         <Route path='fc' element={<FormCompletion q={qFormCompletion} />}/>
-                        <Route path='dd' element={<DragNDrop q={qMatching2} />}/>
+                        <Route path='dd' element={<MatchingWithOptions q={qMatching2} />}/>
                     </Route>
                 </Routes >
             </div>
