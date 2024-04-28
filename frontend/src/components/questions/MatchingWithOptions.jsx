@@ -70,7 +70,7 @@ export const MatchingWithOptions = ({ q }) => {
 				{/* Render droppable areas */}
 				{q.numStatements.map((str, index) => (
 					<React.Fragment key={index}>
-						<Text>{str}</Text>
+						<Text>{str.replace("_BLANK_", ":")}</Text>
 						{dropIndex[index] === -1 ? (
 							<Droppable index={index} />
 						) : (

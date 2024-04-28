@@ -8,6 +8,8 @@ export const TableCompletion = ({ q }) => {
 		throw Error("Table Completion Question should have rows.");
 	}
 
+	const questionNumberRegex = /\d+\s*$/;
+
 	const headers = q.rows[0].map((header, idx) => (
 		<Table.Th key={idx}>{header}</Table.Th>
 	));
@@ -44,7 +46,7 @@ export const TableCompletion = ({ q }) => {
 					{typeof data === "string"
 						? data.split("_BLANK_").map((segment, index) => (
 								<React.Fragment key={index}>
-									{segment}&#8205;
+									{segment.replace(questionNumberRegex, "")}&#8205;
 									{index !==
 										data.split("_BLANK_").length - 1 && (
 										<TextInput

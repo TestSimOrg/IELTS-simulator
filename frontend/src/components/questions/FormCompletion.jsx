@@ -7,6 +7,8 @@ import { TextInputValidator } from "../../utils/TextInputValidator";
 export const FormCompletion = ({ q }) => {
 	const [ansArr, setAnsArr] = useState([]);
 
+	const questionNumberRegex = /\d+\s*$/;
+
 	useEffect(() => {
 		let arr = [];
 		for (let i = q.startQuestionNum; i <= q.endQuestionNum; i++) {
@@ -55,7 +57,7 @@ export const FormCompletion = ({ q }) => {
 											<React.Fragment
 												key={`${statementIndex}-${idx}`}
 											>
-												{newStr[0] + " "}&#8205;
+												{newStr[0].replace(questionNumberRegex, "")}&#8205;
 												<TextInput
 													placeholder={"Q " + qNum++}
 													onChange={(e) => {

@@ -8,6 +8,8 @@ import { TextInputValidator } from "../../utils/TextInputValidator";
 export const SummaryCompletion = ({ q }) => {
     const [ansArr, setAnsArr] = useState([]);
 
+    const questionNumberRegex = /\d+\s*$/;
+
     useEffect(() => {
         let arr = [];
         for (let i = q.startQuestionNum; i <= q.endQuestionNum; i++) {
@@ -41,7 +43,7 @@ export const SummaryCompletion = ({ q }) => {
             {q.summary.split("_BLANK_").map((str, index, array) => (
                 <React.Fragment key={index}>
                     <Text style={{ display: 'inline' }}>
-                        {str}
+                        {str.replace(questionNumberRegex, "")}
                     </Text>
                     {index !== array.length - 1 && (
                         <TextInput 
