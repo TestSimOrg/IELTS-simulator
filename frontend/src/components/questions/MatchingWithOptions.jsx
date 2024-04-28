@@ -5,6 +5,7 @@ import { QuestionStatement } from "./commons/QuestionStatement";
 import { Draggable } from "./commons/Draggable";
 import { Droppable } from "./commons/Droppable";
 import { DndContext, pointerWithin} from "@dnd-kit/core";
+import { QuestionTitle } from "./commons/QuestionTitle";
 
 export const MatchingWithOptions = ({ q }) => {
 	// State to store the list of options
@@ -55,6 +56,9 @@ export const MatchingWithOptions = ({ q }) => {
 		<Container size={"xl"}>
 			<QuestionHeader header={q.questionHeader} />
 			<QuestionStatement qStatement={q.questionStatement} />
+            <QuestionTitle
+				title={q.questionTitle !== "" ? q.questionTitle : ""}
+			/>
 			<DndContext
 				collisionDetection={pointerWithin}
 				onDragEnd={handleDrop}
