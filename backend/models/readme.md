@@ -1082,7 +1082,7 @@ Reading Schema explanations:
 		    	"B The Indians",
 		    	"C The British",
 		    	"D The Arabs",
-		    	"E and The Americans"
+		    	"E The Americans"
 		    ],
 		    "numStatements": [
 		    	"7 black powder",
