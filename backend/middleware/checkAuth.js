@@ -16,7 +16,7 @@ const checkAuth =  (req, res, next) => {
 
     } else {
 
-      log.error('JWT not passed with request that requires auth.', err);
+      
       res.redirect('/user/login');
 
     }
