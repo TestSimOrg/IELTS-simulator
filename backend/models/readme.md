@@ -34,60 +34,60 @@ for listening matching question:
 
 -   go to controllers folder
 -   go to lMatching file
--   look at the createQuestion to see what is being extracted from req.body (const {listeningMatching} in this case)
--   go to postman or insomnia and create a object with prop listeningMatching and put the json below the images inside that prop as shown in eg:
+-   look at the createQuestion to see what is being extracted from req.body (const {matching} in this case)
+-   go to postman or insomnia and create a object with property matching and put the json below the images inside that prop as shown in eg:
 
 ```
 {
-    "listeningMatching" : {
-        "startQuestionNum": 21,
-        "endQuestionNum": 25,
-        "standAlone": true,
-        "numOfWords": 1,
-        "numOfNum": 0,
-        "questionHeader": "Write the correct letter, A, B or C next to question 21-25.\nYou may choose any letter more than once.",
-        "questionOptionRepeatable": true,
-        "questionStatement": "What does Jack tell his tutor about each of the following course option?",
-        "questionOptions": [
-            "A He'll definitely do it.",
-            "B He may or may not do it.",
-            "C He won't do it."
-        ],
-        "numStatements": [
-            "21 Media Studies _BLANK_",
-            "22 Women and Power _BLANK_",
-            "23 Culture and Society _BLANK_",
-            "24 Identify and Popular Culture _BLANK_",
-            "25 Introduction to Culture Theory _BLANK_"
-        ],
-	    "answer": [
-	        {
-               "number": 21,
-		        "ansType": "L",
-		        "ans": "C"
-	        },
-		    {
-		    	"number": 22,
-	        	"ansType": "L",
-	        	"ans": "A"
+    "matching" : {
+	    "startQuestionNum": 21,
+	    "endQuestionNum": 25,
+	    "standAlone": false,
+	    "numOfWords": 1,
+	    "numOfNum": 0,
+	    "questionHeader": "Write the correct letter, A, B or C next to question 21-25.\nYou may choose any letter more than once.",
+	    "questionOptionRepeatable": false,
+	    "questionStatement": "What does Jack tell his tutor about each of the following course option?",
+	    "questionOptions": [
+	    	"A He'll definitely do it.",
+	    	"B He may or may not do it.",
+	    	"C He won't do it."
+	    ],
+	    "numStatements": [
+	    	"21 Media Studies _BLANK_",
+	    	"22 Women and Power _BLANK_",
+	    	"23 Culture and Society _BLANK_",
+	    	"24 Identify and Popular Culture _BLANK_",
+	    	"25 Introduction to Culture Theory _BLANK_"
+	    ],
+        "answer": [
+            {
+    	        "number": 21,
+    	        "ansType": "L",
+    	        "ans": "C"
             },
-		    {
-		    	"number": 23,
-		    	"ansType": "L",
-		    	"ans": "B"
-		    },
-		    {
-	        	"number": 24,
-	        	"ansType": "L",
-                "ans": "B"
-		    },
-		    {
-		        "number": 25,
-		        "ansType": "L",
-		        "ans": "C"
-		    }
-		]
-	}
+            {
+            	"number": 22,
+            	"ansType": "L",
+            	"ans": "A"
+            },
+            {
+            	"number": 23,
+            	"ansType": "L",
+            	"ans": "B"
+            },
+            {
+            	"number": 24,
+            	"ansType": "L",
+            	"ans": "B"
+            },
+            {
+            	"number": 25,
+            	"ansType": "L",
+            	"ans": "C"
+            }
+        ]
+    }
 }
 
 ```
@@ -104,26 +104,26 @@ Listening schema explanations:
 
         ```
         {
-            "startQuestionNum": 21,
-            "endQuestionNum": 25,
-            "standAlone": true,
-            "numOfWords": 1,
-            "numOfNum": 0,
-            "questionHeader": "Write the correct letter, A, B or C next to question 21-25.\nYou may choose any letter more than once.",
-            "questionOptionRepeatable": true,
-            "questionStatement": "What does Jack tell his tutor about each of the following course option?",
-            "questionOptions": [
-                "A He'll definitely do it.",
-                "B He may or may not do it.",
-                "C He won't do it."
-            ],
-            "numStatements": [
-                "21 Media Studies _BLANK_",
-                "22 Women and Power _BLANK_",
-                "23 Culture and Society _BLANK_",
-                "24 Identify and Popular Culture _BLANK_",
-                "25 Introduction to Culture Theory _BLANK_"
-            ],
+		    "startQuestionNum": 21,
+		    "endQuestionNum": 25,
+		    "standAlone": false,
+		    "numOfWords": 1,
+		    "numOfNum": 0,
+		    "questionHeader": "Write the correct letter, A, B or C next to question 21-25.\nYou may choose any letter more than once.",
+		    "questionOptionRepeatable": false,
+		    "questionStatement": "What does Jack tell his tutor about each of the following course option?",
+		    "questionOptions": [
+		    	"A He'll definitely do it.",
+		    	"B He may or may not do it.",
+		    	"C He won't do it."
+		    ],
+		    "numStatements": [
+		    	"21 Media Studies _BLANK_",
+		    	"22 Women and Power _BLANK_",
+		    	"23 Culture and Society _BLANK_",
+		    	"24 Identify and Popular Culture _BLANK_",
+		    	"25 Introduction to Culture Theory _BLANK_"
+		    ],
             "answer": [
                 {
         	        "number": 21,
@@ -167,21 +167,20 @@ Listening schema explanations:
             "standAlone": false,
             "numOfWords": 1,
             "numOfNum": 0,
-            "questionHeader": "Choose your answers from the box and write the correct letter A-E next to questions 1-4.",
-            "questionOptionRepeatable": false,
+            "questionHeader": "Choose your anasdasdswers from the box and write the correct letter A-E next to questions 1-4.",
             "questionStatement": "Which hotel matches each description?",
             "questionOptions": [
                 "A The Bridge Hotel",
                 "B Carlton House",
-                "C The Imperial",
+                "C The Imasdasdperial",
                 "D The Majestic",
-                "E The Royal Oak"
+                "E The Roasdayal Oak"
             ],
             "numStatements": [
-                "1 is in a rural area _BLANK_",
-                "2 only opened recently _BLANK_",
-                "3 offers facilities for business functions _BLANK_",
-                "4 has an indoor swimming pool _BLANK_"
+                "1 is in a rural areasdasdadadsa _BLANK_",
+                "2 only opened recenasdasdasdtly _BLANK_",
+                "3 offers facilitieasdasds for business functions _BLANK_",
+                "4 has an indoor asdasdsswimming pool _BLANK_"
             ]
         }
         ```
@@ -1021,17 +1020,27 @@ Reading Schema explanations:
 
         ```
         {
-        	"startQuestionNum": 1,
-        	"endQuestionNum": 3,
-        	"standAlone": true,
-        	"qTypeMatchingInfo": true,
-        	"questionHeader": "Reading Passage 1 has nine paragraphs, A-I.\nWrite the correct letter, A-I, in boxes 1-3 on your answer sheet.",
-        	"questionOptionRepeatable": false,
-        	"numStatements": [
-        		"1 a reference to characteristics that only apply to food production.",
-        		"2 a reference to challenges face only farmers in certain parts of the world.",
-        		"3 a reference to difficulties in bringing about co-operation between farmers"
-            ],
+		    "startQuestionNum": 1,
+		    "endQuestionNum": 3,
+		    "standAlone": false,
+		    "numOfWords": 1,
+		    "numOfNum": 0,
+		    "questionHeader": "Reading Passage 1 has nine paragraphs, A-I.\nWrite the correct letter, A-I, in boxes 1-3 on your answer sheet.",
+		    "questionOptions": [
+		    	"A",
+		    	"B",
+		    	"C",
+		    	"D",
+		    	"E",
+		    	"F",
+		    	"G",
+		    	"I"
+		    ],
+		    "numStatements": [
+		    	"1 a reference to characteristics that only apply to food production.",
+		    	"2 a reference to challenges face only farmers in certain parts of the world.",
+		    	"3 a reference to difficulties in bringing about co-operation between farmers"
+		    ],
         	"answer": [
         		{
         			"number": 1,
@@ -1060,26 +1069,27 @@ Reading Schema explanations:
 
         ```
         {
-        	"startQuestionNum": 7,
-        	"endQuestionNum": 10,
-        	"standAlone": true,
-        	"qTypeList": true,
-        	"questionHeader": "Look at the following items (Questions 7-10) and the list of groups below.\nMatch each item with the group which first invented or used them.\nWrite the correct letter A-E in boxes 7-10 on your answer sheet.\nNB you may use any letter more than once",
-        	"questionOptionRepeatable": true,
-        	"questionTitle": "First invented or used by",
-        	"questionStatements": [
-        		"A The Chinese",
-        		"B The Indians",
-        		"C The British",
-        		"D The Arabs",
-        		"E and The Americans"
-        	],
-        	"numStatements": [
-        		"7 black powder",
-        		"8 rocket-propelled arrows for fighting",
-        		"9 rocket as war weapons",
-        		"10 the rocket launcher"
-        	],
+		    "startQuestionNum": 7,
+		    "endQuestionNum": 10,
+		    "standAlone": false,
+		    "numOfWords": 1,
+		    "numOfNum": 0,
+		    "questionHeader": "Look at the following items (Questions 7-10) and the list of groups below.\nMatch each item with the group which first invented or used them.\nWrite the correct letter A-E in boxes 7-10 on your answer sheet.\nNB you may use any letter more than once",
+		    "questionStatement": "Which hotel matches each description?",
+		    "questionTitle": "First invented or used by",
+		    "questionOptions": [
+		    	"A The Chinese",
+		    	"B The Indians",
+		    	"C The British",
+		    	"D The Arabs",
+		    	"E and The Americans"
+		    ],
+		    "numStatements": [
+		    	"7 black powder",
+		    	"8 rocket-propelled arrows for fighting",
+		    	"9 rocket as war weapons",
+		    	"10 the rocket launcher"
+		    ],
         	"answer": [
         		{
         			"number": 7,

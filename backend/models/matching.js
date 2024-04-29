@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import log from '../lib/logger.js';
 
-const lMatchingQuestionSchema = new mongoose.Schema({
+const matchingQuestionSchema = new mongoose.Schema({
     startQuestionNum : {
         type : Number,
         required: true
@@ -25,10 +25,6 @@ const lMatchingQuestionSchema = new mongoose.Schema({
     questionHeader: {
         type: String,
         required: true,
-    },
-    questionOptionRepeatable : {
-        type: Boolean,
-        required : true,
     },
     questionStatement: {
         type: String,
@@ -56,7 +52,7 @@ const lMatchingQuestionSchema = new mongoose.Schema({
     }
 });
 
-lMatchingQuestionSchema.pre('validate', function(next){
+matchingQuestionSchema.pre('validate', function(next){
     const numOfQuestion = this.endQuestionNum - this.startQuestionNum + 1;
     const numConsistency = this.numStatements.length === numOfQuestion ? true : false;
 
@@ -68,6 +64,6 @@ lMatchingQuestionSchema.pre('validate', function(next){
     }
 })
   
-const lMatchingQuestion =  mongoose.model('lMatchingQuestion', lMatchingQuestionSchema);
+const matchingQuestion =  mongoose.model('matchingQuestion', matchingQuestionSchema);
 
-export default lMatchingQuestion;
+export default matchingQuestion;

@@ -1,38 +1,37 @@
 import log from '../lib/logger.js';
-import lMatchingQuestion from '../models/lMatching.js'
+import matchingQuestion from '../models/matching.js'
 import { createAns, createBlankAnsArr} from '../utils/createAnswer.js'
 
 const createQuestion = async (req, res) => {
-    const {listeningMatching} = req.body;
+    const {matching} = req.body;
 
-    log.info('Creating Listening Matching Question.',listeningMatching);
+    log.info('Creating Listening Matching Question.',matching);
 
     try {
 
         let blankAnsID, filledAnsID;
 
-        if (listeningMatching.answer !== undefined) filledAnsID = await createAns(listeningMatching.answer);
+        if (matching.answer !== undefined) filledAnsID = await createAns(matching.answer);
         else blankAnsID = await createBlankAnsArr();
 
-        const q = new lMatchingQuestion({
-            startQuestionNum: listeningMatching.startQuestionNum,
-            endQuestionNum: listeningMatching.endQuestionNum,
-            standAlone: listeningMatching.standAlone,
-            numOfWords: listeningMatching.numOfWords,
-            numOfNum: listeningMatching.numOfNum,
-            questionHeader: listeningMatching.questionHeader,
-            questionOptionRepeatable: listeningMatching.questionOptionRepeatable,
-            questionStatement: listeningMatching.questionStatement,
-            questionTitle: listeningMatching.questionTitle,
-            questionOptions: listeningMatching.questionOptions,
-            numTitle: listeningMatching.numTitle,
-            numStatements: listeningMatching.numStatements,
-            answer: listeningMatching.standAlone ? filledAnsID : blankAnsID,
+        const q = new matchingQuestion({
+            startQuestionNum: matching.startQuestionNum,
+            endQuestionNum: matching.endQuestionNum,
+            standAlone: matching.standAlone,
+            numOfWords: matching.numOfWords,
+            numOfNum: matching.numOfNum,
+            questionHeader: matching.questionHeader,
+            questionStatement: matching.questionStatement ? matching.questionStatement : " ",
+            questionTitle: matching.questionTitle,
+            questionOptions: matching.questionOptions,
+            numTitle: matching.numTitle,
+            numStatements: matching.numStatements,
+            answer: matching.standAlone ? filledAnsID : blankAnsID,
         });
         
         const savedQuestion = (await q.save()).toJSON();
         
-        log.info('Created Listening Matching Completion Question.',savedQuestion);
+        log.info('Created Matching Completion Question.',savedQuestion);
         
         res.status(201).json({
             message: "Question creation successful",
@@ -43,7 +42,7 @@ const createQuestion = async (req, res) => {
 
     } catch (err) {
         
-        log.error('Error while creating a Listen Matching Completion Question.',err);
+        log.error('Error while creating a Matching Completion Question.',err);
         
         return res.status(500).json({
             message: 'Server error',
@@ -60,11 +59,11 @@ const getAllQuestions = async (req, res) => {
         
         log.info('fetching all Listening Matching Questions.')
 
-        const questions = await lMatchingQuestion.find();
+        const questions = await matchingQuestion.find();
 
         if(questions.length === 0){
 
-            log.error("Couldn't find any listening matching questions");
+            log.error("Couldn't find any matching questions");
 
             return res.status(404).json({
                 message: "No questions found",
@@ -74,7 +73,7 @@ const getAllQuestions = async (req, res) => {
         
         }
 
-        log.info('sending all Listening Matching Questions.')
+        log.info('sending all Matching Questions.')
 
         return res.status(200).json({
             message: "Fetched questions successfully",
@@ -86,7 +85,7 @@ const getAllQuestions = async (req, res) => {
 
     } catch (err) {
 
-        log.error('Error while finding listening matching questions.',err);
+        log.error('Error while finding matching questions.',err);
             
         return res.status(500).json({
             message: 'Server error',
@@ -102,14 +101,14 @@ const getAllStandaloneQuestions = async (req, res) => {
     
     try {
         
-        log.info('fetching all stand alone Listening Matching Questions.')
+        log.info('fetching all stand alone Matching Questions.')
 
-        const questions = await lMatchingQuestion.find({ standAlone: true }).select("-answer");
+        const questions = await matchingQuestion.find({ standAlone: true }).select("-answer");
 
         
         if(questions.length === 0){
 
-            log.error("Couldn't find any stand alone listening matching questions");
+            log.error("Couldn't find any stand alone matching questions");
 
             return res.status(404).json({
                 message: "No stand alone questions found",
@@ -119,7 +118,7 @@ const getAllStandaloneQuestions = async (req, res) => {
         
         }
 
-        log.info('sending all stand alone Listening Matching Questions.')
+        log.info('sending all stand alone Matching Questions.')
 
         return res.status(200).json({
             message: "Fetched all stand alone questions successfully",
@@ -131,7 +130,7 @@ const getAllStandaloneQuestions = async (req, res) => {
 
     } catch (err) {
 
-        log.error('Error while finding stand alone listening matching questions.',err);
+        log.error('Error while finding stand alone matching questions.',err);
             
         return res.status(500).json({
             message: 'Server error',
@@ -145,13 +144,13 @@ const getAllStandaloneQuestions = async (req, res) => {
 
 const getQuestionById = async (req, res) => {
 
-    log.info('fetching Listen Matching Question using id.')
+    log.info('fetching Matching Question using id.')
 
-    const lMatchingID = req.params.id;
+    const matchingID = req.params.id;
 
     try {
         
-        const Question = await lMatchingQuestion.findById(lMatchingID).select("-answer");
+        const Question = await matchingQuestion.findById(matchingID).select("-answer");
 
         if(!Question){
 
@@ -167,10 +166,10 @@ const getQuestionById = async (req, res) => {
 
         const q = Question.toJSON();
 
-        log.info('Listening Matching Question found.', Question.toJSON());
+        log.info('Matching Question found.', Question.toJSON());
 
         return res.status(200).json({
-            message: "Listening Matching Question Found.",
+            message: "Matching Question Found.",
             obj: q,
             ok: true,
             status: 200
@@ -179,7 +178,7 @@ const getQuestionById = async (req, res) => {
 
     } catch (err) {
 
-        log.error('Error while fetching Listening Matching Question by id.',err);
+        log.error('Error while fetching Matching Question by id.',err);
             
         return res.status(500).json({
             message: 'Server error',
@@ -197,9 +196,9 @@ const getAns = async (req, res) => {
     
     try {
 
-        log.info('Getting answer to Listening Matching question with id:', qID);
+        log.info('Getting answer to Matching question with id:', qID);
         
-        const ans = await lMatchingQuestion.findById(qID).populate({
+        const ans = await matchingQuestion.findById(qID).populate({
             path: "answer",
         }).select("answer");
 
@@ -216,7 +215,7 @@ const getAns = async (req, res) => {
         }
 
         return res.status(200).json({
-            message: "Listening Matching Answers.",
+            message: "Matching Answers.",
             obj: ans,
             ok: true,
             status: 200
@@ -224,7 +223,7 @@ const getAns = async (req, res) => {
 
     } catch (err) {
         
-        log.error('Error while finding ans to listening matching questions.',err);
+        log.error('Error while finding ans to matching questions.',err);
             
         return res.status(500).json({
             message: 'Server error',
@@ -238,14 +237,14 @@ const getAns = async (req, res) => {
 
 const updateAns = async (req, res) => {
 
-    log.info('fetching Listen Matching Question using id.')
+    log.info('fetching Matching Question using id.')
 
     const qID = req.params.id;
     const updates = req.body;
 
     try {
         
-        const Question = await lMatchingQuestion.findById(qID);
+        const Question = await matchingQuestion.findById(qID);
 
         if(!Question){
 
@@ -265,10 +264,10 @@ const updateAns = async (req, res) => {
 
         const savedQuestion = (await Question.save()).toJSON();
 
-        log.info('Listening Matching Answers updated.', savedQuestion.answer);
+        log.info('Matching Answers updated.', savedQuestion.answer);
 
         return res.status(200).json({
-            message: "Listening Matching Answers updated.",
+            message: "Matching Answers updated.",
             obj: savedQuestion,
             ok: true,
             status: 200
@@ -277,7 +276,7 @@ const updateAns = async (req, res) => {
 
     } catch (err) {
 
-        log.error('Error while updating Listening Matching Answers updated by id.',err);
+        log.error('Error while updating Matching Answers updated by id.',err);
             
         return res.status(500).json({
             message: 'Server error',
@@ -291,14 +290,14 @@ const updateAns = async (req, res) => {
 
 const editQuestion = async (req, res) => {
 
-    log.info('fetching Listen Matching Question using id.')
+    log.info('fetching Matching Question using id.')
 
-    const lMatchingID = req.params.id;
+    const matchingID = req.params.id;
     const updates = req.body;
 
     try {
         
-        const Question = await lMatchingQuestion.findById(lMatchingID);
+        const Question = await matchingQuestion.findById(matchingID);
 
         if(!Question){
 
@@ -319,10 +318,10 @@ const editQuestion = async (req, res) => {
 
         const savedQuestion = (await Question.save()).toJSON();
 
-        log.info('Listening Matching Question updated.', savedQuestion);
+        log.info('Matching Question updated.', savedQuestion);
 
         return res.status(200).json({
-            message: "Listening Matching Question updated.",
+            message: "Matching Question updated.",
             obj: savedQuestion,
             ok: true,
             status: 200
@@ -331,7 +330,7 @@ const editQuestion = async (req, res) => {
 
     } catch (err) {
 
-        log.error('Error while updating Listening Matching Question by id.',err);
+        log.error('Error while updating Matching Question by id.',err);
             
         return res.status(500).json({
             message: 'Server error',
@@ -345,13 +344,13 @@ const editQuestion = async (req, res) => {
 
 const delQuestion = async (req, res) => {
     
-    log.info('Deleting Listen Matching Question using id.');
+    log.info('Deleting Matching Question using id.');
 
-    const lMatchingID = req.params.id;
+    const matchingID = req.params.id;
 
     try {
 
-        const deletedQuestion = await lMatchingQuestion.findByIdAndDelete(lMatchingID);
+        const deletedQuestion = await matchingQuestion.findByIdAndDelete(matchingID);
 
         if (!deletedQuestion) {
             log.error("Couldn't find any question using id.");
@@ -362,10 +361,10 @@ const delQuestion = async (req, res) => {
             });
         }
 
-        log.info('Listening Matching Question deleted.', deletedQuestion);
+        log.info('Matching Question deleted.', deletedQuestion);
 
         return res.status(200).json({
-            message: "Listening Matching Question deleted.",
+            message: "Matching Question deleted.",
             obj: deletedQuestion,
             ok: true,
             status: 200
@@ -373,7 +372,7 @@ const delQuestion = async (req, res) => {
 
     } catch (err) {
 
-        log.error('Error while deleting Listening Matching Question by id.', err);
+        log.error('Error while deleting Matching Question by id.', err);
 
         return res.status(500).json({
             message: 'Server error',
@@ -386,6 +385,6 @@ const delQuestion = async (req, res) => {
 };
 
 
-const lMatchingController = {createQuestion, getAllQuestions, getAllStandaloneQuestions, getQuestionById, getAns, updateAns, editQuestion, delQuestion}
+const matchingController = {createQuestion, getAllQuestions, getAllStandaloneQuestions, getQuestionById, getAns, updateAns, editQuestion, delQuestion}
 
-export default lMatchingController;
+export default matchingController;
