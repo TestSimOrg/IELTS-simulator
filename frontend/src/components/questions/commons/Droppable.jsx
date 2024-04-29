@@ -13,6 +13,7 @@ export function Droppable({ content, index }) {
 		borderRadius: "6px",
 		minHeight: "50px",
         width: "20%",
+        minWidth: "300px",
 		padding: "10px",
         marginLeft: "2%",
 		display: "flex",

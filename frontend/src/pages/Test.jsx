@@ -4,8 +4,6 @@
 
 
 import React from "react";
-import { Container } from "@mantine/core";
-import { Matching } from "../components/questions/Matching";
 import { SentenceCompletion } from "../components/questions/SentenceCompletion";
 import { MultipleChoiceType1 } from "../components/questions/MultipleChoiceType1";
 import { MultipleChoiceType2 } from "../components/questions/MultipleChoiceType2";
@@ -19,7 +17,7 @@ import { TableCompletion } from "../components/questions/TableCompletion";
 import { SummaryCompletion } from "../components/questions/SummaryCompletion";
 import { FormCompletion } from "../components/questions/FormCompletion";
 import { ShortAnswer } from "../components/questions/ShortAnswer";
-import { MatchingWithOptions } from "../components/questions/MatchingWithOptions";
+import { Matching } from "../components/questions/Matching";
 
 export const qMatching = {
     startQuestionNum: 21,
@@ -296,6 +294,77 @@ export const qTableCompletion = {
     ]
 }
 
+export const qMatching3 = {
+    startQuestionNum: 21,
+    endQuestionNum: 25,
+    standAlone: true,
+    numOfWords: 1,
+    numOfNum: 0,
+    questionHeader: "Write the correct letter, A, B or C next to question 21-25.\nYou may choose any letter more than once.",
+    questionOptionRepeatable: true,
+    questionStatement: "What does Jack tell his tutor about each of the following course option?",
+    questionOptions: [
+        "A He'll definitely do it.",
+        "B He may or may not do it.",
+        "C He won't do it."
+    ],
+    numStatements: [
+        "21 Media Studies _BLANK_",
+        "22 Women and Power _BLANK_",
+        "23 Culture and Society _BLANK_",
+        "24 Identify and Popular Culture _BLANK_",
+        "25 Introduction to Culture Theory _BLANK_"
+    ]
+}
+
+export const qMatching4 = {
+    startQuestionNum: 1,
+    endQuestionNum: 3,
+    standAlone: true,
+    qTypeMatchingInfo: true,
+    questionHeader: "Reading Passage 1 has nine paragraphs, A-I.\nWrite the correct letter, A-I, in boxes 1-3 on your answer sheet.",
+    questionOptionRepeatable: false,
+    questionOptions: [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+    ],
+    numStatements: [
+        "1 a reference to characteristics that only apply to food production.",
+        "2 a reference to challenges face only farmers in certain parts of the world.",
+        "3 a reference to difficulties in bringing about co-operation between farmers"
+    ]
+}
+
+export const qMatching5 = {
+	startQuestionNum: 7,
+	endQuestionNum: 10,
+	standAlone: true,
+	qTypeList: true,
+	questionHeader: "Look at the following items (Questions 7-10) and the list of groups below.\nMatch each item with the group which first invented or used them.\nWrite the correct letter A-E in boxes 7-10 on your answer sheet.\nNB you may use any letter more than once",
+	questionOptionRepeatable: true,
+	questionTitle: "First invented or used by",
+	questionOptions: [
+		"A The Chinese",
+		"B The Indians",
+		"C The British",
+		"D The Arabs",
+		"E The Americans"
+	],
+	numStatements: [
+		"7 black powder",
+		"8 rocket-propelled arrows for fighting",
+		"9 rocket as war weapons",
+		"10 the rocket launcher"
+	]
+}
+
 export const qMatching2 = {
     startQuestionNum: 1,
     endQuestionNum: 4,
@@ -383,7 +452,10 @@ export default function Test() {
             <FormCompletion q={qFormCompletion} />
             <ShortAnswer q={qShortAnswer1} />
             <ShortAnswer q={qShortAnswer2} />
-            <MatchingWithOptions q={qMatching2} />
+            <Matching q={qMatching2} />
+            <Matching q={qMatching3} />
+            <Matching q={qMatching4} />
+            <Matching q={qMatching5} />
         </div>
     );
 }

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDraggable } from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
 
 export function Draggable({ item, index }) {
 	const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -8,10 +9,11 @@ export function Draggable({ item, index }) {
 
 	const style = transform
 		? {
-				transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+				transform: CSS.Translate.toString(transform),
 				outline: "none",
+				touchAction: "none",
 		  }
-		: { outline: "none" };
+		: { outline: "none", touchAction: "none" };
 
 	return (
 		<div

@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Container, Grid, Text } from "@mantine/core";
+import { Container, Text } from "@mantine/core";
 import { QuestionHeader } from "./commons/QuestionHeader";
 import { QuestionStatement } from "./commons/QuestionStatement";
-import { RadioButtons } from "./commons/RadioButtons";
+import { Draggable } from "./commons/Draggable";
+import { Droppable } from "./commons/Droppable";
+import { DndContext, pointerWithin } from "@dnd-kit/core";
+import { QuestionTitle } from "./commons/QuestionTitle";
 
 export const Matching = ({ q }) => {
+	// State to store the list of options
+
+	const [options, setOptions] = useState(q.questionOptions);
 	const [ansArr, setAnsArr] = useState([]);
+
+	const [dropIndex, setDropIndex] = useState(
+		Array(q.numStatements.length).fill(-1)
+	);
 
 	useEffect(() => {
 		let arr = [];
@@ -16,42 +26,68 @@ export const Matching = ({ q }) => {
 			});
 		}
 		setAnsArr(arr);
+		q.numStatements = q.numStatements.map((statement) =>
+			statement.replace(/_BLANK_/g, "")
+		);
 	}, []);
 
-	const handleRadioChange = (questionNum, newValue) => {
+	// Handle drop event
+	const handleDrop = (event) => {
+		const { over, active } = event;
+
+		if (!over) {
+			return;
+		}
+
+		const droppedItem = options[active.id.split("-")[1]]; // Get the dropped item
+		const droppedArea = Number(over.id.split("-")[1]);
+
+		setDropIndex((prevArr) => {
+			let newArr = [...prevArr];
+			newArr[droppedArea] = droppedItem;
+			return newArr;
+		});
+
 		setAnsArr((prevAnsArr) => {
 			const newAnsArr = [...prevAnsArr];
-			newAnsArr[questionNum].ans = newValue;
+			newAnsArr[over.id.split("-")[1]].ans = droppedItem[0];
 			return newAnsArr;
 		});
 	};
 
 	return (
-		<Container size={"xl"} pt={"md"}>
-            <Text fw={"bold"}>
+		<Container size={"xl"}>
+			<Text fw={"bold"}>
 				Questions {q.startQuestionNum} - {q.endQuestionNum}
-			</Text> 
+			</Text>
 			<QuestionHeader header={q.questionHeader} />
 			<QuestionStatement qStatement={q.questionStatement} />
-			<Grid gutter="lg">
-				{q.numStatements.map((numStatement, index) => (
-					<Grid.Col span={{ xs: 12, md: 6 }} key={index} pl={20}>
-						<Text size="sm">
-							{numStatement.replace("_BLANK_", "_______")}
-						</Text>
-						<RadioButtons
-							options={q.questionOptions}
-							value={ansArr[index]?.ans || ""}
-							onChange={(newValue) =>
-								handleRadioChange(
-									index,
-									newValue
-								)
-							}
-						/>
-					</Grid.Col>
+			<QuestionTitle
+				title={q.questionTitle !== "" ? q.questionTitle : ""}
+			/>
+			<DndContext
+				collisionDetection={pointerWithin}
+				onDragEnd={handleDrop}
+			>
+				{/* Render draggable elements */}
+				{options.map((str, index) => (
+					<Draggable key={index} item={str} index={index} />
 				))}
-			</Grid>
+				{/* Render droppable areas */}
+				{q.numStatements.map((str, index) => (
+					<React.Fragment key={index}>
+						<Text pl={"lg"}>{str}</Text>
+						{dropIndex[index] === -1 ? (
+							<Droppable index={index} />
+						) : (
+							<Droppable
+								content={dropIndex[index]}
+								index={index}
+							/>
+						)}
+					</React.Fragment>
+				))}
+			</DndContext>
 		</Container>
 	);
 };
