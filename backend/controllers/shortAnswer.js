@@ -1,55 +1,53 @@
 import log from '../lib/logger.js';
-import rShortAnswerQuestion from '../models/rShortAnswer.js';
+import shortAnswerQuestion from '../models/shortAnswer.js'
 import { createAns, createBlankAnsArr} from '../utils/createAnswer.js'
 
-
 const createQuestion = async (req, res) => {
-    
-    const {rShortAnswer} = req.body;
+    const {listeningShortAns} = req.body;
 
-    log.info('Creating Reading Short Answer Question.',rShortAnswer);
+    log.info('Creating Listening Short Ans Question.',listeningShortAns);
 
     try {
 
         let blankAnsID, filledAnsID;
 
-        if (rShortAnswer.answer !== undefined) filledAnsID = await createAns(rShortAnswer.answer);
+        if (listeningShortAns.answer !== undefined) filledAnsID = await createAns(listeningShortAns.answer);
         else blankAnsID = await createBlankAnsArr();
 
-        const q = new rShortAnswerQuestion({
-
-            startQuestionNum: rShortAnswer.startQuestionNum,
-            endQuestionNum: rShortAnswer.endQuestionNum,
-            standAlone: rShortAnswer.standAlone,
-            numOfWords: rShortAnswer.numOfWords,
-            numOfNum: rShortAnswer.numOfNum,
-            questionHeader: rShortAnswer.questionHeader,
-            numStatements: rShortAnswer.numStatements,
-            answer: rShortAnswer.standAlone ? filledAnsID : blankAnsID,
+        const q = new shortAnswerQuestion({
+            startQuestionNum: listeningShortAns.startQuestionNum,
+            endQuestionNum: listeningShortAns.endQuestionNum,
+            standAlone: listeningShortAns.standAlone,
+            numOfWords: listeningShortAns.numOfWords,
+            numOfNum: listeningShortAns.numOfNum,
+            questionHeader: listeningShortAns.questionHeader,
+            numStatements: listeningShortAns.numStatements,
+            numBlanks: listeningShortAns.numBlanks,
+            answer: listeningShortAns.standAlone ? filledAnsID : blankAnsID,
         });
-
+        
         const savedQuestion = (await q.save()).toJSON();
-
-        log.info('Created Reading Short Answer Question.', savedQuestion);
-
-        return res.status(201).json({
+        
+        log.info('Created Listening Short Ans Question.',savedQuestion);
+        
+        res.status(201).json({
             message: "Question creation successful",
             obj: savedQuestion,
             ok: true,
-            status: 201,
+            status: 201
         });
 
     } catch (err) {
-
-        log.error('Error while creating Reading Short Answer Question.',err);
-            
+        
+        log.error('Error while creating a Listening Short Ans with mcq.',err);
+        
         return res.status(500).json({
             message: 'Server error',
             ok: false,
-            status: 500,
-        })
-
-    }
+            status: 500
+        });
+        
+    } 
 
 }
 
@@ -57,13 +55,13 @@ const getAllQuestions = async (req, res) => {
 
     try {
         
-        log.info('fetching all Reading Short Answer Question.')
+        log.info('fetching all Listening Short Ans Question.')
 
-        const questions = await rShortAnswerQuestion.find().select("-answers");
+        const questions = await shortAnswerQuestion.find();
         
         if(questions.length === 0){
 
-            log.error("Couldn't find any Reading Short Answer Questions.");
+            log.error("Couldn't find any Listening Short Ans Questions.");
 
             return res.status(404).json({
                 message: "No questions found",
@@ -73,7 +71,7 @@ const getAllQuestions = async (req, res) => {
         
         }
 
-        log.info('Sending all Reading Short Answer Questions.')
+        log.info('Sending all Listening Short Ans Questions.')
 
         return res.status(200).json({
             message: "Fetched questions successfully",
@@ -85,7 +83,7 @@ const getAllQuestions = async (req, res) => {
 
     } catch (err) {
 
-        log.error('Error while finding Reading Short Answer Questions.',err);
+        log.error('Error while finding Listening Short Ans Questions.',err);
             
         return res.status(500).json({
             message: 'Server error',
@@ -101,34 +99,35 @@ const getAllStandaloneQuestions = async (req, res) => {
 
     try {
         
-        log.info('fetching all stand alone Reading Short Answer Questions.')
+        log.info('fetching all stand alone Listening Short Ans Questions.')
 
-        const questions = await rShortAnswerQuestion.find({ standAlone: true }).select("-answer");
-
+        const questions = await shortAnswerQuestion.find({ standAlone: true }).select("-answer");
+        
         if(questions.length === 0){
 
-            log.error("Couldn't find any stand alone Reading Short Answer Questions.");
+            log.error("Couldn't find any stand alone listening short ans questions");
 
             return res.status(404).json({
-                message: "No stand alone questions found.",
+                message: "No stand alone questions found",
                 ok: false,
                 status: 404
             });
         
         }
 
-        log.info('sending all stand alone Reading Short Answer Questions.');
+        log.info('sending all stand alone Listening Short Ans Questions.')
 
         return res.status(200).json({
-            message: "Fetched all stand alone questions successfully",
+            message: "Fetched all stand alone question successfully",
             obj: questions,
             ok: true,
             status: 200
         })
 
+
     } catch (err) {
 
-        log.error('Error while finding stand alone Reading Short Answer Questions.',err);
+        log.error('Error while finding stand alone listening short ans questions.',err);
             
         return res.status(500).json({
             message: 'Server error',
@@ -137,18 +136,18 @@ const getAllStandaloneQuestions = async (req, res) => {
         });
 
     }
-
+    
 }
 
-const getQuestionById= async (req, res) => {
+const getQuestionById = async (req, res) => {
     
-    log.info('fetching Reading Short Answer Question using id.')
+    log.info('fetching Listening Short Ans Question using id.')
 
-    const rMatchingID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const Question = await rShortAnswerQuestion.findById(rMatchingID).select("-answer");
+        const Question = await shortAnswerQuestion.findById(qID).select("-answer");
 
         if(!Question){
 
@@ -164,10 +163,10 @@ const getQuestionById= async (req, res) => {
 
         const q = Question.toJSON();
 
-        log.info('Reading Short Answer Question found.', q);
+        log.info('Listening Short Ans Question found.', q);
 
         return res.status(200).json({
-            message: "Reading Short Answer Question Found.",
+            message: "Listening Short Ans Question Found.",
             obj: q,
             ok: true,
             status: 200
@@ -176,7 +175,7 @@ const getQuestionById= async (req, res) => {
 
     } catch (err) {
 
-        log.error('Error while fetching Reading Short Answer Question by id.',err);
+        log.error('Error while fetching Listening Short Ans Question by id.',err);
             
         return res.status(500).json({
             message: 'Server error',
@@ -189,17 +188,17 @@ const getQuestionById= async (req, res) => {
 }
 
 const getAns = async (req, res) => {
-    
+ 
     const qID = req.params.id;
     
     try {
 
-        log.info('Getting answer to Reading Short Answer Question with id:', qID);
+        log.info('Getting answer to Listening Short Ans Question with id:', qID);
         
-        const ans = await rShortAnswerQuestion.findById(qID).populate({
+        const ans = await shortAnswerQuestion.findById(qID).populate({
             path: "answer",
         }).select("answer");
-
+        log.info(ans)
         if(!ans){
 
             log.error("Couldn't find any question using id.");
@@ -213,7 +212,7 @@ const getAns = async (req, res) => {
         }
 
         return res.status(200).json({
-            message: "Reading Short Answer Question Answers.",
+            message: "Listening Short Ans Question Answers.",
             obj: ans,
             ok: true,
             status: 200
@@ -221,7 +220,7 @@ const getAns = async (req, res) => {
 
     } catch (err) {
         
-        log.error('Error while finding ans to Reading Answer Questions.',err);
+        log.error('Error while finding ans to Listening Short Ans Questions.',err);
             
         return res.status(500).json({
             message: 'Server error',
@@ -235,14 +234,14 @@ const getAns = async (req, res) => {
 
 const updateAns = async (req, res) => {
     
-    log.info('fetching Reading Short Answer Question using id.')
+    log.info('fetching Listening Short Ans Question using id.')
 
     const qID = req.params.id;
     const updates = req.body;
 
     try {
         
-        const Question = await rShortAnswerQuestion.findById(qID);
+        const Question = await shortAnswerQuestion.findById(qID);
 
         if(!Question){
 
@@ -260,16 +259,13 @@ const updateAns = async (req, res) => {
 
         Question["answer"] = ansArrID;
 
-        const savedQuestion = await Question.save();
-        const populatedQuestion = await savedQuestion.populate("answer");
-        const questionJSON = populatedQuestion.toJSON();
+        const savedQuestion = (await Question.save()).toJSON();
 
-
-        log.info('Reading Short Answer Question Answers updated.', savedQuestion.answer);
+        log.info('Listening Short Ans Question Answers updated.', savedQuestion.answer);
 
         return res.status(200).json({
-            message: "Reading Short Answer Question Answers updated.",
-            obj: questionJSON.answer,
+            message: "Listening Short Ans Question Answers updated.",
+            obj: savedQuestion,
             ok: true,
             status: 200
         })
@@ -277,7 +273,7 @@ const updateAns = async (req, res) => {
 
     } catch (err) {
 
-        log.error('Error while updating Reading Short Answer Question Answers by id.',err);
+        log.error('Error while updating Listening Short Ans Question Answers by id.',err);
             
         return res.status(500).json({
             message: 'Server error',
@@ -291,20 +287,20 @@ const updateAns = async (req, res) => {
 
 const editQuestion = async (req, res) => {
 
-    log.info('fetching Reading Short Answer Question using id.')
+    log.info('fetching Listen Short Ans Question using id.')
 
-    const rShortAnsID = req.params.id;
+    const qID = req.params.id;
     const updates = req.body;
 
     try {
         
-        const Question = await rShortAnswerQuestion.findById(rShortAnsID).select("-answer");
+        const Question = await shortAnswerQuestion.findById(qID).exec();
 
         if(!Question){
 
             log.error("Couldn't find any question using id.");
 
-            return res.status(404).json({
+            res.status(404).json({
                 message: "Couldn't find the question using id.",
                 ok: false,
                 status: 404
@@ -318,41 +314,42 @@ const editQuestion = async (req, res) => {
 
         const savedQuestion = (await Question.save()).toJSON();
 
-        log.info('Reading Short Answer updated.', savedQuestion);
+        log.info('Listening Short Ans Question updated.', savedQuestion);
 
         return res.status(200).json({
-            message: "Reading Short Answer Question updated.",
+            message: "Listening Short Ans Question updated.",
             obj: savedQuestion,
             ok: true,
             status: 200
-        });
+        })
 
 
     } catch (err) {
 
-        log.error('Error while updating Reading Short Answer Question by id.', err);
+        log.error('Error while updating Listening Short Ans Question by id.',err);
             
         return res.status(500).json({
             message: 'Server error',
             ok: false,
             status: 500
-        });
+        })
 
     }
 
 }
 
 const delQuestion = async (req, res) => {
-    
-    log.info('Deleting Reading Short Answer Question using id.');
 
-    const rShortAnsID = req.params.id;
+    log.info('Deleting Listen Short Ans Question using id.');
 
     try {
 
-        const deletedQuestion = await rShortAnswerQuestion.findByIdAndDelete(rShortAnsID);
+        const qID = req.params.id;
+
+        const deletedQuestion = await shortAnswerQuestion.findByIdAndDelete(qID).exec();
 
         if (!deletedQuestion) {
+
             log.error("Couldn't find any question using id.");
 
             return res.status(404).json({
@@ -360,21 +357,20 @@ const delQuestion = async (req, res) => {
                 ok: false,
                 status: 404
             });
-
         }
 
-        log.info('Reading Short Answer Question deleted.', deletedQuestion.toJSON());
+        log.info('Listening Short Ans Question deleted.', deletedQuestion.toJSON());
 
         return res.status(200).json({
-            message: "Reading Short Answer Question deleted.",
-            obj: deletedQuestion,
+            message: "Listening Short Ans Question deleted.",
+            obj: deletedQuestion.toJSON(),
             ok: true,
             status: 200
         });
 
     } catch (err) {
 
-        log.error('Error while deleting Reading Short Answer Question by id.', err);
+        log.error('Error while deleting Listening Short Ans Question by id.', err);
 
         return res.status(500).json({
             message: 'Server error',
@@ -384,9 +380,9 @@ const delQuestion = async (req, res) => {
 
     }
 
-}
+};
 
 
-const rShortAnswerController = {createQuestion, getAllQuestions, getAllStandaloneQuestions, getQuestionById, getAns, updateAns, editQuestion, delQuestion};
+const shortAnswerController = {createQuestion, getAllQuestions, getAllStandaloneQuestions, getQuestionById, getAns, updateAns, editQuestion, delQuestion};
 
-export default rShortAnswerController;
+export default shortAnswerController;

@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import log from '../lib/logger.js';
 
-const rShortAnswerQuestionSchema = new mongoose.Schema({
+const shortAnswerQuestionSchema = new mongoose.Schema({
     
     startQuestionNum : {
         type : Number,
@@ -31,6 +31,10 @@ const rShortAnswerQuestionSchema = new mongoose.Schema({
         type : [String],
         required : true,
     },
+    numBlanks : {
+        type : [[String]],
+        default: [[""]]
+    },
     answer: {
         type: [Schema.ObjectId],
         ref: 'answer'
@@ -38,18 +42,7 @@ const rShortAnswerQuestionSchema = new mongoose.Schema({
 
 });
 
-rShortAnswerQuestionSchema.pre('validate', function(next){
-    const numOfQuestion = this.endQuestionNum - this.startQuestionNum + 1;
-    const numConsistency = this.numStatements.length === numOfQuestion ? true : false;
 
-    if(!numConsistency){
-        const err = new Error('number of questions and number of question statements mismatch');
-        next(err);
-    }else{
-        next();
-    }
-})
+const shortAnswerQuestion = mongoose.model('shortAnswerQuestion', shortAnswerQuestionSchema);
 
-const rShortAnswerQuestion = mongoose.model('rShortAnswerQuestion', rShortAnswerQuestionSchema);
-
-export  default  rShortAnswerQuestion;
+export default shortAnswerQuestion;
