@@ -146,11 +146,11 @@ const getQuestionById = async (req, res) => {
 
     log.info('fetching Sentence Completion Question using id.')
 
-    const sentenceCompletionID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const Question = await sentenceCompletionQuestion.findById(sentenceCompletionID).select("-answer");
+        const Question = await sentenceCompletionQuestion.findById(qID).select("-answer");
 
         if(!Question){
 
@@ -292,12 +292,12 @@ const editQuestion = async (req, res) => {
 
     log.info('fetching Sentence Completion Question using id.')
 
-    const sentenceCompletionID = req.params.id;
+    const qID = req.params.id;
     const updates = req.body;
 
     try {
         
-        const Question = await sentenceCompletionQuestion.findById(sentenceCompletionID).exec();
+        const Question = await sentenceCompletionQuestion.findById(qID).exec();
 
         if(!Question){
 
@@ -345,9 +345,9 @@ const delQuestion = async (req, res) => {
     
     try {
 
-        const sentenceCompletionID = req.params.id;
+        const qID = req.params.id;
         
-        const deletedQuestion = await sentenceCompletionQuestion.findByIdAndDelete(sentenceCompletionID).exec();
+        const deletedQuestion = await sentenceCompletionQuestion.findByIdAndDelete(qID).exec();
         
         if (!deletedQuestion) {
 

@@ -145,11 +145,11 @@ const getQuestionById = async (req, res) => {
     
     log.info('fetching Table Completion Question using id.')
 
-    const tableCompletionID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const Question = await tableCompletionQuestion.findById(tableCompletionID).select("-answer");
+        const Question = await tableCompletionQuestion.findById(qID).select("-answer");
 
         if(!Question){
 
@@ -290,12 +290,12 @@ const editQuestion = async (req, res) => {
 
     log.info('fetching Table Completion Question using id.')
 
-    const tableCompletionID = req.params.id;
+    const qID = req.params.id;
     const updates = req.body;
 
     try {
         
-        const Question = await tableCompletionQuestion.findById(tableCompletionID).exec();
+        const Question = await tableCompletionQuestion.findById(qID).exec();
 
         if(!Question){
 
@@ -343,11 +343,11 @@ const delQuestion = async (req, res) => {
 
     log.info('Deleting Table Completion Question using id.');
 
-    const tableCompletionID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const deletedQuestion = await tableCompletionQuestion.findByIdAndDelete(tableCompletionID).exec();
+        const deletedQuestion = await tableCompletionQuestion.findByIdAndDelete(qID).exec();
 
         if(!deletedQuestion){
 

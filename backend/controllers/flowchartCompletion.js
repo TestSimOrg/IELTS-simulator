@@ -150,11 +150,11 @@ const getQuestionById = async (req, res) => {
   
     log.info('fetching Flowchart Completion Question using id.')
 
-    const fcCompletionID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const Question = await flowchartCompletionQuestion.findById(fcCompletionID).select("-answer");
+        const Question = await flowchartCompletionQuestion.findById(qID).select("-answer");
 
         if(!Question){
 
@@ -296,12 +296,12 @@ const editQuestion = async (req, res) => {
 
     log.info('fetching Flow Chart Completion Question using id.')
 
-    const fcCompletionID = req.params.id;
+    const qID = req.params.id;
     const updates = req.body;
 
     try {
         
-        const Question = await flowchartCompletionQuestion.findById(fcCompletionID).exec();
+        const Question = await flowchartCompletionQuestion.findById(qID).exec();
 
         if(!Question){
 
@@ -347,11 +347,11 @@ const delQuestion = async (req, res) => {
 
     log.info('Deleting Flowchart Completion Question using id.');
 
-    const fcCompletionID = req.params.id;
+    const qID = req.params.id;
 
     try {
 
-        const deletedQuestion = await flowchartCompletionQuestion.findByIdAndDelete(fcCompletionID).exec();
+        const deletedQuestion = await flowchartCompletionQuestion.findByIdAndDelete(qID).exec();
 
         if (!deletedQuestion) {
 

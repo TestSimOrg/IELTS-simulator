@@ -146,11 +146,11 @@ const getQuestionById = async (req, res) => {
 
     log.info('fetching Matching Question using id.')
 
-    const matchingID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const Question = await matchingQuestion.findById(matchingID).select("-answer");
+        const Question = await matchingQuestion.findById(qID).select("-answer");
 
         if(!Question){
 
@@ -292,12 +292,12 @@ const editQuestion = async (req, res) => {
 
     log.info('fetching Matching Question using id.')
 
-    const matchingID = req.params.id;
+    const qID = req.params.id;
     const updates = req.body;
 
     try {
         
-        const Question = await matchingQuestion.findById(matchingID);
+        const Question = await matchingQuestion.findById(qID);
 
         if(!Question){
 
@@ -346,11 +346,11 @@ const delQuestion = async (req, res) => {
     
     log.info('Deleting Matching Question using id.');
 
-    const matchingID = req.params.id;
+    const qID = req.params.id;
 
     try {
 
-        const deletedQuestion = await matchingQuestion.findByIdAndDelete(matchingID);
+        const deletedQuestion = await matchingQuestion.findByIdAndDelete(qID);
 
         if (!deletedQuestion) {
             log.error("Couldn't find any question using id.");

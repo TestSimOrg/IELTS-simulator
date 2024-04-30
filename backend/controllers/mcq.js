@@ -148,11 +148,11 @@ const getQuestionById = async (req, res) => {
 
     log.info('fetching MCQ using id.')
 
-    const mcqID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const Question = await mcq.findById(mcqID).select("-answer");
+        const Question = await mcq.findById(qID).select("-answer");
 
         if(!Question){
 
@@ -294,12 +294,12 @@ const editQuestion = async (req, res) => {
 
     log.info('fetching mcq using id.')
 
-    const lShortAnsID = req.params.id;
+    const qID = req.params.id;
     const updates = req.body;
 
     try {
         
-        const Question = await mcq.findById(lShortAnsID).exec();
+        const Question = await mcq.findById(qID).exec();
 
         if(!Question){
 
@@ -347,11 +347,11 @@ const delQuestion = async (req, res) => {
 
     log.info('Deleting mcq using id.');
 
-    const mcqId = req.params.id;
+    const qID = req.params.id;
 
     try {
 
-        const deletedQuestion = await mcq.findByIdAndDelete(mcqId).exec();
+        const deletedQuestion = await mcq.findByIdAndDelete(qID).exec();
 
         if (!deletedQuestion) {
 

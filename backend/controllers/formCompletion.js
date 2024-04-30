@@ -144,11 +144,11 @@ const getQuestionById = async (req, res) => {
     
     log.info('fetching Form Completion Question using id.')
 
-    const formCompletionID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const Question = await formCompletionQuestion.findById(formCompletionID).select("-answer");
+        const Question = await formCompletionQuestion.findById(qID).select("-answer");
 
         if(!Question){
 
@@ -290,12 +290,12 @@ const editQuestion = async (req, res) => {
     
     log.info('fetching Form Completion Question using id.')
 
-    const fCompletionID = req.params.id;
+    const qID = req.params.id;
     const updates = req.body;
 
     try {
         
-        const Question = await formCompletionQuestion.findById(fCompletionID).exec();
+        const Question = await formCompletionQuestion.findById(qID).exec();
 
         if(!Question){
 
@@ -341,9 +341,9 @@ const delQuestion = async (req, res) => {
 
     try {
 
-        const fCompletionID = req.params.id;
+        const qID = req.params.id;
 
-        const deletedQuestion = await formCompletionQuestion.findByIdAndDelete(fCompletionID).exec();
+        const deletedQuestion = await formCompletionQuestion.findByIdAndDelete(qID).exec();
 
         if (!deletedQuestion) {
 

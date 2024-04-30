@@ -165,11 +165,11 @@ const getImageById = async (req, res) => {
     
     log.info('fetching Plan Map Diagram Completion Question using id.')
 
-    const pmdCompletionID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const Question = await planMapDiagramLabellingQuestion.findById(pmdCompletionID).select("image");
+        const Question = await planMapDiagramLabellingQuestion.findById(qID).select("image");
 
         if(!Question){
 
@@ -212,11 +212,11 @@ const getQuestionById = async (req, res) => {
     
     log.info('fetching Plan Map Diagram Completion Question using id.')
 
-    const pmdCompletionID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const Question = await planMapDiagramLabellingQuestion.findById(pmdCompletionID).select("-answer -image");
+        const Question = await planMapDiagramLabellingQuestion.findById(qID).select("-answer -image");
 
         if(!Question){
 

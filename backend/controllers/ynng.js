@@ -142,11 +142,11 @@ const getQuestionById = async (req, res) => {
     
     log.info('fetching YES, NO or NOT GIVEN Question using id.')
 
-    const rMatchingID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const Question = await yesNoNGQuestion.findById(rMatchingID).select("-answer");
+        const Question = await yesNoNGQuestion.findById(qID).select("-answer");
 
         if(!Question){
 
@@ -291,12 +291,12 @@ const editQuestion = async (req, res) => {
 
     log.info('fetching YES, NO or NOT GIVEN Question using id.')
 
-    const tfngID = req.params.id;
+    const qID = req.params.id;
     const updates = req.body;
 
     try {
         
-        const Question = await yesNoNGQuestion.findById(tfngID).exec();
+        const Question = await yesNoNGQuestion.findById(qID).exec();
 
         if(!Question){
 
@@ -344,11 +344,11 @@ const delQuestion = async (req, res) => {
 
     log.info('Deleting YES, NO or NOT GIVEN Question using id.');
 
-    const ynngID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const deletedQuestion = await yesNoNGQuestion.findByIdAndDelete(ynngID);
+        const deletedQuestion = await yesNoNGQuestion.findByIdAndDelete(qID);
 
         if(!deletedQuestion){
 

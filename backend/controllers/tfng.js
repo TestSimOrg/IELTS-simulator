@@ -141,11 +141,11 @@ const getQuestionById = async (req, res) => {
     
     log.info('fetching TRUE, FALSE or NOT GIVEN Question using id.')
 
-    const tfngID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const Question = await trueFalseNGQuestion.findById(tfngID).select("-answer");
+        const Question = await trueFalseNGQuestion.findById(qID).select("-answer");
 
         if(!Question){
 
@@ -290,12 +290,12 @@ const editQuestion = async (req, res) => {
 
     log.info('fetching True, False or Not Given Question using id.')
 
-    const tfngID = req.params.id;
+    const qID = req.params.id;
     const updates = req.body;
 
     try {
         
-        const Question = await trueFalseNGQuestion.findById(tfngID).select("-answer");
+        const Question = await trueFalseNGQuestion.findById(qID).select("-answer");
 
         if(!Question){
 
@@ -344,11 +344,11 @@ const delQuestion = async (req, res) => {
 
     log.info('Deleting True, False or Not Given Question using id.');
     
-    const tfngID = req.params.id;
+    const qID = req.params.id;
     
     try {
 
-        const deletedQuestion = await trueFalseNGQuestion.findByIdAndDelete(tfngID);
+        const deletedQuestion = await trueFalseNGQuestion.findByIdAndDelete(qID);
         
         if (!deletedQuestion) {
 

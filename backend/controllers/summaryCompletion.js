@@ -147,11 +147,11 @@ const getQuestionById = async (req, res) => {
     
     log.info('fetching Summary Completion Question using id.')
 
-    const summaryCompletionID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const Question = await summaryCompletionQuestion.findById(summaryCompletionID).select("-answer");
+        const Question = await summaryCompletionQuestion.findById(qID).select("-answer");
 
         if(!Question){
 
@@ -293,12 +293,12 @@ const editQuestion = async (req, res) => {
 
     log.info('fetching Summary Completion Question using id.')
 
-    const summaryCompletionID = req.params.id;
+    const qID = req.params.id;
     const updates = req.body;
 
     try {
         
-        const Question = await summaryCompletionQuestion.findById(summaryCompletionID).exec();
+        const Question = await summaryCompletionQuestion.findById(qID).exec();
 
         if(!Question){
 
@@ -346,11 +346,11 @@ const delQuestion = async (req, res) => {
     
     log.info('Deleting Summary Completion Question using id.');
 
-    const summaryCompletionID = req.params.id;
+    const qID = req.params.id;
 
     try {
 
-        const deletedQuestion = await summaryCompletionQuestion.findByIdAndDelete(summaryCompletionID).exec();
+        const deletedQuestion = await summaryCompletionQuestion.findByIdAndDelete(qID).exec();
 
         if (!deletedQuestion) {
 

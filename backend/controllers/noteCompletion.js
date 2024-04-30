@@ -144,11 +144,11 @@ const getQuestionById = async (req, res) => {
     
     log.info('fetching Note Completion Question using id.')
 
-    const noteCompletionID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const Question = await noteCompletionQuestion.findById(noteCompletionID).select("-answer");
+        const Question = await noteCompletionQuestion.findById(qID).select("-answer");
 
         if(!Question){
 
@@ -290,12 +290,12 @@ const editQuestion = async (req, res) => {
 
     log.info('fetching Note Completion Question using id.')
 
-    const noTeCompletionID = req.params.id;
+    const qID = req.params.id;
     const updates = req.body;
 
     try {
         
-        const Question = await noteCompletionQuestion.findById(noTeCompletionID).exec();
+        const Question = await noteCompletionQuestion.findById(qID).exec();
 
         if(!Question){
 
@@ -343,11 +343,11 @@ const delQuestion = async (req, res) => {
 
     log.info('Deleting Note Completion Question using id.');
 
-    const noTeCompletionID = req.params.id;
+    const qID = req.params.id;
 
     try {
         
-        const deletedQuestion = await noteCompletionQuestion.findByIdAndDelete(noTeCompletionID).exec();
+        const deletedQuestion = await noteCompletionQuestion.findByIdAndDelete(qID).exec();
 
         if(!deletedQuestion){
 
