@@ -390,13 +390,13 @@ export const qMatching2 = {
 }
 
 export const qShortAnswer1 = {
-    "startQuestionNum": 1,
-    "endQuestionNum": 4,
-    "standAlone": true,
-    "numOfWords": 3,
-    "numOfNum": 1,
-    "questionHeader": "Answer the questions below.\nChoose NO MORE THAN THREE WORDS AND/OR A NUMBER from the text for each answer.\nWrite your answers in boxes 1-4 on your answer sheet.",
-    "numStatements": [
+    startQuestionNum: 1,
+    endQuestionNum: 4,
+    standAlone: true,
+    numOfWords: 3,
+    numOfNum: 1,
+    questionHeader: "Answer the questions below.\nChoose NO MORE THAN THREE WORDS AND/OR A NUMBER from the text for each answer.\nWrite your answers in boxes 1-4 on your answer sheet.",
+    numStatements: [
       "What is the African rhinoceros compared to?",
       "Which type of rhino fell in number to below a hundred?",
       "What percentage of black rhinos had been illegally killed by 1992?",
@@ -405,18 +405,18 @@ export const qShortAnswer1 = {
 }
 
 export const qShortAnswer2 = {
-    "startQuestionNum": 11,
-    "endQuestionNum": 16,
-    "standAlone": true,
-    "numOfWords": 3,
-    "numOfNum": 1,
-    "questionHeader": "Answer the questions below.\nWrite NO MORE THAN THREE WORDS AND/OR A NUMBER for each answer.",
-    "numStatements": [
+    startQuestionNum: 11,
+    endQuestionNum: 16,
+    standAlone: true,
+    numOfWords: 3,
+    numOfNum: 1,
+    questionHeader: "Answer the questions below.\nWrite NO MORE THAN THREE WORDS AND/OR A NUMBER for each answer.",
+    numStatements: [
         "What TWO factors can make social contact in a foreign country difficult?",
         "Which types of community group does the speaker give examples of?",
         "In which TWO places can information about community activities be found?"
     ],
-    "numBlanks": [
+    numBlanks: [
         [
             "11 _BLANK_",
             "12 _BLANK_"
@@ -434,7 +434,6 @@ export const qShortAnswer2 = {
 }
 
 export default function Test() {
-
 
     return (
         <div> 
