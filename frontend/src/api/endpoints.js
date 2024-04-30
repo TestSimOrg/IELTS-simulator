@@ -1,4 +1,4 @@
-const API_ENDPOINTS = {
+export const API_ENDPOINTS = {
     USER_CREATION: {
         METHOD: 'POST',
         ROUTE: '/user/signup'
@@ -25,23 +25,23 @@ const API_ENDPOINTS = {
     },
     Q_YNNG_GET_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/ynng/:id'
+        ROUTE: '/ynng/'
     },
     Q_YNNG_GET_ANS_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/ynng/ans/:id'
+        ROUTE: '/ynng/ans/'
     },
     Q_YNNG_UPDATE_ANS_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/ynng/ans/:id'
+        ROUTE: '/ynng/ans/'
     },
     Q_YNNG_UPDATE_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/ynng/:id'
+        ROUTE: '/ynng/'
     },
     Q_YNNG_DELETE_BY_ID: {
         METHOD: 'DELETE',
-        ROUTE: '/ynng/:id'
+        ROUTE: '/ynng/'
     },
     Q_TFNG_CREATION: {
         METHOD: 'POST',
@@ -57,23 +57,23 @@ const API_ENDPOINTS = {
     },
     Q_TFNG_GET_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/tfng/:id'
+        ROUTE: '/tfng/'
     },
     Q_TFNG_GET_ANS_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/tfng/ans/:id'
+        ROUTE: '/tfng/ans/'
     },
     Q_TFNG_UPDATE_ANS_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/tfng/ans/:id'
+        ROUTE: '/tfng/ans/'
     },
     Q_TFNG_UPDATE_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/tfng/:id'
+        ROUTE: '/tfng/'
     },
     Q_TFNG_DELETE_BY_ID: {
         METHOD: 'DELETE',
-        ROUTE: '/tfng/:id'
+        ROUTE: '/tfng/'
     },
     Q_TABLE_CREATION: {
         METHOD: 'POST',
@@ -89,23 +89,23 @@ const API_ENDPOINTS = {
     },
     Q_TABLE_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/tableCompletion/:id'
+        ROUTE: '/tableCompletion/'
     },
     Q_TABLE_ANS_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/tableCompletion/ans/:id'
+        ROUTE: '/tableCompletion/ans/'
     },
     Q_TABLE_UPDATE_ANS_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/tableCompletion/ans/:id'
+        ROUTE: '/tableCompletion/ans/'
     },
     Q_TABLE_UPDATE_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/tableCompletion/:id'
+        ROUTE: '/tableCompletion/'
     },
     Q_TABLE_DELETE_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/tableCompletion/:id'
+        ROUTE: '/tableCompletion/'
     },
     Q_SENTENCE_CREATION: {
         METHOD: 'POST',
@@ -121,55 +121,55 @@ const API_ENDPOINTS = {
     },
     Q_SENTENCE_GET_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/sentenceCompletion/:id'
+        ROUTE: '/sentenceCompletion/'
     },
-    Q_SENTENCE_GET_ANS_BY_ID: {
+    Q_SENTENCE_ANS_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/sentenceCompletion/ans/:id'
+        ROUTE: '/sentenceCompletion/ans/'
     },
     Q_SENTENCE_UPDATE_ANS_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/sentenceCompletion/ans/:id'
+        ROUTE: '/sentenceCompletion/ans/'
     },
     Q_SENTENCE_UPDATE_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/sentenceCompletion/:id'
+        ROUTE: '/sentenceCompletion/'
     },
     Q_SENTENCE_DELETE_BY_ID: {
         METHOD: 'DELETE',
-        ROUTE: '/sentenceCompletion/:id'
+        ROUTE: '/sentenceCompletion/'
     },
-    Q_R_SHORT_CREATION: {
+    Q_SHORT_CREATION: {
         METHOD: 'POST',
         ROUTE: '/rShortAnswer/'
     },
-    Q_R_SHORT_GET_ALL: {
+    Q_SHORT_GET_ALL: {
         METHOD: 'GET',
         ROUTE: '/rShortAnswer/all'
     },
-    Q_R_SHORT_GET_ALL_STANDALONE: {
+    Q_SHORT_GET_ALL_STANDALONE: {
         METHOD: 'GET',
         ROUTE: '/rShortAnswer/'
     },
-    Q_R_SHORT_GET_BY_ID: {
+    Q_SHORT_GET_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/rShortAnswer/:id'
+        ROUTE: '/rShortAnswer/'
     },
-    Q_R_SHORT_GET_ANS_BY_ID: {
+    Q_SHORT_GET_ANS_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/rShortAnswer/ans/:id'
+        ROUTE: '/rShortAnswer/ans/'
     },
-    Q_R_SHORT_UPDATE_ANS_BY_ID: {
+    Q_SHORT_UPDATE_ANS_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/rShortAnswer/ans/:id'
+        ROUTE: '/rShortAnswer/ans/'
     },
-    Q_R_SHORT_UPDATE_BY_ID: {
+    Q_SHORT_UPDATE_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/rShortAnswer/:id'
+        ROUTE: '/rShortAnswer/'
     },
-    Q_R_SHORT_DELETE_BY_ID: {
+    Q_SHORT_DELETE_BY_ID: {
         METHOD: 'DELETE',
-        ROUTE: '/rShortAnswer/:id'
+        ROUTE: '/rShortAnswer/'
     },
     Q_PMD_CREATION: {
         METHOD: 'POST',
@@ -185,27 +185,27 @@ const API_ENDPOINTS = {
     },
     Q_PMD_GET_IMG_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/planMapDiagramLabelling/img/:id'
+        ROUTE: '/planMapDiagramLabelling/img/'
     },
     Q_PMD_GET_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/planMapDiagramLabelling/:id'
+        ROUTE: '/planMapDiagramLabelling/'
     },
     Q_PMD_GET_ANS_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/planMapDiagramLabelling/ans/:id'
+        ROUTE: '/planMapDiagramLabelling/ans/'
     },
     Q_PMD_UPDATE_ANS_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/planMapDiagramLabelling/ans/:id'
+        ROUTE: '/planMapDiagramLabelling/ans/'
     },
     Q_PMD_UPDATE_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/planMapDiagramLabelling/:id'
+        ROUTE: '/planMapDiagramLabelling/'
     },
     Q_PMD_DELETE_BY_ID: {
         METHOD: 'DELETE',
-        ROUTE: '/planMapDiagramLabelling/:id'
+        ROUTE: '/planMapDiagramLabelling/'
     },
     Q_NOTE_CREATION: {
         METHOD: 'POST',
@@ -221,23 +221,23 @@ const API_ENDPOINTS = {
     },
     Q_NOTE_GET_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/noteCompletion/:id'
+        ROUTE: '/noteCompletion/'
     },
     Q_NOTE_GET_ANS_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/noteCompletion/ans/:id'
+        ROUTE: '/noteCompletion/ans/'
     },
     Q_NOTE_UPDATE_ANS_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/noteCompletion/ans/:id'
+        ROUTE: '/noteCompletion/ans/'
     },
     Q_NOTE_UPDATE_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/noteCompletion/:id'
+        ROUTE: '/noteCompletion/'
     },
     Q_NOTE_DELETE_BY_ID: {
         METHOD: 'DELETE',
-        ROUTE: '/noteCompletion/:id'
+        ROUTE: '/noteCompletion/'
     },
     Q_MCQ_CREATION: {
         METHOD: 'POST',
@@ -253,55 +253,23 @@ const API_ENDPOINTS = {
     },
     Q_MCQ_GET_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/mcq/:id'
+        ROUTE: '/mcq/'
     },
     Q_MCQ_GET_ANS_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/mcq/ans/:id'
+        ROUTE: '/mcq/ans/'
     },
     Q_MCQ_UPDATE_ANS_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/mcq/ans/:id'
+        ROUTE: '/mcq/ans/'
     },
     Q_MCQ_UPDATE_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/mcq/:id'
+        ROUTE: '/mcq/'
     },
     Q_MCQ_DELETE_BY_ID: {
         METHOD: 'DELETE',
-        ROUTE: '/mcq/:id'
-    },
-    Q_L_SHORT_CREATION: {
-        METHOD: 'POST',
-        ROUTE: '/lShortAnswer/'
-    },
-    Q_L_SHORT_GET_ALL: {
-        METHOD: 'GET',
-        ROUTE: '/lShortAnswer/all'
-    },
-    Q_L_SHORT_GET_ALL_STANDALONE: {
-        METHOD: 'GET',
-        ROUTE: '/lShortAnswer/'
-    },
-    Q_L_SHORT_GET_BY_ID: {
-        METHOD: 'GET',
-        ROUTE: '/lShortAnswer/:id'
-    },
-    Q_L_SHORT_GET_ANS_BY_ID: {
-        METHOD: 'GET',
-        ROUTE: '/lShortAnswer/ans/:id'
-    },
-    Q_L_SHORT_UPDATE_ANS_BY_ID: {
-        METHOD: 'PATCH',
-        ROUTE: '/lShortAnswer/ans/:id'
-    },
-    Q_L_SHORT_UPDATE_BY_ID: {
-        METHOD: 'PATCH',
-        ROUTE: '/lShortAnswer/:id'
-    },
-    Q_L_SHORT_DELETE_BY_ID: {
-        METHOD: 'DELETE',
-        ROUTE: '/lShortAnswer/:id'
+        ROUTE: '/mcq/'
     },
     Q_MATCHING_CREATION: {
         METHOD: 'POST',
@@ -317,23 +285,23 @@ const API_ENDPOINTS = {
     },
     Q_MATCHING_GET_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/matching/:id'
+        ROUTE: '/matching/'
     },
     Q_MATCHING_GET_ANS_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/matching/ans/:id'
+        ROUTE: '/matching/ans/'
     },
     Q_MATCHING_UPDATE_ANS_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/matching/ans/:id'
+        ROUTE: '/matching/ans/'
     },
     Q_MATCHING_UPDATE_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/matching/:id'
+        ROUTE: '/matching/'
     },
     Q_MATCHING_DELETE_BY_ID: {
         METHOD: 'DELETE',
-        ROUTE: '/matching/:id'
+        ROUTE: '/matching/'
     },
     Q_FORM_CREATION: {
         METHOD: 'POST',
@@ -349,23 +317,23 @@ const API_ENDPOINTS = {
     },
     Q_FORM_GET_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/formCompletion/:id'
+        ROUTE: '/formCompletion/'
     },
     Q_FORM_GET_ANS_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/formCompletion/ans/:id'
+        ROUTE: '/formCompletion/ans/'
     },
     Q_FORM_UPDATE_ANS_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/formCompletion/ans/:id'
+        ROUTE: '/formCompletion/ans/'
     },
     Q_FORM_UPDATE_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/formCompletion/:id'
+        ROUTE: '/formCompletion/'
     },
     Q_FORM_DELETE_BY_ID: {
         METHOD: 'DELETE',
-        ROUTE: '/formCompletion/:id'
+        ROUTE: '/formCompletion/'
     },
     Q_FLOW_CREATION: {
         METHOD: 'POST',
@@ -381,24 +349,54 @@ const API_ENDPOINTS = {
     },
     Q_FLOW_GET_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/flowchartCompletion/:id'
+        ROUTE: '/flowchartCompletion/'
     },
     Q_FLOW_GET_ANS_BY_ID: {
         METHOD: 'GET',
-        ROUTE: '/flowchartCompletion/ans/:id'
+        ROUTE: '/flowchartCompletion/ans/'
     },
     Q_FLOW_UPDATE_ANS_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/flowchartCompletion/ans/:id'
+        ROUTE: '/flowchartCompletion/ans/'
     },
     Q_FLOW_UPDATE_BY_ID: {
         METHOD: 'PATCH',
-        ROUTE: '/flowchartCompletion/:id'
+        ROUTE: '/flowchartCompletion/'
     },
     Q_FLOW_DELETE_BY_ID: {
         METHOD: 'DELETE',
-        ROUTE: '/flowchartCompletion/:id'
+        ROUTE: '/flowchartCompletion/'
+    },
+    Q_SUMMARY_CREATION: {
+        METHOD: 'POST',
+        ROUTE: '/summaryCompletion/'
+    },
+    Q_SUMMARY_GET_ALL: {
+        METHOD: 'GET',
+        ROUTE: '/summaryCompletion/all'
+    },
+    Q_SUMMARY_GET_ALL_STANDALONE: {
+        METHOD: 'GET',
+        ROUTE: '/summaryCompletion/'
+    },
+    Q_SUMMARY_GET_BY_ID: {
+        METHOD: 'GET',
+        ROUTE: '/summaryCompletion/'
+    },
+    Q_SUMMARY_GET_ANS_BY_ID: {
+        METHOD: 'GET',
+        ROUTE: '/summaryCompletion/ans/'
+    },
+    Q_SUMMARY_UPDATE_ANS_BY_ID: {
+        METHOD: 'PATCH',
+        ROUTE: '/summaryCompletion/ans/'
+    },
+    Q_SUMMARY_UPDATE_BY_ID: {
+        METHOD: 'PATCH',
+        ROUTE: '/summaryCompletion/'
+    },
+    Q_SUMMARY_DELETE_BY_ID: {
+        METHOD: 'DELETE',
+        ROUTE: '/summaryCompletion/'
     }
 }
-
-export default API_ENDPOINTS;
