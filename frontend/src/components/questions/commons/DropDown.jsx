@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Select } from "@mantine/core";
 export const DropDown = ({ options }) => {
@@ -13,7 +12,7 @@ export const DropDown = ({ options }) => {
 					transitionProps: { transition: "pop", duration: 200 },
 					shadow: "md",
 				}}
-                onChange={(e) => console.log(e)}
+				onChange={(e) => console.log(e)}
 			/>
 		</div>
 	);

@@ -27,9 +27,9 @@ export const MultipleChoiceType1 = ({ q }) => {
 
 	return (
 		<Container size={"xl"} pt={"md"}>
-            <Text fw={"bold"}>
+			<Text fw={"bold"}>
 				Questions {q.startQuestionNum} - {q.endQuestionNum}
-			</Text> 
+			</Text>
 			<QuestionHeader header={q.questionHeader[0]} />
 			<Grid gutter="lg">
 				{q.numStatements.map((numStatement, index) => (
@@ -39,10 +39,7 @@ export const MultipleChoiceType1 = ({ q }) => {
 							options={q.questionStatements[index]}
 							value={ansArr[index]?.ans || ""}
 							onChange={(newValue) =>
-								handleRadioChange(
-									index,
-									newValue
-								)
+								handleRadioChange(index, newValue)
 							}
 						/>
 					</Grid.Col>

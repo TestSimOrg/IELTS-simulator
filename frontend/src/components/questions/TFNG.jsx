@@ -30,9 +30,9 @@ export const TFNG = ({ q }) => {
 
 	return (
 		<Container size={"xl"} pt={"md"}>
-            <Text fw={"bold"}>
+			<Text fw={"bold"}>
 				Questions {q.startQuestionNum} - {q.endQuestionNum}
-			</Text> 
+			</Text>
 			<QuestionHeader header={q.questionHeader} />
 			{q.numStatements.map((statement, idx) => {
 				return (

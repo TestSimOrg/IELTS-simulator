@@ -12,7 +12,7 @@ export const TableCompletion = ({ q }) => {
 		<Table.Th key={idx}>{header}</Table.Th>
 	));
 
-    const [ansArr, setAnsArr] = useState([]);
+	const [ansArr, setAnsArr] = useState([]);
 
 	useEffect(() => {
 		let arr = [];
@@ -35,7 +35,7 @@ export const TableCompletion = ({ q }) => {
 
 	const rowsWithoutHeader = q.rows.slice(1);
 
-    let qNum = q.startQuestionNum;
+	let qNum = q.startQuestionNum;
 
 	const rows = rowsWithoutHeader.map((row, idx) => (
 		<Table.Tr key={idx}>
@@ -80,8 +80,8 @@ export const TableCompletion = ({ q }) => {
 		<Container size={"xl"} pt={"md"}>
 			<Text fw={"bold"}>
 				Questions {q.startQuestionNum} - {q.endQuestionNum}
-			</Text> 
-            <QuestionHeader header={q.questionHeader} />
+			</Text>
+			<QuestionHeader header={q.questionHeader} />
 			<Table mt={"1%"} highlightOnHover withTableBorder withColumnBorders>
 				<Table.Thead>
 					<Table.Tr>{headers}</Table.Tr>

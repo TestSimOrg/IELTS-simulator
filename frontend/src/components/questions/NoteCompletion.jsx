@@ -29,11 +29,13 @@ export const NoteCompletion = ({ q }) => {
 
 	return (
 		<Container size={"xl"} pt={"md"}>
-            <Text fw={"bold"}>
+			<Text fw={"bold"}>
 				Questions {q.startQuestionNum} - {q.endQuestionNum}
-			</Text> 
+			</Text>
 			<QuestionHeader header={q.questionHeader} />
-			<QuestionTitle title={q.questionTitle !== "" ? q.questionTitle : ""} />
+			<QuestionTitle
+				title={q.questionTitle !== "" ? q.questionTitle : ""}
+			/>
 			<Grid>
 				{q.questionStatements.map((statement, statementIndex) => (
 					<React.Fragment key={statementIndex}>
