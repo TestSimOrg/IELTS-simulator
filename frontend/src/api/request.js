@@ -2,25 +2,32 @@ import axios from "axios";
 import { API_ENDPOINTS } from "./endpoints";
 
 let url = "www.api.ieltssim.com"; // api url
-if(import.meta.env.MODE === "development"){
-    url = "http://localhost:3000"
+if (import.meta.env.MODE === "development") {
+	url = "http://localhost:3000";
 }
 
 export const user = {
 	signup: async (email, username, password) => {
-		const response = await axios.post(url + API_ENDPOINTS.USER_CREATION.ROUTE, {
-			email,
-			username,
-			password,
-		});
+		const response = await axios.post(
+			url + API_ENDPOINTS.USER_CREATION.ROUTE,
+			{
+				email,
+				username,
+				password,
+			}
+		);
 		return response;
 	},
 
 	login: async (email, password) => {
-		const response = await axios.post(url + API_ENDPOINTS.USER_LOGIN.ROUTE, {
-			email,
-			password,
-		});
+		const response = await axios.post(
+			url + API_ENDPOINTS.USER_LOGIN.ROUTE,
+			{
+				email,
+				password,
+			},
+			{ withCredentials: true }
+		);
 		return response;
 	},
 
@@ -36,6 +43,9 @@ export const ynng = {
 			url + API_ENDPOINTS.Q_YNNG_CREATION.ROUTE,
 			{
 				yesNoNG,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -74,6 +84,9 @@ export const ynng = {
 			url + API_ENDPOINTS.Q_YNNG_UPDATE_ANS_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -84,6 +97,9 @@ export const ynng = {
 			url + API_ENDPOINTS.Q_YNNG_UPDATE_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -91,7 +107,11 @@ export const ynng = {
 
 	deleteByID: async (qID, updates) => {
 		const response = await axios.patch(
-			url + API_ENDPOINTS.Q_YNNG_DELETE_BY_ID.ROUTE + `${qID}`
+			url + API_ENDPOINTS.Q_YNNG_DELETE_BY_ID.ROUTE + `${qID}`,
+			null,
+			{
+				withCredentials: true,
+			}
 		);
 		return response;
 	},
@@ -103,6 +123,9 @@ export const tfng = {
 			url + API_ENDPOINTS.Q_TFNG_CREATION.ROUTE,
 			{
 				trueFalseNG,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -141,6 +164,9 @@ export const tfng = {
 			url + API_ENDPOINTS.Q_TFNG_UPDATE_ANS_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -151,6 +177,9 @@ export const tfng = {
 			url + API_ENDPOINTS.Q_TFNG_UPDATE_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -158,7 +187,11 @@ export const tfng = {
 
 	deleteByID: async (qID) => {
 		const response = await axios.patch(
-			url + API_ENDPOINTS.Q_TFNG_DELETE_BY_ID.ROUTE + `${qID}`
+			url + API_ENDPOINTS.Q_TFNG_DELETE_BY_ID.ROUTE + `${qID}`,
+			null,
+			{
+				withCredentials: true,
+			}
 		);
 		return response;
 	},
@@ -170,6 +203,9 @@ export const tableCompletion = {
 			url + API_ENDPOINTS.Q_TABLE_CREATION.ROUTE,
 			{
 				tableCompletion,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -208,6 +244,9 @@ export const tableCompletion = {
 			url + API_ENDPOINTS.Q_TABLE_UPDATE_ANS_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -218,6 +257,9 @@ export const tableCompletion = {
 			url + API_ENDPOINTS.Q_TABLE_UPDATE_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -225,7 +267,11 @@ export const tableCompletion = {
 
 	deleteByID: async (qID) => {
 		const response = await axios.patch(
-			url + API_ENDPOINTS.Q_TABLE_DELETE_BY_ID.ROUTE + `${qID}`
+			url + API_ENDPOINTS.Q_TABLE_DELETE_BY_ID.ROUTE + `${qID}`,
+			null,
+			{
+				withCredentials: true,
+			}
 		);
 		return response;
 	},
@@ -237,6 +283,9 @@ export const sentenceCompletion = {
 			url + API_ENDPOINTS.Q_SENTENCE_CREATION.ROUTE,
 			{
 				listeningShortAns,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -275,6 +324,9 @@ export const sentenceCompletion = {
 			url + API_ENDPOINTS.Q_SENTENCE_UPDATE_ANS_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -285,6 +337,9 @@ export const sentenceCompletion = {
 			url + API_ENDPOINTS.Q_SENTENCE_UPDATE_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -292,7 +347,11 @@ export const sentenceCompletion = {
 
 	deleteByID: async (qID) => {
 		const response = await axios.patch(
-			url + API_ENDPOINTS.Q_SENTENCE_DELETE_BY_ID.ROUTE + `${qID}`
+			url + API_ENDPOINTS.Q_SENTENCE_DELETE_BY_ID.ROUTE + `${qID}`,
+			null,
+			{
+				withCredentials: true,
+			}
 		);
 		return response;
 	},
@@ -304,6 +363,9 @@ export const shortAnswer = {
 			url + API_ENDPOINTS.Q_SHORT_CREATION.ROUTE,
 			{
 				sentenceCompletion,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -342,6 +404,9 @@ export const shortAnswer = {
 			url + API_ENDPOINTS.Q_SHORT_UPDATE_ANS_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -352,6 +417,9 @@ export const shortAnswer = {
 			url + API_ENDPOINTS.Q_SHORT_UPDATE_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -359,7 +427,11 @@ export const shortAnswer = {
 
 	deleteByID: async (qID) => {
 		const response = await axios.patch(
-			url + API_ENDPOINTS.Q_SHORT_DELETE_BY_ID.ROUTE + `${qID}`
+			url + API_ENDPOINTS.Q_SHORT_DELETE_BY_ID.ROUTE + `${qID}`,
+			null,
+			{
+				withCredentials: true,
+			}
 		);
 		return response;
 	},
@@ -371,6 +443,9 @@ export const pmd = {
 			url + API_ENDPOINTS.Q_PMD_CREATION.ROUTE,
 			{
 				pmdLabelling,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -390,12 +465,12 @@ export const pmd = {
 		return response;
 	},
 
-    getImgByID: async (qID) => {
-        const response = await axios.get(
+	getImgByID: async (qID) => {
+		const response = await axios.get(
 			url + API_ENDPOINTS.Q_PMD_GET_IMG_BY_ID.ROUTE + `${qID}`
 		);
 		return response;
-    },
+	},
 
 	getByID: async (qID) => {
 		const response = await axios.get(
@@ -416,6 +491,9 @@ export const pmd = {
 			url + API_ENDPOINTS.Q_PMD_UPDATE_ANS_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -426,6 +504,9 @@ export const pmd = {
 			url + API_ENDPOINTS.Q_PMD_UPDATE_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -433,7 +514,11 @@ export const pmd = {
 
 	deleteByID: async (qID) => {
 		const response = await axios.patch(
-			url + API_ENDPOINTS.Q_PMD_DELETE_BY_ID.ROUTE + `${qID}`
+			url + API_ENDPOINTS.Q_PMD_DELETE_BY_ID.ROUTE + `${qID}`,
+			null,
+			{
+				withCredentials: true,
+			}
 		);
 		return response;
 	},
@@ -445,6 +530,9 @@ export const noteCompletion = {
 			url + API_ENDPOINTS.Q_NOTE_CREATION.ROUTE,
 			{
 				noteCompletion,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -483,6 +571,9 @@ export const noteCompletion = {
 			url + API_ENDPOINTS.Q_NOTE_UPDATE_ANS_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -493,6 +584,9 @@ export const noteCompletion = {
 			url + API_ENDPOINTS.Q_NOTE_UPDATE_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -500,7 +594,11 @@ export const noteCompletion = {
 
 	deleteByID: async (qID) => {
 		const response = await axios.patch(
-			url + API_ENDPOINTS.Q_NOTE_DELETE_BY_ID.ROUTE + `${qID}`
+			url + API_ENDPOINTS.Q_NOTE_DELETE_BY_ID.ROUTE + `${qID}`,
+			null,
+			{
+				withCredentials: true,
+			}
 		);
 		return response;
 	},
@@ -512,6 +610,9 @@ export const mcq = {
 			url + API_ENDPOINTS.Q_MCQ_CREATION.ROUTE,
 			{
 				MCQ,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -550,6 +651,9 @@ export const mcq = {
 			url + API_ENDPOINTS.Q_MCQ_UPDATE_ANS_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -560,6 +664,9 @@ export const mcq = {
 			url + API_ENDPOINTS.Q_MCQ_UPDATE_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -567,7 +674,11 @@ export const mcq = {
 
 	deleteByID: async (qID) => {
 		const response = await axios.patch(
-			url + API_ENDPOINTS.Q_MCQ_DELETE_BY_ID.ROUTE + `${qID}`
+			url + API_ENDPOINTS.Q_MCQ_DELETE_BY_ID.ROUTE + `${qID}`,
+			null,
+			{
+				withCredentials: true,
+			}
 		);
 		return response;
 	},
@@ -579,6 +690,9 @@ export const matching = {
 			url + API_ENDPOINTS.Q_MATCHING_CREATION.ROUTE,
 			{
 				matching,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -617,6 +731,9 @@ export const matching = {
 			url + API_ENDPOINTS.Q_MATCHING_UPDATE_ANS_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -627,6 +744,9 @@ export const matching = {
 			url + API_ENDPOINTS.Q_MATCHING_UPDATE_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -634,7 +754,11 @@ export const matching = {
 
 	deleteByID: async (qID) => {
 		const response = await axios.patch(
-			url + API_ENDPOINTS.Q_MATCHING_DELETE_BY_ID.ROUTE + `${qID}`
+			url + API_ENDPOINTS.Q_MATCHING_DELETE_BY_ID.ROUTE + `${qID}`,
+			null,
+			{
+				withCredentials: true,
+			}
 		);
 		return response;
 	},
@@ -646,6 +770,9 @@ export const formCompletion = {
 			url + API_ENDPOINTS.Q_FORM_CREATION.ROUTE,
 			{
 				formCompletion,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -684,6 +811,9 @@ export const formCompletion = {
 			url + API_ENDPOINTS.Q_FORM_UPDATE_ANS_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -694,6 +824,9 @@ export const formCompletion = {
 			url + API_ENDPOINTS.Q_FORM_UPDATE_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -701,7 +834,11 @@ export const formCompletion = {
 
 	deleteByID: async (qID) => {
 		const response = await axios.patch(
-			url + API_ENDPOINTS.Q_FORM_DELETE_BY_ID.ROUTE + `${qID}`
+			url + API_ENDPOINTS.Q_FORM_DELETE_BY_ID.ROUTE + `${qID}`,
+			null,
+			{
+				withCredentials: true,
+			}
 		);
 		return response;
 	},
@@ -713,6 +850,9 @@ export const flowchartCompletion = {
 			url + API_ENDPOINTS.Q_FLOW_CREATION.ROUTE,
 			{
 				fcCompletion,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -751,6 +891,9 @@ export const flowchartCompletion = {
 			url + API_ENDPOINTS.Q_FLOW_UPDATE_ANS_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -761,6 +904,9 @@ export const flowchartCompletion = {
 			url + API_ENDPOINTS.Q_FLOW_UPDATE_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -768,7 +914,11 @@ export const flowchartCompletion = {
 
 	deleteByID: async (qID) => {
 		const response = await axios.patch(
-			url + API_ENDPOINTS.Q_FLOW_DELETE_BY_ID.ROUTE + `${qID}`
+			url + API_ENDPOINTS.Q_FLOW_DELETE_BY_ID.ROUTE + `${qID}`,
+			null,
+			{
+				withCredentials: true,
+			}
 		);
 		return response;
 	},
@@ -780,6 +930,9 @@ export const summaryCompletion = {
 			url + API_ENDPOINTS.Q_SUMMARY_CREATION.ROUTE,
 			{
 				summaryCompletion,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -818,6 +971,9 @@ export const summaryCompletion = {
 			url + API_ENDPOINTS.Q_SUMMARY_UPDATE_ANS_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -828,6 +984,9 @@ export const summaryCompletion = {
 			url + API_ENDPOINTS.Q_SUMMARY_UPDATE_BY_ID.ROUTE + `${qID}`,
 			{
 				updates,
+			},
+			{
+				withCredentials: true,
 			}
 		);
 		return response;
@@ -835,7 +994,11 @@ export const summaryCompletion = {
 
 	deleteByID: async (qID) => {
 		const response = await axios.patch(
-			url + API_ENDPOINTS.Q_SUMMARY_DELETE_BY_ID.ROUTE + `${qID}`
+			url + API_ENDPOINTS.Q_SUMMARY_DELETE_BY_ID.ROUTE + `${qID}`,
+			null,
+			{
+				withCredentials: true,
+			}
 		);
 		return response;
 	},
