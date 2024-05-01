@@ -8,7 +8,7 @@ import log from './lib/logger.js'
 import bodyParser from 'body-parser';
 import swaggerDocs from './utils/swagger.js';
 import cookieParser from 'cookie-parser';
-import { checkUser } from './middleware/checkAuth.js';
+import { checkAuth } from './middleware/checkAuth.js';
 
 // env var setup
 dotenv.config();
@@ -73,8 +73,9 @@ import userLRAnsSheetRouter from './routes/userLRAnsSheet.js';
 import ynngRouter from './routes/ynng.js';
 import userRouter from './routes/user.js';
 
-app.post('*', checkUser);
-app.patch('*', checkUser);
+app.post('*', checkAuth);
+app.patch('*', checkAuth);
+app.delete('*', checkAuth);
 app.use('/user', userRouter)
 app.use('/userLRAnsSheet', userLRAnsSheetRouter);
 app.use('/readingTest', readingTestRouter);

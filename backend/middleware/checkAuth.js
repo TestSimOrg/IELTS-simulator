@@ -2,47 +2,29 @@ import jwt from "jsonwebtoken";
 import log from "../lib/logger.js";
 import user from "../models/user.js";
 
-const checkAuth = (req, res, next) => {
+const checkAuth = async (req, res, next) => {
+	// Retrieve JWT token from the cookies
 	const token = req.cookies.jwt;
+
+	// Check if token exists
+	if (!token) {
+		return res
+			.status(401)
+			.json({ message: "Unauthorized: No token provided" });
+	}
 
 	try {
-		if (token) {
-			const decodedToken = jwt.verify(token, process.env.SECRET);
-			log.info("Decoded JWT:", decodedToken);
-			next();
-		} else {
+		// Verify the token
+		const decodedToken = jwt.verify(token, process.env.SECRET);
+		const userData = await user.findById(decodedToken.id).lean();
+		log.info(`User Email: ${userData.email}`);
 
-			log.info("JWT Not found on a protected route");
-			res.redirect("/user/login");
-		}
-	} catch (err) {
-		log.error("Auth error:", err);
-		res.redirect("/user/login");
-	}
-};
-
-const checkUser = (req, res, next) => {
-	const token = req.cookies.jwt;
-
-	if (token) {
-		jwt.verify(token, process.env.SECRET, async (err, decodedToken) => {
-			if (err) {
-				res.locals.user = null;
-				next();
-			} else {
-				let userData = await user.findById(decodedToken.id);
-				log.info(
-					"User automatically logged in with email:",
-					userData.email
-				);
-				res.locals.user = userData;
-				next();
-			}
-		});
-	} else {
-		res.locals.user = null;
+		req.user = decodedToken.id;
 		next();
+	} catch (error) {
+		// If token verification fails, return an error response
+		return res.status(401).json({ message: "Unauthorized: Invalid token" });
 	}
 };
-const auth = { checkAuth, checkUser };
-export { checkAuth, checkUser };
+
+export { checkAuth };
