@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Container, Grid, Text, TextInput } from "@mantine/core";
-import { QuestionInput } from "./commons/QuestionInput";
 import { QuestionHeader } from "./commons/QuestionHeader";
 import { QuestionTitle } from "./commons/QuestionTitle";
 import { TextInputValidator } from "../../utils/TextInputValidator";

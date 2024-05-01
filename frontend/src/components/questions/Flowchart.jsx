@@ -1,7 +1,7 @@
 // question/Flowchart.jsx
 import React from "react";
-import { Text, Grid, Container } from "@mantine/core";
-import { QuestionInput } from "./commons/QuestionInput";
+import { Text, Grid, Container, TextInput } from "@mantine/core";
+import { TextInputValidator } from "../../utils/TextInputValidator.js";
 import { QuestionHeader } from "./commons/QuestionHeader";
 import { QuestionStatement } from "./commons/QuestionStatement";
 
@@ -13,6 +13,29 @@ export const Flowchart = ({ q }) => {
 	// We edit the size taken by the grid item based on the number of strings in the step
 
 	// Each __BLANK__ in the step will be replaced by a QuestionInput component
+
+	const [ansArr, setAnsArr] = useState([]);
+	let qNum = q.startQuestionNum;
+
+	useEffect(() => {
+		let arr = [];
+		for (let i = q.startQuestionNum; i <= q.endQuestionNum; i++) {
+			arr.push({
+				number: i,
+				ans: "",
+			});
+		}
+		setAnsArr(arr);
+	}, []);
+
+	const handleInputChange = (questionNum, newValue) => {
+		setAnsArr((prevAnsArr) => {
+			const newAnsArr = [...prevAnsArr];
+			newAnsArr[questionNum].ans = newValue;
+			console.table(newAnsArr);
+			return newAnsArr;
+		});
+	};
 
 	var result = (
 		<Container size={"xl"} pt={"md"}>
@@ -59,11 +82,33 @@ export const Flowchart = ({ q }) => {
 													rectange.split("_BLANK_")
 														.length -
 														1 && (
-													<QuestionInput
-														numOfWords={
-															q.numOfWords
+													<TextInput
+														key={partIndex}
+														onChange={(e) => {
+															TextInputValidator(
+																e,
+																q.numOfWords,
+																q.numOfNum
+															);
+															handleInputChange(
+																Number(
+																	e.target.placeholder.slice(
+																		1
+																	)
+																) -
+																	q.startQuestionNum,
+																e.target.value
+															);
+														}}
+														placeholder={
+															"Q " + qNum++
 														}
-														numOfNum={q.numOfNum}
+														style={{
+															display:
+																"inline-block",
+															width: "auto",
+														}}
+														size="xs"
 													/>
 												)}
 											</React.Fragment>
