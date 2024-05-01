@@ -1,10 +1,9 @@
 import express from 'express';
 import tfngController from '../controllers/tfng.js';
-import {checkAuth} from '../middleware/checkAuth.js'
 
 const tfngRouter = express.Router();
 
-tfngRouter.post('/', checkAuth, tfngController.createQuestion);
+tfngRouter.post('/', tfngController.createQuestion);
 
 tfngRouter.get('/all', tfngController.getAllQuestions);
 
@@ -14,10 +13,10 @@ tfngRouter.get('/:id', tfngController.getQuestionById);
 
 tfngRouter.get('/ans/:id', tfngController.getAns);
 
-tfngRouter.patch('/ans/:id', checkAuth, tfngController.updateAns)
+tfngRouter.patch('/ans/:id', tfngController.updateAns)
 
-tfngRouter.patch('/:id', checkAuth, tfngController.editQuestion);
+tfngRouter.patch('/:id', tfngController.editQuestion);
 
-tfngRouter.delete('/:id', checkAuth, tfngController.delQuestion);
+tfngRouter.delete('/:id', tfngController.delQuestion);
 
 export default tfngRouter;

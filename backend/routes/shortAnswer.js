@@ -1,10 +1,9 @@
 import express from 'express';
 import shortAnswerController from '../controllers/shortAnswer.js';
-import {checkAuth} from '../middleware/checkAuth.js';
 
 const shortAnswerRouter = express.Router();
 
-shortAnswerRouter.post('/', checkAuth, shortAnswerController.createQuestion);
+shortAnswerRouter.post('/', shortAnswerController.createQuestion);
 
 shortAnswerRouter.get('/all', shortAnswerController.getAllQuestions);
 
@@ -14,10 +13,10 @@ shortAnswerRouter.get('/:id', shortAnswerController.getQuestionById);
 
 shortAnswerRouter.get('/ans/:id', shortAnswerController.getAns);
 
-shortAnswerRouter.patch('/ans/:id', checkAuth, shortAnswerController.updateAns);
+shortAnswerRouter.patch('/ans/:id', shortAnswerController.updateAns);
 
-shortAnswerRouter.patch('/:id', checkAuth, shortAnswerController.editQuestion);
+shortAnswerRouter.patch('/:id', shortAnswerController.editQuestion);
 
-shortAnswerRouter.delete('/:id', checkAuth, shortAnswerController.delQuestion);
+shortAnswerRouter.delete('/:id', shortAnswerController.delQuestion);
 
 export default shortAnswerRouter;

@@ -1,10 +1,9 @@
 import express from 'express';
 import summaryCompletionController from '../controllers/summaryCompletion.js';
-import {checkAuth} from '../middleware/checkAuth.js';
 
 const summaryCompletionRouter = express.Router();
 
-summaryCompletionRouter.post('/', checkAuth, summaryCompletionController.createQuestion);
+summaryCompletionRouter.post('/', summaryCompletionController.createQuestion);
 
 summaryCompletionRouter.get('/all', summaryCompletionController.getAllQuestions);
 
@@ -14,10 +13,10 @@ summaryCompletionRouter.get('/:id', summaryCompletionController.getQuestionById)
 
 summaryCompletionRouter.get('/ans/:id', summaryCompletionController.getAns);
 
-summaryCompletionRouter.patch('/ans/:id', checkAuth, summaryCompletionController.updateAns);
+summaryCompletionRouter.patch('/ans/:id', summaryCompletionController.updateAns);
 
-summaryCompletionRouter.patch('/:id', checkAuth, summaryCompletionController.editQuestion);
+summaryCompletionRouter.patch('/:id', summaryCompletionController.editQuestion);
 
-summaryCompletionRouter.delete('/:id', checkAuth, summaryCompletionController.delQuestion);
+summaryCompletionRouter.delete('/:id', summaryCompletionController.delQuestion);
 
 export default summaryCompletionRouter;

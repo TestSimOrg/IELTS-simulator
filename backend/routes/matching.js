@@ -1,10 +1,9 @@
 import express from 'express';
 import matchingController from '../controllers/matching.js';
-import {checkAuth} from '../middleware/checkAuth.js';
 
 const matchingRouter = express.Router();
 
-matchingRouter.post('/', checkAuth, matchingController.createQuestion)
+matchingRouter.post('/', matchingController.createQuestion)
 
 matchingRouter.get('/all', matchingController.getAllQuestions);
 
@@ -14,10 +13,10 @@ matchingRouter.get('/:id', matchingController.getQuestionById)
 
 matchingRouter.get('/ans/:id', matchingController.getAns)
 
-matchingRouter.patch('/ans/:id', checkAuth, matchingController.updateAns);
+matchingRouter.patch('/ans/:id', matchingController.updateAns);
 
-matchingRouter.patch('/:id', checkAuth, matchingController.editQuestion);
+matchingRouter.patch('/:id', matchingController.editQuestion);
 
-matchingRouter.delete('/:id', checkAuth, matchingController.delQuestion)
+matchingRouter.delete('/:id', matchingController.delQuestion)
 
 export default matchingRouter;

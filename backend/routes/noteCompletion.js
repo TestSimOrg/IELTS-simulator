@@ -1,10 +1,9 @@
 import express from 'express';
 import noteCompletionController from '../controllers/noteCompletion.js';
-import {checkAuth} from '../middleware/checkAuth.js';
 
 const noteCompletionRouter = express.Router();
 
-noteCompletionRouter.post('/', checkAuth, noteCompletionController.createQuestion);
+noteCompletionRouter.post('/', noteCompletionController.createQuestion);
 
 noteCompletionRouter.get('/all', noteCompletionController.getAllQuestions)
 
@@ -14,10 +13,10 @@ noteCompletionRouter.get('/:id', noteCompletionController.getQuestionById)
 
 noteCompletionRouter.get('/ans/:id', noteCompletionController.getAns)
 
-noteCompletionRouter.patch('/ans/:id', checkAuth, noteCompletionController.updateAns)
+noteCompletionRouter.patch('/ans/:id', noteCompletionController.updateAns)
 
-noteCompletionRouter.patch('/:id', checkAuth, noteCompletionController.editQuestion);
+noteCompletionRouter.patch('/:id', noteCompletionController.editQuestion);
 
-noteCompletionRouter.delete('/:id', checkAuth, noteCompletionController.delQuestion);
+noteCompletionRouter.delete('/:id', noteCompletionController.delQuestion);
 
 export default noteCompletionRouter;

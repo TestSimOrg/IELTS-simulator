@@ -1,10 +1,9 @@
 import express from 'express';
 import sentenceCompletionController from '../controllers/sentenceCompletion.js';
-import {checkAuth} from '../middleware/checkAuth.js';
 
 const sentenceCompletionRouter = express.Router();
 
-sentenceCompletionRouter.post('/', checkAuth, sentenceCompletionController.createQuestion);
+sentenceCompletionRouter.post('/', sentenceCompletionController.createQuestion);
 
 sentenceCompletionRouter.get('/all', sentenceCompletionController.getAllQuestions);
 
@@ -14,10 +13,10 @@ sentenceCompletionRouter.get('/:id', sentenceCompletionController.getQuestionByI
 
 sentenceCompletionRouter.get('/ans/:id', sentenceCompletionController.getAns);
 
-sentenceCompletionRouter.patch('/ans/:id', checkAuth, sentenceCompletionController.updateAns);
+sentenceCompletionRouter.patch('/ans/:id', sentenceCompletionController.updateAns);
 
-sentenceCompletionRouter.patch('/:id', checkAuth, sentenceCompletionController.editQuestion);
+sentenceCompletionRouter.patch('/:id', sentenceCompletionController.editQuestion);
 
-sentenceCompletionRouter.delete('/:id', checkAuth, sentenceCompletionController.delQuestion);
+sentenceCompletionRouter.delete('/:id', sentenceCompletionController.delQuestion);
 
 export default sentenceCompletionRouter;

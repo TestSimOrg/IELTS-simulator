@@ -1,10 +1,9 @@
 import express from 'express';
-import {checkAuth} from '../middleware/checkAuth.js'
 import fcCompletionController from '../controllers/flowchartCompletion.js';
 
 const flowchartCompletionRouter = express.Router();
 
-flowchartCompletionRouter.post('/', checkAuth, fcCompletionController.createQuestion);
+flowchartCompletionRouter.post('/', fcCompletionController.createQuestion);
 
 flowchartCompletionRouter.get('/all', fcCompletionController.getAllQuestions);
 
@@ -14,10 +13,10 @@ flowchartCompletionRouter.get('/:id', fcCompletionController.getQuestionById);
 
 flowchartCompletionRouter.get('/ans/:id', fcCompletionController.getAns);
 
-flowchartCompletionRouter.patch('/ans/:id', checkAuth, fcCompletionController.updateAns);
+flowchartCompletionRouter.patch('/ans/:id', fcCompletionController.updateAns);
 
-flowchartCompletionRouter.patch('/:id', checkAuth, fcCompletionController.editQuestion);
+flowchartCompletionRouter.patch('/:id', fcCompletionController.editQuestion);
 
-flowchartCompletionRouter.delete('/:id', checkAuth, fcCompletionController.delQuestion);
+flowchartCompletionRouter.delete('/:id', fcCompletionController.delQuestion);
 
 export default flowchartCompletionRouter;
