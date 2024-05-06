@@ -39,88 +39,15 @@ we have heading: Question Practice
 then the: `My progress` button to see the stats of user for every question type.
 Then we have 3 column grid for questions (like in reference site). The site has to be responsive in that the 3 columns should become 2 column and then 1 column.
 Users should be able to like and bookmark a question.
+## Exam template:
+In the listening test there will be 4 audio files for the 4 sections in the test. There will be a next and previous button for navigating sections. 
 
-## Listening Question Types:
+In the Reading test there will be one passage and all questions related to it will rendered on a page (one section per page). There will be next and previous buttons to navigate sections.
 
-These are the things that should be visible from the question props.
-1) Matching:
-	1) questionHeader
-	2) questionStatement? (? = could be missing)
-	3) questionTitle?
-	4) questionOptions (options with capital letters)
-	5) numStatements (options with numbers)
-2) Sentence Completion:
-	1) questionHeader
-	2) questionTitle
-	3) numStatements
-3) MCQ:
-	1) questionHeader
-	2) numStatements
-	3) questionOptions
-4) Summary Completion:
-	1) questionHeader
-	2) questionTitle
-	3) summary
-5) Note Completion:
-	1) questionHeader
-	2) questionTitle
-	3) questionStatements
-6) Diagram Completion:
-	1) questionHeader
-	2) questionTitle
-	3) questionOptions
-	4) numStatements
-7) Flowchart Completion:
-	1) questionHeader
-	2) questionTitle?
-	3) questionOptions?
-	4) steps
-8) Table Completion:
-	1) rows
-9) Form Completion:
-	1) questionHeader
-	2) questionTitle
-	3) questionStatements
-10) Short Answer:
-	1) questionHeader
-	2) questionStatements
-	3) questionBlanks
+In the writing test there will be two sections for two questions an essay and report. There will be next and previous buttons to navigate sections.
 
-## Reading Question Types:
+In the speaking test we can show all questions in one page and let the user record the audio from their mic and let themselves judge their score. What we can do is let a robot voice read the questions and let the user speak for 2-3 minutes while showing the timer.
 
-1) Matching:
-	1) questionHeader
-	2) questionTitle
-	3) questionStatements
-	4) numStatements
-2) Sentence Completion:
-	1) same as listening
-3) MCQ:
-	1) same as listening
-4) Summary Completion:
-	1) questionHeader
-	2) questionTitle
-	3) summary
-	4) questionOptions?
-5) Note Completion:
-	1) same as listening
-6) Diagram Completion:
-	1) questionHeader
-	2) questionTitle
-	3) numStatements
-7) Flowchart Completion:
-	1) questionHeader
-	2) steps
-8) Table Completion:
-	1) rows
-9) Short Answer:
-	1) questionHeader
-	2) numStatements
-10) Yes No Not given:
-	1) questionHeader
-	2) questionOptions: `YES`, `NO`, `NOT GIVEN`
-	3) numStatements
-11) True False Not given:
-	1) questionHeader
-	2) questionOptions: `TRUE`, `FALSE`, `NOT GIVEN`
-	3) numStatements
+TODO: Need to add a system for rendering questions (with storing answers) into a test.
+
+
