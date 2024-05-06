@@ -51,3 +51,8 @@ In the speaking test we can show all questions in one page and let the user reco
 TODO: Need to add a system for rendering questions (with storing answers) into a test.
 
 
+
+# backend
+TODO: 
+1) Complete user schema, route and controller so that it stores question ids of the questions that user uploaded.
+2) create a flow chart for front end and backend.
