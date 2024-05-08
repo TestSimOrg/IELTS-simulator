@@ -70,3 +70,10 @@
 .mantine-Modal-inner {
   left:0;
 }
+
+.page-not-found-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
