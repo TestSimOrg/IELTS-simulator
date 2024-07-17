@@ -2,10 +2,23 @@
 .hpheader {
     padding: 10px 10px 0 10px;
     color: rgb(0, 0, 0);
+    font-size: 175%;
+    text-align: center;
+    margin: 0px 10px 10px 10px;
 
-    @media (max-width: $mantine-breakpoint-sm) {
+    @media (max-width: 1028px) {
         font-size: x-large;
     }
+
+    @media (max-width: 522px) {
+        font-size: medium;
+    }
+}
+
+.subtext {
+    max-width: 30%;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .txt {
